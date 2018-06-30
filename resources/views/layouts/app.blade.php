@@ -114,6 +114,8 @@
     <script type="text/javascript" src="{{ asset('plugins/popper.min.js') }}" ></script>
     
     <script type="text/javascript" src="{{ asset('plugins/bootstrap/bootstrap.min.js') }}" ></script>
+
+    @yield('js-content')
     
 </body>
 </html>

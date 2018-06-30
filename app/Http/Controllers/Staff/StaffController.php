@@ -1,11 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\CreateStaffRequest;
 
 use Illuminate\Http\Request;
 use App\User;
 use App\Staff;
 use App\Role;
+Use Session;
+
 use Illuminate\Support\Facades\Hash;
 
 
@@ -17,18 +20,18 @@ class StaffController extends Controller
     	return view('staff.register');
     }
 
-    public function staffCreate(Request $request) 
+    public function staffCreate(CreateStaffRequest $request) 
     {
-    	
+    	$success = false;
     	$check = $request->get('cargo');
     	$staff = Staff::create([
     		'nationality' => $request->get('nacionality'),
-    		'id' => $request->input('cedula'), 
-    		'names' => $request->input('name'),
-    		'last_names' => $request->input('last_name'),
-    		'genre' => $request->input('genre'),
+    		'id' => $request->input('id'), 
+    		'names' => $request->input('names'),
+    		'last_names' => $request->input('last_names'),
+    		'genre' => $request->get('genre'),
     		'address' => $request->get('address'), 
-    		'phone_number' => $request->input('phone'), 
+    		'phone_number' => $request->input('phone_number'), 
     		'position' => $request->input('position'),
     	]);
 
@@ -48,7 +51,13 @@ class StaffController extends Controller
     			'Operaciones' => $request->input('operaciones'),
     		]);	
     	}
+        $success = true;
+
+        if ($success) {
+            Session::flash('status','Success');
+
+        }
     	
-    	return redirect('home');
+    	return redirect('/home');
     }
 }

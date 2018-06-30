@@ -1,73 +1,124 @@
 @extends('layouts.staff_base')
-
+<body>
+	
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
 			<div class="card card2 text-center">
 				<div class="card-header">
-					<h3 class="azul text-center m-3 ">Registro de Personal</h3>
+					<h3 id="hola" class="azul text-center m-3 ">Registro de Personal</h3>
 				</div>
 				<form action="/personal/registrar/" method="post">
 				<div class="card-body">
 						{{ csrf_field() }}
 						<div class="row">
+							{{-- formulario --}}
 							<div class="col-lg-6 col-md-12" >
 								<label for="nacionality" class="form-label">Nacionalidad</label>							
-								<select name="nacionality" class="form-control focus">
+								<select  required name="nacionality" class="form-control focus {{ $errors->has('nacionality') ? ' is-invalid' : '' }}" >
 									<option></option>
 									<option>V</option>
 
 									<option>E</option>
 								</select>
+								 @if ($errors->has('nacionality'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('nacionality') }}</strong>
+                                    </span>
+                                @endif
 							</div>
 
 							<div class="col-lg-6 col-md-12">
 
-								<label class="form-label" for="cedula">cedula</label>
-								<input class="form-control" type="text" name="cedula" >	
-								
+								<label class="form-label" for="id">cedula</label>
+								<input class="form-control {{ $errors->has('id') ? ' is-invalid' : '' }}" type="text" name="id" value="{{ old('id') }}">
+								 
+								 @if ($errors->has('id'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('id') }}</strong>
+                                    </span>
+                                @endif		
 							</div>
 
 							<div class="col-lg-6 col-md-12 mt-5">
-							<label class="form-label" for="name">Nombre</label>
-							<input class="form-control" type="text" name="name" >
+								<label class="form-label" for="names">Nombre</label>
+								<input class="form-control {{ $errors->has('names') ? ' is-invalid' : '' }}" type="text" name="names" value="{{ old('names') }}">
+								@if ($errors->has('names'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('names') }}</strong>
+                                    </span>
+                                @endif
 							</div>
 							
 							<div class="col-lg-6 col-md-12 mt-5">
-							<label class="form-label">last-name</label>
-							<input class="form-control" type="text" name="last_name">
+								<label class="form-label">Apellidos</label>
+								<input class="form-control {{ $errors->has('last_names') ? ' is-invalid' : '' }}" type="text" name="last_names" value="{{ old('names') }}">
+								@if ($errors->has('last_names'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('last_names') }}</strong>
+                                    </span>
+                                @endif
 							</div>
 
 							<div class="col-lg-6 col-md-12 mt-5">
-							<label for="genre" class="form-label">Género</label>
-							<input class="form-control" type="text" name="genre">
+								<label for="genre" class="form-label">Género</label>
+								<select required class="form-control focus  {{ $errors->has('genre') ? ' is-invalid' : '' }}"  name="genre" value="{{ old('genre') }}">
+									<option></option>
+									<option>Femenino</option>
+									<option>Masculino</option>
+								</select>
+								@if ($errors->has('genre'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('genre') }}</strong>
+                                    </span>
+                                @endif 
 							</div>
 							
 							<div class="col-lg-6 col-md-12 mt-5">
-							<label for="email" class="form-label">Email</label>
-							<input class="form-control" type="email" name="email">
+								<label for="email" class="form-label">Email</label>
+								<input class="form-control focus {{ $errors->has('email') ? ' is-invalid' : '' }}" type="email" name="email" value="{{ old('email') }}">
+								@if ($errors->has('email'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif 
 							</div>
 
 
 							<div class="col-lg-6 col-md-12 mt-5">
-							<label for="phone" class="form-label">telefono</label>
-							<input class="form-control" type="text" name="phone">
+								<label for="phone_number" class="form-label ">telefono</label>
+								<input class="form-control  {{ $errors->has('phone_number') ? ' is-invalid' : '' }}" type="text" name="phone_number" value="{{ old('phone_number') }}">
+								@if ($errors->has('phone_number'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('phone_number') }}</strong>
+                                    </span>
+                                @endif 
 							</div>
 
 							<div class="col-lg-6 col-md-12 mt-5">
-							<label for="position" class="form-label">Posicion</label>
-							<input class="form-control" type="text" name="position">
+								<label for="position" class="form-label">Posicion</label>
+								<input class="form-control {{ $errors->has('position') ? ' is-invalid' : '' }}" type="text" name="position" value="{{ old('position') }}">
+								@if ($errors->has('position'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('position') }}</strong>
+                                    </span>
+                                @endif 
 							</div>
 
 							<div class="col-lg-12 col-md-12 mt-5">
-							<label for="address" class="form-label">direccion</label>
-							<textarea name="address" class="form-control focus"></textarea>
+								<label for="address" class="form-label">direccion</label>
+								<textarea name="address" class="form-control focus {{ $errors->has('address') ? ' is-invalid' : '' }}" value="{{ old('address') }}"></textarea>
+								@if ($errors->has('address'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('address') }}</strong>
+                                    </span>
+                                @endif 
 							</div>
+							
+							{{-- parte para agregarle permisos --}}
 							<div class="col-lg-6 mt-5">
 								<label class="form-label" for="cargo">¿Desea agregarle Permiso a este Usuario?</label>
-								
-
 							</div>
 							<div class="col-lg-6 mt-5">
 								<input id="cargo"  class=" form-control custom-control custom-checkbox" type="checkbox" name="cargo" value="1"  	>
@@ -77,6 +128,7 @@
 							<br><br>
 							<br><br>
 							
+							{{-- cargos --}}
 							<div class="card-header col-sm-12 admin ocultar-permisos"><h3 class="azul text-center ">Cargos</h3></div>
 								
 							<div  class="admin col-lg-6 mt-5 col-md-12 ocultar-permisos">
@@ -131,4 +183,5 @@
 @endsection
 
 <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+</body>
 

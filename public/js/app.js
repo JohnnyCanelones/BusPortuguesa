@@ -10,7 +10,6 @@ window.onload=function(){
     }
     
     document.querySelector('.cambio').addEventListener("click", function(){toggleSubMenu('.cambio')});
-    document.querySelector('#button2').addEventListener("click", function(){toggleSubMenu('#button2')});
     document.querySelector('#button3').addEventListener("click", function(){toggleSubMenu('#button3')});
     document.querySelector('#button4').addEventListener("click", function(){toggleSubMenu('#button4')});
 

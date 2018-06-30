@@ -25,7 +25,28 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    // protected $redirectTo = '/home';
+    
+    public function redirectPath()
+    {
+        if (auth()->user()->hasRole('', '1')) {
+                    return '/mantenimiento';
+        }
+        elseif (auth()->user()->hasRole('1', '')) {
+                    return 'presidente';
+        }
+        elseif (auth()->user()->hasRole2('1', '')) {
+            return '/personal';
+        }
+        elseif (auth()->user()->hasRole2('', '1')) {
+            return '/inventario';
+        }
+        elseif (auth()->user()->hasRole3('1')) {
+            return '/operaciones';
+        }
+        return '/';
+        // return property_exists($this, 'redirectTo') ? $this->redirectTo : '/home';
+    }
 
     /**
      * Create a new controller instance.
@@ -38,7 +59,7 @@ class LoginController extends Controller
     }
 
     public function username()
-{
-    return 'username';
-}
+    {
+        return 'username';
+    }
 }
