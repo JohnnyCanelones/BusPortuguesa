@@ -60,4 +60,29 @@ class StaffController extends Controller
     	
     	return redirect('/home');
     }
+
+    public function showStaff(Role $role, Staff $staff)
+    {   
+        
+        $staff = Staff::all();
+        $role = Role::all();
+
+        $staff->load('user');
+
+        return view('staff.show', [
+            'staff' => $staff,
+            'role' => $role,
+        ]);
+    }
+
+    public function showRole($id)
+    {
+        $permiso = User::where('username', $id)->first();
+
+        $permiso->load('role');
+
+        return view('staff.role_edit', [
+            'permiso' => $permiso,
+        ]);
+    }
 }

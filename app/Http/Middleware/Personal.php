@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class Mantenimiento
+class Personal
 {
     /**
      * Handle an incoming request.
@@ -13,15 +13,15 @@ class Mantenimiento
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next, $user1, $user2)
+     public function handle($request, Closure $next, $user1, $user2)
     {
         if (! $request->user()->hasRole($user1, $user2)) {
             if (! $request->user()->hasRole('', '1')) {
                 if ($request->user()->hasRole('1', '')) {
                     return redirect('/presidente');
                 }
-                elseif ($request->user()->hasRole2('1', '')) {
-                    return redirect('/personal');
+                elseif ($request->user()->hasRole('', '1')) {
+                    return redirect('/mantenimiento');
                 }
                 elseif ($request->user()->hasRole2('', '1')) {
                     return redirect('/inventario');
@@ -36,4 +36,3 @@ class Mantenimiento
         return $next($request);
     }
 }
-

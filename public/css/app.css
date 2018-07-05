@@ -1,4 +1,13 @@
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: normal;
+  src: local("?"), url("../fonts/Roboto/Roboto-Italic.ttf") format("truetype");
+}
+
+
 body {
+    font-family: Roboto;
   background-color: #e1e1e1 !important;
 }
 
@@ -36,6 +45,22 @@ input[type=text]:focus {
 
 .header {
 	background-color: #003286;
+}
+
+.overlay {
+  position: fixed;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+    display: block;
+  z-index: 10;
+}
+
+.list-group-item:hover {
+  color: #008a34 !important;
 }
 
 
@@ -208,6 +233,7 @@ h3 {
   background-color: #003286 !important;
   color: white;
 }
+
 .nav-items{
   padding: 20px;
     color: #000 !important;

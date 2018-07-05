@@ -19,9 +19,24 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home')->middleware('admin:,');
 
 
+// Rutas del Presidente
+
+require_once __DIR__ . '/routes/presidente.php';
+
+
 // Rutas del Personal
 
 require_once __DIR__ . '/routes/staff.php';
+
+
+// Rutas del Personal
+
+require_once __DIR__ . '/routes/mantenimiento.php';
+
+// Rutas del Personal
+
+require_once __DIR__ . '/routes/operaciones.php';
+
 
 
 

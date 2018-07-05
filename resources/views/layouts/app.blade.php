@@ -24,7 +24,10 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('plugins/bootstrap/bootstrap.min.css') }}" rel="stylesheet">
 </head>
-<body>
+
+    
+
+<body >
     <div id="app">
         <nav class="header navbar navbar-expand-md navbar-light navbar-laravel zindex-fixed w-100  fixed-top">
             <div class="container-fluid">
@@ -50,14 +53,15 @@
                             <li class="nav-item ">
                                 <a class="nav-link text-white" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-white" href="{{ route('register') }}">{{ __('Register') }}</a>
-                            </li>
+                            
                         @else
                             <li class="nav-item dropdown text-center">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     @if(auth()->user()->role->Admin)Presidente 
                                     @elseif(auth()->user()->role->Mantenimiento)Jefe de Mantenimiento 
+                                    @elseif(auth()->user()->role->Operaciones)Jefe de Operaciones 
+                                    @elseif(auth()->user()->role->Personal)Jefe de Recursos Humanos 
+                                    @elseif(auth()->user()->role->Inventario)Jefe de Inventario
                                     @endif
 
                                 </a>
@@ -85,7 +89,7 @@
         <br>
             
                 
-        <div class="row">
+        <div  id="" class="row">
             @yield('sidebar')
             
                 
@@ -96,10 +100,10 @@
             
        
        
-        <div class="py-4 container" >
+        <div class="container" >
 
         
-            <div class=" col-sm-12 mt-5" >
+            <div class=" col-sm-12 mt-5 " >
                 
                 @yield('content')
             </div>
@@ -118,4 +122,5 @@
     @yield('js-content')
     
 </body>
+</div>
 </html>

@@ -33,7 +33,7 @@ class LoginController extends Controller
                     return '/mantenimiento';
         }
         elseif (auth()->user()->hasRole('1', '')) {
-                    return 'presidente';
+                    return '/presidente';
         }
         elseif (auth()->user()->hasRole2('1', '')) {
             return '/personal';
