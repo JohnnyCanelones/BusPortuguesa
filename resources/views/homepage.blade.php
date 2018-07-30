@@ -66,8 +66,22 @@
           @guest
             <li><a href="{{ route('login') }}">Iniciar Sesion</a></li>
           @else
-            @if( auth()->user()->staff->position  = 'Jefe de Mantenimineto')
-              <li><a href="{{ route('login') }}">{{ auth()->user()->staff->position }}</a></li>
+            @if(auth()->user()->role->Admin)<li><a href="{{ route('login') }}">
+              @if(auth()->user()->staff->genre == "Masculino")Presidente @else Presidenta @endif</a></li> 
+            
+            @elseif(auth()->user()->role->Mantenimiento)<li><a href="{{ route('login') }}">
+              @if(auth()->user()->staff->genre == "Masculino")Jefe @else Jefa @endif de Mantenimiento</a></li>
+
+            @elseif(auth()->user()->role->Operaciones)<li><a href="{{ route('login') }}">
+              @if(auth()->user()->staff->genre == "Masculino")Jefe @else Jefa @endif de Operaciones</a></li>
+            
+            @elseif(auth()->user()->role->Personal)<li><a href="{{ route('login') }}">
+              @if(auth()->user()->staff->genre == "Masculino")Jefe @else Jefa @endif de Recursos Humanos</a></li>
+            
+            @elseif(auth()->user()->role->Inventario)<li><a href="{{ route('login') }}">
+              @if(auth()->user()->staff->genre == "Masculino")Jefe @else Jefa @endif de Inventario</a></li>
+            
+              
             
             @else
               

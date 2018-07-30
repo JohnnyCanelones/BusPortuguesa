@@ -391,8 +391,8 @@ h1, h2, h3, h4, h5, h6 {
 /* Mobile Nav Toggle */
 #mobile-nav-toggle {
   position: fixed;
-  right: 33px;
-  top: 0;
+  right: -20px;
+  top: -8px;
   z-index: 999;
   margin: 20px 20px 0 0;
   border: 0;
@@ -513,7 +513,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 /* Sections Header
 --------------------------------*/
 .section-header h3 {
-  font-size: 32px;
+  font-size: 26px;
   color: #111;
   text-transform: uppercase;
   text-align: center;

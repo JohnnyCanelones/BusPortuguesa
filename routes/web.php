@@ -40,5 +40,7 @@ require_once __DIR__ . '/routes/operaciones.php';
 
 
 
-
+Route::get('hola', function() {
+    return view('staff.datatable');
+});
 

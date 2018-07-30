@@ -1,10 +1,10 @@
-@extends('layouts.staff_base')
 <body>
+@include('layouts.staff_base')
 	
-@section('content')
+
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-sm-12 col-md-7">
 			<div id="" class="card card2 text-center">
 				<div class="card-header">
 					<h3 id="hola" class="azul text-center m-3 ">Registro de Personal</h3>
@@ -181,8 +181,9 @@
 	</div>
 </div>
 
+<script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/staffform.js') }}"></script>
-@endsection
+
 
 </body>
 

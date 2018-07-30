@@ -81,8 +81,33 @@ class StaffController extends Controller
 
         $permiso->load('role');
 
+
         return view('staff.role_edit', [
             'permiso' => $permiso,
         ]);
     }
+
+    public function roleEdit(Request $request, $id)
+   {
+    $admin = $request->input('admin');
+    $mantenimiento = $request->input('mantenimiento');
+    $personal = $request->input('personal');
+    $inventario = $request->input('inventario');
+    $operaciones = $request->input('operaciones');
+
+
+    $role= Role::find($id);
+    
+    $role->Admin= $admin;
+    $role->Mantenimiento = $mantenimiento;
+    $role->Personal  = $personal;
+    $role->Inventario  = $inventario;
+    $role->Operaciones  = $operaciones;
+    
+    $role->save();
+
+    return redirect('personal/show');
+   }
+
+
 }

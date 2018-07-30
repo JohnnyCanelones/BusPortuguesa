@@ -23,6 +23,11 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('plugins/bootstrap/bootstrap.min.css') }}" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css">
+  
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.2/css/responsive.bootstrap4.min.css">
+
 </head>
 
     
@@ -57,11 +62,16 @@
                         @else
                             <li class="nav-item dropdown text-center">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    @if(auth()->user()->role->Admin)Presidente 
-                                    @elseif(auth()->user()->role->Mantenimiento)Jefe de Mantenimiento 
-                                    @elseif(auth()->user()->role->Operaciones)Jefe de Operaciones 
-                                    @elseif(auth()->user()->role->Personal)Jefe de Recursos Humanos 
-                                    @elseif(auth()->user()->role->Inventario)Jefe de Inventario
+                                    @if(auth()->user()->role->Admin) @if(auth()->user()->staff->genre == "Masculino")Presidente @else Presidenta @endif
+                                    
+                                    @elseif(auth()->user()->role->Mantenimiento) @if(auth()->user()->staff->genre == "Masculino")Jefe @else Jefa @endif de Mantenimiento
+                                    
+                                    @elseif(auth()->user()->role->Operaciones) @if(auth()->user()->staff->genre == "Masculino")Jefe @else Jefa @endif de Operaciones 
+                                    
+                                    @elseif(auth()->user()->role->Personal) @if(auth()->user()->staff->genre == "Masculino")Jefe @else Jefa @endif de Recursos Humanos 
+                                    
+                                    @elseif(auth()->user()->role->Inventario) @if(auth()->user()->staff->genre == "Masculino")Jefe @else Jefa @endif de Inventario
+                                    
                                     @endif
 
                                 </a>
@@ -118,6 +128,8 @@
     <script type="text/javascript" src="{{ asset('plugins/popper.min.js') }}" ></script>
     
     <script type="text/javascript" src="{{ asset('plugins/bootstrap/bootstrap.min.js') }}" ></script>
+    
+
 
     @yield('js-content')
     

@@ -1,30 +1,69 @@
-@extends('layouts.staff_base')
-
-
-
-@section('content')
+<body> 
+@include('layouts.staff_base')
 <div class="container">
+    
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div id="" class="card card2">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-                    @foreach($staff as $staff)
-                        <a href="">{{ $staff->nationality}}-{{$staff->id}}</a><br>
-                        {{ $staff->names}}<br>
-                        @if($staff->user) <a href="{{ url('personal/'.$staff->id) }}" class="btn btn-primary">Ver Permisos</a>
-                        @else 
-                        <a href="{{ url('personal/user') }}" class="btn btn-primary">Crear Usuario</a>
-                        @endif
-                        <br>
-                        <br>
-                    @endforeach
+        <div class="col-sm-12 col-md-7">
+            <div id="" class='card card2'>
+                <div class="card-header">
+                    <h3 id="hola" class="azul text-center m-3 ">Personal</h3>
                 </div>
-                
+                <div class="card-body">
+                    <table id="example" class="p-3 table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+                      <thead>
+                            <tr>
+                                <th scope="col">Cedula</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Apellido</th>
+                                <th scope="col">#</th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                            @forelse($staff as $staff)
+                            <tr>
+                                <th scope="row">
+                                    <a href="">{{ $staff->nationality}}-{{$staff->id}}</a>
+                                </th>
+                                <td> {{ $staff->names}}</td>
+                                <td> {{ $staff->last_names}}</td>
+                                <td>
+                                    @if($staff->user) <a href="{{ url('personal/role/'.$staff->id) }}" class="btn btn-primary">Ver Permisos</a>
+                                    @else 
+                                    <a href="{{ url('personal/create/user/'. $staff->id) }}" class="btn btn-primary">Crear Usuario</a>
+                                    @endif
+                                </td>        
+                            </tr>
+                            @empty
+                            dfksdflkjs
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
+
     </div>
 </div>
 
-@endsection
+<script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+
+<script type="text/javascript"  src="{{ asset('homepage/lib/jquery datatables/jquery.dataTables.js') }}"></script>
+  
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.2/js/dataTables.responsive.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.2/js/responsive.bootstrap4.min.js"></script>
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+    $('#example').DataTable( {
+        dom: 'Bfrtip',
+    
+    } );
+} );
+</script>
+
+
+
+</body>

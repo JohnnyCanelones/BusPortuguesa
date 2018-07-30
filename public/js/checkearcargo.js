@@ -99,7 +99,7 @@ function operacionesFunction(){
 
 
 
-window.onload=function(){
+
     //aqui ejecutamos las mismas funciones pero cada vez que se haga click en cada checkbox
     admin.addEventListener('click', function(){
         adminFunction()
@@ -118,4 +118,3 @@ window.onload=function(){
     operaciones.addEventListener('click', function(){
        operacionesFunction() 
     })
-}

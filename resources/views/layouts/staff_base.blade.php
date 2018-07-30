@@ -1,5 +1,5 @@
 @extends('layouts.base')
-<body>
+
     
 @section('nav-items')
    <ul class="p-0">
@@ -49,8 +49,6 @@
         </div>
     </li>
     </ul>
-
-                    
-
+    
 @endsection
-</body>
+
