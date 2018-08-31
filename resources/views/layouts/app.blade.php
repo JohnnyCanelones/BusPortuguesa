@@ -22,8 +22,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('plugins/bootstrap/bootstrap.min.css') }}" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css">
+    {{-- <link rel="stylesheet" href="{{ asset('plugins/bootstrap/bootstrap.min.css') }}"> --}}
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css">
   
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.2/css/responsive.bootstrap4.min.css">
@@ -124,12 +125,14 @@
     </div>
         
     <script type="text/javascript" src="{{ asset('plugins/jquery-3.2.1.slim.min.js') }}" ></script>
-
+    
     <script type="text/javascript" src="{{ asset('plugins/popper.min.js') }}" ></script>
+   
+    {{-- <script type="text/javascript" src="{{ asset('plugins/bootstrap/bootstrap.min.js') }}" ></script> --}}
+    {{-- <script type="text/javascript" src="{{ asset('plugins/bootstrap-material-design/js/mdb.min.js') }}" ></script> --}}
     
-    <script type="text/javascript" src="{{ asset('plugins/bootstrap/bootstrap.min.js') }}" ></script>
-    
-
+    <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
+    <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
 
     @yield('js-content')
     

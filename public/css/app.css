@@ -7,10 +7,14 @@
 
 
 body {
-    font-family: Roboto;
+    font-family: Roboto !important;
   background-color: #e1e1e1 !important;
 }
 
+.navbar{
+  z-index: 1999 !important;
+}
+/* 
 input[type=text]{
   -webkit-transition: all 0.30s ease-in-out;
   -moz-transition: all 0.30s ease-in-out;
@@ -19,13 +23,13 @@ input[type=text]{
   
 
   border: 1px solid #DDDDDD;
-}
+} */
 
-input[type=text]:focus {
+/* input[type=text]:focus {
   box-shadow: 0 0 5px #008a34;
 
   border: 1px solid #008a34;
-}
+} */
 
 .focus {
   -webkit-transition: all 0.30s ease-in-out !important;
@@ -34,17 +38,17 @@ input[type=text]:focus {
   -o-transition: all 0.30s ease-in-out !important;
   
 
-  border: 1px solid #DDDDDD !important;
 } 
 .focus:focus{
-  box-shadow: 0 0 5px #008a34 !important;
 
-  border: 1px solid #008a34 !important;
+  border-bottom: 1px solid #008a34 !important;
 
 }
 
+
+
 .header {
-	background-color: #003286;
+	background-color: #003286 !important;
 }
 
 .overlay {
@@ -99,10 +103,10 @@ input[type=text]:focus {
 
 @media (min-width: 1000px) { 
   .card2{
-    width: 72VW;;
-    left: -56px;
+    width: 72VW;
+    left: -26px;
     z-index: 100;
-  }
+}
   .sidebar {
     width: 22vw !important;
   }
@@ -114,8 +118,8 @@ input[type=text]:focus {
 
 @media(min-width: 600px) and ( max-width: 800px) { 
   .card2{
-    width: 132% !important;
-    left: -56px;
+    width: 125% !important;
+    left: -64px;
     z-index: 100;
   }
 }

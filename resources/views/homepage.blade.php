@@ -107,7 +107,7 @@
         <div class="carousel-inner" role="listbox">
 
           <div class="carousel-item active">
-            <div class="carousel-background"><img src="{{ asset('homepage/img/intro-carousel/1.jpg') }}" alt=""></div>
+            <div class="carousel-background"><img src="{{ asset('homepage/img/intro-carousel/6.jpg') }}" alt=""></div>
             <div class="carousel-container">
               <div class="carousel-content">
                 <h2>Lorem ipsum dolor sit amet</h2>
@@ -118,7 +118,7 @@
           </div>
 
           <div class="carousel-item">
-            <div class="carousel-background"><img src="{{ asset('homepage/img/intro-carousel/2.jpg') }}" alt=""></div>
+            <div class="carousel-background"><img src="{{ asset('homepage/img/intro-carousel/7.jpg') }}" alt=""></div>
             <div class="carousel-container">
               <div class="carousel-content">
                 <h2>At vero eos et accusamus</h2>
@@ -128,7 +128,7 @@
             </div>
           </div>
 
-          <div class="carousel-item">
+          {{-- <div class="carousel-item">
             <div class="carousel-background"><img src="{{ asset('homepage/img/intro-carousel/3.jpg') }}" alt=""></div>
             <div class="carousel-container">
               <div class="carousel-content">
@@ -159,7 +159,7 @@
                 <a href="#featured-services" class="btn-get-started scrollto">Get Started</a>
               </div>
             </div>
-          </div>
+          </div> --}}
 
         </div>
 
@@ -196,7 +196,7 @@
           <div class="col-md-4 wow fadeInUp">
             <div class="about-col">
               <div class="img">
-                <img src="{{ asset('homepage/img/about-mission.jpg') }}" alt="" class="img-fluid">
+                <img src="{{ asset('homepage/img/8.jpg') }}" alt="" class="img-fluid">
                 <div class="icon"><i class="ion-ios-speedometer-outline"></i></div>
               </div>
               <h2 class="title"><a href="#">Mision</a></h2>
@@ -209,7 +209,7 @@
           <div class="col-md-4 wow fadeInUp" data-wow-delay="0.1s">
             <div class="about-col">
               <div class="img">
-                <img src="{{ asset('homepage/img/about-plan.jpg') }}" alt="" class="img-fluid">
+                <img src="{{ asset('homepage/img/9.jpg') }}" alt="" class="img-fluid">
                 <div class="icon"><i class="ion-ios-list-outline"></i></div>
               </div>
               <h2 class="title"><a href="#">Nuestro Plan</a></h2>
@@ -222,7 +222,7 @@
           <div class="col-md-4 wow fadeInUp" data-wow-delay="0.2s">
             <div class="about-col">
               <div class="img">
-                <img src="{{ asset('homepage/img/about-vision.jpg') }}" alt="" class="img-fluid">
+                <img src="{{ asset('homepage/img/10.png') }}" alt="" class="img-fluid">
                 <div class="icon"><i class="ion-ios-eye-outline"></i></div>
               </div>
               <h2 class="title"><a href="#">Vision</a></h2>
