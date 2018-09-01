@@ -19,6 +19,8 @@ class CreateStaffTable extends Migration
             $table->primary('id');
             $table->string('names');
             $table->string('last_names');
+            $table->date('date_birth');
+            $table->string('email')->unique();
             $table->string('genre');
             $table->string('address');
             $table->string('phone_number');

@@ -28,12 +28,14 @@ class StaffController extends Controller
     		'nationality' => $request->get('nacionality'),
     		'id' => $request->input('id'), 
     		'names' => $request->input('names'),
-    		'last_names' => $request->input('last_names'),
-    		'genre' => $request->get('genre'),
+            'last_names' => $request->input('last_names'),
+            'date_birth'=> $request->get('date_birth'),
+            'genre' => $request->get('genre'),
+    		'email' =>$request->input('email'),
     		'address' => $request->get('address'), 
     		'phone_number' => $request->input('phone_number'), 
     		'position' => $request->input('position'),
-    	]);
+        ]);
 
     	if ($check) {
     		$user= User::create([

@@ -54,7 +54,7 @@
 							<div class="col-lg-6 col-md-12 mt-5">
 								<div class="form-group">
 									<strong><label class="bmd-label-floating" for="names">Nombre</label></strong>
-									<input class="form-control {{ $errors->has('names') ? ' is-invalid' : '' }}" type= name="names" value="{{ old('names') }}">
+									<input class="form-control {{ $errors->has('names') ? ' is-invalid' : '' }}" type="text" name="names" value="{{ old('names') }}">
 									@if ($errors->has('names'))
 										<span class="invalid-feedback" role="alert">
 											<strong>{{ $errors->first('names') }}</strong>
@@ -67,7 +67,7 @@
 							<div class="col-lg-6 col-md-12 mt-5">
 								<div class="form-group">
 									<strong><label class="bmd-label-floating">Apellidos</label></strong>
-									<input class="form-control {{ $errors->has('last_names') ? ' is-invalid' : '' }}" type= name="last_names" value="{{ old('names') }}">
+									<input class="form-control {{ $errors->has('last_names') ? ' is-invalid' : '' }}" type="text" name="last_names" value="{{ old('names') }}">
 									@if ($errors->has('last_names'))
 										<span class="invalid-feedback" role="alert">
 											<strong>{{ $errors->first('last_names') }}</strong>
@@ -75,6 +75,14 @@
 									@endif
 								</div>			
 							</div>
+
+							<div class="col-lg-6 col-md-12 mt-5">
+									<div class="form-group">
+										<strong><label for="date_birth" class="bmd-label-floating">Fecha de Nacimiento</label></strong>
+										<input class="form-control "  name="date_birth" id="date">
+										 
+									</div>
+								</div>
 
 							<div class="col-lg-6 col-md-12 mt-5">
 								<div class="form-group">
@@ -109,7 +117,7 @@
 							<div class="col-lg-6 col-md-12 mt-5">
 								<div class="form-group">
 									<strong><label for="phone_number" class="bmd-label-floating ">telefono</label></strong>
-									<input class="form-control  {{ $errors->has('phone_number') ? ' is-invalid' : '' }}" type= name="phone_number" value="{{ old('phone_number') }}">
+									<input class="form-control  {{ $errors->has('phone_number') ? ' is-invalid' : '' }}" type="text" name="phone_number" value="{{ old('phone_number') }}">
 									@if ($errors->has('phone_number'))
 										<span class="invalid-feedback" role="alert">
 											<strong>{{ $errors->first('phone_number') }}</strong>
@@ -121,7 +129,7 @@
 							<div class="col-lg-6 col-md-12 mt-5">
 								<div class="form-group">
 									<strong><label for="position" class="bmd-label-floating">Posicion</label></strong>
-									<input class="form-control {{ $errors->has('position') ? ' is-invalid' : '' }}" type= name="position" value="{{ old('position') }}">
+									<input class="form-control {{ $errors->has('position') ? ' is-invalid' : '' }}" type="text" name="position" value="{{ old('position') }}">
 									@if ($errors->has('position'))
 										<span class="invalid-feedback" role="alert">
 											<strong>{{ $errors->first('position') }}</strong>
@@ -130,7 +138,7 @@
 								</div>
 							</div>
 
-							<div class="col-lg-12 col-md-12 mt-5">
+							<div class="col-lg-6 col-md-12 mt-5">
 								<div class="form-group">
 									<strong><label for="address" class="bmd-label-floating">direccion</label></strong>
 									<textarea name="address" class="form-control focus {{ $errors->has('address') ? ' is-invalid' : '' }}" value="{{ old('address') }}"></textarea>
@@ -141,13 +149,7 @@
 									@endif 
 								</div>
 							</div>
-							<div class="col-lg-6 col-md-12 mt-5">
-									<div class="form-group">
-										<strong><label for="date" class="bmd-label-floating">date</label></strong>
-										<input class="form-control " type= name="date" id="date">
-										 
-									</div>
-								</div>
+							
 							{{-- parte para agregarle permisos --}}
 							<div class="col-lg-6 mt-5">
 								<strong><label class="form-label" for="cargo">¿Desea agregarle Permiso a este Usuario?</label></strong>
@@ -226,7 +228,7 @@
 	
 	$('#date').bootstrapMaterialDatePicker({
 		weekStart : 0,
-		format : 'DD-MM-YYYY ', 
+		format : 'YYYY/M/D ', 
 		lang: 'es',
 		time: false,
 	
