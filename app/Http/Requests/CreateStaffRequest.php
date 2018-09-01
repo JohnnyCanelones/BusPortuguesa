@@ -28,10 +28,11 @@ class CreateStaffRequest extends FormRequest
             'id' => ['required', 'integer', 'unique:staff'],  
             'names' => 'required', 
             'last_names' => 'required', 
-            'address' => 'required',  
+            'address' => 'required', 
+            
             'phone_number' => 'required',  
             'position' => 'required', 
-            'email' => ['required', 'email', 'unique:users'], 
+            'email' => ['required', 'email', 'unique:staff'], 
 
         ];
     }
@@ -46,6 +47,8 @@ class CreateStaffRequest extends FormRequest
             
             'names.required' => 'Este Campo es Requerido',   
             'last_names.required' => 'Este Campo es Requerido',   
+            
+            'email.unique' => 'Este Campo ya existe',  
             
             
             'address.required' => 'Este Campo es Requerido',    

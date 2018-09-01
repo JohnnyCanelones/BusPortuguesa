@@ -39,11 +39,13 @@ class StaffController extends Controller
 
     	if ($check) {
     		$user= User::create([
-    			'username'=> $request->input('cedula'),
+    			'username'=> $request->input('id'),
     			'email' =>$request->input('email'),
-    			'password' => Hash::make($request->input('cedula')), 
+    			'password' => Hash::make($request->input('id')), 
 
-    		]);
+            
+               ]);
+            
     		$role = Role::create([
     			'user_id'=> $user->id,
     			'Admin' => $request->input('admin'),
@@ -53,7 +55,6 @@ class StaffController extends Controller
     			'Operaciones' => $request->input('operaciones'),
     		]);	
     	}
-        
         $success = true;
 
         if ($success) {

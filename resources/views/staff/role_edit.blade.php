@@ -9,7 +9,7 @@
                 <div class="row">   
                    <div class="card-header col-sm-12  "><h3 class="azul text-center ">Cargos</h3></div>
                     <div class="card-body">
-                        <form method="post" action="{{ url('personal/role/edit/'. $permiso->role->id ) }}" >
+                        <form method="post" action="{{ url('personal/role/edit/'.$permiso->role->id ) }}" >
                         {{ csrf_field() }}
                             <div class="row text-center">
                                 

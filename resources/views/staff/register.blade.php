@@ -67,7 +67,7 @@
 							<div class="col-lg-6 col-md-12 mt-5">
 								<div class="form-group">
 									<strong><label class="bmd-label-floating">Apellidos</label></strong>
-									<input class="form-control {{ $errors->has('last_names') ? ' is-invalid' : '' }}" type="text" name="last_names" value="{{ old('names') }}">
+									<input class="form-control {{ $errors->has('last_names') ? ' is-invalid' : '' }}" type="text" name="last_names" value="{{ old('last_names') }}">
 									@if ($errors->has('last_names'))
 										<span class="invalid-feedback" role="alert">
 											<strong>{{ $errors->first('last_names') }}</strong>
