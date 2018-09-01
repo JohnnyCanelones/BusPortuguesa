@@ -53,6 +53,7 @@ class StaffController extends Controller
     			'Operaciones' => $request->input('operaciones'),
     		]);	
     	}
+        
         $success = true;
 
         if ($success) {
