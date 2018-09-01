@@ -1,11 +1,10 @@
-@extends('layouts.staff_base')
+@include('layouts.staff_base')
 
 
 
-@section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-7">
             <div id="" class="card card2">
                 <div class="card-header">Dashboard</div>
 
@@ -24,4 +23,4 @@
     </div>
 </div>
 
-@endsection
+

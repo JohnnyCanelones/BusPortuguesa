@@ -100,7 +100,6 @@
         <br>
             
                 
-        <div  id="" class="row">
             @yield('sidebar')
             
                 
@@ -111,13 +110,12 @@
             
        
        
-        <div class="container" >
 
         
-            <div class=" col-sm-12 mt-5 " >
+            {{-- <div class=" col-sm-12 mt-5 " >
                 
                 @yield('content')
-            </div>
+            </div> --}}
 
         
         </div>

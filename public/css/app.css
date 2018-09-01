@@ -11,6 +11,31 @@ body {
   background-color: #e1e1e1 !important;
 }
 
+.container{
+  padding-top: 8vh !important; 
+}
+.login-background{
+  background-image: url("../img/bus_portuguesa.jpg")  !important;
+	background-position: center; /* Center the image */
+  	background-repeat: no-repeat;
+  	height: 96.2vh !important;
+  	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	background-size: cover;
+  	-o-background-size: cover;  
+}
+
+.background-content2{
+	background-color: #00000073;
+	height: 96.2vh;
+	width: 100%;
+}
+
+
+.height-img-responsive{
+	height: 100vh !important;
+}
+
 .navbar{
   z-index: 1999 !important;
 }
@@ -73,6 +98,10 @@ input[type=text]{
   background-color: transparent !important;
 }
 
+.boton-verde{
+  background-color:#008a34 !important;
+  color: #fff !important; 
+}
 .verde {
   color: #008a34;
 }
