@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-<button id="toggle-menu" class="transparent btn toggle-menu "><span class="text-white transparent"><i class="fas fa-bars"></i></span></a></button>
+<button id="toggle-menu" class="transparent btn toggle-menu " style="position:fixed;"><span class="text-white transparent"><i class="fas fa-bars"></i></span></a></button>
 @section('user')
 <i class="fas fa-wrench"></i> {{ auth()->user()->staff->names }} {{ auth()->user()->staff->last_names }}
 @endsection
