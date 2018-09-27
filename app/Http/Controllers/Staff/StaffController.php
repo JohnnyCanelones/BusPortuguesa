@@ -15,6 +15,22 @@ use Illuminate\Support\Facades\Hash;
 
 class StaffController extends Controller
 {
+
+
+    public function staffHome()
+    {
+        $count_staff = 0;
+        $staffs = Staff::all();
+// optimizar esto se puede hacer merjor
+        foreach ($staffs as $staff) {
+            $count_staff++;
+        }
+
+        return view('staff.home', [
+            'staff' => $count_staff,
+        ]);
+
+    }
     public function showStaffForm()
     {
     	return view('staff.register');
@@ -62,7 +78,7 @@ class StaffController extends Controller
 
         }
     	
-    	return redirect('/home');
+    	return redirect('personal');
     }
 
     public function showStaff(Role $role, Staff $staff)
@@ -111,6 +127,42 @@ class StaffController extends Controller
     $role->save();
 
     return redirect('personal/show');
+   }
+
+   public function showNewRoleForm($id)
+   {
+    $staff = Staff::where('id', $id)->first();
+
+    return view('staff.new_role', [
+        'staff' => $staff,
+    ]);
+
+   }
+
+   public function newRoleCreated(Request $request, $id)
+   {
+    $staff = Staff::where('id', $id)->first();
+
+    $user= User::create([
+        'username'=> $staff->id,
+        'email' => $staff->email,
+        'password' => Hash::make($staff->id), 
+
+    
+       ]);
+    
+    $role = Role::create([
+        'user_id'=> $user->id,
+        'Admin' => $request->input('admin'),
+        'Mantenimiento' => $request->input('mantenimiento'),
+        'Personal' => $request->input('personal'),
+        'Inventario' => $request->input('inventario'),
+        'Operaciones' => $request->input('operaciones'),
+    ]);
+
+    return redirect('personal');
+
+
    }
 
 

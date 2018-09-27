@@ -1,7 +1,8 @@
 <head>
         <link rel="stylesheet" href="{{asset("plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css")}}">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        </head>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+</head>
         
         <body>
         @include('layouts.mantenimiento_base')
@@ -12,38 +13,23 @@
                 <div class="col-sm-12 col-md-7">
                     <div id="" class="card card2 ">
                         <div class="card-header">
-                            <h3 id="hola" class="azul text-center m-3 ">Registro de Personal</h3>
+                            <h3 id="hola" class="azul text-center m-3 ">Registro de Autobuses</h3>
                         </div>
-                        <form action="/personal/registrar/" method="post">
+                        <form action="/mantenimiento/buses/registrar" method="post">
                         <div class="card-body">
                                 {{ csrf_field() }}
                                 <div class="row">
                                     {{-- formulario --}}
-                                    <div class="col-lg-6 col-md-12 mt-3 " >
-                                        <div class="form-group">
-                                            <label class="bmd-label-floating" for="nacionality">Nacionalidad</label>
-                                            <select  required name="nacionality" class="form-control  focus  {{ $errors->has('nacionality') ? ' is-invalid' : '' }}">
-                                                    <option disabled selected></option>
-                                                    <option>V</option>
-                                                    
-                                                    <option>E</option>
-                                            </select>
-                                             @if ($errors->has('nacionality'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('nacionality') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                    </div>
+                                    
         
                                     <div class="col-lg-6 col-md-12 mt-4">
                                         <div class=" form-group" >
-                                            <strong><label class="bmd-label-floating" for="id">Cedula</label></strong>
-                                            <input class="form-control {{ $errors->has('id') ? ' is-invalid' : '' }}" type="" name="id" value="{{ old('id') }}">
+                                            <strong><label class="bmd-label-floating" for="id_bus"># de la Unidad</label></strong>
+                                            <input class="form-control {{ $errors->has('id_bus') ? ' is-invalid' : '' }}" type="" name="id_bus" value="{{ old('id_bus') }}">
                                                  
-                                                 @if ($errors->has('id'))
+                                                 @if ($errors->has('id_bus'))
                                                     <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $errors->first('id') }}</strong>
+                                                        <strong>{{ $errors->first('id_bus') }}</strong>
                                                     </span>
                                                 @endif		
                                         </div>	
@@ -51,20 +37,70 @@
                                     </div>
                                     
         
-                                    <div class="col-lg-6 col-md-12 mt-5">
+                                    <div class="col-lg-6 col-md-12 mt-4">
                                         <div class="form-group">
-                                            <strong><label class="bmd-label-floating" for="names">Nombre</label></strong>
-                                            <input class="form-control {{ $errors->has('names') ? ' is-invalid' : '' }}" type="text" name="names" value="{{ old('names') }}">
-                                            @if ($errors->has('names'))
+                                            <strong><label class="bmd-label-floating" for="rutas">Rutas</label></strong>
+                                            <input class="form-control {{ $errors->has('rutas') ? ' is-invalid' : '' }}" type="text" name="rutas" value="{{ old('rutas') }}">
+                                            @if ($errors->has('rutas'))
                                                 <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('names') }}</strong>
+                                                    <strong>{{ $errors->first('rutas') }}</strong>
                                                 </span>
                                             @endif
         
                                         </div>
                                     </div>
+
+                                    <div class="col-md-12 col-lg-6 mt-4">
+                                    <div class="form-group">
+                                        <select class="js-example-basic-single form-control mt-1 focus" name="conductor" required="">
+                                            <option selected="" disabled="">Elige un conductor</option>
+                                            @forelse($conductores as $conductor)
+                                            <optgroup label="">
+                                            <option >{{ $conductor->id }}</option>
+                                            {{-- <option value="{{ $conductor->id }}">{{ $conductor->names." ".  $conductor->last_names}}</option> --}}
+                                                
+                                            </div>
+
+                                            @empty
+                                            <option>No Hay Conductores registrados</option>
+                                            @endforelse
+                                        </select>
+                                        
+                                        
+                                    </div>
+                                </div>
+
                                     
-                                    <div class="col-lg-6 col-md-12 mt-5">
+                                    <div class="col-lg-6 col-md-12 mt-5 " >
+                                        <div class="row">
+                                            <div class="col-md-6 pl-5 mt-3">
+                                                <label>Esta Activa?</label>
+                                            </div>
+                                            <div class="col-md-6 mt-3">
+                                            <div class="switch">
+                                                <label>Si</label>
+                                                <label>
+                                                    <input type="checkbox" id="active_bus"><span class="lever switch-col-green" ></span> 
+                                                    No
+                                                </label>
+                                            </div>
+                                                
+                                            </div>
+                                                
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 mt-5">
+                                    <div class="form-group">
+                                        <strong><label for="fecha_inactivo"  class="bmd-label-floating">Desde Cuanto esta inactivo</label></strong>
+                                        <input class="form-control "  name="fecha_inactivo" id="date">
+                                         
+                                    </div>
+                                </div>
+
+                                
+                                
+                                    
+                                   {{--  <div class="col-lg-6 col-md-12 mt-5">
                                         <div class="form-group">
                                             <strong><label class="bmd-label-floating">Apellidos</label></strong>
                                             <input class="form-control {{ $errors->has('last_names') ? ' is-invalid' : '' }}" type="text" name="last_names" value="{{ old('last_names') }}">
@@ -104,7 +140,6 @@
                                         <div class="form-group">
                                             <strong><label for="email" class="bmd-label-floating">Email</label></strong>
                                             <input class="form-control  {{ $errors->has('email') ? ' is-invalid' : '' }}" type="email" name="email" value="{{ old('email') }}">
-                                            {{-- <input type="email" class="form-control" id="exampleInputEmail1"> --}}
                                             @if ($errors->has('email'))
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('email') }}</strong>
@@ -148,59 +183,9 @@
                                                 </span>
                                             @endif 
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     
-                                    {{-- parte para agregarle permisos --}}
-                                    <div class="col-lg-6 mt-5">
-                                        <strong><label class="form-label" for="cargo">¿Desea agregarle Permiso a este Usuario?</label></strong>
-                                    </div>
-                                    <div class="col-lg-6 mt-5">
-                                        <input id="cargo"  class=" form-control custom-control custom-checkbox" type="checkbox" name="cargo" value="1"  	>
-                                    </div>
-                                    
-                                    <br>
-                                    <br><br>
-                                    <br><br>
-                                    
-                                    {{-- cargos --}}
-                                    
-        
-                                    <div class="card-header col-sm-12 admin ocultar-permisos"><h3 class="azul text-center ">Cargos</h3></div>
-                                        
-                                    <div  class="admin col-lg-6 mt-5 col-sm-6 ocultar-permisos text-center">
-                                        <label for="admin" class="form-label">Presidencia</label>
-                                    </div>
-                                    <div class="admin col-lg-6 mt-5 col-sm-6 ocultar-permisos">
-                                        <input  id="admin" class="form-control custom-control custom-checkbox" type="checkbox" name="admin" value="1" >
-                                    </div>
-                                    
-                                    <div  class="admin col-lg-6 mt-5 col-sm-6 ocultar-permisos text-center">
-                                        <label for="mantenimiento" class="form-label">Jefe de Mantenimiento</label>
-                                    </div>
-                                    <div class="admin col-lg-6 mt-5 col-sm-6 ocultar-permisos">
-                                        <input id="mantenimiento" class="form-control custom-control custom-checkbox" type="checkbox" name="mantenimiento" value="1" >
-                                    </div>
-                                    
-                                    <div  class="admin col-lg-6 mt-5 col-sm-6 ocultar-permisos text-center">
-                                        <label for="personal" class="form-label">Jefe de Recursos Humanos</label>
-                                    </div>
-                                    <div class="admin col-lg-6 mt-5 col-sm-6 ocultar-permisos">
-                                        <input id="personal" class="form-control custom-control custom-checkbox" type="checkbox" name="personal" value="1" >
-                                    </div>
-                                    <div  class="admin col-lg-6 mt-5 col-sm-6 ocultar-permisos text-center">
-                                        <label for="inventario" class="form-label">Jefe de Inventario</label>
-                                    </div>
-                                    <div class="admin col-lg-6 mt-5 col-sm-6 ocultar-permisos">
-                                        <input id="inventario" class="form-control custom-control custom-checkbox" type="checkbox" name="inventario" value="1" >
-                                    </div>
-                                    <div  class="admin col-lg-6 mt-5 col-sm-6 ocultar-permisos text-center">
-                                        <label for="operaciones" class="form-label">Jefe de Operaciones</label>
-                                    </div>
-                                    <div class="admin col-lg-6 mt-5 col-sm-6 ocultar-permisos">
-                                        <input id="operaciones" class="form-control custom-control custom-checkbox" type="checkbox" name="operaciones" value="1" >
-                                    </div>
-        
-                                        
+                                  
                                         
                                     
                                         
@@ -223,7 +208,11 @@
         
         <script type="text/javascript" src="{{ asset('plugins/momentjs/moment.js') }}"></script>
         <script type="text/javascript" src="{{ asset('plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js') }}"></script>
+        {{-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script> --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
         <script type="text/javascript">
+
             // $('#date').bootstrapMaterialDatePicker({ weekStart : 0, time: false });
             
             $('#date').bootstrapMaterialDatePicker({
@@ -233,6 +222,13 @@
                 time: false,
             
             
+            });
+        </script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+
+                $('.js-example-basic-single').select2(); 
+                
             });
         </script>
         </body>

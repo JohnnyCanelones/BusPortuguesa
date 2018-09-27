@@ -11,11 +11,11 @@
                 <div class="card-body">
                     <table id="example" class="p-3 table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                       <thead>
-                            <tr>
-                                <th scope="col">Cedula</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Apellido</th>
-                                <th scope="col">#</th>
+                            <tr class="text-white" style="background-color: #003286e8">
+                                <th class="text-white" scope="col">Cedula</th>
+                                <th class="text-white" scope="col">Nombre</th>
+                                <th class="text-white" scope="col">Apellido</th>
+                                <th class="text-white" scope="col">#</th>
                             </tr>
 
                         </thead>
@@ -23,14 +23,14 @@
                             @forelse($staff as $staff)
                             <tr>
                                 <th scope="row">
-                                    <a href="">{{ $staff->nationality}}-{{$staff->id}}</a>
+                                    <a href=""  style="color: #008a34">{{ $staff->nationality}}-{{$staff->id}}</a>
                                 </th>
                                 <td> {{ $staff->names}}</td>
                                 <td> {{ $staff->last_names}}</td>
                                 <td>
-                                    @if($staff->user) <a href="{{ url('personal/role/'.$staff->id) }}" class="btn btn-primary">Ver Permisos</a>
+                                    @if($staff->user) <a href="{{ url('personal/role/'.$staff->id) }}" class="btn btn-primary"  style="color: #008a34">Ver Permisos</a>
                                     @else 
-                                    <a href="{{ url('personal/create/user/'. $staff->id) }}" class="btn btn-primary">Crear Usuario</a>
+                                    <a href="{{ url('personal/create/user/'. $staff->id) }}" class="btn btn-primary"  style="color: #008a34">Crear Usuario</a>
                                     @endif
                                 </td>        
                             </tr>

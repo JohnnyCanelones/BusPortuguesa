@@ -1,8 +1,6 @@
 <?php 
 
-Route::get('/personal', function() {
-    return view('home');
-})->middleware(['auth', 'personal:,']);
+Route::get('/personal', 'StaffController@staffHome')->middleware(['auth', 'personal:,']);
 
 Route::get('personal/registro', 'StaffController@showStaffForm')->middleware(['auth', 'personal:,']);
 Route::post('personal/registrar', 'StaffController@staffCreate')->middleware(['auth', 'personal:,']);
@@ -14,3 +12,6 @@ Route::get('personal/role/{id}', 'StaffController@showRole')->middleware(['auth'
 Route::post('personal/role/edit/{id}', 'StaffController@roleEdit')->middleware(['auth', 'personal:,']);
 
 //Agregar Rol
+
+Route::get('personal/create/user/{id}', 'StaffController@showNewRoleForm')->middleware(['auth', 'personal:,']);
+Route::post('personal/created/user/{id}', 'StaffController@newRoleCreated')->middleware(['auth', 'personal:,']);

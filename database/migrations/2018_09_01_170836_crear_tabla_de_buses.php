@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class CrearTablaDeBuses extends Migration
-{
+{ 
     /**
      * Run the migrations.
      *
@@ -21,7 +21,8 @@ class CrearTablaDeBuses extends Migration
             $table->string('rutas');
 
             $table->integer('conductor_id')->unsigned();
-            $table->foreign('conductor_id')->references('id')->on('users');
+            $table->foreign('conductor_id')->references('id')->on('staff');
+
             $table->string('estado');
             $table->date('fecha_inactivo');
 

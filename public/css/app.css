@@ -25,6 +25,13 @@ body {
   	-o-background-size: cover;  
 }
 
+.switch label input:checked+.bmd-switch-track:after {
+      background-color: #008a34 !important;
+}
+.switch label .bmd-switch-track {
+  background-image: linear-gradient(90deg,rgba(0,0,0,.26) 0,rgba(0,0,0,.26) 50%,#4abf76 0,#01501f) !important;
+}
+
 .background-content2{
 	background-color: #00000073;
 	height: 96.2vh;
@@ -91,7 +98,12 @@ input[type=text]{
 .list-group-item:hover {
   color: #008a34 !important;
 }
-
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: #008a34 !important;
+    border-color: #008a34 !important;
+  }
 
 .azul{
   color:  #003286;
@@ -105,6 +117,31 @@ input[type=text]{
 .verde {
   color: #008a34;
 }
+
+.infobox-azul-contenido{
+  background-color: #003286 !important;
+}
+
+.infobox-azul-icono{
+  background-color: #003286b5 !important;
+}
+
+.infobox-verde-contenido{
+  background-color: #008a34 !important;
+}
+
+.infobox-verde-icono{
+  background-color: #008a34b5 !important;
+}
+
+.infobox-amarillo-contenido{
+  background-color: #ffc107 !important;
+}
+
+.infobox-amarillo-icono{
+  background-color: #ffc107b5 !important;
+}
+
 
 .ocultar-permisos {
   display: none;
@@ -136,6 +173,10 @@ input[type=text]{
     left: -26px;
     z-index: 100;
 }
+.card3{
+    left: -26px;
+    z-index: 100;
+}
   .sidebar {
     width: 22vw !important;
   }
@@ -148,6 +189,10 @@ input[type=text]{
 @media(min-width: 600px) and ( max-width: 800px) { 
   .card2{
     width: 125% !important;
+    left: -64px;
+    z-index: 100;
+  }
+  .card3{
     left: -64px;
     z-index: 100;
   }

@@ -26,6 +26,11 @@ class LoginController extends Controller
      * @var string
      */
     // protected $redirectTo = '/home';
+
+    public function username()
+    {
+        return 'username';
+    }
     
     public function redirectPath()
     {
@@ -58,8 +63,10 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function username()
-    {
-        return 'username';
-    }
+    // public function username()
+    // {
+    //     return 'username';
+    // }
+
+
 }

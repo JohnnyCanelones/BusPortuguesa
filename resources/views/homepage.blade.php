@@ -110,14 +110,14 @@
             <div class="carousel-background"><img src="{{ asset('homepage/img/intro-carousel/6.jpg') }}" alt=""></div>
             <div class="carousel-container">
               <div class="carousel-content">
-                <h2>Lorem ipsum dolor sit amet</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                <a href="#featured-services" class="btn-get-started scrollto">Get Started</a>
+                
+                <p>Brindando cada día un mejor servicio de transporte</p>
+                <a href="#featured-services" class="btn-get-started scrollto">Rutas</a>
               </div>
             </div>
           </div>
 
-          <div class="carousel-item">
+          {{-- <div class="carousel-item">
             <div class="carousel-background"><img src="{{ asset('homepage/img/intro-carousel/7.jpg') }}" alt=""></div>
             <div class="carousel-container">
               <div class="carousel-content">
@@ -126,7 +126,7 @@
                 <a href="#featured-services" class="btn-get-started scrollto">Get Started</a>
               </div>
             </div>
-          </div>
+          </div> --}}
 
           {{-- <div class="carousel-item">
             <div class="carousel-background"><img src="{{ asset('homepage/img/intro-carousel/3.jpg') }}" alt=""></div>

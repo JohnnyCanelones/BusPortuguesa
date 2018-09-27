@@ -15,7 +15,7 @@
         <br>
 
         <div class="collapse" id="menu1" data-parent="#sidebar">
-            <a href="{{ url('personal/registro') }}" class="list-group-item " >Agregar Personal</a>
+            <a href="{{ url('/mantenimiento/buses/registro') }}" class="list-group-item " >Agregar Autobus</a>
             <a href="#menu1sub1" class="list-group-item " >Subitem 1 </a>
             <a href="#menu1sub1" class="list-group-item " >Subitem 1 </a>
               
