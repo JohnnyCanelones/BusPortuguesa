@@ -37,6 +37,8 @@ require_once __DIR__ . '/routes/mantenimiento.php';
 
 require_once __DIR__ . '/routes/operaciones.php';
 
+require_once __DIR__ . '/routes/almacen.php';
+
 
 
 

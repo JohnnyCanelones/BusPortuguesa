@@ -13,7 +13,7 @@
                 <div class="col-sm-12 col-md-7">
                     <div id="" class="card card2 ">
                         <div class="card-header">
-                            <h3 id="hola" class="azul text-center m-3 ">Registro de Autobuses</h3>
+                            <h3 id="hola" class="azul text-center m-3 ">Registro de Productos del Almacen</h3>
                         </div>
                         <form action="/mantenimiento/buses/registrar" method="post">
                         <div class="card-body">
@@ -24,53 +24,67 @@
         
                                     <div class="col-lg-6 col-md-12 mt-4">
                                         <div class=" form-group" >
-                                            <strong><label class="bmd-label-floating" for="id_bus"># de la Unidad</label></strong>
-                                            <input class="form-control {{ $errors->has('id_bus') ? ' is-invalid' : '' }}" type="" name="id_bus" value="{{ old('id_bus') }}">
+                                            <strong><label class="bmd-label-floating" for="nombre_producto">Nombre del Producto</label></strong>
+                                            <input class="form-control {{ $errors->has('nombre_producto') ? ' is-invalid' : '' }}" type="" name="nombre_producto" value="{{ old('nombre_producto') }}">
                                                  
-                                                 @if ($errors->has('id_bus'))
+                                                 @if ($errors->has('nombre_producto'))
                                                     <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $errors->first('id_bus') }}</strong>
+                                                        <strong>{{ $errors->first('nombre_producto') }}</strong>
                                                     </span>
-                                                @endif		
-                                        </div>	
+                                                @endif    
+                                        </div>  
                                         
                                     </div>
                                     
         
+
+                                    <div class="col-md-12 col-lg-6 mt-4">
+                                    <div class="form-group">
+                                        <select class="js-example-basic-single form-control mt-1 focus" name="compatibilidad" required="">
+                                            <option selected="" disabled="">Elige un Tipo de Unidad</option>
+                                            {{-- @forelse($conductores as $conductor) --}}
+                                            <optgroup label="">
+                                            {{-- <option >{{ $conductor->id }}</option> --}}
+                                            {{-- <option value="{{ $conductor->id }}">{{ $conductor->names." ".  $conductor->last_names}}</option> --}}
+                                                
+                                            </div>
+
+                                            {{-- @empty
+                                            <option>No Hay Conductores registrados</option>
+                                            @endforelse --}}
+                                        </select>
+                                        
+                                        
+                                    </div>
+                                </div>
+
                                     <div class="col-lg-6 col-md-12 mt-4">
                                         <div class="form-group">
-                                            <strong><label class="bmd-label-floating" for="rutas">Rutas</label></strong>
-                                            <input class="form-control {{ $errors->has('rutas') ? ' is-invalid' : '' }}" type="text" name="rutas" value="{{ old('rutas') }}">
-                                            @if ($errors->has('rutas'))
+                                            <strong><label class="bmd-label-floating" for="cantidad">Cantidad</label></strong>
+                                            <input class="form-control {{ $errors->has('cantidad') ? ' is-invalid' : '' }}" type="text" name="cantidad" value="{{ old('cantidad') }}">
+                                            @if ($errors->has('cantidad'))
                                                 <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('rutas') }}</strong>
+                                                    <strong>{{ $errors->first('cantidad') }}</strong>
+                                                </span>
+                                            @endif
+        
+                                        </div>
+                                    </div>
+                                    
+                                   <div class="col-lg-6 col-md-12 mt-4">
+                                        <div class="form-group">
+                                            <strong><label class="bmd-label-floating" for="ubicacion">Ubicación</label></strong>
+                                            <input class="form-control {{ $errors->has('ubicacion') ? ' is-invalid' : '' }}" type="text" name="ubicacion" value="{{ old('ubicacion') }}">
+                                            @if ($errors->has('ubicacion'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('ubicacion') }}</strong>
                                                 </span>
                                             @endif
         
                                         </div>
                                     </div>
 
-                                    <div class="col-md-12 col-lg-6 mt-4">
-                                        <div class="form-group">
-                                            <select class="js-example-basic-single form-control mt-1 focus" name="conductor" required="">
-                                                <option selected="" disabled="">Elige un conductor</option>
-                                                @forelse($conductores as $conductor)
-                                                <optgroup label="">
-                                                <option >{{ $conductor->id }}</option>
-                                                {{-- <option value="{{ $conductor->id }}">{{ $conductor->names." ".  $conductor->last_names}}</option> --}}
-                                                    
-                                                
-
-                                                @empty
-                                                <optgroup label="No hay conductores">
-                                                @endforelse
-                                            </select>
-                                            
-                                            
-                                        </div>
-                                    </div>
-
-                                    
+                                {{-- 
                                     <div class="col-lg-6 col-md-12 mt-5 " >
                                         <div class="row">
                                             <div class="col-md-6 pl-5 mt-3">
@@ -79,8 +93,8 @@
                                             <div class="col-md-6 mt-3">
                                             <div class="switch">
                                                 <label>Si</label>
-                                                <label id="active_bus" >
-                                                    <input type="checkbox" id="active_bus_check" name="estado" ><span class="lever switch-col-green" ></span> 
+                                                <label>
+                                                    <input type="checkbox" id="active_bus"><span class="lever switch-col-green" ></span> 
                                                     No
                                                 </label>
                                             </div>
@@ -88,48 +102,7 @@
                                             </div>
                                                 
                                         </div>
-                                    </div>
-                                    
-                                    <div class="col-md-12 d-none col-lg-6 mt-5" id="motivo_inactividad">
-                                        <div class="" >
-                                            <select class="js-example-basic-single2 form-control mt-1 focus" name="motivo_inactividad" required="" >
-                                                <option selected="" disabled="">Motivo de la inactividad</option>
-                                                
-                                                <optgroup label="">
-                                                <option >Servicio</option>
-                                                <option >Falla</option>
-                                                <option >Mantenimiento</option>
-                                                {{-- <option value="{{ $conductor->id }}">{{ $conductor->names." ".  $conductor->last_names}}</option> --}}
-                                                    
-                                                </optgroup>
-    
-                                            </select>
-                                            
-                                        </div>
-                                    </div>
-
-                                    
-                                    <div class="col-lg-6 col-md-12 d-none mt-3" id="fecha_inactivo">
-                                        <div class="form-group">
-                                            <strong><label for="fecha_inactivo"  class="bmd-label-floating">Desde Cuanto esta inactivo</label></strong>
-                                            <input class="form-control "  name="fecha_inactivo" id="date">
-                                             
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-12 col-md-12 d-none mt-5" id="observacion">
-                                        <div class="form-group">
-                                            <strong><label for="observacion" class="bmd-label-floating">Observación</label></strong>
-                                            <textarea name="observacion" class="form-control focus {{ $errors->has('observacion') ? ' is-invalid' : '' }}" value="{{ old('observacion') }}"></textarea>
-                                            @if ($errors->has('observacion'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('observacion') }}</strong>
-                                                </span>
-                                            @endif 
-                                        </div>
-                                    </div>
-
-                                
+                                    </div> --}}
                                 
                                     
                                    {{--  <div class="col-lg-6 col-md-12 mt-5">
@@ -141,7 +114,7 @@
                                                     <strong>{{ $errors->first('last_names') }}</strong>
                                                 </span>
                                             @endif
-                                        </div>			
+                                        </div>      
                                     </div>
         
                                     <div class="col-lg-6 col-md-12 mt-5">
@@ -230,7 +203,7 @@
                         </form>
                         </div>
                         
-                    </div>		
+                    </div>    
                 </div>
             </div>
         </div>
@@ -241,11 +214,28 @@
         <script type="text/javascript" src="{{ asset('plugins/momentjs/moment.js') }}"></script>
         <script type="text/javascript" src="{{ asset('plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js') }}"></script>
         {{-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script> --}}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 
-        <script type="text/javascript" src="{{ asset('js/mantenimiento/busesForm.js') }}"></script>
-        
-        
+        <script type="text/javascript">
+
+            // $('#date').bootstrapMaterialDatePicker({ weekStart : 0, time: false });
+            
+            $('#date').bootstrapMaterialDatePicker({
+                weekStart : 0,
+                format : 'YYYY/M/D ', 
+                lang: 'es',
+                time: false,
+            
+            
+            });
+        </script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+
+                $('.js-example-basic-single').select2(); 
+                
+            });
+        </script>
         </body>
         
         

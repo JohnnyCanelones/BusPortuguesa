@@ -24,7 +24,7 @@ class Mantenimiento
                     return redirect('/personal');
                 }
                 elseif ($request->user()->hasRole2('', '1')) {
-                    return redirect('/inventario');
+                    return redirect('/almacen');
                 }
                 elseif ($request->user()->hasRole3('1')) {
                     return redirect('/operaciones');

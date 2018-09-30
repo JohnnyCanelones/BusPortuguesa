@@ -24,7 +24,9 @@ class CrearTablaDeBuses extends Migration
             $table->foreign('conductor_id')->references('id')->on('staff');
 
             $table->string('estado');
-            $table->date('fecha_inactivo');
+            $table->string('motivo_inactividad')->nullable();
+            $table->datetime('fecha_inactivo')->nullable();
+            $table->string('observacion')->nullable();
 
 
             

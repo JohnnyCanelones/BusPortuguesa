@@ -118,6 +118,10 @@ input[type=text]{
   color: #008a34;
 }
 
+.select2-container {
+  width: 100% !important;
+}
+
 .infobox-azul-contenido{
   background-color: #003286 !important;
 }
@@ -477,3 +481,10 @@ nav ul li.active {
   -webkit-transition-timing-function: ease-out;
   transition-timing-function: ease-out;
 }
+
+.is-focused .bmd-label-floating{
+  color: #008a34 !important;
+}
+
+.custom-file-control, .form-control, .is-focused .custom-file-control, .is-focused .form-control {
+    background-image: linear-gradient(0deg,#008a34 2px,rgba(0,150,136,0) 0),linear-gradient(0deg,rgba(0,0,0,.26) 1px,transparent 0);}

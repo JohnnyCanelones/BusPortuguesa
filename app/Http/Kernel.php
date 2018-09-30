@@ -56,7 +56,7 @@ class Kernel extends HttpKernel
         'mantenimiento' => \App\Http\Middleware\Mantenimiento::class,
         'personal' => \App\Http\Middleware\Personal::class,
         'operaciones' => \App\Http\Middleware\Operaciones::class,
-        'inventario' => \App\Http\Middleware\Inventario::class,
+        'almacen' => \App\Http\Middleware\Inventario::class,
         'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,

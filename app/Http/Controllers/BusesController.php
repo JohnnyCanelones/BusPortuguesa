@@ -21,7 +21,35 @@ class BusesController extends Controller
 
     public function createBus(Request $request)
     {
-    	$conductor = $request->get('conductor');
-    	dd($conductor);
+        $estado = $request->get('estado');
+                 
+         
+
+        // SI ESTA INACTIVO
+        if ($estado) {
+            $bus = Buses::create([
+            'id_bus' => $request->get('id_bus'),
+            'rutas' => $request->get('rutas'),
+            'conductor_id' =>  $request->get('conductor'),
+            'estado' => 'Inactivo',
+            'motivo_inactividad' => $request->get('motivo_inactividad'),
+            'fecha_inactivo' => $request->get('fecha_inactivo'),
+            'observacion' => $request->get('observacion'),  
+           ]);
+            
+            return redirect('/almacen');
+            
+
+        }else {
+            $bus = Buses::create([
+            'id_bus' => $request->get('id_bus'),
+            'rutas' => $request->get('rutas'),
+            'conductor_id' =>  $request->get('conductor'),
+            'estado' => 'Activo',
+           ]);
+            return redirect('/almacen');
+            
+
+        }
     }
 }

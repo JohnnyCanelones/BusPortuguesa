@@ -117,7 +117,7 @@
             </div>
           </div>
 
-          {{-- <div class="carousel-item">
+          <div class="carousel-item">
             <div class="carousel-background"><img src="{{ asset('homepage/img/intro-carousel/7.jpg') }}" alt=""></div>
             <div class="carousel-container">
               <div class="carousel-content">
@@ -126,7 +126,7 @@
                 <a href="#featured-services" class="btn-get-started scrollto">Get Started</a>
               </div>
             </div>
-          </div> --}}
+          </div>
 
           {{-- <div class="carousel-item">
             <div class="carousel-background"><img src="{{ asset('homepage/img/intro-carousel/3.jpg') }}" alt=""></div>
@@ -188,7 +188,7 @@
 
         <header class="section-header">
           <h3>Nosotros</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          <p>Somos una entidad creada con capital accionario 100% de la Gobernación del estado Portuguesa, destinada a la prestación de servicio de movilización para el pueblo portugueseño.</p>
         </header>
 
         <div class="row about-cols">
@@ -200,8 +200,8 @@
                 <div class="icon"><i class="ion-ios-speedometer-outline"></i></div>
               </div>
               <h2 class="title"><a href="#">Mision</a></h2>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              <p class="text-justify">
+               Conformar un Sistema integrado de transporte público Superficial, en los diferentes Municipios del Estado, con miras a brindar al pueblo Portugueseño una opción de transporte digno, a bajo costo y mejor calidad.
               </p>
             </div>
           </div>
@@ -213,8 +213,8 @@
                 <div class="icon"><i class="ion-ios-list-outline"></i></div>
               </div>
               <h2 class="title"><a href="#">Nuestro Plan</a></h2>
-              <p>
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem  doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+              <p class="text-justify">
+                La empresa Bus Portuguesa, S.A tiene como objetivo la promoción, explotación administración y mantenimiento de programas en materia de transporte, así como también la prestación de un servicio de transporte urbano y extraurbano de personas en las modalidades de transporte público, bien  sea ejecutivo, escolar, turístico, línea verde y línea amarilla que busque garantizar la modalidad y desplazamiento de la población
               </p>
             </div>
           </div>
@@ -226,8 +226,8 @@
                 <div class="icon"><i class="ion-ios-eye-outline"></i></div>
               </div>
               <h2 class="title"><a href="#">Vision</a></h2>
-              <p>
-                Nemo enim ipsam voluptatem quia voluptas sit aut odit aut fugit, sed quia magni dolores eos qui ratione voluptatem sequi nesciunt Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.
+              <p class="text-justify">
+               Consolidarnos como empresa, brindando cada día un mejor servicio de transporte, para cumplir con la labor social de trasladar al pueblo Portugueseño de una manera digna, eficiente y económica, de esa forma darle continuidad al legado que dejo nuestro comandante, en brindarles calidad de vida a todos nuestros Usuarios.
               </p>
             </div>
           </div>
@@ -245,40 +245,40 @@
 
         <header class="section-header wow fadeInUp">
           <h3>Servicios</h3>
-          <p>Laudem latine persequeris id sed, ex fabulas delectus quo. No vel partiendo abhorreant vituperatoribus, ad pro quaestio laboramus. Ei ubique vivendum pro. At ius nisl accusam lorenta zanos paradigno tridexa panatarel.</p>
+          {{-- <p>Laudem latine persequeris id sed, ex fabulas delectus quo. No vel partiendo abhorreant vituperatoribus, ad pro quaestio laboramus. Ei ubique vivendum pro. At ius nisl accusam lorenta zanos paradigno tridexa panatarel.</p> --}}
         </header>
 
         <div class="row">
 
           <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
             <div class="icon"><i class="ion-ios-analytics-outline"></i></div>
-            <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-            <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+            {{-- <h4 class="title"><a href="">Lorem Ipsum</a></h4> --}}
+            <p class="description text-justify">Prestar el servicio de transporte público urbano y extraurbano del Estado Portuguesa.</p>
           </div>
           <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
             <div class="icon"><i class="ion-ios-bookmarks-outline"></i></div>
-            <h4 class="title"><a href="">Dolor Sitema</a></h4>
-            <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
+            {{-- <h4 class="title"><a href="">Dolor Sitema</a></h4> --}}
+            <p class="description text-justify">Asegurar la operatividad de las unidades garantizando el servicio de transporte público a la comunidad.</p>
           </div>
           <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
             <div class="icon"><i class="ion-ios-paper-outline"></i></div>
-            <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
-            <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
+            {{-- <h4 class="title"><a href="">Sed ut perspiciatis</a></h4> --}}
+            <p class="description text-justify">Fortalecer de forma permanente el talento humano.</p>
           </div>
           <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
             <div class="icon"><i class="ion-ios-speedometer-outline"></i></div>
-            <h4 class="title"><a href="">Magni Dolores</a></h4>
-            <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+            {{-- <h4 class="title"><a href="">Magni Dolores</a></h4> --}}
+            <p class="description text-justify">Dar respuesta a la población en cuanto a cubrir rutas estudiantiles que hacen vida en el estado Portuguesa.</p>
+          </div>
+          <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
+{{--             <div class="icon"><i class="ion-ios-people-outline"></i></div>
+            <h4 class="title"><a href="">Eiusmod Tempor</a></h4>
+            <p class="description text-justify">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p> --}}
           </div>
           <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
             <div class="icon"><i class="ion-ios-barcode-outline"></i></div>
-            <h4 class="title"><a href="">Nemo Enim</a></h4>
-            <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
-          </div>
-          <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
-            <div class="icon"><i class="ion-ios-people-outline"></i></div>
-            <h4 class="title"><a href="">Eiusmod Tempor</a></h4>
-            <p class="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
+            {{-- <h4 class="title"><a href="">Nemo Enim</a></h4> --}}
+            <p class="description text-justify">Celebrar alianzas estratégicas con empresas públicas o privadas, consejos comunales, circuitos comunales y cualquier otra forma del poder popular, asociaciones civiles de transporte, cooperativas de transporte, alcaldías de los diferentes municipios del estado Portuguesa; con cualquier organismo o Ministerio a los fines de cumplir con el objeto  de la empresa.</p>
           </div>
 
         </div>
@@ -294,7 +294,7 @@
       <div class="container">
         <div class="section-header wow fadeInUp">
           <h3>Desarrolladores</h3>
-          <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p>
+          {{-- <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p> --}}
         </div>
 
         <div class="row">
@@ -365,7 +365,7 @@
             <div class="contact-address">
               <i class="ion-ios-location-outline"></i>
               <h3>Dirección</h3>
-              <address>A108 Adam Street, NY 535022, USA</address>
+              <address> Av. Rotaria con Av. Simon Bolivar, Guanare - Portuguesa</address>
             </div>
           </div>
 
@@ -373,7 +373,7 @@
             <div class="contact-phone">
               <i class="ion-ios-telephone-outline"></i>
               <h3>Teléfono</h3>
-              <p><a href="tel:+155895548855">+1 5589 55488 55</a></p>
+              <p><a href="tel:+582572517302"> 0257 - 2517302</a></p>
             </div>
           </div>
 
@@ -402,8 +402,8 @@
 
           <div class="col-lg-4 col-md-6 footer-info">
             <h3>Bus||| PORTUGUESA</h3>
-            <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus. Scelerisque felis imperdiet proin fermentum leo. Amet volutpat consequat mauris nunc congue.</p>
-          </div>
+            {{-- <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus. Scelerisque felis imperdiet proin fermentum leo. Amet volutpat consequat mauris nunc congue.</p>
+ --}}          </div>
 
           <div class="col-lg-4 col-md-6 footer-links">
             <h4></h4>
@@ -411,17 +411,16 @@
               <li><i class="ion-ios-arrow-right"></i> <a href="#">Home</a></li>
               <li><i class="ion-ios-arrow-right"></i> <a href="#">Nosotros</a></li>
               <li><i class="ion-ios-arrow-right"></i> <a href="#">Servicios</a></li>
-              <li><i class="ion-ios-arrow-right"></i> <a href="#">Política de Privacidad</a></li>
+              {{-- <li><i class="ion-ios-arrow-right"></i> <a href="#">Política de Privacidad</a></li> --}}
             </ul>
           </div>
 
           <div class="col-lg-4 col-md-6 footer-contact">
             <h4>Contactanos</h4>
             <p>
-              A108 Adam Street <br>
-              New York, NY 535022<br>
-              United States <br>
-              <strong>Teléfono:</strong> +1 5589 55488 55<br>
+              Av. Rotaria con Av. Simon Bolivar <br>
+              Guanare - Portuguesa <br>
+              <strong>Teléfono:</strong> 0257 - 2517302<br>
               <strong>Correo:</strong> info@example.com<br>
             </p>
 
@@ -440,7 +439,7 @@
 
     <div class="container">
       <div class="copyright">
-        &copy; Copyright <strong>Alumnos 731 Uptp</strong>. All Rights Reserved
+        &copy; Copyright <strong>Alumnos 731 Uptp</strong>.Todos los Derechos Reservados
       </div>
     </div>
   </footer><!-- #footer -->

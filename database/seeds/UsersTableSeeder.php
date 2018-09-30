@@ -21,7 +21,7 @@ class UsersTableSeeder extends Seeder
             'email' => str_random(10).'@gmail.com',
             'address' => 'jhsdgfjg',
             'phone_number' => '656+5',
-            'position' => 'admin',
+            'position' => 'Mecanico',
         ]);
         DB::table('users')->insert([
             
@@ -31,7 +31,7 @@ class UsersTableSeeder extends Seeder
         ]);
         DB::table('roles')->insert([
             'user_id' => 1,
-            'Personal' => 1,
+            'Inventario' => 1,
         ]);
     }
 }
