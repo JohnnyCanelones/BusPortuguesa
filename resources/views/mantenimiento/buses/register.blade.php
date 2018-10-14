@@ -13,7 +13,7 @@
                 <div class="col-sm-12 col-md-7">
                     <div id="" class="card card2 ">
                         <div class="card-header">
-                            <h3 id="hola" class="azul text-center m-3 ">Registro de Autobuses</h3>
+                            <h3 id="hola" class="azul text-center m-3 ">Registro de Buses</h3>
                         </div>
                         <form action="/mantenimiento/buses/registrar" method="post">
                         <div class="card-body">
@@ -111,7 +111,7 @@
                                     
                                     <div class="col-lg-6 col-md-12 d-none mt-3" id="fecha_inactivo">
                                         <div class="form-group">
-                                            <strong><label for="fecha_inactivo"  class="bmd-label-floating">Desde Cuanto esta inactivo</label></strong>
+                                            <strong><label for="fecha_inactivo"  class="bmd-label-floating">Inactivo Desde</label></strong>
                                             <input class="form-control "  name="fecha_inactivo" id="date">
                                              
                                         </div>
@@ -225,7 +225,7 @@
                                     
                                 </div>
                         <div class="card-footer mt-5">
-                            <button class="btn btn-primary btn-raised mx-auto d-block header" type="submit"> guardar</button>
+                            <button class="btn btn-primary btn-raised mx-auto d-block header" type="submit"> Guardar</button>
                         </div>
                         </form>
                         </div>

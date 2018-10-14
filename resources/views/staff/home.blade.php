@@ -36,7 +36,7 @@
                         </div>
                         <div class="col-sm-7 p-0 "  >
                            <div class="card p-3 infobox-verde-contenido" >
-                               <h5 class="text-white">Usuarios <span class="timer badge badge-secondary" data-from="0" data-to="{{ $staff }}"></span></h5>
+                               <h5 class="text-white">Usuarios <span class="timer badge badge-secondary" data-from="0" data-to="{{ $user }}"></span></h5>
                            </div>
                         </div>
                     </div>

@@ -36,13 +36,13 @@
                                     <input id="personal" @if($permiso->role->Personal) checked="checked" @else @endif class="form-control custom-control custom-checkbox" type="checkbox" name="personal" value="1" >
                                 </div>
                                 <div  class="admin col-lg-6 mt-5 col-sm-6 ">
-                                    <label for="inventario" class="form-label">Jefe de Inventario</label>
+                                    <label for="inventario" class="form-label">Jefe de Almacen</label>
                                 </div>
                                 <div class="admin col-lg-6 mt-5 col-sm-6 ">
                                     <input id="inventario"  @if($permiso->role->Inventario) checked="checked" @else  @endif class="form-control custom-control custom-checkbox" type="checkbox" name="inventario" value="1" >
                                 </div>
                                 <div  class="admin col-lg-6 mt-5 col-sm-6 ">
-                                    <label for="operaciones" class="form-label">Jefe de Operaciones</label>
+                                    <label for="operaciones" class="form-label">Jefe de Bienes</label>
                                 </div>
                                 <div class="admin col-lg-6 mt-5 col-sm-6 ">
                                     <input id="operaciones" @if($permiso->role->Operaciones) checked="checked" @else  @endif class="form-control custom-control custom-checkbox" type="checkbox" name="operaciones" value="1" >

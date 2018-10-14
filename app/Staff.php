@@ -11,4 +11,10 @@ class Staff extends Model
  	public function user(){
  		return $this->hasOne(User::class, 'username');   
  	}
+
+ 	public function bus()
+    {
+        return $this->hasOne(Buses::class);
+    }
+
 }

@@ -6,3 +6,5 @@ Route::get('/almacen', function() {
 
 Route::get('/almacen/registro/producto', 'AlmacenController@showProductoForm');
 Route::post('/almacen/producto/registrar', 'AlmacenController@createProducto');
+
+Route::get('/almacen/productos', 'AlmacenController@showProductos');

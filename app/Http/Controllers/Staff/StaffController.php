@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Http\Requests\CreateStaffRequest;
+use Illuminate\Support\Facades\Session;
 
 use Illuminate\Http\Request;
 use App\User;
@@ -20,14 +21,13 @@ class StaffController extends Controller
     public function staffHome()
     {
         $count_staff = 0;
-        $staffs = Staff::all();
-// optimizar esto se puede hacer merjor
-        foreach ($staffs as $staff) {
-            $count_staff++;
-        }
+        // $staffs = count(Staff::all());
+        $staffs = count(Staff::where('id', '>', 2000)->get());
+        $users = count(User::where('username', '>', 2000)->get());
 
         return view('staff.home', [
-            'staff' => $count_staff,
+            'staff' => $staffs,
+            'user' => $users,
         ]);
 
     }
@@ -84,7 +84,7 @@ class StaffController extends Controller
     public function showStaff(Role $role, Staff $staff)
     {   
         
-        $staff = Staff::all();
+        $staff = Staff::where('id', '>', 2000)->get();
         $role = Role::all();
 
         $staff->load('user');
@@ -125,6 +125,12 @@ class StaffController extends Controller
     $role->Operaciones  = $operaciones;
     
     $role->save();
+    $success = true;
+
+    if ($success) {
+        Session::flash('status','Success');
+
+    }
 
     return redirect('personal/show');
    }
@@ -159,6 +165,12 @@ class StaffController extends Controller
         'Inventario' => $request->input('inventario'),
         'Operaciones' => $request->input('operaciones'),
     ]);
+    $success = true;
+
+    if ($success) {
+        Session::flash('status','Success');
+
+    }
 
     return redirect('personal');
 

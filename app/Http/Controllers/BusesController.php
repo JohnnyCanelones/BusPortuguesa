@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-
+// use Session;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use App\Buses;
 use App\Staff;
@@ -11,7 +12,8 @@ class BusesController extends Controller
 {
     public function showBusForm()
     {
-    	$conductores = Staff::where('position', 'Mecanico')->get();
+        $conductores = Staff::all();
+    	
 
     	
         return view('mantenimiento.buses.register', [
@@ -37,7 +39,13 @@ class BusesController extends Controller
             'observacion' => $request->get('observacion'),  
            ]);
             
-            return redirect('/almacen');
+            $success = true;
+            if ($success) {
+                Session::flash('status','Success');
+
+            }
+            
+            return redirect('/mantenimiento');
             
 
         }else {
@@ -47,9 +55,27 @@ class BusesController extends Controller
             'conductor_id' =>  $request->get('conductor'),
             'estado' => 'Activo',
            ]);
-            return redirect('/almacen');
-            
+
+            $success = true;
+            if ($success) {
+                Session::flash('status','Success');
+
+            }
+            return redirect('/mantenimiento');
+
 
         }
     }
+
+    public function showBuses()
+    {
+        $buses = Buses::all();
+        $buses->load('staff');
+        // dd($buses);
+
+        return view('mantenimiento.buses.show', [
+            'buses' => $buses,
+        ]);
+    }
 }
+
