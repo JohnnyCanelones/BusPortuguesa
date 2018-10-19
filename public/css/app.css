@@ -83,6 +83,10 @@ input[type=text]{
 	background-color: #003286 !important;
 }
 
+.bg-verde {
+  background-color: #008a34 !important;
+}
+
 .overlay {
   position: fixed;
   cursor: pointer;

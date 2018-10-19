@@ -9,7 +9,7 @@ Route::get('personal/show', 'StaffController@showStaff')->middleware(['auth', 'p
 
 //Modificar rol
 Route::get('personal/role/{id}', 'StaffController@showRole')->middleware(['auth', 'personal:,']);
-Route::post('personal/role/edit/{id}', 'StaffController@roleEdit')->middleware(['auth', 'personal:,']);
+Route::post('personal/role/update/{id}', 'StaffController@roleEdit')->middleware(['auth', 'personal:,']);
 
 //Agregar Rol
 

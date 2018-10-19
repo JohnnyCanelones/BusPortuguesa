@@ -17,7 +17,7 @@
                         </div>
                         <div class="col-sm-7 p-0 "  >
                            <div class="card p-3 infobox-azul-contenido" >
-                               <h5 class="text-white">Empleados <span class="timer badge badge-secondary" data-from="0" data-to=""></span></h5>
+                               <h5 class="text-white">Productos <br>en Almacen <span class="timer badge badge-secondary" data-from="0" data-to="{{ $productos }}"></span></h5>
                            </div>
                         </div>
                     </div>
@@ -36,7 +36,7 @@
                         </div>
                         <div class="col-sm-7 p-0 "  >
                            <div class="card p-3 infobox-verde-contenido" >
-                               <h5 class="text-white">Usuarios <span class="timer badge badge-secondary" data-from="0" data-to=""></span></h5>
+                               <h5 class="text-white">Penticiones <br>Aprobadas <span class="timer badge badge-secondary" data-from="0" data-to=""></span></h5>
                            </div>
                         </div>
                     </div>
@@ -53,7 +53,7 @@
                         </div>
                         <div class="col-sm-7 p-0 "  >
                            <div class="card p-3 infobox-amarillo-contenido" >
-                               <h5 class="text-white">Empleados <span class="timer badge badge-secondary" data-from="0" data-to="1000" data-speed="5000"></span></h5>
+                               <h5 class="text-white">Penticiones <br>Pendientes <span class="timer badge badge-secondary" data-from="0" data-to="1000" data-speed="5000"></span></h5>
                                
                            </div>
                         </div>

@@ -1,19 +1,35 @@
 <body> 
-@include('layouts.mantenimiento_base')
+@include('layouts.inventario_base')
 <div class="container">
     
     <div class="row justify-content-center">
         <div class="col-sm-12 col-md-7">
+            @if (session('status'))
+                <div class="alert alert-success card2" role="alert">
+                    {{ session('status') }}
+                </div>
+            @endif
             <div id="" class='card card2'>
+
+
                 <div class="card-header">
                     <h3 id="hola" class="azul text-center m-3 ">Inventario de Productos</h3>
                 </div>
                 <div class="card-body">
+                    <div class="row" >
+                        <div class="col-md-4 col-sm-4"></div>
+                        <div class="col-sm-4  mb-2 text-center" >
+                            <a href="/almacen/productos/pdf" class="btn btn-raised mx-auto  bg-verde  btn-primary  text-white p-2 rounded " style="font-size: 21px" target="_blank" data-toggle="tooltip" title="Generar PDF"> <span><i class="fas fa-file-pdf"></i></span></a>
+                            {{-- (*) la cantidad para aceites y liquidos seran expresados en litros --}}
+                        <div class="col-sm-4"></div>
+                        
+                    </div>
+                    </div>
                     <table id="example" class="p-3 table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                       <thead>
                             <tr class="text-white" style="background-color: #003286e8">
                                 <th class="text-white" scope="col">Nombre del Producto</th>
-                                <th class="text-white" scope="col">Conpatibilidad</th>
+                                <th class="text-white" scope="col">Compatibilidad</th>
                                 <th class="text-white" scope="col">Cantidad</th>
                                 <th class="text-white" scope="col">Ubicacion</th>
                                
@@ -24,15 +40,16 @@
                             @forelse($productos as $producto)
                             <tr>
                                 <th scope="row">
-                                    <a href=""  style="color: #008a34">{{ $producto->nombre_producto }}</a>
+                                    <a href="/almacen/producto/{{ $producto->id }}"  style="color: #008a34" data-toggle="tooltip" title="Modificar el producto">{{ $producto->nombre_producto }}</a>
+
                                 </th>
                                 <td>{{ $producto->compatibilidad }} </td>
-                                <td> {{ $producto->cantidad }}</td>
+                                <td> {{ $producto->cantidad }} @if(strpos(strtolower($producto->nombre_producto), 'aceite') !== false)litros @elseif(strpos(strtolower($producto->nombre_producto), 'cosrrea') !== false) algo2 @endif</td>
                                 <td> {{ $producto->ubicacion }}</td>
                                 
                             </tr>
                             @empty
-                            dfksdflkjs
+                              No hay datos en el inventario
                             @endforelse
                         </tbody>
                     </table>
@@ -57,6 +74,7 @@
     
     } );
 } );
+    $('#example').tooltip()
 </script>
 
 

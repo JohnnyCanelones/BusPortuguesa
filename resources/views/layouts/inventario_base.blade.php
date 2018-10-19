@@ -4,7 +4,7 @@
 @section('nav-items')
    <ul class="p-0">
 
-    <li class="nav-items" ><a href="/home" class="text-black "><i class="mr-3 fas fa-home text-secondary"></i><span class="d-md-inline">Inicio</span></a>
+    <li class="nav-items" ><a href="/almacen" class="text-black "><i class="mr-3 fas fa-home text-secondary"></i><span class="d-md-inline">Inicio</span></a>
     <br>
     <br>
 
@@ -15,7 +15,7 @@
         <br>
 
         <div class="collapse" id="menu1" data-parent="#sidebar">
-            <a href="{{ url('personal/registro') }}" class="list-group-item " >Agregar Personal</a>
+            <a href="{{ url('/almacen/registro/producto') }}" class="list-group-item " >Agregar Producto</a>
             <a href="#menu1sub1" class="list-group-item " >Subitem 1 </a>
             <a href="#menu1sub1" class="list-group-item " >Subitem 1 </a>
               
@@ -28,9 +28,9 @@
         <br>
 
         <div class="collapse" id="menu3" data-parent="#sidebar">
-            <span><a href="#menu3sub3" class="list-group-item" data-toggle="collapse" aria-expanded="false">Subitem 3 </a></span>
-            <a href="#menu3sub3" class="list-group-item" data-toggle="collapse" aria-expanded="false">Subitem 3 </a>
-            <a href="#menu3sub3" class="list-group-item" data-toggle="collapse" aria-expanded="false">Subitem 3 </a>
+            <a href="{{ url('/almacen/productos') }}" class="list-group-item" >Productos en el Almacen</a>
+            <a href="#menu3sub3" class="list-group-item" >Subitem 3 </a>
+            <a href="#menu3sub3" class="list-group-item" >Subitem 3 </a>
             
         
         </div>
@@ -41,9 +41,9 @@
         <br>
 
         <div class="collapse" id="menu4" data-parent="#sidebar">
-            <span><a href="#menu4sub4" class="list-group-item" data-toggle="collapse" aria-expanded="false">Subitem 4 </a></span>
-            <a href="#menu4sub4" class="list-group-item" data-toggle="collapse" aria-expanded="false">Subitem 4 </a>
-            <a href="#menu4sub4" class="list-group-item" data-toggle="collapse" aria-expanded="false">Subitem 4 </a>
+            <a href="{{ url('/almacen/productos/pdf') }}" class="list-group-item" target="_blank">Generar PDF de Productos</a>
+            <a href="#menu3sub3" class="list-group-item" >Subitem 3 </a>
+            <a href="#menu3sub3" class="list-group-item" >Subitem 3 </a>
             
         
         </div>

@@ -2,7 +2,19 @@
 
 <button id="toggle-menu" class="transparent btn toggle-menu " style="position:fixed;"><span class="text-white transparent"><i class="fas fa-bars"></i></span></a></button>
 @section('user')
-<i class="fas fa-wrench"></i> {{ auth()->user()->staff->names }} {{ auth()->user()->staff->last_names }}
+
+@if(auth()->user()->role->Admin) 
+
+@elseif(auth()->user()->role->Mantenimiento)<i class="fas fa-wrench"></i>
+
+@elseif(auth()->user()->role->Operaciones) 
+
+@elseif(auth()->user()->role->Personal)  
+
+@elseif(auth()->user()->role->Inventario) <i class="fas fa-warehouse mr-1"></i> 
+
+@endif
+ {{  ucfirst(auth()->user()->staff->names) }} {{ ucfirst(auth()->user()->staff->last_names) }}
 @endsection
 
 @section('sidebar')

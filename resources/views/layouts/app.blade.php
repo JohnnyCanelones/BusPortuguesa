@@ -4,11 +4,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOgAAADZCAMAAAAdUYxCAAAAY1BMVEX///8AAAClpaW8vLxQUFCtra3Y2NjR0dHy8vLs7OyUlJT8/Pzn5+eXl5d3d3fj4+NfX1/GxsZxcXGHh4eNjY1kZGREREQiIiIaGhorKytKSkpra2ufn58cHBy6urr29vY0NDRyrDl6AAAEYElEQVR4nO3d63aqMBCGYaKFgqCIpx606v1fZYtd2+2BaCaZJAP93r+wOjzVqkU0SeJSmUxUoCY/w+JUVcU4lPK3cVFVwZl1Fhb5r6wOy2w2cZxKbZpw1CJdx2K2rdMiCLNcLWIy2xarAA9Ms+jMtsXMt1MEs23xR5x+pavYuOtWvpzBXgWZNvHCLKexXfdNPTz6lrvYqq52/FKBt2fblNtJfRzap5btiYOYH5GWxPHKfhR10pJPaTE9INRh1H1bydBtTGdIKJ/U5nVfSCjXq8GDfOiBBWr1yi8olOe1YGXxFxoauuU4aZbaTA4MVam7s573ATp3P2PWWA0ODVWNq7M+9gN6dL1Ja7u5waHKEVpZjg0PVW4PvNbQ8LlBi9iHb57b6Xu7J9EoOT2VlrGPnpLT6aPYB0/JxSnoxPzzXP5Zi33stAAFFFDZAQroX4fOxsKaeYKOHH6Sl0aAUgNURoCSA1RGgJIDVEaAkgNURlRomZ+7OQncZ+i9qr7Yf3e9c5+hF1ejjk7vKaYPLH2GXm1s35h5ZBkMVF3dwkOG7h5bhgNVgJ4CVEaAdm0EtA1QGQHatRHQNkBlBGjXRkDbAJURoF0bAW0DVEaAdm0EtA1QGQHatRHQNkBlBGjXRkDbAJURoF0bAW0bEvT6kwaDhc7+zlUp118PN1Ro+2VzZXPxDXHDvHJs1fxeJHfIzt18xr/P0OK/6vn3OvUZSgpQGQFKDlAZAUoOUBkBSg5QGQFKDlAZAUoOUBkBSg5QGQFKDlAZAUoOUBn5gjJ8vT9vqSfo8UVYR09Q6QEKKKCyAxRQQGUHKKCAyg5Qe+h8Ojk1tVs9zqrnM9mhn+l57a46/fQFo89khr432eUuWfPuE0iZyQy9W4nNdg05QmYzeaEdq3Z5X3PMcCYrtHN1Ms9S05mcUM0qbF6lxjMZoR+adfWqD39O85mM0Ey3Y+YPaj6TD6pft9Vy3VmDCDP5oGP9nmNfUMJMQAEFFFBAARUNXeW6HfOV8hRhJh9Uvep2fPXlpMxkhM40v958drsnX+YzGaG6VcG9rmtuPJMT+tK934tPqPFMTqj66NrN43+jlJmsUPV+v5f304CGM3mh6i25Wv2mTN48M41nMkOVWlfnj8EfqrVPIG0mO1SpZfZ6Klv6gtnM9ACVGaCAAio7QAcmdXGWAV71cPVWPvfoy2MfvnnaMxFm0IBXY7g1d4Mm+Ta2wKytozNJil5It5p3i4cm5XD+SOtNbMjjNjWL86f8ENvyqIPzn+dto+dDz9lPIQzx9WE5QAG1CVBA2QMUUJsABZQ9QAG1CVBA2QMUUJsADQdNJgGcBOmEy3VX+mV4CBuHN3xK05OrXx6/X2lheAxOJyBN39hacKk62pvdpAs3qNmv82vPpeqqMTkE3YWnppldFNvwiHQZXIHs6jSTaq9X5uqp1O1++9vze693Z5JUD+++nwXLOyF58fBD8o3mYmXuUu0RJE4XElxW6p9PrZ5WvgG5Qm4rmrGJpgAAAABJRU5ErkJggg==" rel="icon">
+    
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title','BusPortuguesa')</title>
 
     <!-- Scripts -->
     {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
@@ -34,13 +35,15 @@
         <nav class="header navbar navbar-expand-md navbar-light navbar-laravel zindex-fixed w-100  fixed-top">
             <div class="container-fluid">
             
-             <a class="nav-item " href="{{ url('/') }}">
+             <a class="nav-item " href="{{ url('/mantenimiento') }}">
                     <h5 class="text-white user-header text-center"> @guest <i class="fas fa-bus"></i> BUS PORTUGUESA @else @yield('user')  @endguest</h5>
                 </a>
+               
                
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="text-white"><i class="fas fa-bars"></i></span>
                 </button>
+                
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
@@ -63,11 +66,11 @@
                                     
                                     @elseif(auth()->user()->role->Mantenimiento) @if(auth()->user()->staff->genre == "Masculino")Jefe @else Jefa @endif de Mantenimiento
                                     
-                                    @elseif(auth()->user()->role->Operaciones) @if(auth()->user()->staff->genre == "Masculino")Jefe @else Jefa @endif de Operaciones 
+                                    @elseif(auth()->user()->role->Operaciones) @if(auth()->user()->staff->genre == "Masculino")Jefe @else Jefa @endif de Bienes 
                                     
                                     @elseif(auth()->user()->role->Personal) @if(auth()->user()->staff->genre == "Masculino")Jefe @else Jefa @endif de Recursos Humanos 
                                     
-                                    @elseif(auth()->user()->role->Inventario) @if(auth()->user()->staff->genre == "Masculino")Jefe @else Jefa @endif de Inventario
+                                    @elseif(auth()->user()->role->Inventario) @if(auth()->user()->staff->genre == "Masculino")Jefe @else Jefa @endif de Almacen
                                     
                                     @endif
 
