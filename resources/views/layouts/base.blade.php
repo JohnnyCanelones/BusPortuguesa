@@ -14,7 +14,7 @@
 @elseif(auth()->user()->role->Inventario) <i class="fas fa-warehouse mr-1"></i> 
 
 @endif
- {{  ucfirst(auth()->user()->staff->names) }} {{ ucfirst(auth()->user()->staff->last_names) }}
+ {{  ucfirst(strtolower(auth()->user()->staff->names)) }} {{ ucfirst(strtolower(auth()->user()->staff->last_names)) }}
 @endsection
 
 @section('sidebar')

@@ -31,7 +31,7 @@ class BusesController extends Controller
         if ($estado) {
             $bus = Buses::create([
             'id_bus' => $request->get('id_bus'),
-            'rutas' => $request->get('rutas'),
+            'modelo' => $request->get('modelo'),
             'conductor_id' =>  $request->get('conductor'),
             'estado' => 'Inactivo',
             'motivo_inactividad' => $request->get('motivo_inactividad'),
@@ -51,7 +51,7 @@ class BusesController extends Controller
         }else {
             $bus = Buses::create([
             'id_bus' => $request->get('id_bus'),
-            'rutas' => $request->get('rutas'),
+            'modelo' => $request->get('modelo'),
             'conductor_id' =>  $request->get('conductor'),
             'estado' => 'Activo',
            ]);

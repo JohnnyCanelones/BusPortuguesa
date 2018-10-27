@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Session;
+use App\Almacen;
 
 use Illuminate\Http\Request;
-use App\Almacen;
 use Barryvdh\DomPDF\Facade as PDF;
 
 class AlmacenController extends Controller
@@ -35,10 +35,10 @@ class AlmacenController extends Controller
 
     	$success = true;
         if ($success) {
-            Session::flash('status','Success');
+            Session::flash('status','Producto Creado');
 
         }
-        dd("hola");
+    
             
         return redirect('/almacen');
     }
@@ -49,7 +49,7 @@ class AlmacenController extends Controller
 
     	return view('almacen.productos.showProductos', [
     		'productos' => $productos,
-    	]);   
+    	]);    
     }
 
     public function showProductosPdf()

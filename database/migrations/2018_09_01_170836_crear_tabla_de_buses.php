@@ -18,7 +18,8 @@ class CrearTablaDeBuses extends Migration
             $table->primary('id_bus');
             
             // por ahora rutas sin relacion
-            $table->string('rutas');
+            $table->string('modelo');
+
 
             $table->integer('conductor_id')->unsigned();
             $table->foreign('conductor_id')->references('id')->on('staff');

@@ -37,18 +37,24 @@
                                     </div>
                                     
         
-                                    <div class="col-lg-6 col-md-12 mt-4">
-                                        <div class="form-group">
-                                            <strong><label class="bmd-label-floating" for="rutas">Rutas</label></strong>
-                                            <input class="form-control {{ $errors->has('rutas') ? ' is-invalid' : '' }}" type="text" name="rutas" value="{{ old('rutas') }}">
-                                            @if ($errors->has('rutas'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('rutas') }}</strong>
-                                                </span>
-                                            @endif
-        
-                                        </div>
+                                    <div class="col-md-12 col-lg-6 mt-4">
+                                    <div class="form-group">
+                                        <select class="js-example-basic-single form-control mt-1 focus" name="modelo" required="">
+                                            <option selected="" disabled="">Elige un Tipo de Unidad</option>
+                                            
+                                            <optgroup label="">
+                                            <option>6118</option>
+                                            <option>6896</option>
+                                            <option>6752</option>
+
+                                            
+
+                                        </select>
+                                        
+                                        
                                     </div>
+                                </div>
+
 
                                     <div class="col-md-12 col-lg-6 mt-4">
                                         <div class="form-group">

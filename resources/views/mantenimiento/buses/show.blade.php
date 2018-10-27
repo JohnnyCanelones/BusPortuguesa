@@ -13,6 +13,7 @@
                       <thead>
                             <tr class="text-white" style="background-color: #003286e8">
                                 <th class="text-white" scope="col"># de la Unidad</th>
+                                <th class="text-white" scope="col">Modelo</th>
                                 <th class="text-white" scope="col">Conductor</th>
                                 <th class="text-white" scope="col">Estado</th>
                                 <th class="text-white" scope="col">Motivo de la inactividad</th>
@@ -27,6 +28,7 @@
                                 <th scope="row">
                                     <a href=""  style="color: #008a34">{{ $bus->id_bus}}</a>
                                 </th>
+                                <td>{{ $bus->modelo}} </td>
                                 <td>{{ $bus->staff->names }} {{  $bus->staff->last_names }}</td>
                                 <td> {{ $bus->estado }}</td>
                                 <td> @if( $bus->estado == 'Inactivo') {{ $bus->motivo_inactividad }} @else ---- @endif</td>        
