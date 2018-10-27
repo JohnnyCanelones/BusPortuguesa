@@ -15,7 +15,7 @@
                         <div class="card-header">
                             <h3 id="hola" class="azul text-center m-3 ">Registro de Peticion del Producto</h3>
                         </div>
-                        <form action="/mantenimiento/buses/registrar" method="post">
+                        <form action="/mantenimiento/peticion/{{ $producto->id }}/created" method="post">
                         <div class="card-body">
                                 {{ csrf_field() }}
                                 <div class="row">
@@ -24,12 +24,12 @@
         
                                     <div class="col-lg-6 col-md-12 mt-4">
                                         <div class=" form-group" >
-                                            <strong><label class="bmd-label-floating" for="id_bus">Nombre del Producto</label></strong>
-                                            <input class="form-control {{ $errors->has('id_bus') ? ' is-invalid' : '' }}" type="" name="id_bus" value="{{ $producto->nombre_producto }}" readonly="">
+                                            <strong><label class="bmd-label-floating" for="nombre_producto">Nombre del Producto</label></strong>
+                                            <input class="form-control {{ $errors->has('nombre_producto') ? ' is-invalid' : '' }}" type="" name="nombre_producto" value="{{ $producto->nombre_producto }}" readonly="">
                                                  
-                                                 @if ($errors->has('id_bus'))
+                                                 @if ($errors->has('nombre_producto'))
                                                     <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $errors->first('id_bus') }}</strong>
+                                                        <strong>{{ $errors->first('nombre_producto') }}</strong>
                                                     </span>
                                                 @endif		
                                         </div>	
@@ -39,11 +39,11 @@
         
                                     <div class="col-lg-6 col-md-12 mt-4">
                                         <div class="form-group">
-                                            <strong><label class="bmd-label-floating" for="rutas">Compatibilidad</label></strong>
-                                            <input class="form-control {{ $errors->has('rutas') ? ' is-invalid' : '' }}" type="text" name="rutas" value="{{ $producto->compatibilidad }}" readonly="">
-                                            @if ($errors->has('rutas'))
+                                            <strong><label class="bmd-label-floating" for="compatibilidad">Compatibilidad</label></strong>
+                                            <input class="form-control {{ $errors->has('compatibilidad') ? ' is-invalid' : '' }}" type="text" name="compatibilidad" value="{{ $producto->compatibilidad }}" readonly="">
+                                            @if ($errors->has('compatibilidad'))
                                                 <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('rutas') }}</strong>
+                                                    <strong>{{ $errors->first('compatibilidad') }}</strong>
                                                 </span>
                                             @endif
         
@@ -52,7 +52,7 @@
 
                                     <div class="col-md-12 col-lg-6 mt-4">
                                         <div class="form-group">
-                                            <select class="js-example-basic-single form-control mt-1 focus" name="conductor" required="">
+                                            <select class="js-example-basic-single form-control mt-1 focus" name="cantidad" required="">
                                                 <option selected="" disabled="">Cantidad</option>
                                                 @for ($i = 1; $i <= $producto->cantidad ; $i++)
         
@@ -72,7 +72,7 @@
                                     
                                     <div class="col-md-12  col-lg-6 mt-5" >
                                         <div class="" >
-                                            <select class="js-example-basic-single2 form-control mt-1 focus" name="motivo_inactividad" required="" >
+                                            <select class="js-example-basic-single2 form-control mt-1 focus" name="bus_id" required="" >
                                                 <option selected="" disabled=""># de la Unidad</option>
                                                  @forelse($buses as $bus)
                                                 <optgroup label="">

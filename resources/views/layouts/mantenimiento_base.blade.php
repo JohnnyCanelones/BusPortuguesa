@@ -29,8 +29,8 @@
 
         <div class="collapse" id="menu3" data-parent="#sidebar">
             <a href="{{ url('mantenimiento/show/buses') }}" class="list-group-item" >Buses</a></span>
-            <a href="#menu1sub1" class="list-group-item " >Subitem 1 </a>
-            <a href="#menu1sub1" class="list-group-item " >Subitem 1 </a>
+            <a href="{{ url('mantenimiento/productos') }}" class="list-group-item" >Poductos Disponibles</a>
+            <a href="{{ url('mantenimiento/peticiones') }}" class="list-group-item " >Peticiones </a>
         
         </div>
     </li>

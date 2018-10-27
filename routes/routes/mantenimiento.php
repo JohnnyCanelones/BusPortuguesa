@@ -10,4 +10,9 @@ Route::get('mantenimiento/show/buses', 'BusesController@showBuses');
 Route::get('mantenimiento/productos', 'PeticionMantenimientoAlmacen@productosDisponibles');
 
 Route::get('mantenimiento/peticion/{id}', 'PeticionMantenimientoAlmacen@peticionForm');
+Route::post('mantenimiento/peticion/{id}/created', 'PeticionMantenimientoAlmacen@peticionCreate');
+
+Route::get('mantenimiento/peticiones', 'PeticionMantenimientoAlmacen@peticionesShow');
+
+
 

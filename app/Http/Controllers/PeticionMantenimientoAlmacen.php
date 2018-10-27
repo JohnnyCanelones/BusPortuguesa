@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Almacen;
 use App\Buses;
+use App\Peticion;
 
 
 class PeticionMantenimientoAlmacen extends Controller
@@ -38,6 +39,44 @@ class PeticionMantenimientoAlmacen extends Controller
     		'producto' => $producto,
     		'buses' => $buses,
     	]);  
+    }
+
+    public function peticionCreate($id, Request $request)
+    {
+    	$producto = Almacen::where('id', $id)->first();
+    	
+    	$peticion = Peticion::create([
+    		'almacen_id' => $producto->id,
+    		'bus_id' => $request->get('bus_id'),
+    		'cantidad' => $request->get('cantidad'),
+    		'observacion' => $request->get('observacion'),
+    		'estado' => 'Pendiente',
+    	]);
+
+    	$success = true;
+        if ($success) {
+            Session::flash('status','Petición Enviada');
+
+        }
+    
+            
+        return redirect('/mantenimiento');
+
+    }
+
+    public function peticionesShow()
+    {
+    	$peticiones = Peticion::all();
+    	$peticiones->load('almacen');
+    	// dd($peticiones);
+    	foreach ($peticiones as $peticion) {
+    		// dd($peticion->almacen->nombre_producto, $peticion->almacen->cantidad);
+    		
+    	}
+    	
+    	return view('mantenimiento.peticiones.showPeticiones', [
+    		'peticiones' => $peticiones,
+    	]);
     }
 
 

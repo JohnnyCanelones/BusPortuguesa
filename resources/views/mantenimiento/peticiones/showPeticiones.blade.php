@@ -13,7 +13,7 @@
 
 
                 <div class="card-header">
-                    <h3 id="hola" class="azul text-center m-3 ">Productos Disponibles</h3>
+                    <h3 id="hola" class="azul text-center m-3 ">Peticiones</h3>
                 </div>
                 <div class="card-body">
                     <div class="row" >
@@ -29,26 +29,28 @@
                       <thead>
                             <tr class="text-white" style="background-color: #003286e8">
                                 <th class="text-white" scope="col">Nombre del Producto</th>
-                                <th class="text-white" scope="col">Compatibilidad</th>
+                                <th class="text-white" scope="col"># de la Unidad</th>
                                 <th class="text-white" scope="col">Cantidad</th>
-                                <th class="text-white" scope="col">Ubicacion</th>
-                                <th class="text-white" scope="col">Accion</th>
+                                <th class="text-white" scope="col">Observacion</th>
+                                <th class="text-white" scope="col">Estado</th>
+                                <th class="text-white" scope="col">Fecha Enviada</th>
 
                                
                             </tr>
 
                         </thead>
                         <tbody>
-                            @forelse($productos as $producto)
+                            @forelse($peticiones as $peticion)
                             <tr>
                                 <th scope="row">
-                                   {{ $producto->nombre_producto }}
+                                   {{ $peticion->almacen->nombre_producto }}
 
                                 </th>
-                                <td>{{ $producto->compatibilidad }} </td>
-                                <td> {{ $producto->cantidad }} @if(strpos(strtolower($producto->nombre_producto), 'aceite') !== false)litros @elseif(strpos(strtolower($producto->nombre_producto), 'cosrrea') !== false) algo2 @endif</td>
-                                <td> {{ $producto->ubicacion }}</td>
-                                <td> <a href="peticion/{{ $producto->id }}" style="color: #008a34">Pedir</a> </td>
+                                <td>{{ $peticion->bus_id }} </td>
+                                <td> {{ $peticion->cantidad }} @if(strpos(strtolower( $peticion->almacen->nombre_producto), 'aceite') !== false)litros @elseif(strpos(strtolower( $peticion->almacen->nombre_producto), 'cosrrea') !== false) algo2 @endif</td>
+                                <td> {{ $peticion->observacion}}</td>
+                                <td> {{ $peticion->estado}}</td>
+                                <td>{{ $peticion->created_at }}</td>
                                 
                             </tr>
                             @empty
