@@ -39,6 +39,13 @@ body {
 }
 
 
+
+.badge-warning2 {
+  color: #212529;
+  background-color: #ffc107;
+}
+
+
 .height-img-responsive{
 	height: 100vh !important;
 }
@@ -203,6 +210,12 @@ input[type=text]{
   .card3{
     left: -64px;
     z-index: 100;
+  }
+}
+
+@media( max-width: 575px) {
+  .padding{
+    padding: 0px 50px 30px 50px !important;
   }
 }
 

@@ -49,7 +49,7 @@ class PeticionMantenimientoAlmacen extends Controller
     		'almacen_id' => $producto->id,
     		'bus_id' => $request->get('bus_id'),
     		'cantidad' => $request->get('cantidad'),
-    		'observacion' => $request->get('observacion'),
+    		// 'observacion' => $request->get('observacion'),
     		'estado' => 'Pendiente',
     	]);
 

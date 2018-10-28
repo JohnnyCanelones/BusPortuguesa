@@ -92,7 +92,7 @@
 
                                     
                                    
-                                    <div class="col-lg-12 col-md-12  mt-4" id="observacion">
+                                   {{--  <div class="col-lg-12 col-md-12  mt-4" id="observacion">
                                         <div class="form-group">
                                             <strong><label for="observacion" class="bmd-label-floating">Observación</label></strong>
                                             <textarea name="observacion" class="form-control focus {{ $errors->has('observacion') ? ' is-invalid' : '' }}" value="{{ old('observacion') }}"></textarea>
@@ -103,7 +103,7 @@
                                             @endif 
                                         </div>
                                     </div>
-
+ --}}
                                 
                                 
           

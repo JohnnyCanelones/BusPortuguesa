@@ -23,7 +23,7 @@ class CreatePeticionTable extends Migration
             $table->foreign('bus_id')->references('id_bus')->on('buses');
 
             $table->integer('cantidad');
-            $table->string('observacion');
+            $table->string('observacion')->nullable();
             $table->string('estado');
 
             $table->timestamps();
