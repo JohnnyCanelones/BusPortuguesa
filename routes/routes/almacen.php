@@ -15,8 +15,6 @@ Route::get('/almacen/productos/pdf', 'AlmacenController@showProductosPdf')->name
 Route::get('/almacen/producto/{id}', 'AlmacenController@editProducto');
 Route::post('/almacen/producto/update/{id}', 'AlmacenController@updateProducto');
 
+Route::get('almacen/peticiones', 'PeticionMantenimientoAlmacen@peticionesShowAlmacen');
+Route::get('almacen/aceptar/peticion/{id}', 'PeticionMantenimientoAlmacen@aceptarPeticion');
 
-
-Route::get('/almacen/prueba', function(){
-	return view('almacen.pdf.pdfProductos');
-});

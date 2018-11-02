@@ -79,5 +79,36 @@ class PeticionMantenimientoAlmacen extends Controller
     	]);
     }
 
+    public function peticionesShowAlmacen()
+    {
+        $peticionesPendientes = Peticion::where('estado', 'Pendiente')->get();
+        $peticionesPendientes->load('almacen');
+        // dd($peticiones);
+
+        $peticiones = Peticion::where('estado','!=', 'Pendiente')->get();
+        $peticiones->load('almacen');
+        // dd($peticiones);       
+        
+        return view('almacen.peticiones.showPeticiones', [
+            'peticiones' => $peticiones,
+            'peticionesPendientes' => $peticionesPendientes,
+        ]);
+    }
+
+    public function aceptarPeticion($id)
+    {
+        $peticion= Peticion::find($id);
+        $peticion->estado = 'Aprobada';
+        $peticion->save();
+
+        $success = true;
+        if ($success) {
+            Session::flash('status','Petición Aprobada');
+
+        }
+
+        return redirect('/almacen/peticiones');
+    }
+    
 
 }

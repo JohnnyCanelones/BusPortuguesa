@@ -25,15 +25,19 @@
                         
                     </div>
                     </div>
-                    <table id="example" class="p-3 table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+                    <table id="example" class=" table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                       <thead>
                             <tr class="text-white" style="background-color: #003286e8">
                                 <th class="text-white" scope="col">Nombre del Producto</th>
                                 <th class="text-white" scope="col"># de la Unidad</th>
                                 <th class="text-white" scope="col">Cantidad</th>
-                                <th class="text-white" scope="col">Observacion</th>
                                 <th class="text-white" scope="col">Estado</th>
-                                <th class="text-white" scope="col">Fecha Enviada</th>
+                                <th class="text-white" scope="col">Observacion</th>
+                                <th class="text-white sorting_desc" scope="col">Fecha Enviada</th>
+                                    <th class="text-white sorting_desc" scope="col">Fecha Respuesta</th>
+
+                                
+
 
                                
                             </tr>
@@ -42,15 +46,17 @@
                         <tbody>
                             @forelse($peticiones as $peticion)
                             <tr>
-                                <th scope="row">
+                                <td scope="row">
                                    {{ $peticion->almacen->nombre_producto }}
 
-                                </th>
+                                </td>
                                 <td>{{ $peticion->bus_id }} </td>
                                 <td> {{ $peticion->cantidad }} @if(strpos(strtolower( $peticion->almacen->nombre_producto), 'aceite') !== false)litros @elseif(strpos(strtolower( $peticion->almacen->nombre_producto), 'cosrrea') !== false) algo2 @endif</td>
                                 <td> <span class="@if($peticion->estado == "Pendiente")badge badge-warning2 @elseif($peticion->estado == "Rechazada") badge badge-danger @else badge badge-success @endif">{{ $peticion->estado}}</span></td>
                                 <td> @if($peticion->observacion) {{ $peticion->observacion }} @else --- @endif</td>
                                 <td>{{  $newDate = date("d/m/Y", strtotime($peticion->created_at)) }}</td>
+                                <td>@if($peticion->estado == "Pendiente")--- @else {{  $newDate = date("d/m/Y", strtotime($peticion->updated_at)) }} @endif</td>
+
                                 
                             </tr>
                             @empty

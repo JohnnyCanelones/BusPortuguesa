@@ -84,7 +84,18 @@ input[type=text]{
 
 }
 
+.success {
+  background-color:  #4caf50 !important;
+  padding: 7px !important;
+  color: #fff !important;
+}
 
+.denied {
+  background-color:  #f44336 !important;
+  padding: 7px !important;
+  color: #fff !important;
+
+}
 
 .header {
 	background-color: #003286 !important;
