@@ -17,4 +17,6 @@ Route::post('/almacen/producto/update/{id}', 'AlmacenController@updateProducto')
 
 Route::get('almacen/peticiones', 'PeticionMantenimientoAlmacen@peticionesShowAlmacen');
 Route::get('almacen/aceptar/peticion/{id}', 'PeticionMantenimientoAlmacen@aceptarPeticion');
+Route::get('almacen/rechazar/peticion/{id}', 'PeticionMantenimientoAlmacen@rechazarPeticionForm');
+Route::post('almacen/peticion/rechazada/{id}', 'PeticionMantenimientoAlmacen@rechazarPeticion');
 

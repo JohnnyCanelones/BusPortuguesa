@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Session;
 use App\Almacen;
+use App\Peticion;
+
 
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
@@ -11,10 +13,18 @@ class AlmacenController extends Controller
 {
 	public function home()
 	{
-    	$productos = count(Almacen::all()); 
+    	$productos = count(Almacen::all());
+        $peticionesPendientes = count(Peticion::where('estado', 'Pendiente')->get());
+        $peticionesAprobadas = count(Peticion::where('estado', 'Aprobada')->get());
+        $ultimasPeticiones = Peticion::where('estado', 'Pendiente')->latest()->take(3)->get();
+        $ultimasPeticiones->load('almacen');
+        // dd($ultimasPeticiones);
 
 		return view('almacen.home', [
 			'productos' => $productos,
+            'peticionesPendientes' => $peticionesPendientes,
+            'peticionesAprobadas' => $peticionesAprobadas,
+            'ultimasPeticiones' => $ultimasPeticiones,
 		]);
 	}
 

@@ -8,6 +8,8 @@ class Buses extends Model
 {
     protected $guarded = [];
     public $timestamps = false;
+    protected $primaryKey = 'id_bus';
+
 
     public function staff()
     {

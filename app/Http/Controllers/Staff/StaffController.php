@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Staff;
 use App\Role;
-Use Session;
 
 use Illuminate\Support\Facades\Hash;
 

@@ -44,7 +44,7 @@ class LoginController extends Controller
             return '/personal';
         }
         elseif (auth()->user()->hasRole2('', '1')) {
-            return 'almacen';
+            return '/almacen';
         }
         elseif (auth()->user()->hasRole3('1')) {
             return '/operaciones';

@@ -24,7 +24,7 @@ class BusesController extends Controller
     public function createBus(Request $request)
     {
         $estado = $request->get('estado');
-                 
+        // dd($request->get('conductor'));      
          
 
         // SI ESTA INACTIVO

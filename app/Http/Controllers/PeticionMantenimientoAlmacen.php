@@ -98,16 +98,55 @@ class PeticionMantenimientoAlmacen extends Controller
     public function aceptarPeticion($id)
     {
         $peticion= Peticion::find($id);
+        $producto = Almacen::find($peticion->almacen_id);
         $peticion->estado = 'Aprobada';
+        
+        $producto->cantidad = $producto->cantidad - $peticion->cantidad;
+        
         $peticion->save();
+        $producto->save();
 
         $success = true;
         if ($success) {
-            Session::flash('status','Petición Aprobada');
+            Session::flash('peticionAprobada','Petición Aprobada');
 
         }
 
         return redirect('/almacen/peticiones');
+    }
+    
+    public function rechazarPeticionForm($id)
+    {
+
+        $peticion= Peticion::find($id);
+        $peticion->load(['almacen', 'buses']);
+        
+        // dd($peticion);
+        return view('almacen.peticiones.rechazarPeticion', [
+            'peticion' => $peticion,
+        ]);
+    }
+    
+
+    public function rechazarPeticion($id, Request $request  )
+    {
+        $validatedData = $request->validate([
+        'observacion' => 'required',
+
+        'observacion.required'  => 'Este campo es Requerido',
+        ]);
+        $peticion= Peticion::find($id);
+        // $peticion->load('almacen');
+        $peticion->estado = 'Rechazada';
+        $peticion->observacion = $request->get('observacion');
+        $peticion->save();
+
+       
+
+        return redirect('/almacen/peticiones')->with([
+            'peticionRechazada' => $peticion->id,
+            // 'nombre_producto' => $peticion->almacen->nombre_producto,
+        ]);
     }
     
 

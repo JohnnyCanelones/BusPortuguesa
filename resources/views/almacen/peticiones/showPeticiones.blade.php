@@ -1,14 +1,37 @@
+<head>
+    {{-- <link rel="stylesheet" type="text/css" href="{{ asset('plugins/sweetalert/sweetalert.css') }}"> --}}
+</head>
+
 <body> 
 @include('layouts.inventario_base')
 <div class="container">
     
     <div class="row justify-content-center">
         <div class="col-sm-12 col-md-7">
-            @if (session('status'))
-                <div class="alert alert-success card2" role="alert">
-                    {{ session('status') }}
-                </div>
+             @if (session('peticionAprobada'))
+                <script type="text/javascript">
+                    $(document).ready(function() {
+                        swal(
+                        'Listo!',
+                        'Haz Aceptado la Peticion' ,
+                        'success'
+                        )
+                    })
+                </script>
             @endif
+
+            @if (session('peticionRechazada'))
+                <script type="text/javascript">
+                    $(document).ready(function() {
+                        swal(
+                        'Listo!',
+                        'Haz rechazado la Peticion' ,
+                        'success'
+                        )
+                    })
+                </script>
+            @endif
+
             <div id="" class='card card2'>
 
 
@@ -32,7 +55,6 @@
                                 <th class="text-white" scope="col"># de la Unidad</th>
                                 <th class="text-white" scope="col">Cantidad</th>
                                 <th class="text-white" scope="col">Estado</th>
-                                <th class="text-white" scope="col">Observacion</th>
                                 <th class="text-white sorting_desc" scope="col">Fecha Enviada</th>
                                 <th class="text-white" scope="col">Acciones</th>
 
@@ -50,12 +72,15 @@
 
                                 </td>
                                 <td>{{ $peticion->bus_id }} </td>
-                                <td> {{ $peticion->cantidad }} @if(strpos(strtolower( $peticion->almacen->nombre_producto), 'aceite') !== false)litros @elseif(strpos(strtolower( $peticion->almacen->nombre_producto), 'cosrrea') !== false) algo2 @endif</td>
+                                <td> {{ $peticion->cantidad }} @if($peticion->cantidad = 1) @if(strpos(strtolower( $peticion->almacen->nombre_producto), 'aceite') !== false)litro @endif @else @if(strpos(strtolower( $peticion->almacen->nombre_producto), 'aceite') !== false)litros @endif  @endif</td>
                                 <td> <span class="@if($peticion->estado == "Pendiente")badge badge-warning2 @elseif($peticion->estado == "Rechazada") badge badge-danger @else badge badge-success @endif">{{ $peticion->estado}}</span></td>
-                                <td> @if($peticion->observacion) {{ $peticion->observacion }} @else --- @endif</td>
                                 <td>{{  $newDate = date("d/m/Y", strtotime($peticion->created_at)) }}</td>
-                                <td class="text-center"><a href="aceptar/peticion/{{ $peticion->id }}"   class="btn success"><i class="fas fa-check"></i></a> 
-                                    <a href="rechazar/peticion/{{ $peticion->id }}"" class="btn denied"><i class="fas fa-times"></i></a></td>
+                                <td class="text-center">
+                                    {{-- <a href="aceptar/peticion/{{ $peticion->id }}"   class="btn success"><i class="fas fa-check"></i></a>  --}}
+                                    <a href="#aprobar"   class="btn success aceptar" data-value="{{ $peticion->id }}" data-toggle="tooltip" title="Aprobar Peticion"><i class="fas fa-check"></i></a> 
+                                    <a href="rechazar/peticion/{{ $peticion->id }}" class="btn denied" data-toggle="tooltip" title="Rechazar Peticion"><i class="fas fa-times"></i></a></td>
+                                        
+                                    {{-- <a href="#" id="rechazar" class="btn denied rechazar"  data-value="{{ $peticion->id }}"><i class="fas fa-times"></i></a></td> --}}
 
                                 
                             @empty
@@ -108,9 +133,9 @@
 
                                     </td>
                                     <td>{{ $peticion->bus_id }} </td>
-                                    <td> {{ $peticion->cantidad }} @if(strpos(strtolower( $peticion->almacen->nombre_producto), 'aceite') !== false)litros @elseif(strpos(strtolower( $peticion->almacen->nombre_producto), 'cosrrea') !== false) algo2 @endif</td>
+                                    <td> {{ $peticion->cantidad }} @if($peticion->cantidad = 1) @if(strpos(strtolower( $peticion->almacen->nombre_producto), 'aceite') !== false)litro @endif @else @if(strpos(strtolower( $peticion->almacen->nombre_producto), 'aceite') !== false)litros @endif  @endif</td>
                                     <td> <span class="@if($peticion->estado == "Pendiente")badge badge-warning2 @elseif($peticion->estado == "Rechazada") badge badge-danger @else badge badge-success @endif">{{ $peticion->estado}}</span></td>
-                                    <td> @if($peticion->observacion) {{ $peticion->observacion }} @else --- @endif</td>
+                                    <td> @if($peticion->estado == "Pendiente") ---  @elseif($peticion->estado == "Rechazada"){{ $peticion->observacion }}  @else --- @endif</td>
                                     <td>{{  $newDate = date("d/m/Y", strtotime($peticion->created_at)) }}</td>
                                     <td>{{  $newDate = date("d/m/Y", strtotime($peticion->updated_at)) }}</td>
                                     
@@ -133,10 +158,12 @@
 <script type="text/javascript"  src="{{ asset('plugins/jquery-datatables/js/dataTables.bootstrap4.min.js') }}"></script>
 <script type="text/javascript"  src="{{ asset('plugins/jquery-datatables/js/dataTables.responsive.min.js') }}"></script>
 <script type="text/javascript"  src="{{ asset('plugins/jquery-datatables/js/responsive.bootstrap4.min.js') }}"></script>
+<script type="text/javascript"  src="https://cdn.jsdelivr.net/npm/sweetalert2@7.28.11/dist/sweetalert2.all.min.js"></script>
 
 
 <script type="text/javascript">
     $(document).ready(function() {
+       
     $('#example').DataTable( {
         dom: 'Bfrtip',
     
@@ -148,6 +175,37 @@
 } );
     $('#example').tooltip()
 </script>
+ <script type="text/javascript">
+    let botonAceptar = document.getElementsByClassName('aceptar');
+
+    for (x=0; x <botonAceptar.length; x++){
+        
+        // console.log(botonAceptar[x])
+        let boton= botonAceptar[x]; 
+        boton.addEventListener("click", function(event){
+                event.preventDefault();
+                // event.submit()
+               swal({
+              title: '¿Estas seguro que quieres aceptarla?',
+              text: "No se puede deshacer esta accion",
+              type: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#4caf50',
+              cancelButtonColor: '#f44336',
+              confirmButtonText: 'Si, Aceptarla',
+              cancelButtonText: 'Cancelar'
+            }).then((result) => {
+              if (result.value) {
+                window.location.replace("/almacen/aceptar/peticion/" + boton.dataset.value);
+              }
+            })
+            });
+    }
+
+                
+
+</script>   
+
 
 
 

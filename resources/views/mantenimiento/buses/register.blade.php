@@ -62,7 +62,7 @@
                                                 <option selected="" disabled="">Elige un conductor</option>
                                                 @forelse($conductores as $conductor)
                                                 <optgroup label="">
-                                                <option >{{ $conductor->id }}</option>
+                                                <option value="{{ $conductor->id }}">C.I {{ $conductor->id }}, <br>{{ $conductor->names }} {{ $conductor->last_names }}</option>
                                                 {{-- <option value="{{ $conductor->id }}">{{ $conductor->names." ".  $conductor->last_names}}</option> --}}
                                                     
                                                 

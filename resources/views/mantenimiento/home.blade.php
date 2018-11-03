@@ -81,7 +81,7 @@
                                     <strong>Producto: </strong>{{ $peticion->almacen->nombre_producto }}<br>
                                     <strong>Unidad: </strong>{{ $peticion->bus_id }}<br>
 
-                                    <strong>Cantidad: </strong>{{ $peticion->cantidad }} @if(strpos(strtolower( $peticion->almacen->nombre_producto), 'aceite') !== false)litros @elseif(strpos(strtolower( $peticion->almacen->nombre_producto), 'cosrrea') !== false) algo2 @endif <br>   
+                                    <strong>Cantidad: </strong>@if($peticion->cantidad = 1) @if(strpos(strtolower( $peticion->almacen->nombre_producto), 'aceite') !== false)litro @endif @else @if(strpos(strtolower( $peticion->almacen->nombre_producto), 'aceite') !== false)litros @endif  @endif<br>   
                                     <strong>Estado: </strong><span class="@if($peticion->estado == "Pendiente")badge badge-warning2 @elseif($peticion->estado == "Rechazada") badge badge-danger @else badge badge-success @endif">{{ $peticion->estado}}</span><br>
                                     <strong>Observacion: </strong>@if($peticion->observacion) {{ $peticion->observacion }} @else --- @endif<br>
                                     <strong>Enviada el: </strong>{{  $newDate = date("d/m/Y", strtotime($peticion->created_at)) }}<br>
