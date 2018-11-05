@@ -23,6 +23,7 @@ class UsersTableSeeder extends Seeder
             'phone_number' => '656+5',
             'position' => 'Mecanico',
         ]);
+        
         DB::table('users')->insert([
             
             'email' => str_random(10).'@gmail.com',
@@ -32,6 +33,18 @@ class UsersTableSeeder extends Seeder
         DB::table('roles')->insert([
             'user_id' => 1,
             'Inventario' => 1,
+        ]);
+
+        DB::table('staff')->insert([
+            'nationality'=> 'V',            
+            'id'=> 26503270,
+            'names' => 'Johnny',            
+            'last_names' => 'Canelones',
+            'genre' => 'Masculino',
+            'email' => str_random(10).'@gmail.com',
+            'address' => 'Guanare',
+            'phone_number' => '04121251297',
+            'position' => 'Mecanico',
         ]);
     }
 }

@@ -8,29 +8,19 @@
     
     <div class="row justify-content-center">
         <div class="col-sm-12 col-md-7">
-             @if (session('peticionAprobada'))
+             @if (session('success'))
                 <script type="text/javascript">
                     $(document).ready(function() {
                         swal(
                         'Listo!',
-                        'Haz Aceptado la Peticion' ,
+                        '{{ session('success') }}' ,
                         'success'
                         )
                     })
                 </script>
             @endif
 
-            @if (session('peticionRechazada'))
-                <script type="text/javascript">
-                    $(document).ready(function() {
-                        swal(
-                        'Listo!',
-                        'Haz rechazado la Peticion' ,
-                        'success'
-                        )
-                    })
-                </script>
-            @endif
+          
 
             <div id="" class='card card2'>
 
@@ -77,7 +67,7 @@
                                 <td>{{  $newDate = date("d/m/Y", strtotime($peticion->created_at)) }}</td>
                                 <td class="text-center">
                                     {{-- <a href="aceptar/peticion/{{ $peticion->id }}"   class="btn success"><i class="fas fa-check"></i></a>  --}}
-                                    <a href="#aprobar"   class="btn success aceptar" data-value="{{ $peticion->id }}" data-toggle="tooltip" title="Aprobar Peticion"><i class="fas fa-check"></i></a> 
+                                    <a    class="btn success aceptar"  onclick="modal()" data-value="{{ $peticion->id }}" data-toggle="tooltip" title="Aprobar Peticion"><i class="fas fa-check"></i></a> 
                                     <a href="rechazar/peticion/{{ $peticion->id }}" class="btn denied" data-toggle="tooltip" title="Rechazar Peticion"><i class="fas fa-times"></i></a></td>
                                         
                                     {{-- <a href="#" id="rechazar" class="btn denied rechazar"  data-value="{{ $peticion->id }}"><i class="fas fa-times"></i></a></td> --}}
@@ -183,7 +173,7 @@
         // console.log(botonAceptar[x])
         let boton= botonAceptar[x]; 
         boton.addEventListener("click", function(event){
-                event.preventDefault();
+            console.log('hola')
                 // event.submit()
                swal({
               title: '¿Estas seguro que quieres aceptarla?',
@@ -200,7 +190,53 @@
               }
             })
             });
+
+
     }
+
+    function modal() {
+       setTimeout(function(){ 
+        let botonAceptar = document.getElementsByClassName('aceptar');
+
+        for (x=0; x <botonAceptar.length; x++){
+
+            let boton= botonAceptar[x]; 
+            boton.addEventListener("click", function(event){
+                // event.submit()
+               swal({
+                  title: '¿Estas seguro que quieres aceptarla?',
+                  text: "No se puede deshacer esta accion",
+                  type: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#4caf50',
+                  cancelButtonColor: '#f44336',
+                  confirmButtonText: 'Si, Aceptarla',
+                  cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                  if (result.value) {
+                    window.location.replace("/almacen/aceptar/peticion/" + boton.dataset.value);
+                  }
+                })
+            });
+        }
+    }, 500);
+        
+    }
+
+    
+    $(document).ready(function() {
+    
+            let tablas = document.getElementsByClassName('sorting_1');
+
+            let tabla= tablas[0];
+            tabla.addEventListener("click", function(event){
+                modal();
+             })
+                 
+            
+        });
+
+
 
                 
 

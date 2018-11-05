@@ -108,7 +108,7 @@ class PeticionMantenimientoAlmacen extends Controller
 
         $success = true;
         if ($success) {
-            Session::flash('peticionAprobada','Petición Aprobada');
+            Session::flash('success','Haz aceptado la Peticion');
 
         }
 
@@ -144,7 +144,7 @@ class PeticionMantenimientoAlmacen extends Controller
        
 
         return redirect('/almacen/peticiones')->with([
-            'peticionRechazada' => $peticion->id,
+            'success' => 'Haz rechazado la Peticion',
             // 'nombre_producto' => $peticion->almacen->nombre_producto,
         ]);
     }
