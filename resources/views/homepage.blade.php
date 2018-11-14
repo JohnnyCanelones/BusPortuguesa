@@ -112,7 +112,7 @@
               <div class="carousel-content">
                 
                 <p>Brindando cada día un mejor servicio de transporte</p>
-                <a href="#featured-services" class="btn-get-started scrollto">Rutas</a>
+                {{-- <a href="#featured-services" class="btn-get-started scrollto">Rutas</a> --}}
               </div>
             </div>
           </div>
@@ -123,7 +123,7 @@
               <div class="carousel-content">
                 <h2>At vero eos et accusamus</h2>
                 <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut.</p>
-                <a href="#featured-services" class="btn-get-started scrollto">Get Started</a>
+                {{-- <a href="#featured-services" class="btn-get-started scrollto">Get Started</a> --}}
               </div>
             </div>
           </div>

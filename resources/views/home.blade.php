@@ -9,11 +9,7 @@
                 <div class="card-header">Dashboard</div>
 
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                    
 
                     You are logged in!
                 </div>
@@ -22,5 +18,19 @@
         </div>
     </div>
 </div>
+
+ @if (session('status'))
+    <script type="text/javascript">
+        $(document).ready(function() {
+            swal(
+            'Listo!',
+            '{{ session('status') }}' ,
+            'success'
+            )
+        })
+    </script>
+@endif
+<script type="text/javascript"  src="{{ asset('plugins/sweetalert2.all.min.js') }}"></script>
+
 
 

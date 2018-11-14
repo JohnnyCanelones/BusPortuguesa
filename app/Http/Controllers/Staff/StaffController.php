@@ -73,7 +73,7 @@ class StaffController extends Controller
         $success = true;
 
         if ($success) {
-            Session::flash('status','Success');
+            Session::flash('status','Empleado Creado');
 
         }
     	
@@ -127,7 +127,7 @@ class StaffController extends Controller
     $success = true;
 
     if ($success) {
-        Session::flash('status','Success');
+        Session::flash('status','Nivel de Usuario editado');
 
     }
 
@@ -167,7 +167,7 @@ class StaffController extends Controller
     $success = true;
 
     if ($success) {
-        Session::flash('status','Success');
+        Session::flash('status','Nivel de Usuario Creado');
 
     }
 

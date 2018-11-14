@@ -32,9 +32,15 @@
                                         <input id="username" type="username" class="input-sm form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" required autofocus>
 
                                         @if ($errors->has('username'))
-                                            <span class="invalid-feedback">
-                                                <strong>{{ $errors->first('username') }}</strong>
-                                            </span>
+                                            <script type="text/javascript">
+                                                $(document).ready(function() {
+                                                    swal(
+                                                    'Error!',
+                                                    'Uno de los campos que ingreso es incorrecto' ,
+                                                    'error'
+                                                    )
+                                                })
+                                            </script>
                                         @endif
                                     </div>
                                 </div>
@@ -83,5 +89,8 @@
     </div>
 
 </div>
+
+<script type="text/javascript"  src="{{ asset('plugins/sweetalert2.all.min.js') }}"></script>
+
 
 {{-- @endsection --}}

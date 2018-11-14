@@ -1,7 +1,8 @@
 <head>
         <link rel="stylesheet" href="{{asset("plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css")}}">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="{{asset("plugins/select2/select2.min.css")}}">
+
 </head>
         
         <body>
@@ -66,7 +67,7 @@
                                     <div class="col-lg-6 col-md-12 mt-4">
                                         <div class="form-group">
                                             <strong><label class="bmd-label-floating" for="cantidad">Cantidad</label></strong>
-                                            <input class="form-control {{ $errors->has('cantidad') ? ' is-invalid' : '' }}" type="text" name="cantidad" value="{{ $producto->cantidad }}">
+                                            <input  readonly="" class="form-control {{ $errors->has('cantidad') ? ' is-invalid' : '' }}" type="text" name="cantidad" value="{{ $producto->cantidad }}">
                                             @if ($errors->has('cantidad'))
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('cantidad') }}</strong>
@@ -114,7 +115,8 @@
         <script type="text/javascript" src="{{ asset('plugins/momentjs/moment.js') }}"></script>
         <script type="text/javascript" src="{{ asset('plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js') }}"></script> --}}
         {{-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script> --}}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+        <script type="text/javascript"  src="{{ asset('plugins/select2/select2.min.js') }}"></script>
+        
 
       {{--   <script type="text/javascript">
 

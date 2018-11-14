@@ -18,4 +18,6 @@ class Peticion extends Model
     {
         return $this->belongsTo(Buses::class, 'bus_id');
     }
+
+   
 }

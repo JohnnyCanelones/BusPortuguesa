@@ -51,7 +51,7 @@
 
                                 </td>
                                 <td>{{ $peticion->bus_id }} </td>
-                                <td> {{ $peticion->cantidad }}@if($peticion->cantidad = 1) @if(strpos(strtolower( $peticion->almacen->nombre_producto), 'aceite') !== false)litro @endif @else @if(strpos(strtolower( $peticion->almacen->nombre_producto), 'aceite') !== false)litros @endif  @endif</td>
+                                <td> {{ $peticion->cantidad }}@if($peticion->cantidad == 1) @if(strpos(strtolower( $peticion->almacen->nombre_producto), 'aceite') !== false)litro @endif @else @if(strpos(strtolower( $peticion->almacen->nombre_producto), 'aceite') !== false)litros @endif  @endif</td>
                                 <td> <span class="@if($peticion->estado == "Pendiente")badge badge-warning2 @elseif($peticion->estado == "Rechazada") badge badge-danger @else badge badge-success @endif">{{ $peticion->estado}}</span></td>
                                 <td> @if($peticion->observacion) {{ $peticion->observacion }} @else --- @endif</td>
                                 <td>{{  $newDate = date("d/m/Y", strtotime($peticion->created_at)) }}</td>

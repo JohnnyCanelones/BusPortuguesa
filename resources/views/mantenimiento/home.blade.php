@@ -63,11 +63,7 @@
                 
                 
             </div>
-            @if (session('status'))
-                <div class="alert alert-success card2" role="alert">
-                    {{ session('status') }}
-                </div>
-            @endif
+           
 
 
             <div id="" class="card card2 mt-5 mb-5">
@@ -81,7 +77,7 @@
                                     <strong>Producto: </strong>{{ $peticion->almacen->nombre_producto }}<br>
                                     <strong>Unidad: </strong>{{ $peticion->bus_id }}<br>
 
-                                    <strong>Cantidad: </strong>@if($peticion->cantidad = 1) @if(strpos(strtolower( $peticion->almacen->nombre_producto), 'aceite') !== false)litro @endif @else @if(strpos(strtolower( $peticion->almacen->nombre_producto), 'aceite') !== false)litros @endif  @endif<br>   
+                                    <strong>Cantidad: </strong> {{ $peticion->cantidad }}@if($peticion->cantidad == 1) @if(strpos(strtolower( $peticion->almacen->nombre_producto), 'aceite') !== false)litro @endif @else @if(strpos(strtolower( $peticion->almacen->nombre_producto), 'aceite') !== false)litros @endif  @endif<br>   
                                     <strong>Estado: </strong><span class="@if($peticion->estado == "Pendiente")badge badge-warning2 @elseif($peticion->estado == "Rechazada") badge badge-danger @else badge badge-success @endif">{{ $peticion->estado}}</span><br>
                                     <strong>Observacion: </strong>@if($peticion->observacion) {{ $peticion->observacion }} @else --- @endif<br>
                                     <strong>Enviada el: </strong>{{  $newDate = date("d/m/Y", strtotime($peticion->created_at)) }}<br>
@@ -123,8 +119,22 @@
     </div>
 </div>
 
+ @if (session('status'))
+    <script type="text/javascript">
+        $(document).ready(function() {
+            swal(
+            'Listo!',
+            '{{ session('status') }}' ,
+            'success'
+            )
+        })
+    </script>
+@endif
+
 
 <script type="text/javascript" src="{{ asset('plugins/jquery.countTo.js') }}"></script>
+<script type="text/javascript"  src="{{ asset('plugins/sweetalert2.all.min.js') }}"></script>
+
 
 <script type="text/javascript">
  $('.timer').countTo();

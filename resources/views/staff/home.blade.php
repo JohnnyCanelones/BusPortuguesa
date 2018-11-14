@@ -7,7 +7,7 @@
         <div class="col-md-7 m-5" >
             <div class="row mb-5 card2" style="background-color:">
                  
-                <div class=" col-sm-12 col-md-4 mb-3" >
+                <div class=" col-sm-12 col-md-6 mb-3" >
                     <div class="row">
                         <div class="col-sm-3 p-0  ">
                             <div class="card p-2 infobox-azul-icono" >
@@ -25,7 +25,7 @@
 
 
                 </div>
-                 <div class=" col-sm-12 col-md-4 mb-3" >
+                 <div class=" col-sm-12 col-md-6 mb-3" >
                     <div class="row">
                         <div class="col-sm-3 p-0  ">
                             <div class="card p-2 infobox-verde-icono" >
@@ -42,7 +42,7 @@
                     </div>
 
                 </div>
-                 <div class=" col-sm-12 col-md-4 mb-3" >
+                {{--  <div class=" col-sm-12 col-md-4 mb-3" >
                     <div class="row">
                         <div class="col-sm-3 p-0  ">
                             <div class="card p-2 infobox-amarillo-icono" >
@@ -59,7 +59,7 @@
                         </div>
                     </div>
 
-                </div>
+                </div> --}}
                 
                 
             </div>
@@ -68,11 +68,7 @@
                 <div class="card-header">Dashboard</div>
 
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                   
 
                     You are logged in!
                 </div>
@@ -81,6 +77,18 @@
         </div>
     </div>
 </div>
+ @if (session('status'))
+    <script type="text/javascript">
+        $(document).ready(function() {
+            swal(
+            'Listo!',
+            '{{ session('status') }}' ,
+            'success'
+            )
+        })
+    </script>
+@endif
+<script type="text/javascript"  src="{{ asset('plugins/sweetalert2.all.min.js') }}"></script>
 
 <script type="text/javascript" src="{{ asset('plugins/jquery.countTo.js') }}"></script>
 

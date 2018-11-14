@@ -1,7 +1,7 @@
 <head>
         <link rel="stylesheet" href="{{asset("plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css")}}">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="{{asset("plugins/select2/select2.min.css")}}">
 </head>
         
         <body>
@@ -110,8 +110,11 @@
         <script type="text/javascript" src="{{ asset('plugins/momentjs/moment.js') }}"></script>
         <script type="text/javascript" src="{{ asset('plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js') }}"></script>
         {{-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script> --}}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-        <script type="text/javascript"  src="https://cdn.jsdelivr.net/npm/sweetalert2@7.28.11/dist/sweetalert2.all.min.js"></script>
+        {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script> --}}
+        
+        <script type="text/javascript"  src="{{ asset('plugins/sweetalert2.all.min.js') }}"></script>
+        <script type="text/javascript"  src="{{ asset('plugins/select2/select2.min.js') }}"></script>
+
 
 
         <script type="text/javascript">

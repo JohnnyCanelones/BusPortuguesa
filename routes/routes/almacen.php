@@ -1,4 +1,5 @@
 <?php 
+	use App\Peticion;
 
 // Route::get('/almacen', function() {
 //     return view('almacen.home');
@@ -20,3 +21,17 @@ Route::get('almacen/aceptar/peticion/{id}', 'PeticionMantenimientoAlmacen@acepta
 Route::get('almacen/rechazar/peticion/{id}', 'PeticionMantenimientoAlmacen@rechazarPeticionForm');
 Route::post('almacen/peticion/rechazada/{id}', 'PeticionMantenimientoAlmacen@rechazarPeticion');
 
+Route::get('/almacen/peticiones/pendientes', function() {
+
+
+	$peticionesPendientes = Peticion::where('estado', 'Pendiente')->get();
+	$peticionesPendientes->load('almacen');
+	return $peticionesPendientes;
+});
+Route::get('/almacen/ultimas/peticiones', function() {
+
+
+	$ultimasPeticiones = Peticion::where('estado', 'Pendiente')->latest()->take(3)->get();
+    $ultimasPeticiones->load('almacen');
+	return $ultimasPeticiones;
+});

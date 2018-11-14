@@ -18,7 +18,7 @@
 
                 </th>
                 <td>{{ $producto->compatibilidad }} </td>
-                <td> {{ $producto->cantidad }} @if(strpos(strtolower($producto->nombre_producto), 'aceite') !== false)litros @elseif(strpos(strtolower($producto->nombre_producto), 'cosrrea') !== false) algo2 @endif</td>
+                <td> @if($producto->cantidad == 0) <span class="badge badge-warning">Sin Stock</span> @else {{ $producto->cantidad }} @if($producto->cantidad == 1) @if(strpos(strtolower( $producto->nombre_producto), 'aceite') !== false)litro @endif @else @if(strpos(strtolower( $producto->nombre_producto), 'aceite') !== false)litros @endif  @endif @endif</td>
                 <td> {{ $producto->ubicacion }}</td>
                 
             </tr>

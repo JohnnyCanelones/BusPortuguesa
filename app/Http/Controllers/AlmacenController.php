@@ -11,8 +11,35 @@ use Barryvdh\DomPDF\Facade as PDF;
 
 class AlmacenController extends Controller
 {
+    
+
 	public function home()
+
 	{
+
+        $peticionesPendientes = Peticion::where('estado', 'Pendiente')->get();
+        $peticionesPendientes->load('almacen');
+        
+        $peticionesEliminadas = [];
+        foreach ($peticionesPendientes as $peticion) {
+            
+            $peticionFecha = date("d/m/Y", strtotime('+5 days', strtotime($peticion->created_at)));
+            
+            $hoy = date("d/m/Y");
+            if ($peticionFecha < $hoy) {
+                Session::flash('peticionesEliminadas', 'hecholdasd');
+                // Session::flash('hola', 'warning');
+                array_push($peticionesEliminadas, $peticion);
+
+                $peticion->estado = 'Rechazada';
+                $peticion->save();
+            }
+            
+        }
+        // dd(Peticion::boot());
+
+        // dd($peticionesEliminadas);
+
     	$productos = count(Almacen::all());
         $peticionesPendientes = count(Peticion::where('estado', 'Pendiente')->get());
         $peticionesAprobadas = count(Peticion::where('estado', 'Aprobada')->get());
@@ -25,6 +52,8 @@ class AlmacenController extends Controller
             'peticionesPendientes' => $peticionesPendientes,
             'peticionesAprobadas' => $peticionesAprobadas,
             'ultimasPeticiones' => $ultimasPeticiones,
+            'peticionesEliminadas' => $peticionesEliminadas,
+
 		]);
 	}
 

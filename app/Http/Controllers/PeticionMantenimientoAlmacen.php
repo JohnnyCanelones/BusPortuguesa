@@ -9,8 +9,12 @@ use App\Buses;
 use App\Peticion;
 
 
+
 class PeticionMantenimientoAlmacen extends Controller
 {
+
+   
+   
     public function productosDisponibles()
     {
     	$productos = Almacen::where('cantidad', '>', 0)->get();
@@ -81,13 +85,18 @@ class PeticionMantenimientoAlmacen extends Controller
 
     public function peticionesShowAlmacen()
     {
+        $peticiones = Peticion::all();
+        $peticiones->load('almacen');
+
+        // foreach ($peticiones as $peticionPendiente) {
+        //     $peticionPendiente->isDirty('estado');
+        //     // dd($peticionPendiente->isDirty('estado'));
+        // }
+
         $peticionesPendientes = Peticion::where('estado', 'Pendiente')->get();
         $peticionesPendientes->load('almacen');
-        // dd($peticiones);
-
         $peticiones = Peticion::where('estado','!=', 'Pendiente')->get();
         $peticiones->load('almacen');
-        // dd($peticiones);       
         
         return view('almacen.peticiones.showPeticiones', [
             'peticiones' => $peticiones,
