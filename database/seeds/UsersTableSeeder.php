@@ -32,7 +32,8 @@ class UsersTableSeeder extends Seeder
         ]);
         DB::table('roles')->insert([
             'user_id' => 1,
-            'Inventario' => 1,
+            // 'Inventario' => 1,
+            'Personal' => 1,
         ]);
 
         DB::table('staff')->insert([

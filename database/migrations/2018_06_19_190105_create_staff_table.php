@@ -25,8 +25,7 @@ class CreateStaffTable extends Migration
             $table->string('address');
             $table->string('phone_number');
             $table->string('position');
-
-            $table->timestamps();
+            
         });
     }
 

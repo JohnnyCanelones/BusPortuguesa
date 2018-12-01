@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Staff extends Model
 {
  	protected $guarded = [];
+    public $timestamps = false;
+ 	
 
  	public function user(){
  		return $this->hasOne(User::class, 'username');   
@@ -15,6 +17,11 @@ class Staff extends Model
  	public function bus()
     {
         return $this->hasOne(Buses::class);
+    }
+
+    public function staff_monitoring()
+    {
+        return $this->hasOne(StaffMonitoring::class, 'staff_id');
     }
 
 }

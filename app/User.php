@@ -29,6 +29,10 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Staff::class, 'username');
     }
+    public function staff_monitoring()
+    {
+        return $this->belongsTo(StaffMonitoring::class, 'user_id');
+    }
 
     public function role()
     {

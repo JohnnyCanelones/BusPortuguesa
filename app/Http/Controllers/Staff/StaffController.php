@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 use App\Http\Requests\CreateStaffRequest;
 use Illuminate\Support\Facades\Session;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\User;
 use App\Staff;
 use App\Role;
+use App\StaffMonitoring;
 
 use Illuminate\Support\Facades\Hash;
 
@@ -19,8 +20,17 @@ class StaffController extends Controller
 
     public function staffHome()
     {
-        $count_staff = 0;
+        // $monitoreo= StaffMonitoring::first();
+        // $monitoreo->load('user', 'staff');
+        // if ($monitoreo->created) {
+        //     dd(true);
+        // }else {
+        //     // dd('el '. $monitoreo->fecha_accion .' el usuario ' . $monitoreo->user->staff->names .' '. $monitoreo->user->staff->names .' edito a '. $monitoreo->staff->names.' '.$monitoreo->staff->last_names   );
+        // }
+
+
         // $staffs = count(Staff::all());
+
         $staffs = count(Staff::where('id', '>', 2000)->get());
         $users = count(User::where('username', '>', 2000)->get());
 
@@ -32,29 +42,35 @@ class StaffController extends Controller
     }
     public function showStaffForm()
     {
-    	return view('staff.register');
+        return view('staff.register');
     }
 
     public function staffCreate(CreateStaffRequest $request) 
     {
-    	$success = false;
-    	$check = $request->get('cargo');
-    	$staff = Staff::create([
-    		'nationality' => $request->get('nacionality'),
-    		'id' => $request->input('id'), 
-    		'names' => $request->input('names'),
+        $success = false;
+        $check = $request->get('cargo');
+        $staff = Staff::create([
+            'nationality' => $request->get('nacionality'),
+            'id' => $request->input('id'), 
+            'names' => $request->input('names'),
             'last_names' => $request->input('last_names'),
             'date_birth'=> $request->get('date_birth'),
             'genre' => $request->get('genre'),
-    		'email' =>$request->input('email'),
-    		'address' => $request->get('address'), 
-    		'phone_number' => $request->input('phone_number'), 
-    		'position' => $request->input('position'),
+            'email' =>$request->input('email'),
+            'address' => $request->get('address'), 
+            'phone_number' => $request->input('phone_number'), 
+            'position' => $request->input('position'),
+        ]);
+        $monitoreo = StaffMonitoring::create([
+            'user_id' => Auth::user()->id,
+            'staff_id' => $request->input('id'),
+            'accion' => 'Creado', 
+            'fecha_accion' => date("Y-m-d H:i:s"),
         ]);
 
-    	if ($check) {
-    		$user= User::create([
-    			'username'=> $request->input('id'),
+        if ($check) {
+            $user= User::create([
+                'username'=> $request->input('id'),
     			'email' =>$request->input('email'),
     			'password' => Hash::make($request->input('id')), 
 
@@ -68,7 +84,13 @@ class StaffController extends Controller
     			'Personal' => $request->input('personal'),
     			'Inventario' => $request->input('inventario'),
     			'Operaciones' => $request->input('operaciones'),
-    		]);	
+    		]);
+            $monitoreoRol = StaffMonitoring::create([
+            'user_id' => Auth::user()->id,
+            'staff_id' => $request->input('id'),
+            'accion' => 'Rol_Creado', 
+            'fecha_accion' => date("Y-m-d H:i:s"),
+            ]);
     	}
         $success = true;
 
@@ -97,7 +119,6 @@ class StaffController extends Controller
     public function showRole($id)
     {
         $permiso = User::where('username', $id)->first();
-
         $permiso->load('role');
 
 
@@ -114,7 +135,6 @@ class StaffController extends Controller
     $inventario = $request->input('inventario');
     $operaciones = $request->input('operaciones');
 
-
     $role= Role::find($id);
     
     $role->Admin= $admin;
@@ -124,6 +144,12 @@ class StaffController extends Controller
     $role->Operaciones  = $operaciones;
     
     $role->save();
+    $monitoreoRol = StaffMonitoring::create([
+        'user_id' => Auth::user()->id,
+        'staff_id' => $role->user->staff->id,
+        'accion' => 'Rol_Editado', 
+        'fecha_accion' => date("Y-m-d H:i:s"),
+    ]);
     $success = true;
 
     if ($success) {
@@ -163,6 +189,12 @@ class StaffController extends Controller
         'Personal' => $request->input('personal'),
         'Inventario' => $request->input('inventario'),
         'Operaciones' => $request->input('operaciones'),
+    ]);
+     $monitoreoRol = StaffMonitoring::create([
+        'user_id' => Auth::user()->id,
+        'staff_id' => $staff->id,
+        'accion' => 'Rol_Creado', 
+        'fecha_accion' => date("Y-m-d H:i:s"),
     ]);
     $success = true;
 

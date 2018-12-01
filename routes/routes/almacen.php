@@ -35,3 +35,6 @@ Route::get('/almacen/ultimas/peticiones', function() {
     $ultimasPeticiones->load('almacen');
 	return $ultimasPeticiones;
 });
+
+Route::get('/almacen/inventario/{id}', 'AlmacenController@editInventario');
+Route::post('/almacen/inventario/{id}', 'AlmacenController@updateInventario');

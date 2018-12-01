@@ -74,7 +74,7 @@ class AlmacenController extends Controller
 
     	$success = true;
         if ($success) {
-            Session::flash('status','Producto Creado');
+            Session::flash('succes','Producto Creado');
 
         }
     
@@ -110,33 +110,68 @@ class AlmacenController extends Controller
             'producto' => $producto,
         ]);
     }
-
-    public function updateProducto(Request $request, $id)
+    public function editInventario($id)
     {
-    	$nombre_producto = $request->get('nombre_producto');
-		$compatibilidad = $request->get('compatibilidad');
-		$cantidad = $request->get('cantidad');
-		$ubicacion = $request->get('ubicacion');
+        $producto = Almacen::where('id', $id)->first();
 
-		$producto = Almacen::find($id);
+        // dd($producto);
 
-		$producto->nombre_producto = $nombre_producto;
-		$producto->compatibilidad = $compatibilidad;
-		$producto->cantidad = $cantidad;
-		$producto->ubicacion = $ubicacion;
+        return view('almacen.productos.editarCantidad', [
+            'producto' => $producto,
+        ]);
+    }
+    
+    public function updateinventario(Request $request, $id)
+    {
+        $cantidad = $request->get('cantidad');
+        $producto = Almacen::find($id);
 
-		// dd($producto);
-		
-		$producto->save();
-	    
-	    $success = true;
+        $producto->cantidad = $producto->cantidad + $cantidad;
 
-	    if ($success) {
-	        Session::flash('status','Modificado Correctamente');
+        // dd($producto);
+        
+        $producto->save();
+        
+        $success = true;
 
-	    }
+        if ($success) {
+            Session::flash('success','Modificado Correctamente');
 
-	    return redirect('almacen/productos');
+        }
+
+        return redirect('almacen/productos');
 
     }
+    public function updateProducto(Request $request, $id)
+    {
+        $nombre_producto = $request->get('nombre_producto');
+        $compatibilidad = $request->get('compatibilidad');
+        $cantidad = $request->get('cantidad');
+        $ubicacion = $request->get('ubicacion');
+
+        $producto = Almacen::find($id);
+
+        $producto->nombre_producto = $nombre_producto;
+        $producto->compatibilidad = $compatibilidad;
+        $producto->cantidad = $cantidad;
+        $producto->ubicacion = $ubicacion;
+
+        // dd($producto);
+        
+        $producto->save();
+        
+        $success = true;
+
+        if ($success) {
+            Session::flash('success','Modificado Correctamente');
+
+        }
+
+        return redirect('almacen/productos');
+
+    }
+
+
+
+    
 }

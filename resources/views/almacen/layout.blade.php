@@ -21,6 +21,10 @@
             width: 113%;
             top: -45px;
         }
+
+        body {
+            font-size: 14px;
+        }
     </style>
     <header id="banner" >
         

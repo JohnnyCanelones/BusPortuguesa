@@ -4,10 +4,16 @@
     
     <div class="row justify-content-center">
         <div class="col-sm-12 col-md-7">
-            @if (session('status'))
-                <div class="alert alert-success card2" role="alert">
-                    {{ session('status') }}
-                </div>
+            @if (session('success'))
+                <script type="text/javascript">
+                    $(document).ready(function() {
+                        swal(
+                        'Listo!',
+                        '{{ session('success') }}' ,
+                        'success'
+                        )
+                    })
+                </script>
             @endif
             <div id="" class='card card2'>
 
@@ -44,7 +50,7 @@
 
                                 </th>
                                 <td>{{ $producto->compatibilidad }} </td>
-                                <td> @if($producto->cantidad == 0) <span class="badge badge-warning2">Sin Stock</span> @else {{ $producto->cantidad }} @if($producto->cantidad == 1) @if(strpos(strtolower( $producto->nombre_producto), 'aceite') !== false)litro @endif @else @if(strpos(strtolower( $producto->nombre_producto), 'aceite') !== false)litros @endif  @endif @endif </td>
+                                <td> <a href="/almacen/inventario/{{ $producto->id }}"  style="color: #008a34" data-toggle="tooltip" title="Modificar Inventario">@if($producto->cantidad == 0) <span class="badge badge-warning2">Sin Inventario</span> @else {{ $producto->cantidad }} @if($producto->cantidad == 1) @if(strpos(strtolower( $producto->nombre_producto), 'aceite') !== false)litro @endif @else @if(strpos(strtolower( $producto->nombre_producto), 'aceite') !== false)litros @endif  @endif @endif </a></td>
                                 <td> {{ $producto->ubicacion }}</td>
                                 
                             </tr>
@@ -65,6 +71,8 @@
 <script type="text/javascript"  src="{{ asset('plugins/jquery-datatables/js/dataTables.bootstrap4.min.js') }}"></script>
 <script type="text/javascript"  src="{{ asset('plugins/jquery-datatables/js/dataTables.responsive.min.js') }}"></script>
 <script type="text/javascript"  src="{{ asset('plugins/jquery-datatables/js/responsive.bootstrap4.min.js') }}"></script>
+<script type="text/javascript"  src="{{ asset('plugins/sweetalert2.all.min.js') }}"></script>
+
 
 
 <script type="text/javascript">
