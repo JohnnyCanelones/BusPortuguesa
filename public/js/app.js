@@ -3,8 +3,8 @@ window.onload=function(){
 
     document.getElementById('toggle-menu').addEventListener("click", function(){
         document.getElementById('sidebar1997').classList.toggle("toggled");
-        document.getElementById('content').classList.toggle("overlay");
-        document.getElementById('content2').classList.toggle("overlay");
+        // document.getElementById('content').classList.toggle("overlay");
+        // document.getElementById('content2').classList.toggle("overlay");
 
     });
 

@@ -5,11 +5,11 @@
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-7 padding ">
+        <div class="col-sm-12 col-lg-7 padding ">
             <div class="row mb-5 card2 mt-3 " style="background-color:">
                 <div class=" col-sm-12 col-md-4 mb-3 " >
                     <div class="row">
-                        <div class="col-sm-3 p-0  ">
+                        <div class="col-sm-4 p-0  ">
                             <div class="card p-2 infobox-azul-icono" >
                                 <h3 style="background-color: transparent;" class="text-center text-white"><i class="fas fa-toolbox"></i></h3>
                             </div>
@@ -27,7 +27,7 @@
                 </div>
                  <div class=" col-sm-12 col-md-4 mb-3" >
                     <div class="row">
-                        <div class="col-sm-3 p-0  ">
+                        <div class="col-sm-4 p-0  ">
                             <div class="card p-2 infobox-verde-icono" >
                                 <h3 style="background-color: transparent;" class="text-center text-white"><i class="fas fa-bus"></i></h3>
                                 
@@ -44,7 +44,7 @@
                 </div>
                  <div class=" col-sm-12 col-md-4 mb-3" >
                     <div class="row">
-                        <div class="col-sm-3 p-0  ">
+                        <div class="col-sm-4 p-0  ">
                             <div class="card p-2 infobox-amarillo-icono" >
                                 <h3 style="background-color: transparent;" class="text-center text-white"><i class="fas fa-bus"></i></h3>
                                 

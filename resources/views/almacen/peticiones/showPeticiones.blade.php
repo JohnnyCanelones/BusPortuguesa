@@ -11,7 +11,7 @@
     
       <div class="row justify-content-center">
         
-        <div class="col-sm-12 col-md-7">
+        <div class="col-sm-12 col-lg-7">
             
              
              @if (session('success'))
@@ -88,7 +88,7 @@
 
             
         </div>
-        <div class="col-sm-12 col-md-7">
+        <div class="col-sm-12 col-lg-7">
 
             <div id="" class='card card2'>
 
@@ -136,7 +136,6 @@
                                     
                                 </tr>
                                 @empty
-                                  No hay datos en el inventario
                                 @endforelse
                             </tbody>
                         </table>

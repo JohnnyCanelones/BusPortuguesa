@@ -3,7 +3,7 @@
 <div class="container">
     
     <div class="row justify-content-center">
-        <div class="col-sm-12 col-md-7">
+        <div class="col-sm-12 col-lg-7">
             @if (session('success'))
                 <script type="text/javascript">
                     $(document).ready(function() {

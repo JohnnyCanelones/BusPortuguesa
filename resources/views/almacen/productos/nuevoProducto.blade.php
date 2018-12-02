@@ -14,7 +14,7 @@
         <div class="container">
             <div class="row justify-content-center">
 
-                <div class="col-sm-12 col-md-7">
+                <div class="col-sm-12 col-lg-7">
 
                     <div id="" class="card card2 ">
                         <div class="card-header">

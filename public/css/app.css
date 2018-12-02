@@ -137,7 +137,7 @@ input[type=text]{
   color: #fff !important; 
 }
 .verde {
-  color: #008a34;
+  color: #008a34 !important;
 }
 
 .select2-container {

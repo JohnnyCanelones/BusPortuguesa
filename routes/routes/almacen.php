@@ -22,15 +22,13 @@ Route::get('almacen/rechazar/peticion/{id}', 'PeticionMantenimientoAlmacen@recha
 Route::post('almacen/peticion/rechazada/{id}', 'PeticionMantenimientoAlmacen@rechazarPeticion');
 
 Route::get('/almacen/peticiones/pendientes', function() {
-
-
+	// peticion ajax para recargar si hay una nueva peticion
 	$peticionesPendientes = Peticion::where('estado', 'Pendiente')->get();
 	$peticionesPendientes->load('almacen');
 	return $peticionesPendientes;
 });
 Route::get('/almacen/ultimas/peticiones', function() {
-
-
+	// peticion ajax para recargar si hay una nueva peticion y traer las ultimas 3
 	$ultimasPeticiones = Peticion::where('estado', 'Pendiente')->latest()->take(3)->get();
     $ultimasPeticiones->load('almacen');
 	return $ultimasPeticiones;

@@ -4,7 +4,7 @@
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-sm-12 col-md-7">
+        <div class="col-sm-12 col-lg-7">
             <div id="" class="card card2">
                 <div class="row">   
                    <div class="card-header col-sm-12  "><h3 class="azul text-center ">Cargos</h3></div>
