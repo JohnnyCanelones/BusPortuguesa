@@ -18,9 +18,9 @@
                       <thead>
                             <tr class="text-white" style="background-color: #003286e8">
                                 <th class="text-white" scope="col">Fecha</th>
-                                <th class="text-white" scope="col">Usuario</th>
                                 <th class="text-white" scope="col">Accion</th>
-                                <th class="text-white" scope="col">al Empleado </th>
+                                <th class="text-white" scope="col">Realizado por</th>
+                                <th class="text-white" scope="col">Al empleado</th>
                             </tr>
 
                         </thead>
@@ -30,8 +30,8 @@
                                 <th scope="row">
                                 	{{ $newDate = date("Y/m/d - H:i ", strtotime($monitoreo->fecha_accion))  }} 
                                 </th>
-                                <td> <strong ><a href="#" onclick="buscarUsuario()" class="usuario verde"  data-value='{{ $monitoreo->user_id }}'>{{ $monitoreo->user_id}}</a></td></strong>
                                 <td>{{ $monitoreo->accion}}</td>        
+                                <td> <strong ><a href="#" onclick="buscarUsuario()" class="usuario verde"  data-value='{{ $monitoreo->user_id }}'>{{ $monitoreo->user_id}}</a></td></strong>
                                 <td><strong > <a href="#" onclick="buscarEmpleado()" class="empleado verde"  data-value='{{ $monitoreo->staff->id }}'>{{ $monitoreo->staff->id}}</a></td></strong>
                             </tr>
                             
@@ -65,8 +65,8 @@
             <div class="col-sm-6 mb-2" id="apellido"></div>   
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      <div class="modal-footer infobox-azul-contenido ">
+        <button type="button" class="btn btn-secondary text-white mx-auto d-block" data-dismiss="modal">Cerrar</button>
         {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
       </div>
     </div>

@@ -147,7 +147,7 @@ class StaffController extends Controller
     $success = true;
 
     if ($success) {
-        Session::flash('status','Nivel de Usuario editado');
+        Session::flash('status','Nivel de usuario editado');
 
     }
 
