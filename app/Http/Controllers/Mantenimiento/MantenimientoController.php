@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use App\Buses;
 use App\Peticion;
+use App\PetitionMonitoring;
+
 
 
 class MantenimientoController extends Controller
@@ -18,6 +20,7 @@ class MantenimientoController extends Controller
         $peticionesPendientes = count(Peticion::where('estado', 'Pendiente')->get());
         $ultimasPeticiones = Peticion::latest()->take(3)->get();
         $ultimasPeticiones->load('almacen');
+
         
         // dd($ultimasPeticiones);
     	

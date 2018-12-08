@@ -33,6 +33,19 @@ class User extends Authenticatable
     {
         return $this->belongsTo(StaffMonitoring::class, 'user_id');
     }
+    
+    
+    public function warehouse_monitoring()
+    {
+        return $this->belongsTo(WarehouseMonitoring::class, 'user_id');
+    }
+
+    public function petition_monitoring()
+    {
+        return $this->belongsTo(PetitionMonitoring::class, 'user_id');
+    }
+    
+
 
     public function role()
     {

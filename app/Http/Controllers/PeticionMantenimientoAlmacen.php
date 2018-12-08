@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
+
 use App\Almacen;
 use App\Buses;
 use App\Peticion;
+use App\PetitionMonitoring;
 
 
 
@@ -56,6 +59,13 @@ class PeticionMantenimientoAlmacen extends Controller
     		// 'observacion' => $request->get('observacion'),
     		'estado' => 'Pendiente',
     	]);
+
+        $monitoreo = PetitionMonitoring::create([
+            'user_id' => Auth::user()->username,
+            'peticion_id' => $peticion->id,
+            'accion' => 'Peticion enviada', 
+            'fecha_accion' => date("Y-m-d H:i:s"),
+        ]);
 
     	$success = true;
         if ($success) {
@@ -115,6 +125,13 @@ class PeticionMantenimientoAlmacen extends Controller
         $peticion->save();
         $producto->save();
 
+        $monitoreo = PetitionMonitoring::create([
+            'user_id' => Auth::user()->username,
+            'peticion_id' => $peticion->id,
+            'accion' => 'Peticion aceptada', 
+            'fecha_accion' => date("Y-m-d H:i:s"),
+        ]);
+
         $success = true;
         if ($success) {
             Session::flash('success','Haz aceptado la Peticion');
@@ -149,6 +166,13 @@ class PeticionMantenimientoAlmacen extends Controller
         $peticion->estado = 'Rechazada';
         $peticion->observacion = $request->get('observacion');
         $peticion->save();
+
+        $monitoreo = PetitionMonitoring::create([
+            'user_id' => Auth::user()->username,
+            'peticion_id' => $peticion->id,
+            'accion' => 'Peticion rechazada', 
+            'fecha_accion' => date("Y-m-d H:i:s"),
+        ]);
 
        
 

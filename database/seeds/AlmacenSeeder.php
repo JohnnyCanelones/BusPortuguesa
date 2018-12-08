@@ -42,5 +42,5 @@ class AlmacenSeeder extends Seeder
             
         ]);
         
-    }
+    } 
 }

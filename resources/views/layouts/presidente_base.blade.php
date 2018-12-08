@@ -28,8 +28,7 @@
         <br>
 
         <div class="collapse" id="menu3" data-parent="#sidebar">
-            <span><a href="#menu3sub3" class="list-group-item" data-toggle="collapse" aria-expanded="false">Subitem 3 </a></span>
-            <a href="#menu3sub3" class="list-group-item" data-toggle="collapse" aria-expanded="false">Subitem 3 </a>
+            <a href="{{ url('/presidente/monitoreo/personal') }}" class="list-group-item" >Monitoreo del departamento de recursos humanos </a>
             <a href="#menu3sub3" class="list-group-item" data-toggle="collapse" aria-expanded="false">Subitem 3 </a>
             
         

@@ -24,4 +24,5 @@ class Staff extends Model
         return $this->hasOne(StaffMonitoring::class, 'staff_id');
     }
 
+
 }

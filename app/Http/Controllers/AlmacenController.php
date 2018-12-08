@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
+
 use App\Almacen;
 use App\Peticion;
+use App\WarehouseMonitoring;
+
 
 
 use Illuminate\Http\Request;
@@ -71,10 +75,17 @@ class AlmacenController extends Controller
     		'ubicacion' => $request->get('ubicacion'),
     	]);
 
+        $monitoreo = WarehouseMonitoring::create([
+            'user_id' => Auth::user()->username,
+            'almacen_id' => $producto->id,
+            'accion' => 'Producto creado', 
+            'stock_added' => $request->get('cantidad'),
+            'fecha_accion' => date("Y-m-d H:i:s"),
+        ]);
 
-    	$success = true;
+        $success = true;
         if ($success) {
-            Session::flash('succes','Producto Creado');
+            Session::flash('status','Producto Creado');
 
         }
     
@@ -131,11 +142,17 @@ class AlmacenController extends Controller
         // dd($producto);
         
         $producto->save();
-        
+        $monitoreo = WarehouseMonitoring::create([
+            'user_id' => Auth::user()->username,
+            'almacen_id' => $producto->id,
+            'accion' => 'Cantidad del producto agregado', 
+            'stock_added' => $request->get('cantidad'),
+            'fecha_accion' => date("Y-m-d H:i:s"),
+        ]);
         $success = true;
 
         if ($success) {
-            Session::flash('success','Modificado Correctamente');
+            Session::flash('status','Modificado Correctamente');
 
         }
 
@@ -159,11 +176,18 @@ class AlmacenController extends Controller
         // dd($producto);
         
         $producto->save();
+        $monitoreo = WarehouseMonitoring::create([
+            'user_id' => Auth::user()->username,
+            'almacen_id' => $producto->id,
+            'accion' => 'Producto editado', 
+            'stock_added' => $request->get('cantidad'),
+            'fecha_accion' => date("Y-m-d H:i:s"),
+        ]);
         
         $success = true;
 
         if ($success) {
-            Session::flash('success','Modificado Correctamente');
+            Session::flash('status','Modificado Correctamente');
 
         }
 

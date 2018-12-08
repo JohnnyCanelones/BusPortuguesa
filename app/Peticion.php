@@ -19,5 +19,10 @@ class Peticion extends Model
         return $this->belongsTo(Buses::class, 'bus_id');
     }
 
+    public function petition_monitoring()
+    {
+        return $this->hasOne(PetitionMonitoring::class, 'almacen_id');
+    }
+
    
 }

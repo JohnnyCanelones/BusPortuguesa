@@ -1,7 +1,7 @@
 
 $('#example').DataTable( {
     dom: 'Bfrtip',
-    "order": [],
+    "order": [0, 'desc'],
 
 } );
     

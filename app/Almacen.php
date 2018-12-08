@@ -13,4 +13,9 @@ class Almacen extends Model
    	public function peticion(){
  		return $this->hasOne(Peticion::class, 'almacen_id');   
  	}
+
+ 	public function warehouse_monitoring()
+    {
+        return $this->hasOne(WarehouseMonitoring::class, 'almacen_id');
+    }
 }
