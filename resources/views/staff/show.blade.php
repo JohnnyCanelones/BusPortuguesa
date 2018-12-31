@@ -10,6 +10,14 @@
                     <h3 id="hola" class="azul text-center m-3 ">Personal</h3>
                 </div>
                 <div class="card-body">
+                    <div class="row" >
+                        <div class="col-md-4 col-sm-4"></div>
+                        <div class="col-sm-4  mb-2 text-center" >
+                            <a href="/personal/pdf" class="btn btn-raised mx-auto  bg-verde  btn-primary  text-white p-2 rounded " style="font-size: 21px" target="_blank" data-toggle="tooltip" title="Generar PDF"> <span><i class="fas fa-file-pdf"></i></span></a></div>
+                            {{-- (*) la cantidad para aceites y liquidos seran expresados en litros --}}
+                        <div class="col-sm-4"></div>
+                        
+                    </div>
                     <table id="example" class="p-3 table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                       <thead>
                             <tr class="text-white" style="background-color: #003286e8">
@@ -24,7 +32,7 @@
                             @forelse($staff as $staff)
                             <tr>
                                 <th scope="row">
-                                    <a href=""  style="color: #008a34">{{ $staff->nationality}}-{{$staff->id}}</a>
+                                    <a href="{{ url('personal/'.$staff->id) }}"  style="color: #008a34">{{ $staff->nationality}}-{{$staff->id}}</a>
                                 </th>
                                 <td> {{ $staff->names}}</td>
                                 <td> {{ $staff->last_names}}</td>

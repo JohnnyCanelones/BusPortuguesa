@@ -16,7 +16,23 @@ window.onload=function(){
     document.querySelector('#button3').addEventListener("click", function(){toggleSubMenu('#button3')});
     document.querySelector('#button4').addEventListener("click", function(){toggleSubMenu('#button4')});
 
-  
+    $.fn.formatter.addInptType('T', /[2,4]/);
+    $.fn.formatter.addInptType('L', /[A-Za-z ]/);
+    $.fn.formatter.addInptType('X', /[A-Za-z]/);
+    $('#cedula').formatter({
+        "pattern": '{{99999999}}'
+    });
+
+    $("#telefono").formatter({
+        "pattern": '(0{{T99}}) - {{999}}-{{9999}}'
+    });
+
+    lista = ["#nombres", "#apellidos"]
+    for (i=0; i<lista.length; i++){
+      $(lista[i]).formatter({
+        "pattern":'{{LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL}}'
+      });
+    }
 
   let cargo = document.getElementById('cargo');
     let checkbox = document.querySelectorAll('.admin');

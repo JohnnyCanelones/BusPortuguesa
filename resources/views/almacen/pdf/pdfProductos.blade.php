@@ -24,36 +24,7 @@
             </tr>
             @endforeach
             
-            {{--  <tr>
-                <th scope="row">
-                   aceite
-
-                </th>
-                <td> Todas las Unidades </td>
-                <td> 5 Litros </td>
-                <td> Estante </td>
-                
-            </tr>
-            <tr>
-                <th scope="row">
-                   aceite
-
-                </th>
-                <td> Todas las Unidades </td>
-                <td> 5 Litros </td>
-                <td> Estante </td>
-                
-            </tr>
-            <tr>
-                <th scope="row">
-                   aceite
-
-                </th>
-                <td> Todas las Unidades </td>
-                <td> 5 Litros </td>
-                <td> Estante </td>
-                
-            </tr> --}}
+        
         </tbody>
     </table>
 @endsection

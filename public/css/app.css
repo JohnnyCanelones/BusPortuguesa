@@ -132,6 +132,10 @@ input[type=text]{
   background-color: transparent !important;
 }
 
+.hover:hover{
+  color:#008a34 !important;
+}
+
 .boton-verde{
   background-color:#008a34 !important;
   color: #fff !important; 

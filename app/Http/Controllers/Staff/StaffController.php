@@ -8,7 +8,9 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Staff;
 use App\Role;
+use App\Almacen;
 use App\StaffMonitoring;
+use Barryvdh\DomPDF\Facade as PDF;
 
 
 use Illuminate\Support\Facades\Hash;
@@ -21,6 +23,7 @@ class StaffController extends Controller
     public function staffHome()
     {
         
+            $user = Auth::user();
 
 
         // $staffs = count(Staff::all());
@@ -31,12 +34,16 @@ class StaffController extends Controller
         return view('staff.home', [
             'staff' => $staffs,
             'user' => $users,
+            'usuario_activo' => $user,
         ]);
 
     }
     public function showStaffForm()
     {
-        return view('staff.register');
+        $almacen = Almacen::all();
+        return view('staff.register', [
+            // 'almacen' => $almacen,
+        ]);
     }
 
     public function staffCreate(CreateStaffRequest $request) 
@@ -110,6 +117,108 @@ class StaffController extends Controller
         ]);
     }
 
+    public function showUsers()
+    {   
+        
+        $users = User::where('username', '>', 2000)->get();
+
+        $users->load('role');
+        // dd($users);
+
+        return view('staff.showUsers', [
+            'users' => $users,
+        ]);
+    }
+
+    public function staffEditForm($id)
+    {
+        $staff = Staff::find($id);
+        // dd($staff);
+        return view('staff.editStaff', [
+            'staff' => $staff,
+        ]);
+    }
+
+    public function staffUpdate(Request $request, $id)
+    {
+        $staff = Staff::find($id);
+
+        $staff->nationality = $request->get('nacionality');
+        $staff->id = $request->input('id');
+        $staff->names = $request->input('names'); 
+        $staff->last_names = $request->input('last_names'); 
+        $staff->date_birth = $request->get('date_birth');
+        $staff->genre = $request->get('genre');
+        $staff->email = $request->input('email');
+        $staff->address = $request->get('address');
+        $staff->phone_number = $request->input('phone_number'); 
+        $staff->position = $request->input('position');
+        $staff->save();
+
+        $monitoreo = StaffMonitoring::create([
+            'user_id' => Auth::user()->username,
+            'staff_id' => $request->input('id'),
+            'accion' => 'Empleado editado', 
+            'fecha_accion' => date("Y-m-d H:i:s"),
+        ]);
+
+        $success = true;
+
+        if ($success) {
+            Session::flash('status','Empleado editado');
+
+        }
+
+        return redirect('/personal');
+
+
+
+    }
+    public function staffEditForm2($id)
+    {
+        $staff = Staff::find($id);
+        // dd($staff);
+        return view('staff.editStaff2', [
+            'staff' => $staff,
+        ]);
+    }
+
+    public function staffUpdate2(Request $request, $id)
+    {
+        $staff = Staff::find($id);
+
+        // $staff->nationality = $request->get('nacionality');
+        // $staff->id = $request->input('id');
+        $staff->names = $request->input('names'); 
+        $staff->last_names = $request->input('last_names'); 
+        $staff->date_birth = $request->get('date_birth');
+        $staff->genre = $request->get('genre');
+        $staff->email = $request->input('email');
+        $staff->address = $request->get('address');
+        $staff->phone_number = $request->input('phone_number'); 
+        // $staff->position = $request->input('position');
+        $staff->save();
+
+        $monitoreo = StaffMonitoring::create([
+            'user_id' => Auth::user()->username,
+            'staff_id' => $request->input('id'),
+            'accion' => 'Empleado editado', 
+            'fecha_accion' => date("Y-m-d H:i:s"),
+        ]);
+
+        $success = true;
+
+        if ($success) {
+            Session::flash('status','Empleado editado');
+
+        }
+
+        return redirect('/personal');
+
+
+
+    }
+
     public function showRole($id)
     {
         $permiso = User::where('username', $id)->first();
@@ -151,7 +260,7 @@ class StaffController extends Controller
 
     }
 
-    return redirect('personal/show');
+    return redirect('/personal');
    }
 
    public function showNewRoleForm($id)
@@ -166,40 +275,59 @@ class StaffController extends Controller
 
    public function newRoleCreated(Request $request, $id)
    {
-    $staff = Staff::where('id', $id)->first();
+        $staff = Staff::where('id', $id)->first();
 
-    $user= User::create([
-        'username'=> $staff->id,
-        'email' => $staff->email,
-        'password' => Hash::make($staff->id), 
+        $user= User::create([
+            'username'=> $staff->id,
+            'email' => $staff->email,
+            'password' => Hash::make($staff->id), 
 
-    
-       ]);
-    
-    $role = Role::create([
-        'user_id'=> $user->id,
-        'Admin' => $request->input('admin'),
-        'Mantenimiento' => $request->input('mantenimiento'),
-        'Personal' => $request->input('personal'),
-        'Inventario' => $request->input('inventario'),
-        'Operaciones' => $request->input('operaciones'),
-    ]);
-     $monitoreoRol = StaffMonitoring::create([
-        'user_id' => Auth::user()->username,
-        'staff_id' => $staff->id,
-        'accion' => 'Rol Creado', 
-        'fecha_accion' => date("Y-m-d H:i:s"),
-    ]);
-    $success = true;
+        
+           ]);
+        
+        $role = Role::create([
+            'user_id'=> $user->id,
+            'Admin' => $request->input('admin'),
+            'Mantenimiento' => $request->input('mantenimiento'),
+            'Personal' => $request->input('personal'),
+            'Inventario' => $request->input('inventario'),
+            'Operaciones' => $request->input('operaciones'),
+        ]);
+         $monitoreoRol = StaffMonitoring::create([
+            'user_id' => Auth::user()->username,
+            'staff_id' => $staff->id,
+            'accion' => 'Rol Creado', 
+            'fecha_accion' => date("Y-m-d H:i:s"),
+        ]);
+        $success = true;
 
-    if ($success) {
-        Session::flash('status','Nivel de Usuario Creado');
+        if ($success) {
+            Session::flash('status','Nivel de Usuario Creado');
 
-    }
+        }
 
-    return redirect('personal');
-
-
+        return redirect('personal');
    }
+
+   public function showStaffPdf()
+    {
+        $staff = Staff::where('id', '>', 2000)->get();
+        
+        $pdf = PDF::loadView('staff.pdf.personalPdf', compact('staff'));
+        $pdf->setPaper('letter', 'portrait');
+        return $pdf->stream('PDF Personal BusPortuguesa '. date("d-m-Y") .'.pdf');   
+        
+        // return view('staff.pdf.personalPdf', ['staff' => $staff]);
+    }
+    public function showUsersPdf()
+    {
+        $users = User::where('username', '>', 2000)->get();
+        
+        $pdf = PDF::loadView('staff.pdf.usersPdf', compact('users'));
+        $pdf->setPaper('letter', 'portrait');
+        return $pdf->stream('PDF Usuarios BusPortuguesa '. date("d-m-Y") .'.pdf');   
+        
+        // return view('staff.pdf.personalPdf', ['staff' => $staff]);
+    }
 
 }

@@ -16,8 +16,7 @@
 
         <div class="collapse" id="menu1" data-parent="#sidebar">
             <a href="{{ url('personal/registro') }}" class="list-group-item " >Agregar Personal</a>
-            <a href="#menu1sub1" class="list-group-item " >Subitem 1 </a>
-            <a href="#menu1sub1" class="list-group-item " >Subitem 1 </a>
+           
               
         
         </div>
@@ -29,8 +28,7 @@
 
         <div class="collapse" id="menu3" data-parent="#sidebar">
             <span><a href="{{ url('personal/show') }}" class="list-group-item" >Mostrar Personal </a></span>
-            <a href="#menu3sub3" class="list-group-item" >Subitem 3 </a>
-            <a href="#menu3sub3" class="list-group-item" >Subitem 3 </a>
+            <a href="{{ url('personal/show/users') }}" class="list-group-item" >Mostrar Usuarios</a>
             
         
         </div>
@@ -41,9 +39,9 @@
         <br>
 
         <div class="collapse" id="menu4" data-parent="#sidebar">
-            <span><a href="#menu4sub4" class="list-group-item" >Subitem 4 </a></span>
-            <a href="#menu4sub4" class="list-group-item" >Subitem 4 </a>
-            <a href="#menu4sub4" class="list-group-item" >Subitem 4 </a>
+            <span><a href="{{ url('personal/pdf') }}" target="_blank" class="list-group-item" >PDF de Personal </a></span>
+            <a href="{{ url('personal/users/pdf') }}" target="_blank" class="list-group-item" >PDF de Usuarios</a>
+            
             
         
         </div>

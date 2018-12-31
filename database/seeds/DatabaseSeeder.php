@@ -16,7 +16,8 @@ class DatabaseSeeder extends Seeder
 			StaffMonitoringTableSeeder::class,
             AlmacenSeeder::class,
             BusesSeeder::class,
-			WarehouseMonitoringTableSeeder::class,
+            WarehouseMonitoringTableSeeder::class,
+            OccupationTableSeeder::class,
 
 		]);
    

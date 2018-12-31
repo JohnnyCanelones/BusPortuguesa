@@ -1,7 +1,9 @@
 <head>
 <link rel="stylesheet" href="{{asset("plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css")}}">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="{{asset("plugins/select2/select2.min.css")}}">
 </head>
+
 
 <body>
 @include('layouts.staff_base')
@@ -39,7 +41,7 @@
 							<div class="col-lg-6 col-md-12 mt-4">
 								<div class=" form-group" >
 									<strong><label class="bmd-label-floating" for="id">Cedula</label></strong>
-									<input class="form-control {{ $errors->has('id') ? ' is-invalid' : '' }}" type="" name="id" value="{{ old('id') }}">
+									<input id="cedula" class="form-control {{ $errors->has('id') ? ' is-invalid' : '' }}" type="" name="id" value="{{ old('id') }}">
 										 
 										 @if ($errors->has('id'))
 											<span class="invalid-feedback" role="alert">
@@ -54,7 +56,7 @@
 							<div class="col-lg-6 col-md-12 mt-5">
 								<div class="form-group">
 									<strong><label class="bmd-label-floating" for="names">Nombre</label></strong>
-									<input class="form-control {{ $errors->has('names') ? ' is-invalid' : '' }}" type="text" name="names" value="{{ old('names') }}">
+									<input id="nombres" class="form-control {{ $errors->has('names') ? ' is-invalid' : '' }}" type="text" name="names" value="{{ old('names') }}">
 									@if ($errors->has('names'))
 										<span class="invalid-feedback" role="alert">
 											<strong>{{ $errors->first('names') }}</strong>
@@ -67,7 +69,7 @@
 							<div class="col-lg-6 col-md-12 mt-5">
 								<div class="form-group">
 									<strong><label class="bmd-label-floating">Apellidos</label></strong>
-									<input class="form-control {{ $errors->has('last_names') ? ' is-invalid' : '' }}" type="text" name="last_names" value="{{ old('last_names') }}">
+									<input id="apellidos" class="form-control {{ $errors->has('last_names') ? ' is-invalid' : '' }}" type="text" name="last_names" value="{{ old('last_names') }}">
 									@if ($errors->has('last_names'))
 										<span class="invalid-feedback" role="alert">
 											<strong>{{ $errors->first('last_names') }}</strong>
@@ -87,7 +89,7 @@
 							<div class="col-lg-6 col-md-12 mt-5">
 								<div class="form-group">
 									<strong><label for="genre" class="bmd-label-floating">Género</label></strong>
-									<select required class="form-control focus  {{ $errors->has('genre') ? ' is-invalid' : '' }}"  name="genre" value="{{ old('genre') }}">
+									<select required class=" js-example-basic-single form-control focus  {{ $errors->has('genre') ? ' is-invalid' : '' }}"  name="genre" value="{{ old('genre') }}">
 										<option></option>
 										<option>Femenino</option>
 										<option>Masculino</option>
@@ -117,7 +119,7 @@
 							<div class="col-lg-6 col-md-12 mt-5">
 								<div class="form-group">
 									<strong><label for="phone_number" class="bmd-label-floating ">telefono</label></strong>
-									<input class="form-control  {{ $errors->has('phone_number') ? ' is-invalid' : '' }}" type="text" name="phone_number" value="{{ old('phone_number') }}">
+									<input id="telefono" class="form-control {{ $errors->has('phone_number') ? ' is-invalid' : '' }}" type="text" name="phone_number" value="{{ old('phone_number') }}">
 									@if ($errors->has('phone_number'))
 										<span class="invalid-feedback" role="alert">
 											<strong>{{ $errors->first('phone_number') }}</strong>
@@ -127,15 +129,24 @@
 							</div>
 
 							<div class="col-lg-6 col-md-12 mt-5">
-								<div class="form-group">
-									<strong><label for="position" class="bmd-label-floating">Posicion</label></strong>
-									<input class="form-control {{ $errors->has('position') ? ' is-invalid' : '' }}" type="text" name="position" value="{{ old('position') }}">
-									@if ($errors->has('position'))
-										<span class="invalid-feedback" role="alert">
-											<strong>{{ $errors->first('position') }}</strong>
-										</span>
-									@endif 
-								</div>
+									<div class="row">
+										<div class="col-sm-10 mt-3">
+											<div class="form-group">
+												<strong><label class="bmd-label-floating" for="id">Ocupacion</label></strong>
+
+												<select required="" class="js-example-basic-single form-control focus "  name="position" id="position" >
+													<option></option>
+													
+												</select> 
+
+											</div>
+										</div>
+										<div class="col-sm-2 mt-5">
+											<h4><a href="#" class="azul hover" data-toggle="modal" data-target="#exampleModalLong"><i class="fas fa-plus"></i></a></h4>
+										</div>
+										
+									</div>
+
 							</div>
 
 							<div class="col-lg-6 col-md-12 mt-5">
@@ -218,11 +229,63 @@
 	</div>
 </div>
 
+{{-- Modal --}}
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document" style="top: 20%">
+    <div class="modal-content text-center">
+      <div class="modal-header text-center mb-2 p-2 " style="display: block; background-color: #008a34">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" class="text-white">&times;</span>
+        </button>
+        <h5 class="modal-title text-white" id="exampleModalLongTitle">Agregar puesto de trabajo</h5>
+      </div>
+      <div class="modal-body">
+      	<div class="container-fluid">
+      		
+        <div class="row">
+        	<div class="col-sm-12">
+        			
+
+	        	<form id="occupations" action="/personal/puesto" method="post">
+					{{ csrf_field() }}
+	        		<div class="row">
+	        			
+			            <div class="col-sm-10 mb-2" id="cedula">
+			            	<input type="" id="occupation" name="occupation" class="form-control">
+			            </div>
+			             <div class="col-sm-2 mb-2">
+			             	<h4><a href="#" id="submit"  class="azul hover"><i class="fas fa-save"></i></a></h4>
+			             </div>
+	        		</div>
+	            
+	            
+	        	</form>
+
+        		
+        	</div>
+        </div>
+      	</div>
+
+      </div>
+      <div class="modal-footer infobox-azul-contenido ">
+        <button type="button" class="btn btn-secondary text-white mx-auto d-block" data-dismiss="modal">Cerrar</button>
+        {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+      </div>
+    </div>
+  </div>
+</div>
+
 <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/staffform.js') }}"></script>
-
+<script type="text/javascript"  src="{{ asset('plugins/select2/select2.min.js') }}"></script>
+        
 <script type="text/javascript" src="{{ asset('plugins/momentjs/moment.js') }}"></script>
+<script type="text/javascript" src="{{ asset('plugins/jquery-validation/jquery.formatter.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js') }}"></script>
+<script type="text/javascript">
+	$('.js-example-basic-single').select2(); 
+	
+</script>
 <script type="text/javascript">
 	// $('#date').bootstrapMaterialDatePicker({ weekStart : 0, time: false });
 	
@@ -234,6 +297,54 @@
 	
 	
 	});
+
+	$.get( "/personal/puestos", function( data ) {
+				let select = document.getElementById('position')
+			for (var i = data.length - 1; i >= 0; i--) {
+				var option = document.createElement("option");
+				option.text = data[i].occupation_name;
+				select.add(option);
+				 
+			}
+	})
+	
+</script>
+
+<script type="text/javascript">
+		let submit = document.getElementById('submit')
+  		submit.addEventListener('click', function(ev){
+  			x = document.getElementById("occupation").value;
+
+  			// $.post( "/personal/puesto", { occupation_name: x  });
+  			$.ajax({
+			    type: "POST",
+			    url: '/personal/puesto',
+			    data: {  _token: '{{csrf_token()}}', occupation: x.charAt(0).toUpperCase()+ x.slice(1) },
+			    success: function (data) {
+			    },
+			    error: function (data, textStatus, errorThrown) {
+			        console.log(data);
+
+	    		},
+				});
+  			ev.preventDefault()
+  			$.get( "/personal/puestos", function( data ) {
+				let select = document.getElementById('position')
+
+				select.innerHTML= "<option></option>";
+				for (var i = data.length - 1; i >= 0; i--) {
+					var option = document.createElement("option");
+					option.text = data[i].occupation_name;
+					select.add(option);
+				 
+				}
+			})
+  			x = document.getElementById("occupation").value = ''
+
+			$('#exampleModalLong').modal('hide');
+
+  		})
+	
 </script>
 </body>
 

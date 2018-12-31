@@ -121,8 +121,8 @@
         </div>
     </div>
         
-    {{-- <script type="text/javascript" src="{{ asset('plugins/jquery-3.2.1.slim.min.js') }}" ></script> --}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <script t   ype="text/javascript" src="{{ asset('plugins/jquery-3.2.1.slim.min.js') }}" ></script>
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script> --}}
     
     
     <script type="text/javascript" src="{{ asset('plugins/popper.min.js') }}" ></script>
