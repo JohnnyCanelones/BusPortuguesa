@@ -192,7 +192,7 @@ class StaffController extends Controller
         $staff->names = $request->input('names'); 
         $staff->last_names = $request->input('last_names'); 
         $staff->date_birth = $request->get('date_birth');
-        $staff->genre = $request->get('genre');
+        // $staff->genre = $request->get('genre');
         $staff->email = $request->input('email');
         $staff->address = $request->get('address');
         $staff->phone_number = $request->input('phone_number'); 

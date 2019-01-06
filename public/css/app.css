@@ -18,7 +18,7 @@ body {
   background-image: url("../img/bus_portuguesa.jpg")  !important;
 	background-position: center; /* Center the image */
   	background-repeat: no-repeat;
-  	height: 96.2vh !important;
+  	height: 100% !important;
   	-webkit-background-size: cover;
   	-moz-background-size: cover;
   	background-size: cover;
@@ -34,7 +34,7 @@ body {
 
 .background-content2{
 	background-color: #00000073;
-	height: 96.2vh;
+	height:100%;
 	width: 100%;
 }
 
