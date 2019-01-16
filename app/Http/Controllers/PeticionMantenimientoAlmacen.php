@@ -80,6 +80,7 @@ class PeticionMantenimientoAlmacen extends Controller
 
     public function peticionesShow()
     {
+        
     	$peticiones = Peticion::all();
     	$peticiones->load('almacen');
     	// dd($peticiones);
@@ -90,11 +91,32 @@ class PeticionMantenimientoAlmacen extends Controller
     	
     	return view('mantenimiento.peticiones.showPeticiones', [
     		'peticiones' => $peticiones,
+
     	]);
     }
 
     public function peticionesShowAlmacen()
     {
+        $peticionesPendientes = Peticion::where('estado', 'Pendiente')->get();
+        $peticionesPendientes->load('almacen');
+        
+        $peticionesEliminadas = [];
+        foreach ($peticionesPendientes as $peticion) {
+            
+            $peticionFecha = date("d/m/Y", strtotime('+5 days', strtotime($peticion->created_at)));
+            
+            $hoy = date("d/m/Y");
+            if ($peticionFecha < $hoy) {
+                Session::flash('peticionesEliminadas', 'hecholdasd');
+                // Session::flash('hola', 'warning');
+                array_push($peticionesEliminadas, $peticion);
+
+                $peticion->estado = 'Rechazada';
+                $peticion->observacion = 'Transcurrieron 5 días, el lapso de respuesta ha expirado';
+                $peticion->save();
+            }
+            
+        } 
         $peticiones = Peticion::all();
         $peticiones->load('almacen');
 
@@ -111,6 +133,9 @@ class PeticionMantenimientoAlmacen extends Controller
         return view('almacen.peticiones.showPeticiones', [
             'peticiones' => $peticiones,
             'peticionesPendientes' => $peticionesPendientes,
+            // 'ultimasPeticiones' => $ultimasPeticiones,
+            'peticionesEliminadas' => $peticionesEliminadas,
+            
         ]);
     }
 

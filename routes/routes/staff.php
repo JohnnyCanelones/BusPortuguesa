@@ -39,9 +39,9 @@ Route::group(['middleware' => ['auth', 'personal:,']], function() {
     Route::get('personal/{id}', 'StaffController@staffEditForm');
     Route::post('personal/{id}', 'StaffController@staffUpdate');
 
-    Route::get('personal/me/{id}', 'StaffController@staffEditForm2');
-    Route::post('personal/me/{id}', 'StaffController@staffUpdate2');
 });
 
+    Route::get('personal/me/{id}', 'StaffController@staffEditForm2');
+    Route::post('personal/me/{id}', 'StaffController@staffUpdate2');
 
 

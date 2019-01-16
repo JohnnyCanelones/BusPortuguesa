@@ -6,8 +6,19 @@
 
 
 <body>
-@include('layouts.staff_base')
-	
+@if(auth()->user()->role->Inventario )
+	@include('layouts.inventario_base')
+
+@elseif(auth()->user()->role->Personal )
+	@include('layouts.staff_base')
+
+@elseif(auth()->user()->role->Admin )
+	@include('layouts.staff_base')
+
+@elseif(auth()->user()->role->Mantenimiento )
+	@include('layouts.staff_base')
+
+@endif	
 
 <div class="container">
     <div class="row justify-content-center">

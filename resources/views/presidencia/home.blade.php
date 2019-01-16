@@ -101,12 +101,30 @@
                         </div>
                     </div>
                 </div>
-            <div id="" class="card card2 mt-5 mb-5">
-                <div class="card-header">Dashboard</div>
+            <div id="" class="card card2">
+                <div class="card-header">Usuario</div>
 
                 <div class="card-body">
-                    
-                    You are logged in!
+                   <div class="row">
+                       <div class="col-md-6 mb-3 text-center">
+                          <h6><strong>Cedula:</strong> {{ auth()->user()->staff->nationality }}-{{ $usuario_activo->staff->id }}</h6>
+                       </div>
+                       <div class="col-md-6 mb-3 text-center">
+                          <h6><strong>Nombres y Apellidos:</strong> {{ ucfirst(strtolower(auth()->user()->staff->names)) }} {{ ucfirst(strtolower(auth()->user()->staff->last_names)) }}</h6>
+                       </div>
+                       <div class="col-md-6 mb-3 text-center">
+                          <h6><strong>Email:</strong> {{ ucfirst(strtolower(auth()->user()->staff->email)) }} </h6>
+                       </div>
+                       <div class="col-md-6 mb-3 text-center">
+                          <h6><strong>Telefono:</strong> {{ ucfirst(strtolower(auth()->user()->staff->phone_number)) }} </h6>
+                       </div>
+                   </div>
+                </div>
+
+                <div class="card-footer">
+                    <div class="text-right">
+                        <strong><a class=""  style="color: #008a34" href="personal/me/{{ auth()->user()->username }}/">Editar <i class="fas fa-arrow-right"></i></a></strong>
+                    </div>
                 </div>
                 
             </div>

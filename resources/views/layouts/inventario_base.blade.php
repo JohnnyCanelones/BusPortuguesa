@@ -16,9 +16,9 @@
 
         <div class="collapse" id="menu1" data-parent="#sidebar">
             <a href="{{ url('/almacen/registro/producto') }}" class="list-group-item " >Agregar Producto</a>
+            {{-- <a href="#menu1sub1" class="list-group-item " >Subitem 1 </a>
             <a href="#menu1sub1" class="list-group-item " >Subitem 1 </a>
-            <a href="#menu1sub1" class="list-group-item " >Subitem 1 </a>
-              
+               --}}
         
         </div>
     </li>
@@ -30,8 +30,8 @@
         <div class="collapse" id="menu3" data-parent="#sidebar">
             <a href="{{ url('/almacen/productos') }}" class="list-group-item" >Productos en el Almacen</a>
             <a href="{{ url('/almacen/peticiones') }}" class="list-group-item" >Peticiones</a>
-            <a href="#menu3sub3" class="list-group-item" >Subitem 3 </a>
-            <a href="#menu3sub3" class="list-group-item" >Subitem 3 </a>
+           {{--  <a href="#menu3sub3" class="list-group-item" >Subitem 3 </a>
+            <a href="#menu3sub3" class="list-group-item" >Subitem 3 </a> --}}
             
         
         </div>
@@ -43,8 +43,8 @@
 
         <div class="collapse" id="menu4" data-parent="#sidebar">
             <a href="{{ url('/almacen/productos/pdf') }}" class="list-group-item" target="_blank">Generar PDF de Productos</a>
-            <a href="#menu3sub3" class="list-group-item" >Subitem 3 </a>
-            <a href="#menu3sub3" class="list-group-item" >Subitem 3 </a>
+            {{-- <a href="#menu3sub3" class="list-group-item" >Subitem 3 </a>
+            <a href="#menu3sub3" class="list-group-item" >Subitem 3 </a> --}}
             
         
         </div>

@@ -7,12 +7,19 @@
 <body> 
 @include('layouts.inventario_base')
 <div class="container">
-    
+
     
       <div class="row justify-content-center">
         
         <div class="col-sm-12 col-lg-7">
-            
+            @foreach($peticionesEliminadas as $peticion)
+                @if (session('peticionesEliminadas'))
+                    <div class="alert alert-danger card2" role="alert">
+                       Petición de <strong>{{ $peticion->almacen->nombre_producto }}</strong> ha sido rechazada debido a que el tiempo de respuesta
+                       ha expirado
+                    </div>
+                @endif
+            @endforeach
              
              @if (session('success'))
                 <script type="text/javascript">
@@ -29,7 +36,7 @@
           
 
             <div id="" class='card card2'>
-
+                    
         
                 <div class="card-header">
                     <h3 id="hola" class="azul text-center m-3 ">Peticiones</h3>
@@ -44,6 +51,8 @@
                         
                     </div>
                     </div>
+                    
+
                     <table id="example" class="p-3 table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                       <thead>
                             <tr class="text-white" style="background-color: #003286e8">
