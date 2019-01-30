@@ -13,10 +13,10 @@
 	@include('layouts.staff_base')
 
 @elseif(auth()->user()->role->Admin )
-	@include('layouts.staff_base')
+	@include('layouts.presidente_base')
 
 @elseif(auth()->user()->role->Mantenimiento )
-	@include('layouts.staff_base')
+	@include('layouts.mantenimiento_base')
 
 @endif	
 

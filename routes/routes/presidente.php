@@ -43,6 +43,7 @@ Route::get('presidente/monitoreo/peticion/{id}', function($id) {
     // dd($monitoreo->almacen);
     return $monitoreo;
 });
+
 Route::get('/presidente/monitoreos/almacen', function() {
     
     $monitoreos = count(WarehouseMonitoring::all());

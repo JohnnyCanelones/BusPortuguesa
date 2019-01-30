@@ -7,7 +7,7 @@ $('#example').DataTable( {
     setInterval(function() {
     $.get( "/presidente/monitoreos/almacen", function( data ) {
         let cantidad_de_monitoreos = document.getElementById('monitoreos').value
-        let peticionesDom =document.getElementsByClassNameementById("totalPeticionesPendientes").value;
+        // let peticionesDom =document.getElementsByClassNameementById("totalPeticionesPendientes").value;
         let peticionesActuales = data;
         // console.log(peticionesActuales+' '+ cantidad_de_monitoreos)
 

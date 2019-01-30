@@ -38,7 +38,7 @@
                         </div>
                         <div class="col-sm-7 p-0 "  >
                            <div class="card p-3 infobox-verde-contenido" >
-                               <h5 class="text-white">Penticiones <br>Aprobadas <span class="timer badge badge-secondary" data-from="0" data-to="{{ $peticionesAprobadas }}"></span></h5>
+                               <h5 class="text-white">Peticiones <br>Aprobadas <span class="timer badge badge-secondary" data-from="0" data-to="{{ $peticionesAprobadas }}"></span></h5>
                            </div>
                         </div>
                     </div>
@@ -55,7 +55,7 @@
                         </div>
                         <div class="col-sm-7 p-0 "  >
                            <div class="card p-3 infobox-amarillo-contenido" >
-                               <h5 class="text-white">Penticiones <br>Pendientes <span class="timer badge badge-secondary" data-from="0" data-to="{{ $peticionesPendientes }}" ></span></h5>
+                               <h5 class="text-white">Peticiones <br>Pendientes <span class="timer badge badge-secondary" data-from="0" data-to="{{ $peticionesPendientes }}" ></span></h5>
                                
                            </div>
                         </div>
@@ -84,7 +84,7 @@
                             <input id="totalPeticionesPendientes" hidden="" readonly="" value="{{ count($ultimasPeticiones) }}"></input>
                             @forelse($ultimasPeticiones as $peticion)
                                 <div class="col-md-4 mt-3">
-                                    <div class="jumbotron">
+                                    <div class="jumbotron p-3 mb-2">
                                         
                                     <strong>Producto: </strong>{{ $peticion->almacen->nombre_producto }}<br>
                                     <strong>Unidad: </strong>{{ $peticion->bus_id }}<br>
@@ -111,7 +111,7 @@
                     </div>
                     <div class="card-footer">
                         <div class="text-right">
-                            <strong><a class=""  style="color: #008a34" href="almacen/peticiones/">Ver Todas <i class="fas fa-arrow-right"></i></a></strong>
+                            <strong><a class=""  style="color: #008a34" href="almacen/peticiones/">Ver Todas ({{ $peticionesPendientes }}) <i class="fas fa-arrow-right"></i></a></strong>
                         </div>
                     </div>
                 </div>

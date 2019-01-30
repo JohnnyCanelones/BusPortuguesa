@@ -4,7 +4,7 @@
 @section('nav-items')
    <ul class="p-0">
 
-    <li class="nav-items" ><a href="/home" class="text-black "><i class="mr-3 fas fa-home text-secondary"></i><span class="d-md-inline">Inicio</span></a>
+    <li class="nav-items" ><a href="/presidente" class="text-black "><i class="mr-3 fas fa-home text-secondary"></i><span class="d-md-inline">Inicio</span></a>
     <br>
     <br>
 
@@ -46,11 +46,11 @@
         </div>
     </li>
 
-    <li class="nav-items" ><a href="#menu4" class="text-black cambio" id="button4" data-toggle="collapse" aria-expanded="false"><i class="fas fa-file-pdf text-secondary mr-3"></i> <span class="d-md-inline">Reportes</span><i id="minimize" class="fas fa-window-minimize float-right trans"></i><i id="dropdown" class="fas fa-caret-down float-right"></i> </a>
+    <li class="nav-items" ><a href="#menu5" class="text-black cambio" id="button4" data-toggle="collapse" aria-expanded="false"><i class="fas fa-file-pdf text-secondary mr-3"></i> <span class="d-md-inline">Reportes</span><i id="minimize" class="fas fa-window-minimize float-right trans"></i><i id="dropdown" class="fas fa-caret-down float-right"></i> </a>
         <br>
         <br>
 
-        <div class="collapse" id="menu4" data-parent="#sidebar">
+        <div class="collapse" id="menu5" data-parent="#sidebar">
             <span><a href="#menu4sub4" class="list-group-item" data-toggle="collapse" aria-expanded="false">Subitem 4 </a></span>
             <a href="#menu4sub4" class="list-group-item" data-toggle="collapse" aria-expanded="false">Subitem 4 </a>
             <a href="#menu4sub4" class="list-group-item" data-toggle="collapse" aria-expanded="false">Subitem 4 </a>
