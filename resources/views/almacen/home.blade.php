@@ -176,12 +176,12 @@
 
 
 setInterval(function() {
-    $.get( "/almacen/ultimas/peticiones", function( data ) {
+    $.get( "/almacen/peticiones/pendientes", function( data ) {
        
         let peticionesDom =document.getElementById("totalPeticionesPendientes").value;
         let peticionesActuales = data.length;
-        // console.log(peticionesDom)
-        // console.log(peticionesActuales)
+        console.log(peticionesDom)
+        console.log(peticionesActuales)
         if (peticionesDom != peticionesActuales) {
             location.reload();
         }

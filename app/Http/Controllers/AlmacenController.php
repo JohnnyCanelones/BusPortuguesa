@@ -25,20 +25,25 @@ class AlmacenController extends Controller
         $peticionesPendientes->load('almacen');
         
         $peticionesEliminadas = [];
+
         foreach ($peticionesPendientes as $peticion) {
             
-            $peticionFecha = date("d/m/Y", strtotime('+5 days', strtotime($peticion->created_at)));
-            
-            $hoy = date("d/m/Y");
+            $peticionFecha = date("Y/m/d", strtotime('+5 days', strtotime($peticion->created_at)));
+        
+            // dd($peticionFecha);    
+            $hoy = date("Y/m/d");
             if ($peticionFecha < $hoy) {
                 Session::flash('peticionesEliminadas', 'hecholdasd');
                 // Session::flash('hola', 'warning');
+
+                
                 array_push($peticionesEliminadas, $peticion);
 
                 $peticion->estado = 'Rechazada';
                 $peticion->observacion = 'Transcurrieron 5 días, el lapso de respuesta ha expirado';
                 $peticion->save();
             }
+
             
         }
         // dd(Peticion::boot());
