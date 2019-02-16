@@ -14,13 +14,14 @@ class CreatePeticionTable extends Migration
     public function up()
     {
         Schema::create('peticion', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id');
 
             $table->integer('almacen_id')->unsigned();
             $table->foreign('almacen_id')->references('id')->on('almacen');
 
             $table->integer('bus_id')->unsigned();
-            $table->foreign('bus_id')->references('id_bus')->on('buses');
+            $table->foreign('bus_id')->references('id_bus')->on('Buses');
 
             $table->integer('cantidad');
             $table->string('observacion')->nullable();
