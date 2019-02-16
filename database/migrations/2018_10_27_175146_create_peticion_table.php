@@ -21,7 +21,7 @@ class CreatePeticionTable extends Migration
             $table->foreign('almacen_id')->references('id')->on('almacen');
 
             $table->integer('bus_id')->unsigned();
-            $table->foreign('bus_id')->references('id_bus')->on('Buses');
+            $table->foreign('bus_id')->references('id_bus')->on('buses');
 
             $table->integer('cantidad');
             $table->string('observacion')->nullable();

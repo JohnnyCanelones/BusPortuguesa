@@ -84,7 +84,7 @@
                                     <div class="col-lg-6 col-md-12 mt-5 " >
                                         <div class="row">
                                             <div class="col-md-6 pl-5 mt-3">
-                                                <label>Esta Activa?</label>
+                                                <label>Esta Operativa?</label>
                                             </div>
                                             <div class="col-md-6 mt-3">
                                             <div class="switch">
@@ -106,6 +106,7 @@
                                                 <option selected="" disabled="">Motivo de la inactividad</option>
                                                 
                                                 <optgroup label="">
+                                                <option >a Desincorporar</option>
                                                 <option >Servicio</option>
                                                 <option >Falla</option>
                                                 <option >Mantenimiento</option>

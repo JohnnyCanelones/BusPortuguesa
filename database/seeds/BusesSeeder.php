@@ -12,7 +12,7 @@ class BusesSeeder extends Seeder
      */
     public function run()
     {
-    	DB::table('Buses')->insert([
+    	DB::table('buses')->insert([
 			'id_bus'=> 6317,            
             'modelo' => 6118,            
 			'conductor_id'=> 1234,
@@ -23,7 +23,7 @@ class BusesSeeder extends Seeder
             
         ]);
 
-        DB::table('Buses')->insert([
+        DB::table('buses')->insert([
             'id_bus'=> 6956,            
             'modelo' => 6896,            
             'conductor_id'=> 1234,
@@ -34,7 +34,7 @@ class BusesSeeder extends Seeder
             
         ]);
 
-        DB::table('Buses')->insert([
+        DB::table('buses')->insert([
             'id_bus'=> 6765,            
             'modelo' => 6752,            
             'conductor_id'=> 1234,

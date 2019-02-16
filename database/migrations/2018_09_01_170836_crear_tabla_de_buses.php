@@ -13,7 +13,7 @@ class CrearTablaDeBuses extends Migration
      */
     public function up()
     {
-        Schema::create('Buses', function (Blueprint $table) {
+        Schema::create('buses', function (Blueprint $table) {
             $table->integer('id_bus')->unsigned();
             $table->primary('id_bus');
             

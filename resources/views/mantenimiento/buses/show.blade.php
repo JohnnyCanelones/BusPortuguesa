@@ -31,12 +31,13 @@
                                 <td>{{ $bus->modelo}} </td>
                                 <td>{{ $bus->staff->names }} {{  $bus->staff->last_names }}</td>
                                 <td> {{ $bus->estado }}</td>
-                                <td> @if( $bus->estado == 'Inactivo') {{ $bus->motivo_inactividad }} @else ---- @endif</td>        
+                                <td class="text-center"> <span class="text-center @if ($bus->motivo_inactividad == 'a Desincorporar')badge badge-warning
+                                    @endif"> @if( $bus->estado == 'Inactivo') {{ $bus->motivo_inactividad }} </span>@else ---- @endif</td>        
                                 <td> @if( $bus->estado == 'Inactivo') {{ $newDate = date("d/m/Y", strtotime($bus->fecha_inactivo))  }} @else ---- @endif</td>        
                                 <td> @if( $bus->estado == 'Inactivo') {{ $bus->observacion }} @else ---- @endif</td>        
                             </tr>
                             @empty
-                            dfksdflkjs
+                            
                             @endforelse
                         </tbody>
                     </table>
