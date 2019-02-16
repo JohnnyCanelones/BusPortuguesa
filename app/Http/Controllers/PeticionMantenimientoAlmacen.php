@@ -143,13 +143,24 @@ class PeticionMantenimientoAlmacen extends Controller
     {
         $peticion= Peticion::find($id);
         $producto = Almacen::find($peticion->almacen_id);
-        $peticion->estado = 'Aprobada';
         
-        $producto->cantidad = $producto->cantidad - $peticion->cantidad;
         
-        $peticion->save();
-        $producto->save();
+        if ($producto->cantidad >= $peticion->cantidad){
+            $peticion->estado = 'Aprobada';
+            $producto->cantidad = $producto->cantidad - $peticion->cantidad;
+            $peticion->save();
+            $producto->save();
 
+        }else {
+           
+            Session::flash('error','No hay Suficientes productos de '. $producto->nombre_producto );
+    
+         
+            return redirect('/almacen/peticiones');
+
+        }
+        
+        
         $monitoreo = PetitionMonitoring::create([
             'user_id' => Auth::user()->username,
             'peticion_id' => $peticion->id,

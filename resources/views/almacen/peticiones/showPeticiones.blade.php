@@ -32,6 +32,17 @@
                     })
                 </script>
             @endif
+            @if (session('error'))
+                <script type="text/javascript">
+                    $(document).ready(function() {
+                        swal(
+                        'Error!',
+                        '{{ session('error') }}' ,
+                        'error'
+                        )
+                    })
+                </script>
+            @endif
 
           
 
