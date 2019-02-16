@@ -61,69 +61,69 @@ class PeticionMantenimientoAlmacen extends Controller
         
         $mesActual = date("m");
 
-        if($mesActual <= 06){
+        // if($mesActual <= 06){
             
-            // dd($producto);
-            $peticionesAnteriones = Peticion::where('bus_id', $bus_id)
-                                        ->where('almacen_id', $almacen_id)
-                                        ->whereMonth('created_at', '>=', 01)
-                                        ->whereMonth('created_at', '<=', 06)
-                                        ->get();
+        //     // dd($producto);
+        //     $peticionesAnteriones = Peticion::where('bus_id', $bus_id)
+        //                                 ->where('almacen_id', $almacen_id)
+        //                                 ->whereMonth('created_at', '>=', 01)
+        //                                 ->whereMonth('created_at', '<=', 06)
+        //                                 ->get();
 
 
         
-            // dd($peticionesAnteriones);
-            foreach ($peticionesAnteriones as $peticion){
-                $contadorProductosTotales = $contadorProductosTotales + $peticion->cantidad;
-            }
+        //     // dd($peticionesAnteriones);
+        //     foreach ($peticionesAnteriones as $peticion){
+        //         $contadorProductosTotales = $contadorProductosTotales + $peticion->cantidad;
+        //     }
 
-            if($producto->nombre_producto == 'aceite 15w50' ){
-                if($contadorProductosTotales > 5){
-                    dd('Error, solo puedes pedir 5 litros de aceite hasta junio de este año, ya llevas '.$contadorProductosTotales);
+        //     if($producto->nombre_producto == 'aceite 15w50' ){
+        //         if($contadorProductosTotales > 5){
+        //             dd('Error, solo puedes pedir 5 litros de aceite hasta junio de este año, ya llevas '.$contadorProductosTotales);
                     
-                }else{
-                    $peticion = Peticion::create([
-                        'almacen_id' => $producto->id,
-                        'bus_id' => $request->get('bus_id'),
-                        'cantidad' => $request->get('cantidad'),
-                        // 'observacion' => $request->get('observacion'),
-                        'estado' => 'Pendiente',
-                    ]);
+        //         }else{
+        //             $peticion = Peticion::create([
+        //                 'almacen_id' => $producto->id,
+        //                 'bus_id' => $request->get('bus_id'),
+        //                 'cantidad' => $request->get('cantidad'),
+        //                 // 'observacion' => $request->get('observacion'),
+        //                 'estado' => 'Pendiente',
+        //             ]);
             
-                    $monitoreo = PetitionMonitoring::create([
-                        'user_id' => Auth::user()->username,
-                        'peticion_id' => $peticion->id,
-                        'accion' => 'Peticion enviada', 
-                        'fecha_accion' => date("Y-m-d H:i:s"),
-                    ]);
+        //             $monitoreo = PetitionMonitoring::create([
+        //                 'user_id' => Auth::user()->username,
+        //                 'peticion_id' => $peticion->id,
+        //                 'accion' => 'Peticion enviada', 
+        //                 'fecha_accion' => date("Y-m-d H:i:s"),
+        //             ]);
             
-                    $success = true;
-                    if ($success) {
-                        Session::flash('status','Petición Enviada');
+        //             $success = true;
+        //             if ($success) {
+        //                 Session::flash('status','Petición Enviada');
             
-                    }
+        //             }
                 
                         
-                    return redirect('/mantenimiento');
+        //             return redirect('/mantenimiento');
             
-                    // dd('#VamosBien, ya llevas '.$contadorProductosTotales);
+        //             // dd('#VamosBien, ya llevas '.$contadorProductosTotales);
 
-                }
+        //         }
         
-            }
+        //     }
 
-            if(strtolower($producto->nombre_producto) == 'caucho r18' OR strtolower($producto->nombre_producto) == 'caucho r17' OR $producto->nombre_producto == 'Correa de Tiempo' ){
-                if($contadorProductosTotales > 5){
-                    dd('Error, solo puedes pedir 5 '.$producto->nombre_producto.' hasta junio de este año, con estos '.$cantidad.', llevaras '.$contadorProductosTotales);
+        //     if(strtolower($producto->nombre_producto) == 'caucho r18' OR strtolower($producto->nombre_producto) == 'caucho r17' OR $producto->nombre_producto == 'Correa de Tiempo' ){
+        //         if($contadorProductosTotales > 5){
+        //             dd('Error, solo puedes pedir 5 '.$producto->nombre_producto.' hasta junio de este año, con estos '.$cantidad.', llevaras '.$contadorProductosTotales);
                     
-                }
-                else{
-                    dd('#VamosBien, ya llevas '.$contadorProductosTotales);
+        //         }
+        //         else{
+        //             dd('#VamosBien, ya llevas '.$contadorProductosTotales);
 
-                }
+        //         }
         
-            }    
-        }
+        //     }    
+        // }
         
         $peticion = Peticion::create([
             'almacen_id' => $producto->id,
