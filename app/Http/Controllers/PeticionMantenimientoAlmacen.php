@@ -50,15 +50,88 @@ class PeticionMantenimientoAlmacen extends Controller
 
     public function peticionCreate($id, Request $request)
     {
-    	$producto = Almacen::where('id', $id)->first();
-    	
-    	$peticion = Peticion::create([
-    		'almacen_id' => $producto->id,
-    		'bus_id' => $request->get('bus_id'),
-    		'cantidad' => $request->get('cantidad'),
-    		// 'observacion' => $request->get('observacion'),
-    		'estado' => 'Pendiente',
-    	]);
+        $producto = Almacen::where('id', $id)->first();
+        $bus_id = $request->get('bus_id');
+        $almacen_id = $producto->id;
+        $cantidad = $request->get('cantidad');
+        
+        $contadorProductosTotales = $cantidad;
+
+       
+        
+        $mesActual = date("m");
+
+        if($mesActual <= 06){
+            
+            // dd($producto);
+            $peticionesAnteriones = Peticion::where('bus_id', $bus_id)
+                                        ->where('almacen_id', $almacen_id)
+                                        ->whereMonth('created_at', '>=', 01)
+                                        ->whereMonth('created_at', '<=', 06)
+                                        ->get();
+
+
+        
+            // dd($peticionesAnteriones);
+            foreach ($peticionesAnteriones as $peticion){
+                $contadorProductosTotales = $contadorProductosTotales + $peticion->cantidad;
+            }
+
+            if($producto->nombre_producto == 'aceite 15w50' ){
+                if($contadorProductosTotales > 5){
+                    dd('Error, solo puedes pedir 5 litros de aceite hasta junio de este año, ya llevas '.$contadorProductosTotales);
+                    
+                }else{
+                    $peticion = Peticion::create([
+                        'almacen_id' => $producto->id,
+                        'bus_id' => $request->get('bus_id'),
+                        'cantidad' => $request->get('cantidad'),
+                        // 'observacion' => $request->get('observacion'),
+                        'estado' => 'Pendiente',
+                    ]);
+            
+                    $monitoreo = PetitionMonitoring::create([
+                        'user_id' => Auth::user()->username,
+                        'peticion_id' => $peticion->id,
+                        'accion' => 'Peticion enviada', 
+                        'fecha_accion' => date("Y-m-d H:i:s"),
+                    ]);
+            
+                    $success = true;
+                    if ($success) {
+                        Session::flash('status','Petición Enviada');
+            
+                    }
+                
+                        
+                    return redirect('/mantenimiento');
+            
+                    // dd('#VamosBien, ya llevas '.$contadorProductosTotales);
+
+                }
+        
+            }
+
+            if(strtolower($producto->nombre_producto) == 'caucho r18' OR strtolower($producto->nombre_producto) == 'caucho r17' OR $producto->nombre_producto == 'Correa de Tiempo' ){
+                if($contadorProductosTotales > 5){
+                    dd('Error, solo puedes pedir 5 '.$producto->nombre_producto.' hasta junio de este año, con estos '.$cantidad.', llevaras '.$contadorProductosTotales);
+                    
+                }
+                else{
+                    dd('#VamosBien, ya llevas '.$contadorProductosTotales);
+
+                }
+        
+            }    
+        }
+        
+        $peticion = Peticion::create([
+            'almacen_id' => $producto->id,
+            'bus_id' => $request->get('bus_id'),
+            'cantidad' => $request->get('cantidad'),
+            // 'observacion' => $request->get('observacion'),
+            'estado' => 'Pendiente',
+        ]);
 
         $monitoreo = PetitionMonitoring::create([
             'user_id' => Auth::user()->username,
@@ -67,7 +140,7 @@ class PeticionMantenimientoAlmacen extends Controller
             'fecha_accion' => date("Y-m-d H:i:s"),
         ]);
 
-    	$success = true;
+        $success = true;
         if ($success) {
             Session::flash('status','Petición Enviada');
 
@@ -76,6 +149,13 @@ class PeticionMantenimientoAlmacen extends Controller
             
         return redirect('/mantenimiento');
 
+        
+        
+
+        // dd(date("Y/m/d", strtotime('+5 month', strtotime($peticionesAnteriones->first()->created_at))));
+        
+        // dd($peticionesAnteriones);
+    	
     }
 
     public function peticionesShow()
