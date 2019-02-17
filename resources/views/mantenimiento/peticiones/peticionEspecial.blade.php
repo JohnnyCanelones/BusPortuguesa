@@ -63,15 +63,18 @@
 
                                     <div class="col-md-12 col-lg-6 mt-4">
                                         <div class="form-group">
-                                            <select class="js-example-basic-single form-control mt-1 focus" name="cantidad" required="" disabled>
+                                            <select class="js-example-basic-single form-control mt-1 focus" name="cantidad" required="">
+                                                <option disabled="">Cantidad</option>
+                                                <optgroup label="">
+                                                
                                                 <option selected="" >{{ $cantidad }}</option>
-                                                @for ($i = 1; $i <= $cantidad ; $i++)
+                                                {{-- @for ($i = 1; $i <= $cantidad ; $i++) --}}
         
-
+{{-- 
                                                 <optgroup label="">
                                                 <option >{{ $i }}</option>
                                                
-                                                @endfor
+                                                @endfor --}}
                                             </select>
                                             
                                             
@@ -83,7 +86,7 @@
                                     
                                     <div class="col-md-12  col-lg-6 mt-5" >
                                         <div class="" >
-                                            <select class="js-example-basic-single2 form-control mt-1 focus" name="bus_id" required="" disabled>
+                                            <select class="js-example-basic-single2 form-control mt-1 focus" name="bus_id" required="" readonly>
                                                 <option selected="" disabled=""># de la Unidad</option>
                                                  {{-- @forelse($buses as $bus) --}}
                                                 <optgroup label="">

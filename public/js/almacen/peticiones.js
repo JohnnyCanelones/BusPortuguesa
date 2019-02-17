@@ -97,7 +97,7 @@ setInterval(function() {
       let peticionesDom =document.getElementById("totalPeticionesPendientes").value;
       let peticionesActuales = data.length;
       if (peticionesDom != peticionesActuales) {
-          location.reload();
+          // location.reload();
       }
   });
 

@@ -98,6 +98,8 @@ class PeticionMantenimientoAlmacen extends Controller
                     'cantidad' => $request->get('cantidad'),
                     // 'observacion' => $request->get('observacion'),
                     'estado' => 'Pendiente',
+                    'peticion_especial' => 0,
+
                 ]);
         
                 $monitoreo = PetitionMonitoring::create([
