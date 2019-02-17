@@ -7,7 +7,17 @@
         
         <body>
         @include('layouts.mantenimiento_base')
-            
+        @if (session('peticionEspecial'))
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    swal(
+                    'Advertencia!',
+                    '{{ session('peticionEspecial') }}' ,
+                    'warning'
+                    )
+                })
+            </script>
+        @endif
         
         <div class="container">
             <div class="row justify-content-center">
@@ -53,7 +63,7 @@
 
                                     <div class="col-md-12 col-lg-6 mt-4">
                                         <div class="form-group">
-                                            <select class="js-example-basic-single form-control mt-1 focus" name="cantidad" required="">
+                                            <select class="js-example-basic-single form-control mt-1 focus" name="cantidad" required="" disabled>
                                                 <option selected="" >{{ $cantidad }}</option>
                                                 @for ($i = 1; $i <= $cantidad ; $i++)
         
@@ -73,7 +83,7 @@
                                     
                                     <div class="col-md-12  col-lg-6 mt-5" >
                                         <div class="" >
-                                            <select class="js-example-basic-single2 form-control mt-1 focus" name="bus_id" required="" >
+                                            <select class="js-example-basic-single2 form-control mt-1 focus" name="bus_id" required="" disabled>
                                                 <option selected="" disabled=""># de la Unidad</option>
                                                  {{-- @forelse($buses as $bus) --}}
                                                 <optgroup label="">
@@ -131,7 +141,8 @@
         {{-- <script type="text/javascript" src="{{ asset('plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js') }}"></script> --}}
         {{-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script> --}}
         <script type="text/javascript"  src="{{ asset('plugins/select2/select2.min.js') }}"></script>
-        
+
+        <script type="text/javascript"  src="{{ asset('plugins/sweetalert2.all.min.js') }}"></script>
 
         <script type="text/javascript">
             $('.js-example-basic-single').select2(); 

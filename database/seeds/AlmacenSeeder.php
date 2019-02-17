@@ -16,7 +16,8 @@ class AlmacenSeeder extends Seeder
 			'nombre_producto'=> 'aceite 15w50',            
 			'compatibilidad'=> 6118,           
 			'cantidad' => '10',
-			'ubicacion' => 'Estante 5',
+            'ubicacion' => 'Estante 5',
+            'limite' => 6,
             
         ]);
         DB::table('almacen')->insert([
@@ -24,6 +25,8 @@ class AlmacenSeeder extends Seeder
             'compatibilidad'=> 'Todas las Unidades',           
             'cantidad' => '50',
             'ubicacion' => 'Estante 4',
+            'limite' => 6,
+
             
         ]);
         DB::table('almacen')->insert([
@@ -31,6 +34,8 @@ class AlmacenSeeder extends Seeder
             'compatibilidad'=> 6752,           
             'cantidad' => '20',
             'ubicacion' => 'Estante 1',
+            'limite' => 6,
+
             
         ]);
         
@@ -39,6 +44,8 @@ class AlmacenSeeder extends Seeder
             'compatibilidad'=> 6896,           
             'cantidad' => '20',
             'ubicacion' => 'Estante 2',
+            'limite' => 6,
+
             
         ]);
         
