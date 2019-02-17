@@ -28,7 +28,7 @@ class AlmacenController extends Controller
 
         foreach ($peticionesPendientes as $peticion) {
             
-            $peticionFecha = date("Y/m/d", strtotime('+5 days', strtotime($peticion->created_at)));
+            $peticionFecha = date("Y/m/d", strtotime('+8 days', strtotime($peticion->created_at)));
         
             // dd($peticionFecha);    
             $hoy = date("Y/m/d");

@@ -81,7 +81,7 @@
 
                             
                                  
-                            <input id="totalPeticionesPendientes" hidden="" readonly="" value="{{ count($ultimasPeticiones) }}"></input>
+                            <input id="totalPeticionesPendientes" hidden="" readonly="" value="{{ $peticionesPendientes }}"></input>
                             @forelse($ultimasPeticiones as $peticion)
                                 <div class="col-md-4 mt-3">
                                     <div class="jumbotron p-3 mb-2">

@@ -227,14 +227,14 @@ class PeticionMantenimientoAlmacen extends Controller
         $peticionesEliminadas = [];
         foreach ($peticionesPendientes as $peticion) {
             
-            $peticionFecha = date("d/m/Y", strtotime('+5 days', strtotime($peticion->created_at)));
+            $peticionFecha = date("d/m/Y", strtotime('+8 days', strtotime($peticion->created_at)));
             
             $hoy = date("d/m/Y");
             if ($peticionFecha < $hoy) {
                 Session::flash('peticionesEliminadas', 'hecholdasd');
                 // Session::flash('hola', 'warning');
                 array_push($peticionesEliminadas, $peticion);
-
+                
                 $peticion->estado = 'Rechazada';
                 $peticion->observacion = 'Transcurrieron 5 días, el lapso de respuesta ha expirado';
                 $peticion->save();
@@ -249,14 +249,30 @@ class PeticionMantenimientoAlmacen extends Controller
         //     // dd($peticionPendiente->isDirty('estado'));
         // }
 
-        $peticionesPendientes = Peticion::where('estado', 'Pendiente')->get();
-        $peticionesPendientes->load('almacen');
+        $peticionesPendientesNormales = Peticion::where('peticion_especial', 0)
+                                        ->where('estado', 'Pendiente')->get();
+        $peticionesPendientesNormales->load('almacen');
+        
+        $peticionesPendientesEspeciales = PeticionesEspeciales::all();
+        $peticionesPendientesEspeciales->load('peticion');
+        $peticionesEspeciales = [];
+
+        for ($i=0; $i < count($peticionesPendientesEspeciales) ; $i++) { 
+            if ($peticionesPendientesEspeciales[$i]->peticion->estado == "Pendiente") {
+                array_push($peticionesEspeciales, $peticionesPendientesEspeciales[$i]);
+            }
+        }
+        
+        
+        // dd($peticionesPendientesNormales);
+
         $peticiones = Peticion::where('estado','!=', 'Pendiente')->get();
         $peticiones->load('almacen');
         
         return view('almacen.peticiones.showPeticiones', [
             'peticiones' => $peticiones,
-            'peticionesPendientes' => $peticionesPendientes,
+            'peticionesPendientes' => $peticionesPendientesNormales,
+            'peticionesEspeciales' => $peticionesEspeciales,
             // 'ultimasPeticiones' => $ultimasPeticiones,
             'peticionesEliminadas' => $peticionesEliminadas,
             

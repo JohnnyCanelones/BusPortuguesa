@@ -1,12 +1,19 @@
 
 $(document).ready(function() {
    
-$('#example').DataTable( {
-    dom: 'Bfrtip',
+  $('#peticionesPendientes').DataTable( {
+      dom: 'Bfrtip',
+      "order": [4, 'desc'],
 
-} );
-$('#example2').DataTable( {
+  } );
+  $('#peticiones-aprobada-rechazadas').DataTable( {
+      dom: 'Bfrtip',
+      "order": [6, 'desc'],
+
+  } );
+  $('#peticionesEspeciales').DataTable( {
     dom: 'Bfrtip',
+    "order": [4, 'desc'],
 
 } );
 } );
