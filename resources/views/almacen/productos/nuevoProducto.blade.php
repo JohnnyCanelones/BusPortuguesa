@@ -36,7 +36,7 @@
                                     <div class="col-lg-6 col-md-12 mt-4">
                                         <div class=" form-group" >
                                             <strong><label class="bmd-label-floating" for="nombre_producto">Nombre del Producto</label></strong>
-                                            <input class="form-control {{ $errors->has('nombre_producto') ? ' is-invalid' : '' }}" type="" name="nombre_producto" value="{{ old('nombre_producto') }}">
+                                            <input required class="form-control {{ $errors->has('nombre_producto') ? ' is-invalid' : '' }}" type="" name="nombre_producto" value="{{ old('nombre_producto') }}">
                                                  
                                                  @if ($errors->has('nombre_producto'))
                                                     <span class="invalid-feedback" role="alert">
@@ -71,7 +71,7 @@
                                     <div class="col-lg-6 col-md-12 mt-4">
                                         <div class="form-group">
                                             <strong><label class="bmd-label-floating" for="cantidad">Cantidad</label></strong>
-                                            <input class="form-control {{ $errors->has('cantidad') ? ' is-invalid' : '' }}" type="text" name="cantidad" value="{{ old('cantidad') }}">
+                                            <input required class="form-control {{ $errors->has('cantidad') ? ' is-invalid' : '' }}" type="number" name="cantidad" value="{{ old('cantidad') }}">
                                             @if ($errors->has('cantidad'))
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('cantidad') }}</strong>
@@ -80,11 +80,23 @@
         
                                         </div>
                                     </div>
+                                    <div class="col-lg-6 col-md-12 mt-4">
+                                        <div class="form-group">
+                                            <strong><label class="bmd-label-floating" for="limite">Limite, <span style="font: size 5px;" >es para un lapso de 6 meses si no tiene limite colocar 0</span> </label></strong>
+                                            <input required class="form-control {{ $errors->has('limite') ? ' is-invalid' : '' }}" type="number" name="limite" value="{{ old('limite') }}">
+                                            @if ($errors->has('limite'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('limite') }}</strong>
+                                                </span>
+                                            @endif
+        
+                                        </div>
+                                    </div>
                                     
-                                   <div class="col-lg-6 col-md-12 mt-4">
+                                   <div class="col-lg-12 col-md-12 mt-4">
                                         <div class="form-group">
                                             <strong><label class="bmd-label-floating" for="ubicacion">Ubicación</label></strong>
-                                            <input class="form-control {{ $errors->has('ubicacion') ? ' is-invalid' : '' }}" type="text" name="ubicacion" value="{{ old('ubicacion') }}">
+                                            <input required class="form-control {{ $errors->has('ubicacion') ? ' is-invalid' : '' }}" type="text" name="ubicacion" value="{{ old('ubicacion') }}">
                                             @if ($errors->has('ubicacion'))
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('ubicacion') }}</strong>

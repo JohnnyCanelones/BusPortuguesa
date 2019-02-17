@@ -79,6 +79,7 @@ class AlmacenController extends Controller
     		'compatibilidad' => $request->get('compatibilidad'),
     		'cantidad' => $request->get('cantidad'),
     		'ubicacion' => $request->get('ubicacion'),
+    		'limite' => $request->get('limite'),
     	]);
 
         $monitoreo = WarehouseMonitoring::create([
@@ -171,6 +172,8 @@ class AlmacenController extends Controller
         $compatibilidad = $request->get('compatibilidad');
         $cantidad = $request->get('cantidad');
         $ubicacion = $request->get('ubicacion');
+        $limite = $request->get('limite'); 
+        
 
         $producto = Almacen::find($id);
 
@@ -178,6 +181,7 @@ class AlmacenController extends Controller
         $producto->compatibilidad = $compatibilidad;
         $producto->cantidad = $cantidad;
         $producto->ubicacion = $ubicacion;
+        $producto->limite = $limite;
 
         // dd($producto);
         

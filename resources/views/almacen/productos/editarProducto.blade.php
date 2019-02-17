@@ -76,8 +76,20 @@
         
                                         </div>
                                     </div>
+                                    <div class="col-lg-6 col-md-12 mt-4">
+                                        <div class="form-group">
+                                            <strong><label class="bmd-label-floating" for="limite">Limite, <span style="font: size 5px;" >es para un lapso de 6 meses si no tiene limite colocar 0</span> </label></strong>
+                                            <input required class="form-control {{ $errors->has('limite') ? ' is-invalid' : '' }}" type="number" name="limite" value="{{ $producto->limite }}">
+                                            @if ($errors->has('limite'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('limite') }}</strong>
+                                                </span>
+                                            @endif
+        
+                                        </div>
+                                    </div>
                                     
-                                   <div class="col-lg-6 col-md-12 mt-4">
+                                   <div class="col-lg-12 col-md-12 mt-4">
                                         <div class="form-group">
                                             <strong><label class="bmd-label-floating" for="ubicacion">Ubicación</label></strong>
                                             <input class="form-control {{ $errors->has('ubicacion') ? ' is-invalid' : '' }}" type="text" name="ubicacion" value="{{ $producto->ubicacion }}">
