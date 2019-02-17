@@ -11,6 +11,7 @@ Route::get('mantenimiento/productos', 'PeticionMantenimientoAlmacen@productosDis
 
 Route::get('mantenimiento/peticion/{id}', 'PeticionMantenimientoAlmacen@peticionForm');
 Route::post('mantenimiento/peticion/{id}/created', 'PeticionMantenimientoAlmacen@peticionCreate');
+Route::post('mantenimiento/peticion/especial/{id}', 'PeticionMantenimientoAlmacen@peticionEspecialCreate');
 
 Route::get('mantenimiento/peticiones', 'PeticionMantenimientoAlmacen@peticionesShow');
 

@@ -74,9 +74,6 @@
                                 <th class="text-white sorting_desc" scope="col">Fecha Enviada</th>
                                 <th class="text-white" scope="col">Acciones</th>
 
-                                
-
-                               
                             </tr>
 
                         </thead>
