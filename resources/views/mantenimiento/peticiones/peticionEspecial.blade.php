@@ -11,7 +11,7 @@
             <script type="text/javascript">
                 $(document).ready(function() {
                     swal(
-                    'Advertencia!',
+                    'Advertencia',
                     '{{ session('peticionEspecial') }}' ,
                     'warning'
                     )
@@ -108,7 +108,7 @@
                                    
                                     <div class="col-lg-12 col-md-12  mt-4" id="observacion">
                                         <div class="form-group">
-                                            <strong><label for="observacion" class="bmd-label-floating">Observación</label></strong>
+                                            <strong><label for="observacion" class="bmd-label-floating">Motivo</label></strong>
                                             <textarea required name="observacion" class="form-control focus {{ $errors->has('observacion') ? ' is-invalid' : '' }}" value="{{ old('observacion') }}"></textarea>
                                             @if ($errors->has('observacion'))
                                                 <span class="invalid-feedback" role="alert">

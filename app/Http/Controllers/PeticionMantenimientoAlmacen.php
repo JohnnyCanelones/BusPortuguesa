@@ -80,8 +80,8 @@ class PeticionMantenimientoAlmacen extends Controller
             // dd($contadorProductosTotales);
             if($contadorProductosTotales > $producto->limite  ){
                 // dd('Error, solo puedes pedir '.$producto->limite.' unidades de '.$producto->nombre_producto.' hasta junio de este año, ya llevas '.$contadorProductosTotales);
-                Session::flash('peticionEspecial', 'Solo puedes pedir '.$producto->limite.' unidades de '.$producto->nombre_producto.
-                                ' hasta junio de este año, ya llevas '.$contadorProductosTotales.', dinos el motivo  ');
+                Session::flash('peticionEspecial', 'Solo puede solicitar '.$producto->limite.' unidades de '.$producto->nombre_producto.
+                                ' hasta junio de este año, actualmente cuenta con '.$contadorProductosTotales.' unidades, justifique el motivo  ');
 
                 return view('mantenimiento/peticiones/peticionEspecial', [
                     'producto' => $producto,
