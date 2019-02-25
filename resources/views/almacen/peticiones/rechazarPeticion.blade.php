@@ -1,6 +1,6 @@
 <head>
         <link rel="stylesheet" href="{{asset("plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css")}}">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        {{-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> --}}
         <link rel="stylesheet" href="{{asset("plugins/select2/select2.min.css")}}">
 </head>
         

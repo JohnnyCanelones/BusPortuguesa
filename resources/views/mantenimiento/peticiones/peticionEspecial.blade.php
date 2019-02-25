@@ -1,6 +1,6 @@
 <head>
         <link rel="stylesheet" href="{{asset("plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css")}}">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        {{-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> --}}
         <link rel="stylesheet" href="{{asset("plugins/select2/select2.min.css")}}">
 
 </head>
@@ -11,7 +11,7 @@
             <script type="text/javascript">
                 $(document).ready(function() {
                     swal(
-                    'Advertencia!',
+                    'Advertencia',
                     '{{ session('peticionEspecial') }}' ,
                     'warning'
                     )
@@ -108,7 +108,7 @@
                                    
                                     <div class="col-lg-12 col-md-12  mt-4" id="observacion">
                                         <div class="form-group">
-                                            <strong><label for="observacion" class="bmd-label-floating">Observación</label></strong>
+                                            <strong><label for="observacion" class="bmd-label-floating">Motivo</label></strong>
                                             <textarea required name="observacion" class="form-control focus {{ $errors->has('observacion') ? ' is-invalid' : '' }}" value="{{ old('observacion') }}"></textarea>
                                             @if ($errors->has('observacion'))
                                                 <span class="invalid-feedback" role="alert">
@@ -138,11 +138,7 @@
         </div>
         
         <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
-        {{-- <script type="text/javascript" src="{{ asset('js/staffform.js') }}"></script> --}}
         
-        {{-- <script type="text/javascript" src="{{ asset('plugins/momentjs/moment.js') }}"></script> --}}
-        {{-- <script type="text/javascript" src="{{ asset('plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js') }}"></script> --}}
-        {{-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script> --}}
         <script type="text/javascript"  src="{{ asset('plugins/select2/select2.min.js') }}"></script>
 
         <script type="text/javascript"  src="{{ asset('plugins/sweetalert2.all.min.js') }}"></script>
@@ -151,13 +147,7 @@
             $('.js-example-basic-single').select2(); 
             $('.js-example-basic-single2').select2(); 
             
-            // $('#date').bootstrapMaterialDatePicker({
-            //     weekStart : 0,
-            //     format : 'YYYY/M/D ', 
-            //     lang: 'es',
-            //     time: false,
-            // });
-
+    
 
         </script>        
         

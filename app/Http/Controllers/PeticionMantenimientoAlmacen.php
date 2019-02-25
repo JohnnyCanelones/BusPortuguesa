@@ -73,6 +73,7 @@ class PeticionMantenimientoAlmacen extends Controller
 
 
         
+            
             foreach ($peticionesAnteriones as $peticion){
                 $contadorProductosTotales = $contadorProductosTotales + $peticion->cantidad;
             }
@@ -80,8 +81,73 @@ class PeticionMantenimientoAlmacen extends Controller
             // dd($contadorProductosTotales);
             if($contadorProductosTotales > $producto->limite  ){
                 // dd('Error, solo puedes pedir '.$producto->limite.' unidades de '.$producto->nombre_producto.' hasta junio de este año, ya llevas '.$contadorProductosTotales);
-                Session::flash('peticionEspecial', 'Solo puedes pedir '.$producto->limite.' unidades de '.$producto->nombre_producto.
-                                ' hasta junio de este año, ya llevas '.$contadorProductosTotales.', dinos el motivo  ');
+                Session::flash('peticionEspecial', 'Solo puede solicitar '.$producto->limite.' unidades de '.$producto->nombre_producto.
+                                ' hasta junio de este año, actualmente cuenta con '.$contadorProductosTotales.' unidades, justifique el motivo  ');
+
+                return view('mantenimiento/peticiones/peticionEspecial', [
+                    'producto' => $producto,
+                    'bus_id' => $request->get('bus_id'),
+                    'cantidad' => $request->get('cantidad'),
+                    'mesActual' => $mesActual,
+                    // 'observacion' => $request->get('observacion'),
+                    // 'estado' => 'Pendiente'
+                ]);
+                
+            }else{
+                $peticion = Peticion::create([
+                    'almacen_id' => $producto->id,
+                    'bus_id' => $request->get('bus_id'),
+                    'cantidad' => $request->get('cantidad'),
+                    // 'observacion' => $request->get('observacion'),
+                    'estado' => 'Pendiente',
+                    'peticion_especial' => 0,
+
+                ]);
+        
+                $monitoreo = PetitionMonitoring::create([
+                    'user_id' => Auth::user()->username,
+                    'peticion_id' => $peticion->id,
+                    'accion' => 'Peticion enviada', 
+                    'fecha_accion' => date("Y-m-d H:i:s"),
+                ]);
+        
+                $success = true;
+                if ($success) {
+                    Session::flash('status','Petición Enviada');
+        
+                }
+            
+                    
+                return redirect('/mantenimiento');
+        
+                // dd('#VamosBien, ya llevas '.$contadorProductosTotales);
+
+            }
+        
+            
+
+              
+        }
+        else {
+            $peticionesAnteriones = Peticion::where('bus_id', $bus_id)
+                                        ->where('almacen_id', $almacen_id)
+                                        ->whereMonth('created_at', '>=', 07)
+                                        ->whereMonth('created_at', '<=', 12)
+                                        ->whereYear('created_at', '=', date('Y'))
+                                        ->get();
+
+
+        
+            
+            foreach ($peticionesAnteriones as $peticion){
+                $contadorProductosTotales = $contadorProductosTotales + $peticion->cantidad;
+            }
+           
+            // dd($contadorProductosTotales);
+            if($contadorProductosTotales > $producto->limite  ){
+                // dd('Error, solo puedes pedir '.$producto->limite.' unidades de '.$producto->nombre_producto.' hasta junio de este año, ya llevas '.$contadorProductosTotales);
+                Session::flash('peticionEspecial', 'Solo puede solicitar '.$producto->limite.' unidades de '.$producto->nombre_producto.
+                                ' hasta Diciembre de este año, actualmente cuenta con '.$contadorProductosTotales.' unidades, justifique el motivo  ');
 
                 return view('mantenimiento/peticiones/peticionEspecial', [
                     'producto' => $producto,
@@ -125,6 +191,7 @@ class PeticionMantenimientoAlmacen extends Controller
             
 
               
+            
         }
         
     }
