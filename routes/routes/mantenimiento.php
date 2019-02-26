@@ -15,5 +15,9 @@ Route::post('mantenimiento/peticion/especial/{id}', 'PeticionMantenimientoAlmace
 
 Route::get('mantenimiento/peticiones', 'PeticionMantenimientoAlmacen@peticionesShow');
 
+Route::get('mantenimiento/cronograma', function(){
+  return view('mantenimiento.servicios_reparaciones.cronograma');
+});
+
 
 
