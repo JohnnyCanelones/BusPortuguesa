@@ -14,10 +14,11 @@
                             <tr class="text-white" style="background-color: #003286e8">
                                 <th class="text-white" scope="col"># de la Unidad</th>
                                 <th class="text-white" scope="col">Modelo</th>
-                                <th class="text-white" scope="col">Conductor</th>
+                                <th class="text-white" scope="col">Kilometraje</th>
                                 <th class="text-white" scope="col">Estado</th>
                                 <th class="text-white" scope="col">Motivo de la inactividad</th>
                                 <th class="text-white" scope="col">Inactivo desde</th>
+                                <th class="text-white" scope="col">Conductor</th>
                                 <th class="text-white" scope="col">Observación</th>
                             </tr>
 
@@ -29,11 +30,18 @@
                                     <a href=""  style="color: #008a34">{{ $bus->id_bus}}</a>
                                 </th>
                                 <td>{{ $bus->modelo}} </td>
-                                <td>{{ $bus->staff->names }} {{  $bus->staff->last_names }}</td>
+                                <td> {{ $bus->kilometraje }}</td>
                                 <td> {{ $bus->estado }}</td>
                                 <td class="text-center"> <span class="text-center @if ($bus->motivo_inactividad == 'a Desincorporar')badge badge-warning
-                                    @endif"> @if( $bus->estado == 'Inactivo') {{ $bus->motivo_inactividad }} </span>@else ---- @endif</td>        
+                                        @endif"> @if( $bus->estado == 'Inactivo') {{ $bus->motivo_inactividad }} </span>@else ---- @endif</td>        
                                 <td> @if( $bus->estado == 'Inactivo') {{ $newDate = date("d/m/Y", strtotime($bus->fecha_inactivo))  }} @else ---- @endif</td>        
+                                <td>@if ($bus->conductor_id == 0)
+                                    No tiene conductor asignado
+                                @else
+                                    {{ $bus->staff->names }} {{  $bus->staff->last_names }}
+                                    
+                                @endif
+                                </td>
                                 <td> @if( $bus->estado == 'Inactivo') {{ $bus->observacion }} @else ---- @endif</td>        
                             </tr>
                             @empty

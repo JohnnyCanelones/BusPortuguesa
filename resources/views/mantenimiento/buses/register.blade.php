@@ -55,6 +55,19 @@
                                         
                                     </div>
                                 </div>
+                                <div class="col-lg-6 col-md-12 mt-4">
+                                        <div class=" form-group" >
+                                            <strong><label class="bmd-label-floating" for="kilometraje">Kilometraje</label></strong>
+                                            <input  class="form-control {{ $errors->has('kilometraje') ? ' is-invalid' : '' }}" type="" name="kilometraje" value="{{ old('kilometraje') }}" >
+                                                 
+                                                 @if ($errors->has('kilometraje'))
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $errors->first('kilometraje') }}</strong>
+                                                    </span>
+                                                @endif		
+                                        </div>	
+                                        
+                                    </div>
 
 
                                     <div class="col-md-12 col-lg-6 mt-4">
@@ -72,7 +85,7 @@
                                                 <optgroup label="No hay conductores">
                                                 @endforelse
                                                 <optgroup>
-                                                    <option>No tiene conductor asignado</option>
+                                                    <option value='0'>No tiene conductor asignado</option>
                                                 </optgroup>
                                             </select>
                                             
@@ -120,7 +133,7 @@
                                     </div>
 
                                     
-                                    <div class="col-lg-6 col-md-12 d-none mt-3" id="fecha_inactivo">
+                                    <div class="col-lg-6 col-md-12 d-none mt-5" id="fecha_inactivo">
                                         <div class="form-group">
                                             <strong><label for="fecha_inactivo"  class="bmd-label-floating">Inactivo Desde</label></strong>
                                             <input  class="form-control "  name="fecha_inactivo" id="date">
@@ -128,7 +141,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-12 col-md-12 d-none mt-5" id="observacion">
+                                    <div class="col-lg-6 col-md-12 d-none mt-4" id="observacion">
                                         <div class="form-group">
                                             <strong><label for="observacion" class="bmd-label-floating">Observación</label></strong>
                                             <textarea name="observacion" class="form-control focus {{ $errors->has('observacion') ? ' is-invalid' : '' }}" value="{{ old('observacion') }}"></textarea>
