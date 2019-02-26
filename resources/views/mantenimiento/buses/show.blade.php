@@ -27,7 +27,7 @@
                             @forelse($buses as $bus)
                             <tr>
                                 <th scope="row">
-                                    <a href=""  style="color: #008a34">{{ $bus->id_bus}}</a>
+                                <a href="/mantenimiento/bus/{{$bus->id_bus}}"  style="color: #008a34">{{ $bus->id_bus}}</a>
                                 </th>
                                 <td>{{ $bus->modelo}} </td>
                                 <td> {{ $bus->kilometraje }}</td>
