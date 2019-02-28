@@ -27,10 +27,10 @@
                             @forelse($buses as $bus)
                             <tr>
                                 <th scope="row">
-                                <a href="/mantenimiento/bus/{{$bus->id_bus}}"  style="color: #008a34">{{ $bus->id_bus}}</a>
+                                <a data-toggle="tooltip" data-placement="top" title="Modificar Unidad" href="/mantenimiento/bus/{{$bus->id_bus}}"  style="color: #008a34">{{ $bus->id_bus}}</a>
                                 </th>
                                 <td>{{ $bus->modelo}} </td>
-                                <td> {{ $bus->kilometraje }}</td>
+                                <td><a data-toggle="tooltip" data-placement="top" title="Modificar kilometraje" href="/mantenimiento/kilometraje/{{ $bus->id_bus }}" style="color: #008a34"> {{ $bus->kilometraje }}</a></td>
                                 <td> {{ $bus->estado }}</td>
                                 <td class="text-center"> <span class="text-center @if ($bus->motivo_inactividad == 'a Desincorporar')badge badge-warning
                                         @endif"> @if( $bus->estado == 'Inactivo') {{ $bus->motivo_inactividad }} </span>@else ---- @endif</td>        
@@ -70,6 +70,9 @@
     
     } );
 } );
+    $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
 </script>
 
 

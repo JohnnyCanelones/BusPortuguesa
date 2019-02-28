@@ -140,6 +140,43 @@ class BusesController extends Controller
         }
     }
 
+    public function editKilometrajeForm($id)
+    {
+        $bus = Buses::find($id);
+        return view('mantenimiento.buses.kilometrajeEdit', [
+            'bus' => $bus,
+            'kilometraje' => $bus->kilometraje
+        ]);
+    }
+
+    public function editKilometraje($id, Request $request)
+    {
+        $bus = Buses::find($id);
+        $nuevoKilometraje =  $request->get('kilometraje');
+
+        if ($nuevoKilometraje <= $bus->kilometraje) {
+            
+            Session::flash('error','El kilometraje que colocó es menor o igual al que ya estaba guardado');
+            
+            // return redirect('/mantenimiento/kilometraje/'.$bus->id_bus);
+
+            return view('mantenimiento.buses.kilometrajeEdit', [
+                'bus' => $bus,
+                'kilometraje' => $nuevoKilometraje,
+            ]);
+        } else {
+            $bus->kilometraje = $nuevoKilometraje;
+            $bus->save();
+            Session::flash('status','Modificado el kilometraje');
+            
+            return redirect('/mantenimiento');
+            
+        }
+        
+
+
+    }
+
     public function showBuses()
     {
         $buses = Buses::all();

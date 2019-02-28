@@ -14,7 +14,9 @@
                 <div class="col-sm-12 col-lg-7">
                     <div id="" class="card card2 ">
                         <div class="card-header">
-                            <h3 id="hola" class="azul text-center m-3 ">Registro de Buses</h3>
+                            <a class="text-left" href="/mantenimiento/show/buses" style="color: #008a34"><i class="fas fa-angle-left"></i> Atras</a>
+
+                            <h3 id="hola" class="azul text-center m-3 ">Editar la Unidad # {{ $bus->id_bus }}</h3>
                         </div>
                       <form action="/mantenimiento/bus/{{$bus->id_bus}}" method="post">
                         <div class="card-body">
