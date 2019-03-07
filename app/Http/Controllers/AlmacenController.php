@@ -9,6 +9,7 @@ use App\Peticion;
 use App\WarehouseMonitoring;
 
 
+use App\Http\Requests\CreateProductRequest;
 
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
@@ -69,10 +70,10 @@ class AlmacenController extends Controller
 
     public function showProductoForm()
     {
-    	return view('almacen.productos.nuevoProducto');	
+    	return view('almacen.productos.nuevoproducto');	
     }
 
-    public function createProducto(Request $request)
+    public function createProducto(CreateProductRequest $request)
     {
     	$producto = Almacen::create([
     		'nombre_producto' => $request->get('nombre_producto'),

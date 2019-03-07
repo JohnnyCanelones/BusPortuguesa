@@ -51,9 +51,9 @@
 
                                     <div class="col-md-12 col-lg-6 mt-4">
                                     <div class="form-group">
-                                        <select class="js-example-basic-single form-control mt-1 focus" name="compatibilidad" required="">
-                                            <option selected="" disabled="">Elige un Tipo de Unidad</option>
-                                            
+                                        <select class="js-example-basic-single form-control mt-1 focus  {{ $errors->has('cantidad') ? ' is-invalid' : '' }}" name="compatibilidad" required="">
+                                            {{-- <option selected="" disabled="">Elige un Tipo de Unidad</option> --}}
+                                            <option value="">Elige un Tipo de Unidad</option>
                                             <optgroup label="">
                                             <option>6118</option>
                                             <option>6896</option>
@@ -63,6 +63,11 @@
                                             
 
                                         </select>
+                                        @if ($errors->has('compatibilidad'))
+                                               <span class="invalid-feedback" role="alert">
+                                                   <strong>{{ $errors->first('compatibilidad') }}</strong>
+                                               </span>
+                                        @endif
                                         
                                         
                                     </div>
