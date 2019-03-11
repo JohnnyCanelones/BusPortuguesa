@@ -1,6 +1,6 @@
 <head>
         <link rel="stylesheet" href="{{asset("plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css")}}">
-        {{-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> --}}
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="{{asset("plugins/select2/select2.min.css")}}">
 
 </head>
@@ -14,9 +14,11 @@
                 <div class="col-sm-12 col-lg-7">
                     <div id="" class="card card2 ">
                         <div class="card-header">
-                            <h3 id="hola" class="azul text-center m-3 ">Registro de Buses</h3>
+                            <a class="text-left" href="/mantenimiento/show/buses" style="color: #008a34"><i class="fas fa-angle-left"></i> Atras</a>
+
+                            <h3 id="hola" class="azul text-center m-3 ">Editar la Unidad # {{ $bus->id_bus }}</h3>
                         </div>
-                        <form action="/mantenimiento/buses/registrar" method="post">
+                      <form action="/mantenimiento/bus/{{$bus->id_bus}}" method="post">
                         <div class="card-body">
                                 {{ csrf_field() }}
                                 <div class="row">
@@ -26,7 +28,7 @@
                                     <div class="col-lg-6 col-md-12 mt-4">
                                         <div class=" form-group" >
                                             <strong><label class="bmd-label-floating" for="id_bus"># de la Unidad</label></strong>
-                                            <input  class="form-control {{ $errors->has('id_bus') ? ' is-invalid' : '' }}" type="" name="id_bus" value="{{ old('id_bus') }}" >
+                                            <input  class="form-control {{ $errors->has('id_bus') ? ' is-invalid' : '' }}" type="" name="id_bus" value="{{ $bus->id_bus }}" >
                                                  
                                                  @if ($errors->has('id_bus'))
                                                     <span class="invalid-feedback" role="alert">
@@ -41,7 +43,7 @@
                                     <div class="col-md-12 col-lg-6 mt-4">
                                     <div class="form-group">
                                         <select required="" class="js-example-basic-single form-control mt-1 focus" name="modelo" required="">
-                                            <option selected="" disabled="">Elige un Tipo de Unidad</option>
+                                            <option selected="" >{{$bus->modelo}}</option>
                                             
                                             <optgroup label="">
                                             <option>6118</option>
@@ -58,7 +60,7 @@
                                 <div class="col-lg-6 col-md-12 mt-4">
                                         <div class=" form-group" >
                                             <strong><label class="bmd-label-floating" for="kilometraje">Kilometraje</label></strong>
-                                            <input  class="form-control {{ $errors->has('kilometraje') ? ' is-invalid' : '' }}" type="" name="kilometraje" value="{{ old('kilometraje') }}" >
+                                            <input  disabled class="form-control {{ $errors->has('kilometraje') ? ' is-invalid' : '' }}" type="" name="kilometraje" value="{{ $bus->kilometraje }}" >
                                                  
                                                  @if ($errors->has('kilometraje'))
                                                     <span class="invalid-feedback" role="alert">
@@ -73,9 +75,18 @@
                                     <div class="col-md-12 col-lg-6 mt-4">
                                         <div class="form-group">
                                             <select required="" class="js-example-basic-single form-control mt-1 focus" name="conductor" required="">
-                                                <option selected="" disabled="">Elige un conductor</option>
+                                                @if ($bus->conductor_id == null)
+                                                <optgroup>
+                                                  <option selected value='0'>No tiene conductor asignado</option>
+                                                </optgroup>
+                                                @else 
+                                                  <optgroup label="Seleccionado">
+                                                  <option value="{{ $bus->staff->id }}">C.I {{ $bus->staff->id }}, <br>{{ $bus->staff->names }} {{ $bus->staff->last_names }}</option>
+
+                                                </optgroup>
+                                                @endif
+                                                <optgroup label="Disponibles">
                                                 @forelse($conductores as $conductor)
-                                                <optgroup label="">
                                                 <option value="{{ $conductor->id }}">C.I {{ $conductor->id }}, <br>{{ $conductor->names }} {{ $conductor->last_names }}</option>
                                                 {{-- <option value="{{ $conductor->id }}">{{ $conductor->names." ".  $conductor->last_names}}</option> --}}
                                                     
@@ -84,9 +95,7 @@
                                                 @empty
                                                 <optgroup label="No hay conductores">
                                                 @endforelse
-                                                <optgroup>
-                                                    <option value='0'>No tiene conductor asignado</option>
-                                                </optgroup>
+                                                
                                             </select>
                                             
                                             
@@ -103,7 +112,9 @@
                                             <div class="switch">
                                                 <label>Si</label>
                                                 <label id="active_bus" >
-                                                    <input  type="checkbox" id="active_bus_check" name="estado" ><span class="lever switch-col-green" ></span> 
+                                                    <input  type="checkbox" id="active_bus_check" name="estado" @if ($bus->estado == "Inactivo")
+                                                        checked                                                        
+                                                    @endif><span class="lever switch-col-green" ></span> 
                                                     No
                                                 </label>
                                             </div>
@@ -116,9 +127,15 @@
                                     <div class="col-md-12 d-none col-lg-6 mt-5" id="motivo_inactividad">
                                         <div class="" >
                                             <select required="" class="js-example-basic-single2 form-control mt-1 focus" name="motivo_inactividad" required="" >
-                                                <option selected="" disabled="">Motivo de la inactividad</option>
+                                              @if ($bus->estado == "Inactivo")
+                                              <option selected="" >{{$bus->motivo_inactividad}}</option>
+                                                  
+                                              @else
+                                              <option selected="" disabled="">Motivo de la inactividad</option>
+                                                  
+                                              @endif  
                                                 
-                                                <optgroup label="">
+                                                <optgroup label="Disponibles">
                                                 <option >a Desincorporar</option>
                                                 <option >Servicio</option>
                                                 <option >Falla</option>
@@ -136,7 +153,9 @@
                                     <div class="col-lg-6 col-md-12 d-none mt-5" id="fecha_inactivo">
                                         <div class="form-group">
                                             <strong><label for="fecha_inactivo"  class="bmd-label-floating">Inactivo Desde</label></strong>
-                                            <input  class="form-control "  name="fecha_inactivo" id="date">
+                                            <input  class="form-control "  name="fecha_inactivo" id="date" value= @if ($bus->estado == "Inactivo")
+                                                {{date('Y-m-d', strtotime($bus->fecha_inactivo))}}
+                                            @endif>
                                              
                                         </div>
                                     </div>
@@ -144,7 +163,7 @@
                                     <div class="col-lg-6 col-md-12 d-none mt-4" id="observacion">
                                         <div class="form-group">
                                             <strong><label for="observacion" class="bmd-label-floating">Observación</label></strong>
-                                            <textarea name="observacion" class="form-control focus {{ $errors->has('observacion') ? ' is-invalid' : '' }}" value="{{ old('observacion') }}"></textarea>
+                                            <textarea name="observacion" class="form-control focus {{ $errors->has('observacion') ? ' is-invalid' : '' }}" value="{{ old('observacion') }}">{{$bus->observacion}}</textarea>
                                             @if ($errors->has('observacion'))
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('observacion') }}</strong>
@@ -155,95 +174,6 @@
 
                                 
                                 
-                                    
-                                   {{--  <div class="col-lg-6 col-md-12 mt-5">
-                                        <div class="form-group">
-                                            <strong><label class="bmd-label-floating">Apellidos</label></strong>
-                                            <input  class="form-control {{ $errors->has('last_names') ? ' is-invalid' : '' }}" type="text" name="last_names" value="{{ old('last_names') }}">
-                                            @if ($errors->has('last_names'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('last_names') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>			
-                                    </div>
-        
-                                    <div class="col-lg-6 col-md-12 mt-5">
-                                            <div class="form-group">
-                                                <strong><label for="date_birth" class="bmd-label-floating">Fecha de Nacimiento</label></strong>
-                                                <input class="form-control "  name="date_birth" id="date">
-                                                 
-                                            </div>
-                                        </div>
-        
-                                    <div class="col-lg-6 col-md-12 mt-5">
-                                        <div class="form-group">
-                                            <strong><label for="genre" class="bmd-label-floating">Género</label></strong>
-                                            <select required="" required class="form-control focus  {{ $errors->has('genre') ? ' is-invalid' : '' }}"  name="genre" value="{{ old('genre') }}">
-                                                <option></option>
-                                                <option>Femenino</option>
-                                                <option>Masculino</option>
-                                            </select>
-                                            @if ($errors->has('genre'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('genre') }}</strong>
-                                                </span>
-                                            @endif 
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="col-lg-6 col-md-12 mt-5 ">
-                                        <div class="form-group">
-                                            <strong><label for="email" class="bmd-label-floating">Email</label></strong>
-                                            <input class="form-control  {{ $errors->has('email') ? ' is-invalid' : '' }}" type="email" name="email" value="{{ old('email') }}">
-                                            @if ($errors->has('email'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('email') }}</strong>
-                                                </span>
-                                            @endif 
-                                        </div>
-                                    </div>
-        
-        
-                                    <div class="col-lg-6 col-md-12 mt-5">
-                                        <div class="form-group">
-                                            <strong><label for="phone_number" class="bmd-label-floating ">telefono</label></strong>
-                                            <input class="form-control  {{ $errors->has('phone_number') ? ' is-invalid' : '' }}" type="text" name="phone_number" value="{{ old('phone_number') }}">
-                                            @if ($errors->has('phone_number'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('phone_number') }}</strong>
-                                                </span>
-                                            @endif 
-                                        </div>
-                                    </div>
-        
-                                    <div class="col-lg-6 col-md-12 mt-5">
-                                        <div class="form-group">
-                                            <strong><label for="position" class="bmd-label-floating">Posicion</label></strong>
-                                            <input class="form-control {{ $errors->has('position') ? ' is-invalid' : '' }}" type="text" name="position" value="{{ old('position') }}">
-                                            @if ($errors->has('position'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('position') }}</strong>
-                                                </span>
-                                            @endif 
-                                        </div>
-                                    </div>
-        
-                                    <div class="col-lg-6 col-md-12 mt-5">
-                                        <div class="form-group">
-                                            <strong><label for="address" class="bmd-label-floating">direccion</label></strong>
-                                            <textarea name="address" class="form-control focus {{ $errors->has('address') ? ' is-invalid' : '' }}" value="{{ old('address') }}"></textarea>
-                                            @if ($errors->has('address'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('address') }}</strong>
-                                                </span>
-                                            @endif 
-                                        </div>
-                                    </div> --}}
-                                    
-                                  
-                                        
-                                    
                                         
                                     </div>
                                     

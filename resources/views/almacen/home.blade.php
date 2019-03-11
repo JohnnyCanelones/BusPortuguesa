@@ -8,30 +8,12 @@
 
             <div class="row mb-5 card2" style="background-color:">
                  
+                
                 <div class=" col-sm-12 col-md-4 mb-3" >
                     <div class="row">
                         <div class="col-sm-4 p-0  ">
-                            <div class="card p-2 infobox-azul-icono" >
-                                <h3 style="background-color: transparent;" class="text-center text-white"><i class="fas fa-briefcase"></i></h3>
-                            </div>
-                            
-                        </div>
-                        <div class="col-sm-7 p-0 "  >
-                           <div class="card p-3 infobox-azul-contenido" >
-                               <h5 class="text-white">Productos <br>en Almacen <span class="timer badge badge-secondary" data-from="0" data-to="{{ $productos }}"></span></h5>
-                           </div>
-                        </div>
-                    </div>
-
-
-
-
-                </div>
-                 <div class=" col-sm-12 col-md-4 mb-3" >
-                    <div class="row">
-                        <div class="col-sm-4 p-0  ">
                             <div class="card p-2 infobox-verde-icono" >
-                                <h3 style="background-color: transparent;" class="text-center text-white"><i class="fas fa-users"></i></h3>
+                                <h3 style="background-color: transparent;" class="text-center text-white"><i class="fas fa-check"></i></h3>
                                 
                             </div>
                             
@@ -42,6 +24,26 @@
                            </div>
                         </div>
                     </div>
+
+                </div>
+                
+                <div class=" col-sm-12 col-md-4 mb-3" >
+                    <div class="row">
+                        <div class="col-sm-4 p-0  ">
+                            <div class="card p-2 infobox-azul-icono" >
+                                <h3 style="background-color: transparent;" class="text-center text-white"><i class="fas fa-briefcase"></i></h3>
+                            </div>
+                            
+                        </div>
+                        <div class="col-sm-7 p-0 "  >
+                            <div class="card p-3 infobox-azul-contenido" >
+                                <h5 class="text-white">Peticiones <br>Pendientes Especiales <span class="timer badge badge-secondary" data-from="0" data-to="{{ $productos }}"></span></h5>
+                            </div>
+                        </div>
+                    </div>
+
+
+
 
                 </div>
                  <div class=" col-sm-12 col-md-4 mb-3" >
@@ -81,7 +83,7 @@
 
                             
                                  
-                            <input id="totalPeticionesPendientes" hidden="" readonly="" value="{{ count($ultimasPeticiones) }}"></input>
+                            <input id="totalPeticionesPendientes" hidden="" readonly="" value="{{ $peticionesPendientes }}"></input>
                             @forelse($ultimasPeticiones as $peticion)
                                 <div class="col-md-4 mt-3">
                                     <div class="jumbotron p-3 mb-2">

@@ -26,14 +26,20 @@ class BusesController extends Controller
     {
         $estado = $request->get('estado');
         // dd($request->get('conductor'));      
-         
+        if ($request->get('conductor') == 0) {
+            $conductor= null;
+        }
+        else {
+            $conductor = $request->get('conductor');
+        }
 
         // SI ESTA INACTIVO
         if ($estado) {
             $bus = Buses::create([
             'id_bus' => $request->get('id_bus'),
-            'modelo' => $request->get('modelo'),
-            'conductor_id' =>  $request->get('conductor'),
+            'modelo' => $request->get('modelo'), 
+            'kilometraje'=> $request->get('kilometraje'),
+            'conductor_id' =>  $conductor,
             'estado' => 'Inactivo',
             'motivo_inactividad' => $request->get('motivo_inactividad'),
             'fecha_inactivo' => $request->get('fecha_inactivo'),
@@ -42,7 +48,7 @@ class BusesController extends Controller
             
             $success = true;
             if ($success) {
-                Session::flash('status','Success');
+                Session::flash('status','Nueva Unidad agregada');
 
             }
             
@@ -53,19 +59,122 @@ class BusesController extends Controller
             $bus = Buses::create([
             'id_bus' => $request->get('id_bus'),
             'modelo' => $request->get('modelo'),
-            'conductor_id' =>  $request->get('conductor'),
+            'kilometraje'=> $request->get('kilometraje'),
+            'conductor_id' =>  $conductor,
             'estado' => 'Activo',
            ]);
 
             $success = true;
             if ($success) {
-                Session::flash('status','Success');
+                Session::flash('status','Nueva Unidad agregada');
 
             }
             return redirect('/mantenimiento');
 
 
         }
+    }
+
+    public function editBusForm($id)
+    {
+        $bus = Buses::find($id);
+        $conductores = Staff::where('position', 'Mecanico')->get();
+    
+        return view('mantenimiento.buses.busEdit', [
+            'conductores' => $conductores,
+            'bus' => $bus,
+        ]);
+    }
+    public function editBus($id, Request $request)
+    {
+        $bus = Buses::find($id);
+        $estado = $request->get('estado');
+        // dd($request->get('conductor'));      
+        if ($request->get('conductor') == 0) {
+            $conductor= null;
+        }
+        else {
+            $conductor = $request->get('conductor');
+        }
+
+        // SI ESTA INACTIVO
+        if ($estado) {
+            $bus->id_bus = $request->get('id_bus');
+            $bus->modelo = $request->get('modelo'); 
+            // $bus->kilometraje = $request->get('kilometraje');
+            $bus->conductor_id =  $conductor;
+            $bus->estado = 'Inactivo';
+            $bus->motivo_inactividad =  $request->get('motivo_inactividad');
+            $bus->fecha_inactivo =  $request->get('fecha_inactivo');
+            $bus->observacion =  $request->get('observacion');  
+        
+            $bus->save();
+            $success = true;
+            if ($success) {
+                Session::flash('status','Unidad editada');
+
+            }
+            
+            return redirect('/mantenimiento');
+            
+
+        }else {
+            $bus->id_bus = $request->get('id_bus');
+            $bus->modelo = $request->get('modelo'); 
+            // $bus->kilometraje = $request->get('kilometraje');
+            $bus->conductor_id =  $conductor;
+            $bus->estado = 'Activo';
+            $bus->motivo_inactividad =  null;
+            $bus->fecha_inactivo =  null;
+            $bus->observacion =  null;  
+        
+            $bus->save();
+            $success = true;
+            if ($success) {
+                Session::flash('status','Unidad modificacda');
+
+            }
+            return redirect('/mantenimiento');
+
+
+        }
+    }
+
+    public function editKilometrajeForm($id)
+    {
+        $bus = Buses::find($id);
+        return view('mantenimiento.buses.kilometrajeEdit', [
+            'bus' => $bus,
+            'kilometraje' => $bus->kilometraje
+        ]);
+    }
+
+    public function editKilometraje($id, Request $request)
+    {
+        $bus = Buses::find($id);
+        $nuevoKilometraje =  $request->get('kilometraje');
+
+        if ($nuevoKilometraje <= $bus->kilometraje) {
+            
+            Session::flash('error','El kilometraje que colocó es menor o igual al que ya estaba guardado');
+            
+            // return redirect('/mantenimiento/kilometraje/'.$bus->id_bus);
+
+            return view('mantenimiento.buses.kilometrajeEdit', [
+                'bus' => $bus,
+                'kilometraje' => $nuevoKilometraje,
+            ]);
+        } else {
+            $bus->kilometraje = $nuevoKilometraje;
+            $bus->save();
+            Session::flash('status','Modificado el kilometraje');
+            
+            return redirect('/mantenimiento');
+            
+        }
+        
+
+
     }
 
     public function showBuses()

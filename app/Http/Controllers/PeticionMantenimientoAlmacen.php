@@ -10,6 +10,7 @@ use App\Almacen;
 use App\Buses;
 use App\Peticion;
 use App\PetitionMonitoring;
+use App\PeticionesEspeciales;
 
 
 
@@ -50,32 +51,185 @@ class PeticionMantenimientoAlmacen extends Controller
 
     public function peticionCreate($id, Request $request)
     {
+        $producto = Almacen::where('id', $id)->first();
+        $bus_id = $request->get('bus_id');
+        $almacen_id = $producto->id;
+        $cantidad = $request->get('cantidad');
+        
+        $contadorProductosTotales = $cantidad;
+
+       
+        
+        $mesActual = date("m");
+
+        if($mesActual <= 06){
+            
+            $peticionesAnteriones = Peticion::where('bus_id', $bus_id)
+                                        ->where('almacen_id', $almacen_id)
+                                        ->whereMonth('created_at', '>=', 01)
+                                        ->whereMonth('created_at', '<=', 06)
+                                        ->whereYear('created_at', '=', date('Y'))
+                                        ->get();
+
+
+        
+            
+            foreach ($peticionesAnteriones as $peticion){
+                $contadorProductosTotales = $contadorProductosTotales + $peticion->cantidad;
+            }
+           
+            // dd($contadorProductosTotales);
+            if($contadorProductosTotales > $producto->limite  ){
+                // dd('Error, solo puedes pedir '.$producto->limite.' unidades de '.$producto->nombre_producto.' hasta junio de este año, ya llevas '.$contadorProductosTotales);
+                Session::flash('peticionEspecial', 'Solo puede solicitar '.$producto->limite.' unidades de '.$producto->nombre_producto.
+                                ' hasta junio de este año, actualmente cuenta con '.$contadorProductosTotales.' unidades, justifique el motivo  ');
+
+                return view('mantenimiento/peticiones/peticionEspecial', [
+                    'producto' => $producto,
+                    'bus_id' => $request->get('bus_id'),
+                    'cantidad' => $request->get('cantidad'),
+                    'mesActual' => $mesActual,
+                    // 'observacion' => $request->get('observacion'),
+                    // 'estado' => 'Pendiente'
+                ]);
+                
+            }else{
+                $peticion = Peticion::create([
+                    'almacen_id' => $producto->id,
+                    'bus_id' => $request->get('bus_id'),
+                    'cantidad' => $request->get('cantidad'),
+                    // 'observacion' => $request->get('observacion'),
+                    'estado' => 'Pendiente',
+                    'peticion_especial' => 0,
+
+                ]);
+        
+                $monitoreo = PetitionMonitoring::create([
+                    'user_id' => Auth::user()->username,
+                    'peticion_id' => $peticion->id,
+                    'accion' => 'Peticion enviada', 
+                    'fecha_accion' => date("Y-m-d H:i:s"),
+                ]);
+        
+                $success = true;
+                if ($success) {
+                    Session::flash('status','Petición Enviada');
+        
+                }
+            
+                    
+                return redirect('/mantenimiento');
+        
+                // dd('#VamosBien, ya llevas '.$contadorProductosTotales);
+
+            }
+        
+            
+
+              
+        }
+        else {
+            $peticionesAnteriones = Peticion::where('bus_id', $bus_id)
+                                        ->where('almacen_id', $almacen_id)
+                                        ->whereMonth('created_at', '>=', 07)
+                                        ->whereMonth('created_at', '<=', 12)
+                                        ->whereYear('created_at', '=', date('Y'))
+                                        ->get();
+
+
+        
+            
+            foreach ($peticionesAnteriones as $peticion){
+                $contadorProductosTotales = $contadorProductosTotales + $peticion->cantidad;
+            }
+           
+            // dd($contadorProductosTotales);
+            if($contadorProductosTotales > $producto->limite  ){
+                // dd('Error, solo puedes pedir '.$producto->limite.' unidades de '.$producto->nombre_producto.' hasta junio de este año, ya llevas '.$contadorProductosTotales);
+                Session::flash('peticionEspecial', 'Solo puede solicitar '.$producto->limite.' unidades de '.$producto->nombre_producto.
+                                ' hasta Diciembre de este año, actualmente cuenta con '.$contadorProductosTotales.' unidades, justifique el motivo  ');
+
+                return view('mantenimiento/peticiones/peticionEspecial', [
+                    'producto' => $producto,
+                    'bus_id' => $request->get('bus_id'),
+                    'cantidad' => $request->get('cantidad'),
+                    // 'observacion' => $request->get('observacion'),
+                    // 'estado' => 'Pendiente'
+                ]);
+                
+            }else{
+                $peticion = Peticion::create([
+                    'almacen_id' => $producto->id,
+                    'bus_id' => $request->get('bus_id'),
+                    'cantidad' => $request->get('cantidad'),
+                    // 'observacion' => $request->get('observacion'),
+                    'estado' => 'Pendiente',
+                    'peticion_especial' => 0,
+
+                ]);
+        
+                $monitoreo = PetitionMonitoring::create([
+                    'user_id' => Auth::user()->username,
+                    'peticion_id' => $peticion->id,
+                    'accion' => 'Peticion enviada', 
+                    'fecha_accion' => date("Y-m-d H:i:s"),
+                ]);
+        
+                $success = true;
+                if ($success) {
+                    Session::flash('status','Petición Enviada');
+        
+                }
+            
+                    
+                return redirect('/mantenimiento');
+        
+                // dd('#VamosBien, ya llevas '.$contadorProductosTotales);
+
+            }
+        
+            
+
+              
+            
+        }
+        
+    }
+
+    public function peticionEspecialCreate($id, Request $request)
+    {
     	$producto = Almacen::where('id', $id)->first();
-    	
-    	$peticion = Peticion::create([
-    		'almacen_id' => $producto->id,
-    		'bus_id' => $request->get('bus_id'),
-    		'cantidad' => $request->get('cantidad'),
-    		// 'observacion' => $request->get('observacion'),
-    		'estado' => 'Pendiente',
-    	]);
+       
+        $peticion = Peticion::create([
+            'almacen_id' => $producto->id,
+            'bus_id' => $request->get('bus_id'),
+            'cantidad' => $request->get('cantidad'),
+            // 'observacion' => $request->get('observacion'),
+            'estado' => 'Pendiente',
+            'peticion_especial' => 1,
+        ]);
+
+        $peticionEspecial = PeticionesEspeciales::create([
+            'peticion_id' => $peticion->id,
+            'observacion' => $request->get('observacion'),
+        ]);
 
         $monitoreo = PetitionMonitoring::create([
             'user_id' => Auth::user()->username,
             'peticion_id' => $peticion->id,
-            'accion' => 'Peticion enviada', 
+            'accion' => 'Peticion Especial enviada', 
             'fecha_accion' => date("Y-m-d H:i:s"),
         ]);
 
-    	$success = true;
+        $success = true;
         if ($success) {
-            Session::flash('status','Petición Enviada');
+            Session::flash('status','Petición Especial Enviada');
 
         }
     
             
         return redirect('/mantenimiento');
-
+ 
     }
 
     public function peticionesShow()
@@ -103,14 +257,14 @@ class PeticionMantenimientoAlmacen extends Controller
         $peticionesEliminadas = [];
         foreach ($peticionesPendientes as $peticion) {
             
-            $peticionFecha = date("d/m/Y", strtotime('+5 days', strtotime($peticion->created_at)));
+            $peticionFecha = date("d/m/Y", strtotime('+8 days', strtotime($peticion->created_at)));
             
             $hoy = date("d/m/Y");
             if ($peticionFecha < $hoy) {
                 Session::flash('peticionesEliminadas', 'hecholdasd');
                 // Session::flash('hola', 'warning');
                 array_push($peticionesEliminadas, $peticion);
-
+                
                 $peticion->estado = 'Rechazada';
                 $peticion->observacion = 'Transcurrieron 5 días, el lapso de respuesta ha expirado';
                 $peticion->save();
@@ -125,14 +279,30 @@ class PeticionMantenimientoAlmacen extends Controller
         //     // dd($peticionPendiente->isDirty('estado'));
         // }
 
-        $peticionesPendientes = Peticion::where('estado', 'Pendiente')->get();
-        $peticionesPendientes->load('almacen');
+        $peticionesPendientesNormales = Peticion::where('peticion_especial', 0)
+                                        ->where('estado', 'Pendiente')->get();
+        $peticionesPendientesNormales->load('almacen');
+        
+        $peticionesPendientesEspeciales = PeticionesEspeciales::all();
+        $peticionesPendientesEspeciales->load('peticion');
+        $peticionesEspeciales = [];
+
+        for ($i=0; $i < count($peticionesPendientesEspeciales) ; $i++) { 
+            if ($peticionesPendientesEspeciales[$i]->peticion->estado == "Pendiente") {
+                array_push($peticionesEspeciales, $peticionesPendientesEspeciales[$i]);
+            }
+        }
+        
+        
+        // dd($peticionesPendientesNormales);
+
         $peticiones = Peticion::where('estado','!=', 'Pendiente')->get();
         $peticiones->load('almacen');
         
         return view('almacen.peticiones.showPeticiones', [
             'peticiones' => $peticiones,
-            'peticionesPendientes' => $peticionesPendientes,
+            'peticionesPendientes' => $peticionesPendientesNormales,
+            'peticionesEspeciales' => $peticionesEspeciales,
             // 'ultimasPeticiones' => $ultimasPeticiones,
             'peticionesEliminadas' => $peticionesEliminadas,
             
@@ -143,13 +313,24 @@ class PeticionMantenimientoAlmacen extends Controller
     {
         $peticion= Peticion::find($id);
         $producto = Almacen::find($peticion->almacen_id);
-        $peticion->estado = 'Aprobada';
         
-        $producto->cantidad = $producto->cantidad - $peticion->cantidad;
         
-        $peticion->save();
-        $producto->save();
+        if ($producto->cantidad >= $peticion->cantidad){
+            $peticion->estado = 'Aprobada';
+            $producto->cantidad = $producto->cantidad - $peticion->cantidad;
+            $peticion->save();
+            $producto->save();
 
+        }else {
+           
+            Session::flash('error','No hay Suficientes productos de '. $producto->nombre_producto );
+    
+         
+            return redirect('/almacen/peticiones');
+
+        }
+        
+        
         $monitoreo = PetitionMonitoring::create([
             'user_id' => Auth::user()->username,
             'peticion_id' => $peticion->id,

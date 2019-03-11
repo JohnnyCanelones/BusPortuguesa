@@ -19,9 +19,11 @@ class CrearTablaDeBuses extends Migration
             
             // por ahora rutas sin relacion
             $table->string('modelo');
+            $table->integer('kilometraje');
 
 
-            $table->integer('conductor_id')->unsigned();
+
+            $table->integer('conductor_id')->unsigned()->nullable();
             $table->foreign('conductor_id')->references('id')->on('staff');
 
             $table->string('estado');

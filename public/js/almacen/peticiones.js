@@ -1,12 +1,19 @@
 
 $(document).ready(function() {
    
-$('#example').DataTable( {
-    dom: 'Bfrtip',
+  $('#peticionesPendientes').DataTable( {
+      dom: 'Bfrtip',
+      "order": [4, 'desc'],
 
-} );
-$('#example2').DataTable( {
+  } );
+  $('#peticiones-aprobada-rechazadas').DataTable( {
+      dom: 'Bfrtip',
+      "order": [6, 'desc'],
+
+  } );
+  $('#peticionesEspeciales').DataTable( {
     dom: 'Bfrtip',
+    "order": [4, 'desc'],
 
 } );
 } );
@@ -90,7 +97,7 @@ setInterval(function() {
       let peticionesDom =document.getElementById("totalPeticionesPendientes").value;
       let peticionesActuales = data.length;
       if (peticionesDom != peticionesActuales) {
-          location.reload();
+          // location.reload();
       }
   });
 

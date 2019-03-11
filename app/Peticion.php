@@ -24,5 +24,10 @@ class Peticion extends Model
         return $this->hasOne(PetitionMonitoring::class, 'almacen_id');
     }
 
+    public function peticion_especial()
+    {
+        return $this->hasOne(PeticionesEspeciales::class, 'id');
+    }
+
    
 }
