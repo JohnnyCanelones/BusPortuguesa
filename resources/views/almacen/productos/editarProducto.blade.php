@@ -32,7 +32,7 @@
                                     <div class="col-lg-6 col-md-12 mt-4">
                                         <div class=" form-group" >
                                             <strong><label class="bmd-label-floating" for="nombre_producto">Nombre del Producto</label></strong>
-                                            <input class="form-control {{ $errors->has('nombre_producto') ? ' is-invalid' : '' }}" type="" name="nombre_producto" value="{{ $producto->nombre_producto }}">
+                                            <input required class="form-control {{ $errors->has('nombre_producto') ? ' is-invalid' : '' }}" type="" name="nombre_producto" value="{{ $producto->nombre_producto }}">
                                                  
                                                  @if ($errors->has('nombre_producto'))
                                                     <span class="invalid-feedback" role="alert">
@@ -48,7 +48,7 @@
                                     <div class="col-md-12 col-lg-6 mt-4">
                                     <div class="form-group">
                                         <select class="js-example-basic-single form-control mt-1 focus" name="compatibilidad" required="">
-                                            <option disabled="">Elige un Tipo de Unidad</option>
+                                            <option value="">Elige un Tipo de Unidad</option>
                                             
                                             <optgroup label="">
                                             <option @if($producto->compatibilidad == 6118)  selected="" @endif >6118</option>
@@ -92,7 +92,7 @@
                                    <div class="col-lg-12 col-md-12 mt-4">
                                         <div class="form-group">
                                             <strong><label class="bmd-label-floating" for="ubicacion">Ubicación</label></strong>
-                                            <input class="form-control {{ $errors->has('ubicacion') ? ' is-invalid' : '' }}" type="text" name="ubicacion" value="{{ $producto->ubicacion }}">
+                                            <input required class="form-control {{ $errors->has('ubicacion') ? ' is-invalid' : '' }}" type="text" name="ubicacion" value="{{ $producto->ubicacion }}">
                                             @if ($errors->has('ubicacion'))
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('ubicacion') }}</strong>

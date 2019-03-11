@@ -71,7 +71,7 @@
                                             <option  selected="" disabled="">{{ $producto->cantidad }}</option>
                                             
                                             <optgroup label="Añadir">
-                                            @for ($i = 1; $i <= 20; $i++) 
+                                            @for ($i = 1; $i <= 100; $i++) 
                                                 <option>{{ $i }}</option>
                                                 
                                             @endfor
