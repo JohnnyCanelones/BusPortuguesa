@@ -37,7 +37,7 @@
                         </div>
                         <div class="col-sm-7 p-0 "  >
                             <div class="card p-3 infobox-azul-contenido" >
-                                <h5 class="text-white">Peticiones <br>Pendientes Especiales <span class="timer badge badge-secondary" data-from="0" data-to="{{ $productos }}"></span></h5>
+                                <h5 class="text-white">Peticiones <br>Pendientes Especiales <span class="timer badge badge-secondary" data-from="0" data-to="{{ count($peticionesPendientesEspeciales) }}"></span></h5>
                             </div>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                         </div>
                         <div class="col-sm-7 p-0 "  >
                            <div class="card p-3 infobox-amarillo-contenido" >
-                               <h5 class="text-white">Peticiones <br>Pendientes <span class="timer badge badge-secondary" data-from="0" data-to="{{ $peticionesPendientes }}" ></span></h5>
+                               <h5 class="text-white">Peticiones <br>Pendientes <span class="timer badge badge-secondary" data-from="0" data-to="{{ count($peticionesPendientes) }}" ></span></h5>
                                
                            </div>
                         </div>
@@ -83,7 +83,7 @@
 
                             
                                  
-                            <input id="totalPeticionesPendientes" hidden="" readonly="" value="{{ $peticionesPendientes }}"></input>
+                            <input id="totalPeticionesPendientes" hidden="" readonly="" value="{{ count($peticionesPendientes) }}"></input>
                             @forelse($ultimasPeticiones as $peticion)
                                 <div class="col-md-4 mt-3">
                                     <div class="jumbotron p-3 mb-2">
@@ -113,7 +113,7 @@
                     </div>
                     <div class="card-footer">
                         <div class="text-right">
-                            <strong><a class=""  style="color: #008a34" href="almacen/peticiones/">Ver Todas ({{ $peticionesPendientes }}) <i class="fas fa-arrow-right"></i></a></strong>
+                            <strong><a class=""  style="color: #008a34" href="almacen/peticiones/">Ver Todas ({{ count($peticionesPendientes) }}) <i class="fas fa-arrow-right"></i></a></strong>
                         </div>
                     </div>
                 </div>
@@ -185,7 +185,7 @@ setInterval(function() {
         console.log(peticionesDom)
         console.log(peticionesActuales)
         if (peticionesDom != peticionesActuales) {
-            location.reload();
+            // location.reload();
         }
     });
 

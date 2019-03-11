@@ -52,11 +52,14 @@ class AlmacenController extends Controller
         // dd($peticionesEliminadas);
 
     	$productos = count(Almacen::all());
-        $peticionesPendientes = count(Peticion::where('estado', 'Pendiente')->get());
         $peticionesAprobadas = count(Peticion::where('estado', 'Aprobada')->get());
         $ultimasPeticiones = Peticion::where('estado', 'Pendiente')->latest()->take(3)->get();
         $ultimasPeticiones->load('almacen');
         // dd($ultimasPeticiones);
+
+        $peticionesPendientes = Peticion::where('estado', 'Pendiente')->get();
+        $peticionesPendientes->load('almacen');
+        $peticionesPendientesEspeciales = Peticion::where('peticion_especial', '1');
 
 		return view('almacen.home', [
 			'productos' => $productos,
@@ -64,6 +67,8 @@ class AlmacenController extends Controller
             'peticionesAprobadas' => $peticionesAprobadas,
             'ultimasPeticiones' => $ultimasPeticiones,
             'peticionesEliminadas' => $peticionesEliminadas,
+            'peticionesPendientesEspeciales' => $peticionesPendientesEspeciales->get(),
+            'peticionesPendientesEspecialesUltimas' => $peticionesPendientesEspeciales->latest()->take(3)->get(),
 
 		]);
 	}
