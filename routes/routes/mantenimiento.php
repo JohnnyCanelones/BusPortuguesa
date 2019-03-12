@@ -26,9 +26,8 @@ Route::get('mantenimiento/cronograma', function(){
   return view('mantenimiento.servicios_reparaciones.cronograma');
 });
 
-Route::get('mantenimiento/nuevo/servicio', function(){
-  return view('mantenimiento.servicios_reparaciones.nuevoServicioForm');
-});
+Route::get('mantenimiento/nuevo/servicio', 'MantenimientoController@serviciosForm');
+Route::post('mantenimiento/nuevo/servicio', 'MantenimientoController@nuevoServicio');
 
 
 

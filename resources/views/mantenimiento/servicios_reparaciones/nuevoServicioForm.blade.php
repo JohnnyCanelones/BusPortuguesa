@@ -34,12 +34,15 @@
                                              <select required="" class="unidad form-control mt-1 focus" name="bus_id" required="">
                                                 <option value=""></option>
 
-                                              <optgroup label="">
-                                              <option>6118</option>
-                                              <option>6896</option>
-                                              <option>6752</option>
+                                              @forelse($buses as $bus)
+                                                <optgroup label="">
+                                                <option >{{ $bus->id_bus }}</option>
+                                                    
+                                                
 
-                                              
+                                                @empty
+                                                <optgroup label="No hay conductores">
+                                                @endforelse
 
                                           </select>	
                                         </div>	
@@ -51,9 +54,9 @@
                                                 <option value=""></option>
 
                                               <optgroup label="">
-                                              <option>6118</option>
-                                              <option>6896</option>
-                                              <option>6752</option>
+                                                <option>Preventivo</option>
+                                                <option>Correctivo</option>
+                                            
 
                                               
 
@@ -66,10 +69,11 @@
                                           <div class="form-group">
                                               <select required="" class="tipo_servicio form-control mt-1 focus" name="tipo_servicio" required="">
                                                 <option value=""></option>
+                                                  <option>Cambio de Aceite</option>
+                                                  <option>Cambio de Aceite</option>
+                                                  <option>Cambio de Aceite</option>
+                                                  <option>Cambio de Aceite</option>
                                                   
-                                                  <optgroup>
-                                                      <option value='0'>No tiene conductor asignado</option>
-                                                  </optgroup>
                                               </select>
                                               
                                               
@@ -83,16 +87,18 @@
 
                                     <div class="col-md-12  col-lg-12 mt-5" id="mecanicos">
                                         <div class="" >
-                                            <select  multiple class="mecanicos form-control mt-1 focus"  name="mecanicos" required="" >
+                                            <select  multiple class="mecanicos form-control mt-1 focus"  name="mecanicos[]" required="" >
                                                 <option class="p-5" value=""></option>
-                                                <optgroup label="">
-                                                <option >a Desincorporar</option>
-                                                <option >Servicio</option>
-                                                <option >Falla</option>
-                                                <option >Mantenimiento</option>
-                                                {{-- <option value="{{ $conductor->id }}">{{ $conductor->names." ".  $conductor->last_names}}</option> --}}
-                                                    
-                                                </optgroup>
+                                                @forelse($mecanicos as $mecanico)
+                                                  <optgroup label="">
+                                                  <option value="{{ $mecanico->id }}">C.I {{ $mecanico->id }}, <br>{{ $mecanico->names }} {{ $mecanico->last_names }}</option>
+                                                  {{-- <option value="{{ $conductor->id }}">{{ $conductor->names." ".  $conductor->last_names}}</option> --}}
+                                                      
+                                                  
+
+                                                  @empty
+                                                  <optgroup label="No hay conductores">
+                                                  @endforelse
     
                                             </select>
                                             

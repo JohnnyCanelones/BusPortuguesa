@@ -24,5 +24,10 @@ class Staff extends Model
         return $this->hasOne(StaffMonitoring::class, 'staff_id');
     }
 
+    public function mantenimientos() {
+        return $this->belongsToMany(Mantenimiento::class, 'mantenimiento_id');
+
+    }
+
 
 }

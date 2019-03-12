@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Buses;
 use App\Peticion;
 use App\PetitionMonitoring;
+use App\Mantenimiento;
+use App\Staff;
+
 
 
 
@@ -34,5 +37,44 @@ class MantenimientoController extends Controller
             'peticionesPendientes' => $peticionesPendientes,
             'ultimasPeticiones' => $ultimasPeticiones,
     	]);
+    }
+
+    public function serviciosForm(){
+        $buses = Buses::all()
+                        ->where('estado', 'Activo' and 'Inactivo')
+                        ->where('motivo_inactividad','!=', 'a Desincorporar');
+        
+        $mecanicos = Staff::where('position', 'Mecanico')->get();
+        
+        return view('mantenimiento.servicios_reparaciones.nuevoServicioForm', [
+            'buses' => $buses,
+            'mecanicos' => $mecanicos,
+        ]);
+
+    }
+
+    public function nuevoServicio(Request $request){
+        $bus = Buses::find($request->get('bus_id'));
+        // dd($bus);
+
+        $mecanicos = $request->get('mecanicos');
+
+        // dd($mecanicos);
+        $mantenimiento = new Mantenimiento();
+        $mantenimiento->fecha = $request->get('fecha');
+        $mantenimiento->bus_id = $bus->id_bus;
+        $mantenimiento->kilometraje = $bus->kilometraje;
+        $mantenimiento->tipo_mantenimiento = $request->get('tipo_mantenimiento');
+        $mantenimiento->tipo_servicio = $request->get('tipo_servicio');
+        $mantenimiento->save();
+
+        foreach ($mecanicos as $mecanico) {
+            $mantenimiento->staffs()->attach(Staff::where('id', $mecanico)->first());
+            # code...
+        }
+        Session::flash('status','Servicio Creado');
+
+        return redirect('/mantenimiento');
+
     }
 }
