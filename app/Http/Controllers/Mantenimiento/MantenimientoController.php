@@ -77,4 +77,13 @@ class MantenimientoController extends Controller
         return redirect('/mantenimiento');
 
     }
+
+    public function showCronograma(){
+        $mantenimientos = Mantenimiento::orderBy('fecha', 'desc')->paginate(9);
+
+        // dd($mantenimientos);
+        return view('mantenimiento.servicios_reparaciones.cronograma', [
+            'mantenimientos' => $mantenimientos, 
+        ]);
+    }
 }

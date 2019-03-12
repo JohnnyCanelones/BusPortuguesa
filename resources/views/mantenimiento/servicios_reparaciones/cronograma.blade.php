@@ -49,11 +49,15 @@ background: radial-gradient(circle, rgba(0,138,52,1) 41%, rgba(10,61,134,1) 79%)
 
 
     }
-    a.page-link {
+    .pagination2 .page-link {
       border-radius: 0 !important;
       /* border: 1px solid red; */
-      color: #0a3d86 !important;
+      /* color: #0a3d86 !important; */
       /* margin: 0 !important; */
+    }
+    .pagination2 ul {
+      justify-content: center;
+      background-color: transparent !important;
     }
 
     
@@ -88,15 +92,15 @@ background: radial-gradient(circle, rgba(0,138,52,1) 41%, rgba(10,61,134,1) 79%)
           
           <div class="card-body">
             <div class="row">
-              @for ($i = 0 ; $i < 9; $i++)
-              <div class="col-sm-4">
+              @foreach ($mantenimientos as $mantenimiento)
+                   <div class="col-sm-4">
                 <div class="card hover" style="">
                   <div class="card-header">
                     {{-- <p>dlfkjsldkfjsldkfjlsdkjflskdjflsdjf</p> --}}
-                    <span><strong>Fecha:</strong> 2019/02/23</span> <br> 
-                    <span><strong># de la unidad:</strong> 6118</span> <br> 
+                    <span><strong>Fecha:</strong> {{$mantenimiento->fecha}}</span> <br> 
+                    <span><strong># de la unidad:</strong> {{$mantenimiento->bus_id}}</span> <br> 
                     {{-- <span>Kilometraje: 6118215 Km</span>    --}}
-                    <span> <strong> Tipo de mantenimiento:</strong> preventivo</span>   
+                    <span> <strong> Tipo de mantenimiento:</strong> {{$mantenimiento->tipo_mantenimiento}}</span>   
                     {{-- <span>Servicio: Cambio de aceite</span>    --}}
                   </div>      
                 
@@ -105,13 +109,34 @@ background: radial-gradient(circle, rgba(0,138,52,1) 41%, rgba(10,61,134,1) 79%)
                   </div>
                 </div>
               </div>
+              @endforeach
+              {{-- @for ($i = 0 ; $i < 9; $i++)
+              <div class="col-sm-4">
+                <div class="card hover" style="">
+                  <div class="card-header">
+                    <span><strong>Fecha:</strong> 2019/02/23</span> <br> 
+                    <span><strong># de la unidad:</strong> 6118</span> <br> 
+                    <span> <strong> Tipo de mantenimiento:</strong> preventivo</span>   
+                  </div>      
+                
+                  <div class="card-footer text-right">
+                    <strong class="text-right vermas"><a href="#" data-toggle="modal" data-target="#exampleModalLong" class="vermas text-right">Ver más</a></strong>
+                  </div>
+                </div>
+              </div>
               
-              @endfor
+              @endfor --}}
             </div>
           </div>
 
           <div class="card-footer text-center"></div>    
-            <nav aria-label="Page navigation example">
+          
+          
+              <div class="pagination2">
+                {{ $mantenimientos->links() }}
+              
+              </div>
+            {{-- <nav aria-label="Page navigation example">
               <ul class="pagination justify-content-center">
                 <li class="page-item disabled">
                   <a class="page-link p-2  " href="#" tabindex="-1">Anterior</a>
@@ -123,7 +148,7 @@ background: radial-gradient(circle, rgba(0,138,52,1) 41%, rgba(10,61,134,1) 79%)
                   <a class="page-link p-2 " href="#">Siguiente</a>
                 </li>
               </ul>
-            </nav>
+            </nav> --}}
         </div>		
       </div>
     </div>
