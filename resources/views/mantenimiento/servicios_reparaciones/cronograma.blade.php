@@ -105,27 +105,12 @@ background: radial-gradient(circle, rgba(0,138,52,1) 41%, rgba(10,61,134,1) 79%)
                   </div>      
                 
                   <div class="card-footer text-right">
-                    <strong class="text-right vermas"><a href="#" data-toggle="modal" data-target="#exampleModalLong" class="vermas text-right">Ver más</a></strong>
+                  <strong class="text-right "><a href="#"  data-value= "{{ $mantenimiento->id }}" class="vermas text-right">Ver más</a></strong>
                   </div>
                 </div>
               </div>
               @endforeach
-              {{-- @for ($i = 0 ; $i < 9; $i++)
-              <div class="col-sm-4">
-                <div class="card hover" style="">
-                  <div class="card-header">
-                    <span><strong>Fecha:</strong> 2019/02/23</span> <br> 
-                    <span><strong># de la unidad:</strong> 6118</span> <br> 
-                    <span> <strong> Tipo de mantenimiento:</strong> preventivo</span>   
-                  </div>      
-                
-                  <div class="card-footer text-right">
-                    <strong class="text-right vermas"><a href="#" data-toggle="modal" data-target="#exampleModalLong" class="vermas text-right">Ver más</a></strong>
-                  </div>
-                </div>
-              </div>
               
-              @endfor --}}
             </div>
           </div>
 
@@ -167,6 +152,49 @@ background: radial-gradient(circle, rgba(0,138,52,1) 41%, rgba(10,61,134,1) 79%)
 
   {{-- <script type="text/javascript" src="{{ asset('js/mantenimiento/busesForm.js') }}"></script> --}}
   
+  <script>
+    let vermas = document.getElementsByClassName('vermas');
+    for (x=0; x <vermas.length; x++){
+
+      let mantenimiento= vermas[x];
+      
+      mantenimiento.addEventListener("click", function(event){
+          setTimeout(function(){
+            $('#exampleModalLong').modal('show');
+          }, 350);
+          $.get( "/mantenimiento/cronograma/servicio/"+mantenimiento.dataset.value, function( data ) {
+            document.getElementById('exampleModalLongTitle').innerHTML = `Unidad # <strong> ${data.bus_id} </strong>`;
+            document.getElementById('modal-mantenimiento').innerHTML = `
+              <span><strong>Kilometraje:</strong> ${data.kilometraje} <strong>Km</strong></span> <br> 
+              <span> <strong> Tipo de mantenimiento:</strong> ${data.tipo_mantenimiento}</span><br>   
+              <span><strong>Servicio:</strong> ${data.tipo_servicio}</span>  <br>
+            `
+              document.getElementById('mecanicos').innerHTML = `
+                <span><strong>Mecanico/a:</strong> ${data.staffs[0].names} ${data.staffs[0].last_names}</span>  <br>
+              `
+            for (let i = 1; i < data.staffs.length; i++) {
+              
+              document.getElementById('mecanicos').innerHTML += `
+                  <span><strong>Mecanico/a:</strong> ${data.staffs[i].names} ${data.staffs[i].last_names}</span>  <br> 
+                
+              `
+            }
+
+            let editarButton = document.getElementById('editar');
+            
+            editarButton.addEventListener("click", function(event){
+              location.href="/mantenimiento/servicio/"+ data.id;
+
+            })
+
+
+
+          });
+
+        
+      }) 
+    }
+  </script>
   
   </body>
   

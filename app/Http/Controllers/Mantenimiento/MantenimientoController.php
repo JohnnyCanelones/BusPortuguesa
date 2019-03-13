@@ -80,10 +80,18 @@ class MantenimientoController extends Controller
 
     public function showCronograma(){
         $mantenimientos = Mantenimiento::orderBy('fecha', 'desc')->paginate(9);
-
+        $mantenimientos->load('staffs');
+        // dd($mantenimientos[0]);
         // dd($mantenimientos);
         return view('mantenimiento.servicios_reparaciones.cronograma', [
             'mantenimientos' => $mantenimientos, 
         ]);
+    }
+    public function modalServicioInfo($id){
+        $servicio = Mantenimiento::find($id);
+        $servicio->load('staffs');
+
+        return $servicio;
+
     }
 }

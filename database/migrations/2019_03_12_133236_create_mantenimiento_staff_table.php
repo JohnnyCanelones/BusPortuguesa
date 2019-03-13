@@ -17,8 +17,8 @@ class CreateMantenimientoStaffTable extends Migration
             $table->increments('id');
             $table->integer('mantenimiento_id')->unsigned();
             $table->foreign('mantenimiento_id')->references('id')->on('mantenimiento');
-            $table->integer('mecanico_id')->unsigned();
-            $table->foreign('mecanico_id')->references('id')->on('staff')->onDelete('cascade');
+            $table->integer('staff_id')->unsigned();
+            $table->foreign('staff_id')->references('id')->on('staff')->onDelete('cascade');
             
 
         });
