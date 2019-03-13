@@ -84,6 +84,54 @@ class MantenimientoController extends Controller
         // dd($mantenimientos[0]);
         // dd($mantenimientos);
         return view('mantenimiento.servicios_reparaciones.cronograma', [
+            'menu' => 1,
+            'mantenimientos' => $mantenimientos, 
+        ]);
+    }
+
+    public function showCronogramaPreventivos(){
+        $mantenimientos = Mantenimiento::orderBy('fecha', 'desc')
+                                        ->where('tipo_mantenimiento', 'Preventivo')
+                                        ->paginate(9);
+        $mantenimientos->load('staffs');
+        // dd($mantenimientos[0]);
+        // dd($mantenimientos);
+        return view('mantenimiento.servicios_reparaciones.cronograma', [
+            'menu' => 4,
+            'mantenimientos' => $mantenimientos, 
+        ]);
+    }
+
+    public function showCronogramaCorrectivos(){
+        $mantenimientos = Mantenimiento::orderBy('fecha', 'desc')
+                                        ->where('tipo_mantenimiento', 'Correctivo')
+                                        ->paginate(9);
+        $mantenimientos->load('staffs');
+        // dd($mantenimientos[0]);
+        // dd($mantenimientos);
+        return view('mantenimiento.servicios_reparaciones.cronograma', [
+            'menu' => 5,
+            'mantenimientos' => $mantenimientos, 
+        ]);
+    }
+
+     public function showCronogramaUnidades(){
+        $buses = Buses::all();
+        // dd($mantenimientos[0]);
+        // dd($mantenimientos);
+        return view('mantenimiento.servicios_reparaciones.cronogramaUnidad', [
+            'buses' => $buses, 
+        ]);
+    }
+    public function showCronogramaUnidad($id){
+        $mantenimientos = Mantenimiento::where('bus_id', $id)
+                                        ->orderBy('fecha', 'desc')
+                                        ->paginate(9);
+        $mantenimientos->load('staffs');
+        // dd($mantenimientos[0]);
+        // dd($mantenimientos);
+        return view('mantenimiento.servicios_reparaciones.cronograma', [
+            'menu' => 3,
             'mantenimientos' => $mantenimientos, 
         ]);
     }

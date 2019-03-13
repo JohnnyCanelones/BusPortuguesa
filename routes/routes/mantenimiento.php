@@ -27,6 +27,12 @@ Route::get('mantenimiento/nuevo/servicio', 'MantenimientoController@serviciosFor
 Route::post('mantenimiento/nuevo/servicio', 'MantenimientoController@nuevoServicio');
 
 Route::get('mantenimiento/cronograma','MantenimientoController@showCronograma');
+Route::get('mantenimiento/cronograma/preventivos','MantenimientoController@showCronogramaPreventivos');
+Route::get('mantenimiento/cronograma/correctivos','MantenimientoController@showCronogramaCorrectivos');
+
+Route::get('mantenimiento/cronograma/unidades','MantenimientoController@showCronogramaUnidades');
+Route::get('mantenimiento/cronograma/unidad/{id}','MantenimientoController@showCronogramaUnidad');
+
 Route::get('mantenimiento/cronograma/servicio/{id}','MantenimientoController@modalServicioInfo');
 
 

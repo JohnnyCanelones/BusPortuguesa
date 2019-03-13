@@ -72,32 +72,32 @@ background: radial-gradient(circle, rgba(0,138,52,1) 41%, rgba(10,61,134,1) 79%)
           <div class="card-header cronograma-menu ">
             <div class="row text-center ">
               <div class="col-sm-12 mb-3">
-                <a  href="#1">Todo el Cronograma </a>
+                <h6><a class=" text-white @if ($menu == 1) font-weight-bold" @else " href="/mantenimiento/cronograma" @endif >Todo el Cronograma </a></h6>
                 
               </div>
               <div class="col-sm-3">
-                <a  href="#1">Cronograma fecha especifica</a>
+                <h6><a  class=" text-white @if ($menu == 2) font-weight-bold" @else " @endif>Cronograma fecha especifica</a></h6>
               </div>
               <div class="col-sm-3">
-                <a  href="#1">Cronograma por # de la unidad</a>
+                <h6><a class=" text-white @if ($menu == 3) font-weight-bold"  @endif " href="/mantenimiento/cronograma/unidades" >Cronograma por # de la unidad</a></h6>
               </div>
               <div class="col-sm-3">
-                <a  href="#1">Cronograma preventivos</a>
+                <h6><a  class=" text-white @if ($menu == 4) font-weight-bold" @else " href="/mantenimiento/cronograma/preventivos" @endif>Cronograma preventivos</a></h6>
               </div>
               <div class="col-sm-3">
-                <a  href="#1">Cronograma correctivos</a>
+                <h6><a  class=" text-white @if ($menu == 5) font-weight-bold" @else " href="/mantenimiento/cronograma/correctivos" @endif>Cronograma correctivos</a></h6>
               </div>
             </div>
           </div>
           
           <div class="card-body">
             <div class="row">
-              @foreach ($mantenimientos as $mantenimiento)
+              @forelse ($mantenimientos as $mantenimiento)
                    <div class="col-sm-4">
                 <div class="card hover" style="">
                   <div class="card-header">
                     {{-- <p>dlfkjsldkfjsldkfjlsdkjflskdjflsdjf</p> --}}
-                    <span><strong>Fecha:</strong> {{$mantenimiento->fecha}}</span> <br> 
+                    <span><strong>Fecha:</strong> {{ date("d/m/Y " , strtotime($mantenimiento->fecha))}}</span> <br> 
                     <span><strong># de la unidad:</strong> {{$mantenimiento->bus_id}}</span> <br> 
                     {{-- <span>Kilometraje: 6118215 Km</span>    --}}
                     <span> <strong> Tipo de mantenimiento:</strong> {{$mantenimiento->tipo_mantenimiento}}</span>   
@@ -109,7 +109,14 @@ background: radial-gradient(circle, rgba(0,138,52,1) 41%, rgba(10,61,134,1) 79%)
                   </div>
                 </div>
               </div>
-              @endforeach
+              @empty 
+              <div class="col-sm-12">
+                <div class="card hover text-center">
+                  <h3 style="background-color:transparent;">No se han encontrado resultados</h3>
+                  
+                </div>   
+              </div>
+              @endforelse
               
             </div>
           </div>
