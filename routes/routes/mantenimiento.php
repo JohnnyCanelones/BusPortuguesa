@@ -33,6 +33,8 @@ Route::get('mantenimiento/cronograma/correctivos','MantenimientoController@showC
 Route::get('mantenimiento/cronograma/unidades','MantenimientoController@showCronogramaUnidades');
 Route::get('mantenimiento/cronograma/unidad/{id}','MantenimientoController@showCronogramaUnidad');
 
+Route::get('mantenimiento/cronograma/fechas','MantenimientoController@showCronogramaFechas');
+Route::post('mantenimiento/cronograma/fechas','MantenimientoController@showCronogramaFechasPost');
 Route::get('mantenimiento/cronograma/servicio/{id}','MantenimientoController@modalServicioInfo');
 
 

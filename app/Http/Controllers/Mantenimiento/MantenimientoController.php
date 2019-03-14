@@ -115,7 +115,7 @@ class MantenimientoController extends Controller
         ]);
     }
 
-     public function showCronogramaUnidades(){
+    public function showCronogramaUnidades(){
         $buses = Buses::all();
         // dd($mantenimientos[0]);
         // dd($mantenimientos);
@@ -133,6 +133,35 @@ class MantenimientoController extends Controller
         return view('mantenimiento.servicios_reparaciones.cronograma', [
             'menu' => 3,
             'mantenimientos' => $mantenimientos, 
+        ]);
+    }
+    public function showCronogramaFechas(){
+        // $buses = Buses::all();
+        // dd($mantenimientos[0]);
+        // dd($mantenimientos);
+        return view('mantenimiento.servicios_reparaciones.cronogramaFechas', [
+            // 'buses' => $buses, 
+        ]);
+    }
+
+    public function showCronogramaFechasPost(Request $request){
+        $desde = $request->get('desde');
+        $hasta = $request->get('hasta');
+
+        $mantenimientos = Mantenimiento::whereDate('fecha', '>=', $desde)
+                                    ->whereDate('fecha', '<=', $hasta)
+                                    ->orderBy('fecha', 'desc')
+                                    ->paginate(9);
+
+        // dd($mantenimientos);
+
+        // dd($mantenimientos[0]);
+        // dd($mantenimientos);
+        return view('mantenimiento.servicios_reparaciones.cronograma', [
+            'menu' => 2,
+            'mantenimientos' => $mantenimientos, 
+            'desde' => $desde,
+            'hasta' => $hasta,
         ]);
     }
     public function modalServicioInfo($id){

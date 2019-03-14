@@ -27,7 +27,7 @@
                                 </th>
                                 <td>{{ $bus->modelo}} </td>
                                 <td> {{ $bus->estado }}</td>
-                                <td class="text-center"><a data-toggle="tooltip" data-placement="top" title="Buscar" href="/mantenimiento/cronograma/unidad/{{ $bus->id_bus }}">>> </a></td>
+                                <td class="text-center"><a style="color: #008a34" data-toggle="tooltip" data-placement="top" title="Buscar" href="/mantenimiento/cronograma/unidad/{{ $bus->id_bus }}"><h5><i class="fas fa-angle-double-right"></i> </h5></a></td>
                                 
                             </tr>
                             @empty

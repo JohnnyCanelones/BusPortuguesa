@@ -76,7 +76,7 @@ background: radial-gradient(circle, rgba(0,138,52,1) 41%, rgba(10,61,134,1) 79%)
                 
               </div>
               <div class="col-sm-3">
-                <h6><a  class=" text-white @if ($menu == 2) font-weight-bold" @else " @endif>Cronograma fecha especifica</a></h6>
+                <h6><a  class=" text-white @if ($menu == 2) font-weight-bold" @else " href="/mantenimiento/cronograma/fechas" @endif>Cronograma fecha especifica</a></h6>
               </div>
               <div class="col-sm-3">
                 <h6><a class=" text-white @if ($menu == 3) font-weight-bold"  @endif " href="/mantenimiento/cronograma/unidades" >Cronograma por # de la unidad</a></h6>
@@ -89,6 +89,10 @@ background: radial-gradient(circle, rgba(0,138,52,1) 41%, rgba(10,61,134,1) 79%)
               </div>
             </div>
           </div>
+          @if ($menu == 2)
+            @include('mantenimiento.servicios_reparaciones.fechasDesdeHasta')
+              
+          @endif
           
           <div class="card-body">
             <div class="row">
