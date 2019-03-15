@@ -79,7 +79,11 @@ class MantenimientoController extends Controller
     }
 
     public function showCronograma(){
-        $mantenimientos = Mantenimiento::orderBy('fecha', 'desc')->paginate(9);
+
+        $mantenimientos = Mantenimiento::whereDate('fecha', '>=', date("Y/m/d"))
+                                        ->orderBy('fecha', 'asc')->paginate(9);
+        
+        // dd($mantenimientos);
         $mantenimientos->load('staffs');
         // dd($mantenimientos[0]);
         // dd($mantenimientos);
@@ -90,7 +94,8 @@ class MantenimientoController extends Controller
     }
 
     public function showCronogramaPreventivos(){
-        $mantenimientos = Mantenimiento::orderBy('fecha', 'desc')
+        $mantenimientos = Mantenimiento::whereDate('fecha', '>=', date("Y/m/d"))
+                                        ->orderBy('fecha', 'asc')
                                         ->where('tipo_mantenimiento', 'Preventivo')
                                         ->paginate(9);
         $mantenimientos->load('staffs');
@@ -103,7 +108,8 @@ class MantenimientoController extends Controller
     }
 
     public function showCronogramaCorrectivos(){
-        $mantenimientos = Mantenimiento::orderBy('fecha', 'desc')
+        $mantenimientos = Mantenimiento::whereDate('fecha', '>=', date("Y/m/d"))
+                                        ->orderBy('fecha', 'asc')
                                         ->where('tipo_mantenimiento', 'Correctivo')
                                         ->paginate(9);
         $mantenimientos->load('staffs');
@@ -125,7 +131,8 @@ class MantenimientoController extends Controller
     }
     public function showCronogramaUnidad($id){
         $mantenimientos = Mantenimiento::where('bus_id', $id)
-                                        ->orderBy('fecha', 'desc')
+                                        ->whereDate('fecha', '>=', date("Y/m/d"))
+                                        ->orderBy('fecha', 'asc')
                                         ->paginate(9);
         $mantenimientos->load('staffs');
         // dd($mantenimientos[0]);
