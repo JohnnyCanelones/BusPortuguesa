@@ -9,6 +9,7 @@ use App\Peticion;
 use App\PetitionMonitoring;
 use App\Mantenimiento;
 use App\Staff;
+use App\Servicio;
 
 
 
@@ -177,5 +178,14 @@ class MantenimientoController extends Controller
 
         return $servicio;
 
+    }
+
+    public function createServicio(Request $request){
+        // dd($request->name);
+        $servicio = new Servicio;
+        $servicio->name = $request->name;
+        $servicio->save();
+
+        return Servicio::all();
     }
 }
