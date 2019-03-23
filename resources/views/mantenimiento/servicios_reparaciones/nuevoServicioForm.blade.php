@@ -67,12 +67,15 @@
                                       </div>
                                       <div class="col-md-12 col-lg-5 mt-3">
                                           <div class="form-group">
-                                              <select required="" class="tipo_servicio form-control mt-1 focus" name="tipo_servicio" required="">
+                                              <select required="" class="tipo_servicio form-control mt-1 focus" name="tipo_servicio" id="tipo_servicio" required="">
                                                 <option value=""></option>
-                                                  <option>Cambio de Aceite</option>
-                                                  <option>Cambio de Aceite</option>
-                                                  <option>Cambio de Aceite</option>
-                                                  <option>Cambio de Aceite</option>
+                                                @forelse ($servicios as $servicio)
+                                                    <option>{{$servicio->name}}</option>
+                                                    
+                                                @empty
+                                                    <option value="">No hay servios registre alguno</option>
+                                                    
+                                                @endforelse  
                                                   
                                               </select>
                                               

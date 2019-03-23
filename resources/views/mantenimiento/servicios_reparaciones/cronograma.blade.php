@@ -132,19 +132,7 @@ background: radial-gradient(circle, rgba(0,138,52,1) 41%, rgba(10,61,134,1) 79%)
                 {{ $mantenimientos->links() }}
               
               </div>
-            {{-- <nav aria-label="Page navigation example">
-              <ul class="pagination justify-content-center">
-                <li class="page-item disabled">
-                  <a class="page-link p-2  " href="#" tabindex="-1">Anterior</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                  <a class="page-link p-2 " href="#">Siguiente</a>
-                </li>
-              </ul>
-            </nav> --}}
+           
         </div>		
       </div>
     </div>
@@ -205,6 +193,7 @@ background: radial-gradient(circle, rgba(0,138,52,1) 41%, rgba(10,61,134,1) 79%)
         
       }) 
     }
+    
   </script>
   
   </body>

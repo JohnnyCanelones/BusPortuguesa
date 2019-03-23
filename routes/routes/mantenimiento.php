@@ -25,6 +25,8 @@ Route::get('mantenimiento/peticiones', 'PeticionMantenimientoAlmacen@peticionesS
 
 Route::get('mantenimiento/nuevo/servicio', 'MantenimientoController@serviciosForm');
 Route::post('mantenimiento/nuevo/servicio', 'MantenimientoController@nuevoServicio');
+Route::post('mantenimiento/servicio', 'MantenimientoController@createServicio');
+
 
 Route::get('mantenimiento/cronograma','MantenimientoController@showCronograma');
 Route::get('mantenimiento/cronograma/preventivos','MantenimientoController@showCronogramaPreventivos');

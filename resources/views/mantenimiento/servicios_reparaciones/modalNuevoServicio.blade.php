@@ -6,7 +6,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true" class="text-white">&times;</span>
         </button>
-        <h5 class="modal-title text-white" id="exampleModalLongTitle">Agregar puesto de trabajo</h5>
+        <h5 class="modal-title text-white" id="exampleModalLongTitle">Agregar nuevo servicio</h5>
       </div>
       <div class="modal-body">
       	<div class="container-fluid">
@@ -15,12 +15,12 @@
         	<div class="col-sm-12">
         			
 
-	        	<form id="occupations" action="/personal/puesto" method="post">
+	        	<form id="servicio" action="/mantenimiento/servicio" method="post">
 					{{ csrf_field() }}
 	        		<div class="row">
 	        			
 			            <div class="col-sm-10 mb-2" id="cedula">
-			            	<input type="" id="occupation" name="occupation" class="form-control">
+			            	<input type="" id="name" name="name" class="form-control">
 			            </div>
 			             <div class="col-sm-2 mb-2">
 			             	<h4><a href="#" id="submit"  class="azul hover"><i class="fas fa-save"></i></a></h4>
@@ -28,6 +28,7 @@
 	        		</div>
 	            
 	            
+              {{-- <button type="button" type="submit" class="btn btn-primary">Save changes</button> --}}
 	        	</form>
 
         		
@@ -38,8 +39,44 @@
       </div>
       <div class="modal-footer infobox-azul-contenido ">
         <button type="button" class="btn btn-secondary text-white mx-auto d-block" data-dismiss="modal">Cerrar</button>
-        {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
       </div>
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+		let submit = document.getElementById('submit')
+  		submit.addEventListener('click', function(ev){
+  			x = document.getElementById("name").value;
+
+  			// $.post( "/personal/puesto", { occupation_name: x  });
+  			$.ajax({
+			    type: "POST",
+			    url: '/mantenimiento/servicio',
+			    data: {  _token: '{{csrf_token()}}', name: x.charAt(0).toUpperCase()+ x.slice(1) },
+			    success: function (data) {
+            // console.log(data)
+            let select = document.getElementById('tipo_servicio')
+    				select.innerHTML= "<option></option>";
+
+            for (var i = data.length - 1; i >= 0; i--) {
+                var option = document.createElement("option");
+                option.text = data[i].name;
+                select.add(option);
+              
+              }
+            
+  			    x = document.getElementById("name").value = ''
+
+			    },
+			    error: function (data, textStatus, errorThrown) {
+			        console.log(data);
+
+	    		},
+				});
+  		
+			$('#exampleModalLong').modal('hide');
+
+  		})
+	
+</script>
