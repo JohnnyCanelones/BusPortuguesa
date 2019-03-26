@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Session;
+use Barryvdh\DomPDF\Facade as PDF;
+
 
 use Illuminate\Http\Request;
 use App\Buses;
@@ -190,5 +192,57 @@ class MantenimientoController extends Controller
         $servicio->save();
 
         return Servicio::all();
+    }
+    
+    public function showMantenimientosPdfPost(Request $request, $menu)
+    {
+        return redirect('mantenimiento/cronograma/reporte/');
+    		
+    }
+    public function showMantenimientosPdf(Request $request)
+    {   
+        $mantenimientos = Mantenimiento::whereDate('fecha', '>=', date("Y/m/d"))
+                                        ->orderBy('fecha', 'asc')->get();
+        $mantenimientos->load('staffs');
+        
+        if ($request->desde) {
+            // dd('hpla');
+            $arr = ['menu'=> 2, 'mantenimientos' => $mantenimientos, 'desde' => $request->desde, 'hasta'=> $request->hasta];
+            $pdf = PDF::loadView('mantenimiento.reportes.pdfCronogramas', compact('arr'));
+		    $pdf->setPaper('letter', 'portrait');
+            return $pdf->stream('PDF Mantenimiento '.$request->desde .'---'. $request->hasta.' BusPortuguesa.pdf');	
+        
+        } elseif ($request->bus_id) {
+             $mantenimientos = Mantenimiento::where('bus_id', $request->bus_id )
+                                        ->whereDate('fecha', '>=', date("Y/m/d"))
+                                        ->orderBy('fecha', 'asc')
+                                        ->get();
+            $mantenimientos->load('staffs');
+            $arr = ['menu'=> 3, 'mantenimientos' => $mantenimientos, 'bus_id' => $request->bus_id ];
+            $pdf = PDF::loadView('mantenimiento.reportes.pdfCronogramas', compact('arr'));
+		    $pdf->setPaper('letter', 'portrait');
+            return $pdf->stream('PDF Mantenimiento Unidad '. $request->bus_id .' BusPortuguesa '. date("d-m-Y") .'.pdf');	
+        
+        } elseif ($request->tipo_mantenimiento) {
+            $mantenimientos = Mantenimiento::whereDate('fecha', '>=', date("Y/m/d"))
+                                        ->orderBy('fecha', 'asc')
+                                        ->where('tipo_mantenimiento', $request->tipo_mantenimiento )
+                                        ->get();
+            $mantenimientos->load('staffs');
+            $arr = ['menu'=> 4, 'mantenimientos' => $mantenimientos, 'tipo_mantenimiento' => $request->tipo_mantenimiento ];
+            $pdf = PDF::loadView('mantenimiento.reportes.pdfCronogramas', compact('arr'));
+		    $pdf->setPaper('letter', 'portrait');
+            return $pdf->stream('PDF Mantenimiento BusPortuguesa '. date("d-m-Y") .'.pdf');	
+        } else {
+            $mantenimientos = Mantenimiento::whereDate('fecha', '>=', date("Y/m/d"))
+                                        ->orderBy('fecha', 'asc')->get();
+            $mantenimientos->load('staffs');
+            $arr = ['menu'=> 1, 'mantenimientos' => $mantenimientos];
+            $pdf = PDF::loadView('mantenimiento.reportes.pdfCronogramas', compact('arr'));
+		    $pdf->setPaper('letter', 'portrait');
+            return $pdf->stream('PDF Mantenimiento BusPortuguesa '. date("d-m-Y") .'.pdf');	
+        
+        }
+ 	
     }
 }

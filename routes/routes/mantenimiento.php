@@ -4,7 +4,7 @@ Route::get('/mantenimiento', 'MantenimientoController@home')->middleware(['auth'
 
 Route::get('/mantenimiento/buses/registro', 'BusesController@showBusForm')->middleware(['auth', 'mantenimiento:,']);
 Route::post('/mantenimiento/buses/registrar', 'BusesController@createBus')->middleware(['auth', 'mantenimiento:,']);
-
+// 
 Route::get('mantenimiento/show/buses', 'BusesController@showBuses');
 
 Route::get('mantenimiento/bus/{id}', 'BusesController@editBusForm');
@@ -38,6 +38,9 @@ Route::get('mantenimiento/cronograma/unidad/{id}','MantenimientoController@showC
 Route::get('mantenimiento/cronograma/fechas','MantenimientoController@showCronogramaFechas');
 Route::post('mantenimiento/cronograma/fechas','MantenimientoController@showCronogramaFechasPost');
 Route::get('mantenimiento/cronograma/servicio/{id}','MantenimientoController@modalServicioInfo');
+
+Route::get('mantenimiento/cronograma/reporte/','MantenimientoController@showMantenimientosPdf');
+Route::post('mantenimiento/cronograma/reporte/','MantenimientoController@showMantenimientosPdfPost');
 
 
 
