@@ -63,26 +63,28 @@
             </div>
            
 
-
             <div id="" class="card card2 mt-5 mb-5">
-                <div class="card-header">Ultimas Peticiones</div>
+                <div class="card-header">Cronograma de mantenimientos de dia de hoy</div>
 
                     <div class="card-body">
                              <div class="row text-center">
                                  
                             @forelse($ultimasPeticiones as $peticion)
                                 <div class="col-md-4 mt-3">
-                                    <strong>Producto: </strong>{{ $peticion->almacen->nombre_producto }}<br>
-                                    <strong>Unidad: </strong>{{ $peticion->bus_id }}<br>
+                                    <div class="jumbotron p-3 mb-2">
 
-                                    <strong>Cantidad: </strong> {{ $peticion->cantidad }}@if($peticion->cantidad == 1) @if(strpos(strtolower( $peticion->almacen->nombre_producto), 'aceite') !== false)litro @endif @else @if(strpos(strtolower( $peticion->almacen->nombre_producto), 'aceite') !== false)litros @endif  @endif<br>   
-                                    <strong>Estado: </strong><span class="@if($peticion->estado == "Pendiente")badge badge-warning2 @elseif($peticion->estado == "Rechazada") badge badge-danger @else badge badge-success @endif">{{ $peticion->estado}}</span><br>
-                                    <strong>Observacion: </strong>@if($peticion->observacion) {{ $peticion->observacion }} @else --- @endif<br>
-                                    <strong>Enviada el: </strong>{{  $newDate = date("d/m/Y", strtotime($peticion->created_at)) }}<br>
-                                    @if($peticion->estado == "Aprobada")<strong>Aprobada el: </strong>{{  $newDate = date("d/m/Y", strtotime($peticion->updated_at)) }}
-                                    @elseif($peticion->estado == "Rechazada")<strong>Rechazada el: </strong>{{  $newDate = date("d/m/Y", strtotime($peticion->updated_at)) }}
-                                    @endif<br>
-                                    
+                                        <strong>Producto: </strong>{{ $peticion->almacen->nombre_producto }}<br>
+                                        <strong>Unidad: </strong>{{ $peticion->bus_id }}<br>
+                                        
+                                        <strong>Cantidad: </strong> {{ $peticion->cantidad }}@if($peticion->cantidad == 1) @if(strpos(strtolower( $peticion->almacen->nombre_producto), 'aceite') !== false)litro @endif @else @if(strpos(strtolower( $peticion->almacen->nombre_producto), 'aceite') !== false)litros @endif  @endif<br>   
+                                        <strong>Estado: </strong><span class="@if($peticion->estado == "Pendiente")badge badge-warning2 @elseif($peticion->estado == "Rechazada") badge badge-danger @else badge badge-success @endif">{{ $peticion->estado}}</span><br>
+                                        <strong>Observacion: </strong>@if($peticion->observacion) {{ $peticion->observacion }} @else --- @endif<br>
+                                        <strong>Enviada el: </strong>{{  $newDate = date("d/m/Y", strtotime($peticion->created_at)) }}<br>
+                                        @if($peticion->estado == "Aprobada")<strong>Aprobada el: </strong>{{  $newDate = date("d/m/Y", strtotime($peticion->updated_at)) }}
+                                        @elseif($peticion->estado == "Rechazada")<strong>Rechazada el: </strong>{{  $newDate = date("d/m/Y", strtotime($peticion->updated_at)) }}
+                                        @endif<br>
+                                        
+                                    </div>
                                 </div>
                             @empty
                             <div class="col-sm-12">
@@ -98,7 +100,46 @@
                             <strong><a class=""  style="color: #008a34" href="mantenimiento/peticiones/">Ver Todas <i class="fas fa-arrow-right"></i></a></strong>
                         </div>
                     </div>
-                </div>
+            </div>
+            <div id="" class="card card2 mt-5 mb-5">
+                <div class="card-header">Ultimas Peticiones</div>
+
+                    <div class="card-body">
+                             <div class="row text-center">
+
+                                 
+                            @forelse($ultimasPeticiones as $peticion)
+                                <div class="col-md-4 mt-3">
+                                    <div class="jumbotron p-3 mb-2">
+                                        
+                                        <strong>Producto: </strong>{{ $peticion->almacen->nombre_producto }}<br>
+                                        <strong>Unidad: </strong>{{ $peticion->bus_id }}<br>
+                                        
+                                        <strong>Cantidad: </strong> {{ $peticion->cantidad }}@if($peticion->cantidad == 1) @if(strpos(strtolower( $peticion->almacen->nombre_producto), 'aceite') !== false)litro @endif @else @if(strpos(strtolower( $peticion->almacen->nombre_producto), 'aceite') !== false)litros @endif  @endif<br>   
+                                        <strong>Estado: </strong><span class="@if($peticion->estado == "Pendiente")badge badge-warning2 @elseif($peticion->estado == "Rechazada") badge badge-danger @else badge badge-success @endif">{{ $peticion->estado}}</span><br>
+                                        <strong>Observacion: </strong>@if($peticion->observacion) {{ $peticion->observacion }} @else --- @endif<br>
+                                        <strong>Enviada el: </strong>{{  $newDate = date("d/m/Y", strtotime($peticion->created_at)) }}<br>
+                                        @if($peticion->estado == "Aprobada")<strong>Aprobada el: </strong>{{  $newDate = date("d/m/Y", strtotime($peticion->updated_at)) }}
+                                        @elseif($peticion->estado == "Rechazada")<strong>Rechazada el: </strong>{{  $newDate = date("d/m/Y", strtotime($peticion->updated_at)) }}
+                                        @endif<br>
+                                        
+                                    </div>
+                                </div>
+                            @empty
+                            <div class="col-sm-12">
+                                No Hay Peticiones
+                            </div>
+
+                            @endforelse
+                             </div> 
+
+                    </div>
+                    <div class="card-footer">
+                        <div class="text-right">
+                            <strong><a class=""  style="color: #008a34" href="mantenimiento/peticiones/">Ver Todas <i class="fas fa-arrow-right"></i></a></strong>
+                        </div>
+                    </div>
+            </div>
             <div id="" class="card card2 mt-5 mb-5">
                 <div class="card-header">Dashboard</div>
 

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Buses;
 use App\Peticion;
 use App\PetitionMonitoring;
+use App\Mantenimiento;
 
 
 
@@ -18,6 +19,9 @@ class MantenimientoController extends Controller
         $busesADesinconrporar = count(Buses::where('motivo_inactividad', 'a Desincorporar')->get());
         $busesInactivos = $busesInactivos - $busesADesinconrporar;
         
+        $mantenimientos = Mantenimiento::whereDate('fecha', '=', date("d/m/Y"));
+        
+        dd($mantenimientos);
 
     	$busesActivos = count(Buses::where('estado', 'Activo')->get());
         $peticionesPendientes = count(Peticion::where('estado', 'Pendiente')->get());
