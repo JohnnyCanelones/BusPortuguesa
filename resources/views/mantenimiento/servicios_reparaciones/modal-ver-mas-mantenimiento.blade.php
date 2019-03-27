@@ -6,15 +6,15 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true" class="text-white">&times;</span>
         </button>
-        <h5 class="modal-title text-white" id="exampleModalLongTitle">Unidad # <strong>6118</strong></h5>
+        <h5 class="modal-title text-white" id="exampleModalLongTitle"></h5>
       </div>
       <div class="modal-body">
       	<div class="container-fluid">
       		
         <div class="row">
-        	<div class="col-sm-12">
-        			
-
+        	<div class="col-sm-12" >
+        			<div id="modal-mantenimiento"></div>    
+{{-- 
             <span><strong>Kilometraje:</strong> 6118215 <strong>Km</strong></span> <br> 
             <span> <strong> Tipo de mantenimiento:</strong> preventivo</span><br>   
             <span><strong>Servicio:</strong> Cambio de aceite</span>  <br>
@@ -22,13 +22,15 @@
             <span><strong>Mecanico/a:</strong> Lysmar Rangel</span>  <br>
             <span><strong>Mecanico/a:</strong> Angelys laCruz </span>  <br>
 
-        		
-        	</div>
+             --}}
+             <div id="mecanicos"></div>
+            </div>
         </div>
       	</div>
 
       </div>
       <div class="modal-footer infobox-azul-contenido ">
+        <button id="editar" type="button" class="btn btn-secondary text-white mx-auto d-block">Editar</button>
         <button type="button" class="btn btn-secondary text-white mx-auto d-block" data-dismiss="modal">Cerrar</button>
         {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
       </div>

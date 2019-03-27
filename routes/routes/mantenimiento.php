@@ -22,9 +22,22 @@ Route::post('mantenimiento/peticion/especial/{id}', 'PeticionMantenimientoAlmace
 
 Route::get('mantenimiento/peticiones', 'PeticionMantenimientoAlmacen@peticionesShow');
 
-Route::get('mantenimiento/cronograma', function(){
-  return view('mantenimiento.servicios_reparaciones.cronograma');
-});
+
+Route::get('mantenimiento/nuevo/servicio', 'MantenimientoController@serviciosForm');
+Route::post('mantenimiento/nuevo/servicio', 'MantenimientoController@nuevoServicio');
+Route::post('mantenimiento/servicio', 'MantenimientoController@createServicio');
+
+
+Route::get('mantenimiento/cronograma','MantenimientoController@showCronograma');
+Route::get('mantenimiento/cronograma/preventivos','MantenimientoController@showCronogramaPreventivos');
+Route::get('mantenimiento/cronograma/correctivos','MantenimientoController@showCronogramaCorrectivos');
+
+Route::get('mantenimiento/cronograma/unidades','MantenimientoController@showCronogramaUnidades');
+Route::get('mantenimiento/cronograma/unidad/{id}','MantenimientoController@showCronogramaUnidad');
+
+Route::get('mantenimiento/cronograma/fechas','MantenimientoController@showCronogramaFechas');
+Route::post('mantenimiento/cronograma/fechas','MantenimientoController@showCronogramaFechasPost');
+Route::get('mantenimiento/cronograma/servicio/{id}','MantenimientoController@modalServicioInfo');
 
 
 

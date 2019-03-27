@@ -16,8 +16,7 @@
 
         <div class="collapse" id="menu1" data-parent="#sidebar">
             <a href="{{ url('/mantenimiento/buses/registro') }}" class="list-group-item " >Agregar Autobus</a>
-            <a href="#menu1sub1" class="list-group-item " >Subitem 1 </a>
-            <a href="#menu1sub1" class="list-group-item " >Subitem 1 </a>
+            <a href="{{ url('/mantenimiento/nuevo/servicio') }}" class="list-group-item " >Registro de servicio a la unidad</a>
               
         
         </div>
@@ -29,6 +28,7 @@
 
         <div class="collapse" id="menu3" data-parent="#sidebar">
             <a href="{{ url('mantenimiento/show/buses') }}" class="list-group-item" >Buses</a></span>
+            <a href="{{ url('mantenimiento/cronograma') }}" class="list-group-item" >Cronograma de Servicios</a></span>
             <a href="{{ url('mantenimiento/productos') }}" class="list-group-item" >Poductos Disponibles</a>
             <a href="{{ url('mantenimiento/peticiones') }}" class="list-group-item " >Peticiones </a>
         
@@ -40,13 +40,14 @@
         <br>
 
         <div class="collapse" id="menu4" data-parent="#sidebar">
-            <span><a href="#menu4sub4" class="list-group-item" data-toggle="collapse" aria-expanded="false">Subitem 4 </a></span>
+            <span><a href="#menu4sub4" class="list-group-item"  aria-expanded="true">Subitem 4 </a></span>
             <a href="#menu4sub4" class="list-group-item" data-toggle="collapse" aria-expanded="false">Subitem 4 </a>
             <a href="#menu4sub4" class="list-group-item" data-toggle="collapse" aria-expanded="false">Subitem 4 </a>
             
         
         </div>
     </li>
+   
     </ul>
 
                     

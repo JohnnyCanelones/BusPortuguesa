@@ -49,11 +49,15 @@ background: radial-gradient(circle, rgba(0,138,52,1) 41%, rgba(10,61,134,1) 79%)
 
 
     }
-    a.page-link {
+    .pagination2 .page-link {
       border-radius: 0 !important;
       /* border: 1px solid red; */
-      color: #0a3d86 !important;
+      /* color: #0a3d86 !important; */
       /* margin: 0 !important; */
+    }
+    .pagination2 ul {
+      justify-content: center;
+      background-color: transparent !important;
     }
 
     
@@ -68,62 +72,67 @@ background: radial-gradient(circle, rgba(0,138,52,1) 41%, rgba(10,61,134,1) 79%)
           <div class="card-header cronograma-menu ">
             <div class="row text-center ">
               <div class="col-sm-12 mb-3">
-                <a  href="#1">Todo el Cronograma </a>
+                <h6><a class=" text-white @if ($menu == 1) font-weight-bold" @else " href="/mantenimiento/cronograma" @endif >Todo el Cronograma </a></h6>
                 
               </div>
               <div class="col-sm-3">
-                <a  href="#1">Cronograma fecha especifica</a>
+                <h6><a  class=" text-white @if ($menu == 2) font-weight-bold" @else " href="/mantenimiento/cronograma/fechas" @endif>Cronograma fecha especifica</a></h6>
               </div>
               <div class="col-sm-3">
-                <a  href="#1">Cronograma por # de la unidad</a>
+                <h6><a class=" text-white @if ($menu == 3) font-weight-bold"  @endif " href="/mantenimiento/cronograma/unidades" >Cronograma por # de la unidad</a></h6>
               </div>
               <div class="col-sm-3">
-                <a  href="#1">Cronograma preventivos</a>
+                <h6><a  class=" text-white @if ($menu == 4) font-weight-bold" @else " href="/mantenimiento/cronograma/preventivos" @endif>Cronograma preventivos</a></h6>
               </div>
               <div class="col-sm-3">
-                <a  href="#1">Cronograma correctivos</a>
+                <h6><a  class=" text-white @if ($menu == 5) font-weight-bold" @else " href="/mantenimiento/cronograma/correctivos" @endif>Cronograma correctivos</a></h6>
               </div>
             </div>
           </div>
+          @if ($menu == 2)
+            @include('mantenimiento.servicios_reparaciones.fechasDesdeHasta')
+              
+          @endif
           
           <div class="card-body">
             <div class="row">
-              @for ($i = 0 ; $i < 9; $i++)
-              <div class="col-sm-4">
+              @forelse ($mantenimientos as $mantenimiento)
+                   <div class="col-sm-4">
                 <div class="card hover" style="">
                   <div class="card-header">
                     {{-- <p>dlfkjsldkfjsldkfjlsdkjflskdjflsdjf</p> --}}
-                    <span><strong>Fecha:</strong> 2019/02/23</span> <br> 
-                    <span><strong># de la unidad:</strong> 6118</span> <br> 
+                    <span><strong>Fecha:</strong> {{ date("d/m/Y " , strtotime($mantenimiento->fecha))}}</span> <br> 
+                    <span><strong># de la unidad:</strong> {{$mantenimiento->bus_id}}</span> <br> 
                     {{-- <span>Kilometraje: 6118215 Km</span>    --}}
-                    <span> <strong> Tipo de mantenimiento:</strong> preventivo</span>   
+                    <span> <strong> Tipo de mantenimiento:</strong> {{$mantenimiento->tipo_mantenimiento}}</span>   
                     {{-- <span>Servicio: Cambio de aceite</span>    --}}
                   </div>      
                 
                   <div class="card-footer text-right">
-                    <strong class="text-right vermas"><a href="#" data-toggle="modal" data-target="#exampleModalLong" class="vermas text-right">Ver más</a></strong>
+                  <strong class="text-right "><a href="#"  data-value= "{{ $mantenimiento->id }}" class="vermas text-right">Ver más</a></strong>
                   </div>
                 </div>
               </div>
+              @empty 
+              <div class="col-sm-12">
+                <div class="card hover text-center">
+                  <h3 style="background-color:transparent;">No se han encontrado resultados</h3>
+                  
+                </div>   
+              </div>
+              @endforelse
               
-              @endfor
             </div>
           </div>
 
           <div class="card-footer text-center"></div>    
-            <nav aria-label="Page navigation example">
-              <ul class="pagination justify-content-center">
-                <li class="page-item disabled">
-                  <a class="page-link p-2  " href="#" tabindex="-1">Anterior</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                  <a class="page-link p-2 " href="#">Siguiente</a>
-                </li>
-              </ul>
-            </nav>
+          
+          
+              <div class="pagination2">
+                {{ $mantenimientos->links() }}
+              
+              </div>
+           
         </div>		
       </div>
     </div>
@@ -142,6 +151,50 @@ background: radial-gradient(circle, rgba(0,138,52,1) 41%, rgba(10,61,134,1) 79%)
 
   {{-- <script type="text/javascript" src="{{ asset('js/mantenimiento/busesForm.js') }}"></script> --}}
   
+  <script>
+    let vermas = document.getElementsByClassName('vermas');
+    for (x=0; x <vermas.length; x++){
+
+      let mantenimiento= vermas[x];
+      
+      mantenimiento.addEventListener("click", function(event){
+          setTimeout(function(){
+            $('#exampleModalLong').modal('show');
+          }, 350);
+          $.get( "/mantenimiento/cronograma/servicio/"+mantenimiento.dataset.value, function( data ) {
+            document.getElementById('exampleModalLongTitle').innerHTML = `Unidad # <strong> ${data.bus_id} </strong>`;
+            document.getElementById('modal-mantenimiento').innerHTML = `
+              <span><strong>Kilometraje:</strong> ${data.kilometraje} <strong>Km</strong></span> <br> 
+              <span> <strong> Tipo de mantenimiento:</strong> ${data.tipo_mantenimiento}</span><br>   
+              <span><strong>Servicio:</strong> ${data.tipo_servicio}</span>  <br>
+            `
+              document.getElementById('mecanicos').innerHTML = `
+                <span><strong>Mecanico/a:</strong> ${data.staffs[0].names} ${data.staffs[0].last_names}</span>  <br>
+              `
+            for (let i = 1; i < data.staffs.length; i++) {
+              
+              document.getElementById('mecanicos').innerHTML += `
+                  <span><strong>Mecanico/a:</strong> ${data.staffs[i].names} ${data.staffs[i].last_names}</span>  <br> 
+                
+              `
+            }
+
+            let editarButton = document.getElementById('editar');
+            
+            editarButton.addEventListener("click", function(event){
+              location.href="/mantenimiento/servicio/"+ data.id;
+
+            })
+
+
+
+          });
+
+        
+      }) 
+    }
+    
+  </script>
   
   </body>
   
