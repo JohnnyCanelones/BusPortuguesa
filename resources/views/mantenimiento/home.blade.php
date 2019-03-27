@@ -62,42 +62,38 @@
                 
             </div>
            
-
+{{-- {{$mantenimientos}} --}}
             <div id="" class="card card2 mt-5 mb-5">
                 <div class="card-header">Cronograma de mantenimientos de dia de hoy</div>
 
                     <div class="card-body">
                              <div class="row text-center">
                                  
-                            @forelse($ultimasPeticiones as $peticion)
-                                <div class="col-md-4 mt-3">
-                                    <div class="jumbotron p-3 mb-2">
-
-                                        <strong>Producto: </strong>{{ $peticion->almacen->nombre_producto }}<br>
-                                        <strong>Unidad: </strong>{{ $peticion->bus_id }}<br>
+                            @for ($i = 0; $i < 3; $i++)
+                            
+                            
+                            <div class="col-md-4 mt-3">
+                                <div class="jumbotron p-3 mb-2">
+                                    <strong>Fecha: </strong>{{ date("d/m/Y " , strtotime($mantenimientos[$i]->fecha))}}<br>
+                                    <span><strong># de la unidad:</strong> {{$mantenimientos[$i]->bus_id}}</span> <br> 
+                                    <span><strong>Kilometraje:</strong> {{$mantenimientos[$i]->kilometraje}}</span> <br> 
+                                    <strong> Tipo de mantenimiento: </strong><span class="@if($mantenimientos[$i]->tipo_mantenimiento == "Preventivo")badge badge-warning2 @elseif($mantenimientos[$i]->tipo_mantenimiento == "Correctivo") badge badge-danger @else badge badge-success @endif"> {{ $mantenimientos[$i]->tipo_mantenimiento}}</span><br>  
+                                    <span><strong>Servicio:</strong> {{$mantenimientos[$i]->tipo_servicio}}</span> <br> 
+                                    @foreach ($mantenimientos[$i]->staffs as $mecanico)
+                                    <span> <strong> Mecanico/a:</strong> {{$mecanico->names}}{{$mecanico->last_names}} </span><br>
                                         
-                                        <strong>Cantidad: </strong> {{ $peticion->cantidad }}@if($peticion->cantidad == 1) @if(strpos(strtolower( $peticion->almacen->nombre_producto), 'aceite') !== false)litro @endif @else @if(strpos(strtolower( $peticion->almacen->nombre_producto), 'aceite') !== false)litros @endif  @endif<br>   
-                                        <strong>Estado: </strong><span class="@if($peticion->estado == "Pendiente")badge badge-warning2 @elseif($peticion->estado == "Rechazada") badge badge-danger @else badge badge-success @endif">{{ $peticion->estado}}</span><br>
-                                        <strong>Observacion: </strong>@if($peticion->observacion) {{ $peticion->observacion }} @else --- @endif<br>
-                                        <strong>Enviada el: </strong>{{  $newDate = date("d/m/Y", strtotime($peticion->created_at)) }}<br>
-                                        @if($peticion->estado == "Aprobada")<strong>Aprobada el: </strong>{{  $newDate = date("d/m/Y", strtotime($peticion->updated_at)) }}
-                                        @elseif($peticion->estado == "Rechazada")<strong>Rechazada el: </strong>{{  $newDate = date("d/m/Y", strtotime($peticion->updated_at)) }}
-                                        @endif<br>
-                                        
-                                    </div>
+                                    @endforeach
+                      
                                 </div>
-                            @empty
-                            <div class="col-sm-12">
-                                No Hay Peticiones
                             </div>
-
-                            @endforelse
-                             </div> 
+                                
+                                @endfor
+                            </div> 
 
                     </div>
                     <div class="card-footer">
                         <div class="text-right">
-                            <strong><a class=""  style="color: #008a34" href="mantenimiento/peticiones/">Ver Todas <i class="fas fa-arrow-right"></i></a></strong>
+                            <strong><a class=""  style="color: #008a34" href="mantenimiento/cronograma/">Ver Todas({{count($mantenimientos)}}) <i class="fas fa-arrow-right"></i></a></strong>
                         </div>
                     </div>
             </div>

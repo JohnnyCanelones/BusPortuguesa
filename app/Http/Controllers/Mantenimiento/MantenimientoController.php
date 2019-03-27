@@ -22,9 +22,12 @@ class MantenimientoController extends Controller
         $busesADesinconrporar = count(Buses::where('motivo_inactividad', 'a Desincorporar')->get());
         $busesInactivos = $busesInactivos - $busesADesinconrporar;
         
-        $mantenimientos = Mantenimiento::whereDate('fecha', '=', date("d/m/Y"));
-        
-        dd($mantenimientos);
+        $mantenimientos = Mantenimiento::whereDate('fecha', '=', date("Y/m/d"))
+                                        ->orderBy('fecha', 'asc')->get();
+        // dd($mantenimientos[0]);
+                // dd($mantenimientos[0]);
+        $mantenimientos->load('staffs');
+
 
     	$busesActivos = count(Buses::where('estado', 'Activo')->get());
         $peticionesPendientes = count(Peticion::where('estado', 'Pendiente')->get());
@@ -37,6 +40,7 @@ class MantenimientoController extends Controller
     	return view('mantenimiento.home', [
     		'busesActivos' => $busesActivos,
             'busesInactivos' => $busesInactivos,
+            'mantenimientos' => $mantenimientos,
             'busesADesincorporar' => $busesADesinconrporar,
             'peticionesPendientes' => $peticionesPendientes,
             'ultimasPeticiones' => $ultimasPeticiones,
