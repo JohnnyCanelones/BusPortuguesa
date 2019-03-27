@@ -170,19 +170,33 @@ class MantenimientoController extends Controller
 
         $mantenimientos = Mantenimiento::whereDate('fecha', '>=', $desde)
                                     ->whereDate('fecha', '<=', $hasta)
-                                    ->orderBy('fecha', 'desc')
+                                    ->orderBy('fecha', 'asc')
                                     ->paginate(9);
 
         // dd($mantenimientos);
 
         // dd($mantenimientos[0]);
         // dd($mantenimientos);
+
+        // return redirect('mantenimiento/cronograma/fecha')->with([
+        //     'menu' => 2,
+        //     'mantenimientos' => $mantenimientos, 
+        //     'desde' => $desde,
+        //     'hasta' => $hasta,
+        // ]);
+        
+        // dd($mantenimientos->links('mantenimiento.servicios_reparaciones.cronograma'));
         return view('mantenimiento.servicios_reparaciones.cronograma', [
             'menu' => 2,
             'mantenimientos' => $mantenimientos, 
             'desde' => $desde,
             'hasta' => $hasta,
         ]);
+    }
+    public function CronogramaFechas(){
+
+        // dd($menu)
+        return view('mantenimiento.servicios_reparaciones.cronograma');
     }
     public function modalServicioInfo($id){
         $servicio = Mantenimiento::find($id);

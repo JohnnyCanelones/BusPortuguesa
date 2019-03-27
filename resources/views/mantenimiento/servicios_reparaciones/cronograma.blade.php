@@ -81,7 +81,7 @@ background: radial-gradient(circle, rgba(0,138,52,1) 41%, rgba(10,61,134,1) 79%)
             <div class="row text-center ">
               <div class="col-sm-12 mb-3">
                 {{-- {{$arr = [$desde, $hasta]}} --}}
-                <form action="/mantenimiento/cronograma/reporte/" method="get ">
+                <form action="/mantenimiento/cronograma/reporte/" method="get"  target="_blank">
                     {{-- @method('get') --}}
                     @if ($menu == 2)
                     <input hidden  class="form-control "  name="desde" id="" value="{{$desde}}">
@@ -97,14 +97,14 @@ background: radial-gradient(circle, rgba(0,138,52,1) 41%, rgba(10,61,134,1) 79%)
                         
                     @endif
 
-                    <button type="submit" class="mb-2 btn btn-raised mx-auto  bg-azul  btn-primary  text-white p-2 rounded " style="font-size: 21px" target="_blank" data-toggle="tooltip" title="Generar PDF"> <span><i class="fas fa-file-pdf"></i></span></button>
+                    <button type="submit" target="_blank" class="mb-2 btn btn-raised mx-auto  bg-azul  btn-primary  text-white p-2 rounded " style="font-size: 21px" target="_blank" data-toggle="tooltip" title="Generar PDF"> <span><i class="fas fa-file-pdf"></i></span></button>
                 </form>
 
                 <h6><a class=" text-white @if ($menu == 1) font-weight-bold" @else " href="/mantenimiento/cronograma" @endif >Todo el Cronograma </a></h6>
                 
               </div>
               <div class="col-sm-3">
-                <h6><a  class=" text-white @if ($menu == 2) font-weight-bold" @else " href="/mantenimiento/cronograma/fechas" @endif>Cronograma fecha especifica</a></h6>
+                <h6><a  class=" text-white @if ($menu == 2) font-weight-bold" @else " href="/mantenimiento/cronograma/fechas/desde" @endif>Cronograma fecha especifica</a></h6>
               </div>
               <div class="col-sm-3">
                 <h6><a class=" text-white @if ($menu == 3) font-weight-bold"  @endif " href="/mantenimiento/cronograma/unidades" >Cronograma por # de la unidad</a></h6>
@@ -160,7 +160,15 @@ background: radial-gradient(circle, rgba(0,138,52,1) 41%, rgba(10,61,134,1) 79%)
           
           
               <div class="pagination2">
-                {{ $mantenimientos->links() }}
+                @if ($menu == 2)
+                {{ $mantenimientos->withPath('/mantenimiento/cronograma/fechas?desde='.$desde.'&hasta='.$hasta) }}
+                
+                    
+                @else
+                    {{$mantenimientos->links()}}
+                @endif
+                
+                
               
               </div>
            
@@ -226,6 +234,16 @@ background: radial-gradient(circle, rgba(0,138,52,1) 41%, rgba(10,61,134,1) 79%)
     }
     
   </script>
+
+  {{-- <script>
+      let url = document.URL;
+
+      if (url.substr(54,4) == 'page') {
+        console.log('qloq')
+      }else {
+        console.log('no')
+      }
+  </script> --}}
   
   </body>
   

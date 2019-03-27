@@ -17,6 +17,7 @@
                             <h3 id="hola" class="azul text-center m-3 ">Seleccione las fechas deseadas</h3>
                         </div>
                         <form action="/mantenimiento/cronograma/fechas" method="post">
+                            {{-- @method('get') --}}
                         <div class="card-body">
                                 {{ csrf_field() }}
                                 <div class="row">
