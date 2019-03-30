@@ -41,6 +41,15 @@
                
                
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                   @guest
+                   @else
+                        @if(auth()->user()->role->Mantenimiento)
+                        
+                        <span id= "notificacion2" class=" badge badge-secondary notificacicion-icono2"></span>
+                        @endif                    
+                       
+                   @endguest
+                       
                     <span class="text-white"><i class="fas fa-bars"></i></span>
                 </button>
                 
@@ -63,8 +72,12 @@
                             @if(auth()->user()->role->Mantenimiento)
 
                                 <li class="nav-item dropdown text-center">
-                                    <a id="navbarDropdown1" class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        Notificaciones
+                                    <a id="navbarDropdown1" class="nav-link  text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        {{-- @if (count($peticionesEliminadas) > 0) --}}
+                                            <span id= "notificacion" class="d-none badge badge-secondary notificacicion-icono"></span>
+                                            
+                                        {{-- @endif --}}
+                                        <h5 class="m-0"><i class="fas fa-bell"></i></h5>
                                     </a>
 
                                     <div class="dropdown-menu dropdown-menu-right text-center notificaciones row" aria-labelledby="navbarDropdown1" >
@@ -147,6 +160,65 @@
 
     <script src="{{ asset('plugins/bootstrap-material-design.min.js') }}"></script>
     <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
+
+    <script>
+        function mantenimiento() {
+            $.get( "/api/mantenimiento", function( data ) {
+
+                if (data.length > 0) {
+                    let mantenimientos = document.getElementById('notificacion') 
+                    let mantenimientos2 = document.getElementById('notificacion2') 
+                    let notificaciones = document.getElementById('notificaciones')
+                    
+                       
+                        notificaciones.innerHTML = "" 
+                        for (let i = 0; i < data.length; i++) {
+                            
+                            
+                            notificaciones.innerHTML += `
+                                <div class="col-sm-11 p-0  mx-auto d-block">
+                                    <a href="/mantenimiento/peticiones">
+
+                                    <div class="jumbotron p-2 notificaciones2" >
+
+        
+                                        <strong>Producto: </strong>${data[i].almacen.nombre_producto}<br>
+                                        <strong>Estado: </strong><span class="badge badge-danger">${data[i].estado}</span><br>
+                                        <strong>Observacion: </strong>${data[i].observacion}<br>
+                                        <strong>Rechazada el: </strong>${data[i].updated_at}<br>
+                                </div>
+                                </div>
+                                </a>
+                            `
+                        }
+                    
+                    mantenimientos.classList.remove("d-none");
+                    mantenimientos2.classList.remove("d-none");
+                    
+                } else {
+                    let mantenimientos = document.getElementById('notificacion') 
+                    let mantenimientos2 = document.getElementById('notificacion2') 
+
+                    mantenimientos.classList.add("d-none");
+                    mantenimientos2.classList.add("d-none");
+                    notificaciones.innerHTML = "" 
+
+                }
+                let mantenimientos = document.getElementById('notificacion') 
+                let mantenimientos2 = document.getElementById('notificacion2') 
+
+                mantenimientos.innerHTML = data.length
+                mantenimientos2.innerHTML = data.length
+
+            })
+            
+        }
+        mantenimiento()            
+        setInterval(() => {
+            mantenimiento()
+        },3000);
+
+    </script>
 
     @yield('js-content')
     

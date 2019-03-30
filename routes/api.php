@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Peticion;
+   
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,15 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+
+Route::get('/mantenimiento', function(){
+        $peticionFecha = date("Y/m/d", strtotime('-21 days', strtotime(date("Y/m/d"))));
+        $peticionesEliminadas = Peticion::whereDate('updated_at', '>=', $peticionFecha)
+                                        ->where('observacion', 'Transcurrieron 7 días, el lapso de respuesta ha expirado')->get();
+                        
+
+        $peticionesEliminadas->load('almacen');
+
+return $peticionesEliminadas;
+
 });

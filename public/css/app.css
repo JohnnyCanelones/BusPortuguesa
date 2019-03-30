@@ -40,15 +40,37 @@ body {
 .notificaciones {
     overflow: auto;
     overflow-x: hidden;
+    height: 300px;
   }
+.notificacicion-icono{
+    position: absolute !important;
+    margin-top: -8px !important;
+    padding-top: 3px !important;
+    width: 16px !important;
+    text-align: center !important;
+    border-radius: 100% !important;
+    background-color: red !important;
+  }
+
+  .notificacicion-icono2{
+    font-size: 11px !important;
+    position: absolute !important;
+    margin-top: -8px !important;
+    padding-top: 3px !important;
+    margin-left: 21px;
+    width: 18px !important;
+    text-align: center !important;
+    border-radius: 100% !important;
+    background-color: red !important;
+  }
+.notificaciones2 {
+  color: #212529;
+}
 @media( min-width: 768px) {
   .notificaciones {
     width: 600px !important; 
     height: 300px;
   }
-  /* .notificaciones2 {
-    width: 300px !important; 
-  } */
 }
 
 
