@@ -161,7 +161,11 @@ background: radial-gradient(circle, rgba(0,138,52,1) 41%, rgba(10,61,134,1) 79%)
           
               <div class="pagination2">
                 @if ($menu == 2)
+<<<<<<< HEAD
                 {{ $mantenimientos->withPath('/mantenimiento/cronograma/fechas?desde='.$desde.'&hasta='.$hasta) }}
+=======
+                {{ $mantenimientos->withPath('http://localhost:8000/mantenimiento/cronograma/fechas?desde='.$desde.'&hasta='.$hasta.'&') }}
+>>>>>>> fbb6d2cd8e53545bb0050d4642b26e09f66a76e0
                 
                     
                 @else
