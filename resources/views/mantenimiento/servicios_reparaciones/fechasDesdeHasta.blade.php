@@ -3,6 +3,8 @@
 <form action="/mantenimiento/cronograma/fechas" method="post" class="m-0">
   <div class="card-footer">
     {{ csrf_field() }}
+                            @method('get')
+
     <div class="row">
       {{-- formulario --}}
       <div class="col-lg-5 col-md-12 " id="fecha_inactivo">
