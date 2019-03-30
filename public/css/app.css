@@ -37,7 +37,19 @@ body {
 	height:100%;
 	width: 100%;
 }
-
+.notificaciones {
+    overflow: auto;
+    overflow-x: hidden;
+  }
+@media( min-width: 768px) {
+  .notificaciones {
+    width: 600px !important; 
+    height: 300px;
+  }
+  /* .notificaciones2 {
+    width: 300px !important; 
+  } */
+}
 
 
 .badge-warning2 {

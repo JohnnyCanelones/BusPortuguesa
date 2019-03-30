@@ -69,7 +69,7 @@
                     <div class="card-body">
                              <div class="row text-center">
                                  
-                            @for ($i = 0; $i < 3; $i++)
+                            @for ($i = 0; $i < $contador; $i++)
                             
                             
                             <div class="col-md-4 mt-3">
@@ -80,7 +80,7 @@
                                     <strong> Tipo de mantenimiento: </strong><span class="@if($mantenimientos[$i]->tipo_mantenimiento == "Preventivo")badge badge-warning2 @elseif($mantenimientos[$i]->tipo_mantenimiento == "Correctivo") badge badge-danger @else badge badge-success @endif"> {{ $mantenimientos[$i]->tipo_mantenimiento}}</span><br>  
                                     <span><strong>Servicio:</strong> {{$mantenimientos[$i]->tipo_servicio}}</span> <br> 
                                     @foreach ($mantenimientos[$i]->staffs as $mecanico)
-                                    <span> <strong> Mecanico/a:</strong> {{$mecanico->names}}{{$mecanico->last_names}} </span><br>
+                                    <span> <strong> Mecanico/a:</strong> {{$mecanico->names}} {{$mecanico->last_names}} </span><br>
                                         
                                     @endforeach
                       

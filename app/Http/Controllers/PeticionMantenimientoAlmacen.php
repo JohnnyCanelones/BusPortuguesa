@@ -266,7 +266,7 @@ class PeticionMantenimientoAlmacen extends Controller
                 array_push($peticionesEliminadas, $peticion);
                 
                 $peticion->estado = 'Rechazada';
-                $peticion->observacion = 'Transcurrieron 5 días, el lapso de respuesta ha expirado';
+                $peticion->observacion = 'Transcurrieron 7 días, el lapso de respuesta ha expirado';
                 $peticion->save();
             }
             

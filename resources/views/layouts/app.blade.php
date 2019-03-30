@@ -60,7 +60,20 @@
                             </li>
                             
                         @else
-                            <li class="nav-item dropdown text-center">
+                            @if(auth()->user()->role->Mantenimiento)
+
+                                <li class="nav-item dropdown text-center">
+                                    <a id="navbarDropdown1" class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        Notificaciones
+                                    </a>
+
+                                    <div class="dropdown-menu dropdown-menu-right text-center notificaciones row" aria-labelledby="navbarDropdown1" >
+                                        @include('mantenimiento.notificaciones')
+                                    </div>
+                                </li>
+                            @endif
+                            <li>
+                                <li class="nav-item dropdown text-center">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     @if(auth()->user()->role->Admin) @if(auth()->user()->staff->genre == "Masculino")Presidente @else Presidenta @endif
                                     

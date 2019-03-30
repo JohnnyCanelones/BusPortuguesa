@@ -30,6 +30,23 @@ class MantenimientoController extends Controller
                 // dd($mantenimientos[0]);
         $mantenimientos->load('staffs');
 
+        $peticionFecha = date("Y/m/d", strtotime('+21 days', strtotime(date("Y/m/d"))));
+
+        
+
+        $peticionesEliminadas = Peticion::whereDate('updated_at', '<=', $peticionFecha)
+                                        ->where('observacion', 'Transcurrieron 7 días, el lapso de respuesta ha expirado')->get();
+
+        if(count($mantenimientos) == 1) {
+            $contador = 1;
+        
+        }elseif(count($mantenimientos) == 2) {
+            $contador = 2;
+        
+        }else {
+            $contador = 3;
+        }
+
 
     	$busesActivos = count(Buses::where('estado', 'Activo')->get());
         $peticionesPendientes = count(Peticion::where('estado', 'Pendiente')->get());
@@ -37,15 +54,17 @@ class MantenimientoController extends Controller
         $ultimasPeticiones->load('almacen');
 
         
-        // dd($ultimasPeticiones);
+        // dd($peticionesEliminadas);
     	
     	return view('mantenimiento.home', [
+            'contador' => $contador,
     		'busesActivos' => $busesActivos,
             'busesInactivos' => $busesInactivos,
             'mantenimientos' => $mantenimientos,
             'busesADesincorporar' => $busesADesinconrporar,
             'peticionesPendientes' => $peticionesPendientes,
             'ultimasPeticiones' => $ultimasPeticiones,
+            'peticionesEliminadas' => $peticionesEliminadas,
     	]);
     }
 
