@@ -69,7 +69,7 @@
                     <div class="card-body">
                              <div class="row text-center">
                                  
-                            @for ($i = 0; $i < $contador; $i++)
+                            @for ($i = 0; $i < 0; $i++)
                             
                             
                             <div class="col-md-4 mt-3">

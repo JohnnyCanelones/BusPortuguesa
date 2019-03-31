@@ -257,9 +257,9 @@ class PeticionMantenimientoAlmacen extends Controller
         $peticionesEliminadas = [];
         foreach ($peticionesPendientes as $peticion) {
             
-            $peticionFecha = date("d/m/Y", strtotime('+8 days', strtotime($peticion->created_at)));
+            $peticionFecha = date("Y/m/d", strtotime('+8 days', strtotime($peticion->created_at)));
             
-            $hoy = date("d/m/Y");
+            $hoy = date("Y/m/d");
             if ($peticionFecha < $hoy) {
                 Session::flash('peticionesEliminadas', 'hecholdasd');
                 // Session::flash('hola', 'warning');

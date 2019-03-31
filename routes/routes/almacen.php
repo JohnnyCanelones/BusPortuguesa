@@ -39,7 +39,7 @@ Route::get('/almacen/peticiones/eliminar', function() {
 
         foreach ($peticionesPendientes as $peticion) {
             
-            $peticionFecha = date("Y/m/d", strtotime('+5 days', strtotime($peticion->created_at)));
+            $peticionFecha = date("Y/m/d", strtotime('+7 days', strtotime($peticion->created_at)));
         
             // dd($peticionFecha);    
             $hoy = date("Y/m/d");
@@ -51,7 +51,7 @@ Route::get('/almacen/peticiones/eliminar', function() {
                 array_push($peticionesEliminadas, $peticion);
 
                 $peticion->estado = 'Rechazada';
-                $peticion->observacion = 'Transcurrieron 5 días, el lapso de respuesta ha expirado';
+                $peticion->observacion = 'Transcurrieron 7 días, el lapso de respuesta ha expirado';
                 $peticion->save();
             }   
         }

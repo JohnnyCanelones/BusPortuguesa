@@ -26,6 +26,7 @@ class CreatePeticionTable extends Migration
             $table->integer('cantidad');
             $table->string('observacion')->nullable();
             $table->string('estado');
+            $table->boolean('notificacion')->default(true);
 
             $table->timestamps();
         });
