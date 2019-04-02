@@ -6,11 +6,11 @@
 
         <div class="container " style="padding-top: 8vh; ">
             <div class="row justify-content-center">
-                <div class="col-md-8">
+                <div class="col-sm-8 col-md-5">
                     <div class="card">
                         <div class="card-header text-center">{{ __('Inicio de sesión') }}</div>
 
-                        <div class="card-body text center">
+                        <div class="card-body text center pl-5 pr-5">
                             <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
                                 @csrf
 

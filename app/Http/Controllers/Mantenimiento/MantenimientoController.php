@@ -43,6 +43,9 @@ class MantenimientoController extends Controller
         }elseif(count($mantenimientos) == 2) {
             $contador = 2;
         
+        }elseif(count($mantenimientos) == 0) {
+            $contador = 0;
+        
         }else {
             $contador = 3;
         }
