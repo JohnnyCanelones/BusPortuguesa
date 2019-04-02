@@ -89,15 +89,21 @@ background: radial-gradient(circle, rgba(0,138,52,1) 41%, rgba(10,61,134,1) 79%)
                         
                     @endif
                     @if ($menu == 3)
-                      <input hidden  class="form-control "  name="bus_id" id="date" value="{{$mantenimientos[0]->bus_id}}">
+                     @if (count($mantenimientos) > 0)                          
+                        <input hidden  class="form-control "  name="bus_id" id="date" value="{{$mantenimientos[0]->bus_id}}">
+                      @endif
                         
                     @endif
                     @if ($menu == 4 or $menu == 5)
-                      <input hidden  class="form-control "  name="tipo_mantenimiento" id="date" value="{{$mantenimientos[0]->tipo_mantenimiento}}">
+                      @if (count($mantenimientos) > 0)
+                          
+                        <input hidden  class="form-control "  name="tipo_mantenimiento" id="date" value="{{$mantenimientos[0]->tipo_mantenimiento}}">
+                          
+                      @endif
                         
                     @endif
 
-                    <button type="submit" target="_blank" class="mb-2 btn btn-raised mx-auto  bg-azul  btn-primary  text-white p-2 rounded " style="font-size: 21px" target="_blank" data-toggle="tooltip" title="Generar PDF"> <span><i class="fas fa-file-pdf"></i></span></button>
+                    <button @if (count($mantenimientos) == 0)disabled @endif type="submit" target="_blank" class="mb-2 btn btn-raised mx-auto  bg-azul  btn-primary  text-white p-2 rounded " style="font-size: 21px" target="_blank" data-toggle="tooltip" title="Generar PDF"> <span><i class="fas fa-file-pdf"></i></span></button>
                 </form>
 
                 <h6><a class=" text-white @if ($menu == 1) font-weight-bold" @else " href="/mantenimiento/cronograma" @endif >Todo el Cronograma </a></h6>
