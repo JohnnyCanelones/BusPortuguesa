@@ -20,7 +20,8 @@ Route::get('/mantenimiento', function(){
         $peticionFecha = date("Y/m/d", strtotime('-7 days', strtotime(date("Y/m/d"))));
         
         $peticionesEliminadas = Peticion::whereDate('updated_at', '>=', $peticionFecha)
-                                        ->where('observacion', 'Transcurrieron 7 días, el lapso de respuesta ha expirado')
+                                        ->where('estado', 'Rechazada')
+                                        // ->where('observacion', 'Transcurrieron 7 días, el lapso de respuesta ha expirado')
                                         ->where('notificacion', 1)->get();
         
         $peticionesAceptadas = Peticion::whereDate('updated_at', '>=', $peticionFecha)
