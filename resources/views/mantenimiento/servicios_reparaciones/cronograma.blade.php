@@ -64,8 +64,8 @@ background: radial-gradient(circle, rgba(0,138,52,1) 41%, rgba(10,61,134,1) 79%)
 
     }
 
-    .border-warning{
-      border: 5px solid red;
+    .border-warning2{
+      border-bottom: 7px solid red;
     }
     
   </style>
@@ -132,7 +132,7 @@ background: radial-gradient(circle, rgba(0,138,52,1) 41%, rgba(10,61,134,1) 79%)
             <div class="row">
               @forelse ($mantenimientos as $mantenimiento)
                    <div class="col-sm-4">
-                <div class="card hover @if (date("Y/m/d" , strtotime($mantenimiento->fecha)) == date("Y/m/d")) border-warning 
+                <div class="card hover @if (date("Y/m/d" , strtotime($mantenimiento->fecha)) == date("Y/m/d")) border-warning2 
                        
                    @endif" >
                    
