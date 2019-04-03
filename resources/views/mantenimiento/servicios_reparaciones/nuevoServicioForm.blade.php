@@ -156,14 +156,22 @@
             maximumSelectionLength: 5,
           //  allowClear: true
           }); 
-          
+            min = new Date();
+            // min.setYear(min.getFullYear()-50);
+            max = new Date();
+            max.setYear(max.getFullYear()-15);
+            // var sd = new Date(), ed = new Date();
           $('#date').bootstrapMaterialDatePicker({
-            weekStart : 0,
+            weekStart : 1,
             format : 'YYYY/M/D ', 
             lang: 'es',
             time: false,
+            daysOfWeekDisabled: '0,6',
+            minDate: min,
+	        // maxDate: max
         });
 
+  
 
         });
         </script>
