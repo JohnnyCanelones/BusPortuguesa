@@ -1,8 +1,8 @@
-let admin = document.getElementById('admin');
-let mantenimiento = document.getElementById('mantenimiento');
-let personal = document.getElementById('personal');
-let inventario = document.getElementById('inventario');
-let operaciones = document.getElementById('operaciones');
+var admin = document.getElementById('admin');
+var mantenimiento = document.getElementById('mantenimiento');
+var personal = document.getElementById('personal');
+var inventario = document.getElementById('inventario');
+var operaciones = document.getElementById('operaciones');
 
 function adminFunction(){
     if(admin.checked){
