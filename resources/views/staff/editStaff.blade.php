@@ -45,7 +45,7 @@
 							<div class="col-lg-6 col-md-12 mt-4">
 								<div class=" form-group" >
 									<strong><label class="bmd-label-floating" for="id">Cedula</label></strong>
-									<input id="cedula" class="form-control {{ $errors->has('id') ? ' is-invalid' : '' }}" type="" name="id" value="{{ $staff->id }}">
+									<input readonly id="cedula" class="form-control {{ $errors->has('id') ? ' is-invalid' : '' }}" type="" name="id" value="{{ $staff->id }}">
 										 
 										 @if ($errors->has('id'))
 											<span class="invalid-feedback" role="alert">

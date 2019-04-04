@@ -25,7 +25,7 @@
 								<div class="form-group">
 									<label class="bmd-label-floating" for="nacionality">Nacionalidad</label>
 									<select  required name="nacionality" class="form-control  focus  {{ $errors->has('nacionality') ? ' is-invalid' : '' }}">
-											<option disabled selected></option>
+											<option  selected>{{ old('nacionality') }}</option>
 											<option>V</option>
 											
 											<option>E</option>
@@ -81,7 +81,7 @@
 							<div class="col-lg-6 col-md-12 mt-5">
 									<div class="form-group">
 										<strong><label for="date_birth" class="bmd-label-floating">Fecha de Nacimiento</label></strong>
-										<input class="form-control "  name="date_birth" id="date">
+										<input class="form-control "  name="date_birth" id="date" value="{{ old('date_birth') }}">
 										 
 									</div>
 								</div>
@@ -90,7 +90,7 @@
 								<div class="form-group">
 									<strong><label for="genre" class="bmd-label-floating">Género</label></strong>
 									<select required class=" js-example-basic-single form-control focus  {{ $errors->has('genre') ? ' is-invalid' : '' }}"  name="genre" value="{{ old('genre') }}">
-										<option></option>
+										<option>{{ old('genre') }}</option>
 										<option>Femenino</option>
 										<option>Masculino</option>
 									</select>
@@ -135,13 +135,14 @@
 												<strong><label class="bmd-label-floating" for="id">Ocupacion</label></strong>
 
 												<select required="" class="js-example-basic-single form-control focus "  name="position" id="position" >
-													<option></option>
+													<option>{{ old('position') }}</option>
 													
 												</select> 
 
 											</div>
 										</div>
 										<div class="col-sm-2 mt-5">
+											
 											<h4><a href="#" class="azul hover" data-toggle="modal" data-target="#exampleModalLong"><i class="fas fa-plus"></i></a></h4>
 										</div>
 										
@@ -152,7 +153,9 @@
 							<div class="col-lg-6 col-md-12 mt-5">
 								<div class="form-group">
 									<strong><label for="address" class="bmd-label-floating">direccion</label></strong>
-									<textarea name="address" class="form-control focus {{ $errors->has('address') ? ' is-invalid' : '' }}" value="{{ old('address') }}"></textarea>
+									<textarea name="address" class="form-control focus {{ $errors->has('address') ? ' is-invalid' : '' }}" value="{{ old('address') }}">
+										{{ old('address') }}
+									</textarea>
 									@if ($errors->has('address'))
 										<span class="invalid-feedback" role="alert">
 											<strong>{{ $errors->first('address') }}</strong>
@@ -204,14 +207,7 @@
 							<div class="admin col-lg-6 mt-5 col-sm-6 ocultar-permisos">
 								<input id="inventario" class="form-control custom-control custom-checkbox" type="checkbox" name="inventario" value="1" >
 							</div>
-							<div  class="admin col-lg-6 mt-5 col-sm-6 ocultar-permisos text-center">
-								<label for="operaciones" class="form-label">Jefe de Bienes</label>
-							</div>
-							<div class="admin col-lg-6 mt-5 col-sm-6 ocultar-permisos">
-								<input id="operaciones" class="form-control custom-control custom-checkbox" type="checkbox" name="operaciones" value="1" >
-							</div>
-
-								
+						
 								
 							
 								
@@ -243,6 +239,11 @@
       	<div class="container-fluid">
       		
         <div class="row">
+					<div class="col-sm-12">
+					<div class="alert alert-danger text " role="alert">
+							Los datos aquí ingresados no pueden ser<strong> Modificados</strong> 
+					</div>
+					</div>
         	<div class="col-sm-12">
         			
 
