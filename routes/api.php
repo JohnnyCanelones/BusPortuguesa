@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use App\Peticion;
+use App\Buses;
    
 
 /*
@@ -68,4 +69,8 @@ Route::post('/mantenimiento/notificacion/delete/{id}', function($id, Request $re
 
 // return $peticionesEliminadas;
 
+});
+
+Route::get('/mantenimiento/buses', function (){
+        return Buses::all();
 });

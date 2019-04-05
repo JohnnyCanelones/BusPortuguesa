@@ -12,7 +12,8 @@ class BusesController extends Controller
 {
     public function showBusForm()
     {
-        $conductores = Staff::where('position', 'Mecanico')->get();
+        
+        $conductores = Staff::where('position', 'Conductor')->get();
         // dd($conductores);
     	
 
