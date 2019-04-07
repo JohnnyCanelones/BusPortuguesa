@@ -104,7 +104,7 @@
 <script type="text/javascript"  src="{{ asset('plugins/jquery-datatables/js/responsive.bootstrap4.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/presidencia/monitoreoAlmacen.js') }}"></script>
 
-<script type="text/javascript">
+{{-- <script type="text/javascript">
     let peticiones = document.getElementsByClassName('peticion');
 
 for (x=0; x <peticiones.length; x++){
@@ -151,7 +151,7 @@ for (x=0; x <peticiones.length; x++){
     })
 }
 
-</script>
+</script> --}}
 
 
 
