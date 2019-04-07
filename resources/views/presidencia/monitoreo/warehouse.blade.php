@@ -104,7 +104,7 @@
 <script type="text/javascript"  src="{{ asset('plugins/jquery-datatables/js/responsive.bootstrap4.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/presidencia/monitoreoAlmacen.js') }}"></script>
 
-{{-- <script type="text/javascript">
+<script type="text/javascript">
     let peticiones = document.getElementsByClassName('peticion');
 
 for (x=0; x <peticiones.length; x++){
@@ -117,7 +117,19 @@ for (x=0; x <peticiones.length; x++){
             $('#exampleModalLong').modal('show');
         }, 300);
             $.get( "/presidente/monitoreo/peticion/"+peticion.dataset.value, function( data ) {
-               document.getElementById('exampleModalLongTitle').innerHTML =  'Peticion';
+               
+               function estado() {
+                   if (data['peticion'].estado == 'Aprobada') {
+                       return 'badge badge-success'
+                    } if(data['peticion'].estado == 'Pendiente') {
+                        return 'badge badge-warning2'
+                       
+                   }else {
+                        return 'badge badge-danger'
+
+                   }
+               }
+                document.getElementById('exampleModalLongTitle').innerHTML =  `Peticion  <span class="${estado()}">${data['peticion'].estado}</span>`;
 
                 // document.getElementById('mt-1').innerHTML =  'Estado';
                 // document.getElementById('m-1').innerHTML =  data['peticion'].estado
@@ -141,17 +153,21 @@ for (x=0; x <peticiones.length; x++){
                 document.getElementById('m-3').innerHTML =  data['peticion'].created_at;
                 
                 if (data['peticion'].estado != 'Pendiente') {
-                console.log('asasdsad')
+                    console.log('asasdsad')
 
                    document.getElementById('mt-4').innerHTML =  'Fecha respuesta';
                     document.getElementById('m-4').innerHTML =  data['peticion'].updated_at; 
+                }else {
+                    document.getElementById('mt-4').innerHTML =  '';
+                    document.getElementById('m-4').innerHTML =  ''; 
+                    
                 }
             });
         
     })
 }
 
-</script> --}}
+</script>
 
 
 
