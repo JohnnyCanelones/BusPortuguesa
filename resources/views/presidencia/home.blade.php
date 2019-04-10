@@ -17,7 +17,7 @@
                         </div>
                         <div class="col-sm-7 p-0 "  >
                            <div class="card p-3  infobox-azul-contenido" >
-                               <h5 class="text-white text-center">Repuestos <br>Pendientes <span class="timer badge badge-secondary" data-from="0" data-to=""></span></h5>
+                               <h5 class="text-white text-center">Movimientos de hoy en <br>Almacen <span class="timer badge badge-secondary" data-from="0" data-to=""></span></h5>
                            </div>
                         </div>
                     </div>
@@ -36,7 +36,7 @@
                         </div>
                         <div class="col-sm-7 p-0 "  >
                            <div class="card p-3 infobox-verde-contenido" >
-                               <h5 class="text-white text-center">Buses <br>Activos <span class="timer badge badge-secondary" data-from="0" data-to=""></span></h5>
+                               <h5 class="text-white text-center">Movimientos de hoy en<br>Mantenimiento <span class="timer badge badge-secondary" data-from="0" data-to=""></span></h5>
                            </div>
                         </div>
                     </div>
@@ -53,7 +53,7 @@
                         </div>
                         <div class="col-sm-7 p-0 "  >
                            <div class="card p-3 infobox-amarillo-contenido" >
-                               <h5 class="text-white text-center">Buses <br>Inactivos <span class="timer badge badge-secondary" data-from="0" data-to=""></span></h5>
+                               <h5 class="text-white text-center">Movimientos de hoy en <br>Recursos Humanos <span class="timer badge badge-secondary" data-from="0" data-to=""></span></h5>
                                
                            </div>
                         </div>

@@ -249,6 +249,12 @@ class MantenimientoController extends Controller
         $mantenimientos->load('staffs');
         
         if ($request->desde) {
+            $desde  = $request->desde;
+            $hasta = $request->hasta;
+            $mantenimientos = Mantenimiento::whereDate('fecha', '>=', $desde)
+                                        ->whereDate('fecha', '<=', $hasta)
+                                        ->orderBy('fecha', 'asc')->get();
+            $mantenimientos->load('staffs');
             // dd('hpla');
             $arr = ['menu'=> 2, 'mantenimientos' => $mantenimientos, 'desde' => $request->desde, 'hasta'=> $request->hasta];
             $pdf = PDF::loadView('mantenimiento.reportes.pdfCronogramas', compact('arr'));

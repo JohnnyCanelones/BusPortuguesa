@@ -6,6 +6,7 @@
 // Route::get('/almacen', function() {
 //     return view('almacen.home');
 // })->middleware(['auth', 'almacen:,']);
+Route::group(['middleware' => ['auth', 'almacen:,']], function() {
 
 Route::get('/almacen','AlmacenController@home');
 // ->middleware(['auth', 'almacen:,']);
@@ -68,3 +69,5 @@ Route::get('/almacen/ultimas/peticiones', function() {
 
 Route::get('/almacen/inventario/{id}', 'AlmacenController@editInventario');
 Route::post('/almacen/inventario/{id}', 'AlmacenController@updateInventario');
+
+});

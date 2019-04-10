@@ -100,7 +100,7 @@
                                                   
 
                                                   @empty
-                                                  <optgroup label="No hay conductores">
+                                                  <optgroup label="No hay Mecanicos">
                                                   @endforelse
     
                                             </select>
