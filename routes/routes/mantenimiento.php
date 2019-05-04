@@ -43,5 +43,10 @@ Route::get('mantenimiento/cronograma/servicio/{id}','MantenimientoController@mod
 Route::get('mantenimiento/cronograma/reporte/','MantenimientoController@showMantenimientosPdf');
 Route::post('mantenimiento/cronograma/reporte/','MantenimientoController@showMantenimientosPdfPost');
 
+Route::get('mantenimiento/pdf/buses', 'BusesController@busesPdf');
+Route::get('mantenimiento/pdf/buses/opcion/', 'BusesController@opcionBusesPdf');
+Route::get('mantenimiento/pdf/buses/show/todos', 'BusesController@showBusesPdf');
+
+
 
 

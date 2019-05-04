@@ -118,6 +118,10 @@ input[type=text]{
 
 }
 
+.no-bg {
+  background-color: transparent !important;
+}
+
 .success {
   background-color:  #4caf50 !important;
   padding: 7px !important;

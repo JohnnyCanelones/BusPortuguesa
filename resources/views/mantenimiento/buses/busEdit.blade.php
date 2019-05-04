@@ -90,7 +90,7 @@
 
                                     <div class="col-md-12 col-lg-6 mt-4">
                                         <div class="form-group">
-                                            <select required="" class="js-example-basic-single form-control mt-1 focus" name="conductor" required="">
+                                            <select id="conductor" required="" class="js-example-basic-single form-control mt-1 focus" name="conductor" required="">
                                                 @if ($bus->conductor_id == null)
                                                 <optgroup>
                                                   <option selected value='0'>No tiene conductor asignado</option>
@@ -195,7 +195,7 @@
                                     
                                 </div>
                         <div class="card-footer mt-5">
-                            <button class="btn btn-primary btn-raised mx-auto d-block header" type="submit"> Guardar</button>
+                            <button class="btn btn-primary btn-raised mx-auto d-block header" id="registrar" type="submit"> Guardar</button>
                         </div>
                         </form>
                         </div>
@@ -212,10 +212,49 @@
         <script type="text/javascript" src="{{ asset('plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js') }}"></script>
         {{-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script> --}}
         <script type="text/javascript"  src="{{ asset('plugins/select2/select2.min.js') }}"></script>
+        <script type="text/javascript"  src="{{ asset('plugins/sweetalert2.all.min.js') }}"></script>
         
 
         <script type="text/javascript" src="{{ asset('js/mantenimiento/busesForm.js') }}"></script>
-        
+         <script>
+            // $(document).ready(function() {
+            $( "#conductor" ).change(function() {
+                // alert( "Handler for .change() called." );
+                $.get( "/api/mantenimiento/buses", function( data ) {
+                    // console.log(data)
+                    let $conductor = document.getElementById('conductor').value
+                    let $button = document.getElementById('registrar')
+                    for (let i = 0; i < data.length; i++) {
+                        let conductor = data[i].conductor_id;
+                            // console.log(conductor)
+                        if ($conductor == 0) {
+                            console.log("0")
+                            $button.disabled = false;
+                            
+                        }if ($conductor == conductor) {
+                            swal(
+                            'Advertencia!',
+                            'El conductor que seleccionaste ya esta encargado de otra unidad' ,
+                            'warning'
+                            )
+                            // console.log($button);
+                            $button.disabled = true;
+                            break
+                        }else {
+                            $button.disabled = false;
+
+                        }
+                        
+                    }
+                })
+                            
+                
+            });
+
+
+          
+            // })
+        </script>
         
         </body>
         

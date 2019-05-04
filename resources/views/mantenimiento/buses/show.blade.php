@@ -33,7 +33,7 @@
                                 <td>{{ $bus->modelo}} </td>
                                 <td><a data-toggle="tooltip" data-placement="top" title="Modificar kilometraje" href="/mantenimiento/kilometraje/{{ $bus->id_bus }}" style="color: #008a34"> {{ $bus->kilometraje }}</a></td>
                                 <td> {{ $bus->esOperaciones }}</td>
-                                <td> {{ $bus->estado }}</td>
+                                <td> @if( $bus->estado == 'Inactivo') Inoperativa @else Operativa @endif</td>
                                 <td class="text-center"> <span class="text-center @if ($bus->motivo_inactividad == 'a Desincorporar')badge badge-warning
                                         @endif"> @if( $bus->estado == 'Inactivo') {{ $bus->motivo_inactividad }} </span>@else ---- @endif</td>        
                                 <td> @if( $bus->estado == 'Inactivo') {{ $newDate = date("d/m/Y", strtotime($bus->fecha_inactivo))  }} @else ---- @endif</td>        
