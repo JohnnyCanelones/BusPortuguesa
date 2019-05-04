@@ -40,10 +40,9 @@
         <br>
 
         <div class="collapse" id="menu4" data-parent="#sidebar">
-            <span><a href="#menu4sub4" class="list-group-item"  aria-expanded="true">Subitem 4 </a></span>
-            <a href="#menu4sub4" class="list-group-item" data-toggle="collapse" aria-expanded="false">Subitem 4 </a>
-            <a href="#menu4sub4" class="list-group-item" data-toggle="collapse" aria-expanded="false">Subitem 4 </a>
-            
+            <span><a href="{{ url('mantenimiento/pdf/buses')}}" class="list-group-item"  aria-expanded="true">Buses </a></span>
+            <span><a href="{{ url('mantenimiento/cronograma')}}" class="list-group-item"  aria-expanded="true">Cronograma </a></span>
+           
         
         </div>
     </li>

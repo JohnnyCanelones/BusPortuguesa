@@ -14,7 +14,7 @@
                 <div class="col-sm-12 col-lg-7">
                     <div id="" class="card card2 ">
                         <div class="card-header">
-                            <h3 id="hola" class="azul text-center m-3 ">Nuevo Servicio</h3>
+                            <h3 id="hola" class="azul text-center m-3 ">Nuevo Servicio </h3>
                         </div>
                         <form action="/mantenimiento/nuevo/servicio" method="post">
                         <div class="card-body">
@@ -24,7 +24,7 @@
                                     <div class="col-lg-6 col-md-12  mt-4" id="fecha_inactivo">
                                         <div class="form-group">
                                             <strong><label for="fecha"  class="bmd-label-floating">Fecha</label></strong>
-                                            <input required  class="form-control "  name="fecha" id="date">
+                                        <input required  class="form-control "  name="fecha" id="date" value="{{ old('fecha') }}">
                                              
                                         </div>
                                     </div>
@@ -32,7 +32,8 @@
                                     <div class="col-lg-6 col-md-12 mt-4">
                                         <div class=" form-group" >
                                              <select required="" class="unidad form-control mt-1 focus" name="bus_id" required="">
-                                                <option value=""></option>
+                                             <option value="{{ old('bus_id') }}">{{ old('bus_id') }}</option>
+                                                
 
                                               @forelse($buses as $bus)
                                                 <optgroup label="">
@@ -52,6 +53,7 @@
                                       <div class="form-group">
                                           <select required="" class="tipo_mantenimiento form-control mt-1 focus" name="tipo_mantenimiento" required="">
                                                 <option value=""></option>
+                                                <option value="{{ old('tipo_mantenimiento') }}">{{ old('tipo_mantenimiento') }}</option>
 
                                               <optgroup label="">
                                                 <option>Preventivo</option>
@@ -69,6 +71,7 @@
                                           <div class="form-group">
                                               <select required="" class="tipo_servicio form-control mt-1 focus" name="tipo_servicio" id="tipo_servicio" required="">
                                                 <option value=""></option>
+
                                                 @forelse ($servicios as $servicio)
                                                     <option>{{$servicio->name}}</option>
                                                     
@@ -92,6 +95,8 @@
                                         <div class="" >
                                             <select  multiple class="mecanicos form-control mt-1 focus"  name="mecanicos[]" required="" >
                                                 <option class="p-5" value=""></option>
+                                                <option value="{{ old('mecanicos[]') }}">{{ old('mecanicos[]') }}</option>
+
                                                 @forelse($mecanicos as $mecanico)
                                                   <optgroup label="">
                                                   <option value="{{ $mecanico->id }}">C.I {{ $mecanico->id }}, <br>{{ $mecanico->names }} {{ $mecanico->last_names }}</option>
@@ -129,7 +134,18 @@
         
         @include('mantenimiento.servicios_reparaciones.modalNuevoServicio')
 
-        
+         @if (session('status'))
+          <script type="text/javascript">
+            $(document).ready(function() {
+                swal(
+                'Error',
+                '{{ session('status') }}' ,
+                'error'
+                )
+            })
+          </script>
+        @endif
+
         {{-- <script type="text/javascript" src="{{ asset('js/app.js') }}"></script> --}}
         {{-- <script type="text/javascript" src="{{ asset('js/staffform.js') }}"></script> --}}
         
@@ -137,6 +153,8 @@
         <script type="text/javascript" src="{{ asset('plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js') }}"></script>
         {{-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script> --}}
         <script type="text/javascript"  src="{{ asset('plugins/select2/select2.min.js') }}"></script>
+  <script type="text/javascript"  src="{{ asset('plugins/sweetalert2.all.min.js') }}"></script>
+
         
         <script>
           

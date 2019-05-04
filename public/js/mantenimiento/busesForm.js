@@ -38,3 +38,9 @@ let activeBusChecked =document.getElementById("active_bus_check").checked;
 	}
 })
 
+$.fn.formatter.addInptType('T', /[2,4]/);
+$.fn.formatter.addInptType('L', /[A-Za-z ]/);
+$.fn.formatter.addInptType('X', /[A-Za-z]/);
+$('#kilometraje').formatter({
+	"pattern": '{{9999999999999999999999999999999}}'
+});

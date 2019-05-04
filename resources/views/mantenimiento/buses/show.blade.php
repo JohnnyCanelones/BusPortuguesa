@@ -15,6 +15,7 @@
                                 <th class="text-white" scope="col"># de la Unidad</th>
                                 <th class="text-white" scope="col">Modelo</th>
                                 <th class="text-white" scope="col">Kilometraje</th>
+                                <th class="text-white" scope="col">Ubicación</th>
                                 <th class="text-white" scope="col">Estado</th>
                                 <th class="text-white" scope="col">Motivo de la inactividad</th>
                                 <th class="text-white" scope="col">Inactivo desde</th>
@@ -31,6 +32,7 @@
                                 </th>
                                 <td>{{ $bus->modelo}} </td>
                                 <td><a data-toggle="tooltip" data-placement="top" title="Modificar kilometraje" href="/mantenimiento/kilometraje/{{ $bus->id_bus }}" style="color: #008a34"> {{ $bus->kilometraje }}</a></td>
+                                <td> {{ $bus->esOperaciones }}</td>
                                 <td> {{ $bus->estado }}</td>
                                 <td class="text-center"> <span class="text-center @if ($bus->motivo_inactividad == 'a Desincorporar')badge badge-warning
                                         @endif"> @if( $bus->estado == 'Inactivo') {{ $bus->motivo_inactividad }} </span>@else ---- @endif</td>        
@@ -57,7 +59,7 @@
 </div>
 
 <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
-<script type="text/javascript"  src="{{ asset('plugins/jquery-datatables/js/jquery.dataTables.js') }}"></script>
+<script type="text/javascript"  src="{{ asset('plugins/jquery-datatables/js/jquery.dataTables2.js') }}"></script>
 <script type="text/javascript"  src="{{ asset('plugins/jquery-datatables/js/dataTables.bootstrap4.min.js') }}"></script>
 <script type="text/javascript"  src="{{ asset('plugins/jquery-datatables/js/dataTables.responsive.min.js') }}"></script>
 <script type="text/javascript"  src="{{ asset('plugins/jquery-datatables/js/responsive.bootstrap4.min.js') }}"></script>

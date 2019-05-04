@@ -18,7 +18,12 @@
 	        	<form id="servicio" action="/mantenimiento/servicio" method="post">
 					{{ csrf_field() }}
 	        		<div class="row">
-	        			
+									<div class="col-sm-12">
+									<div class="alert alert-danger text " role="alert">
+											Los datos aquí ingresados no pueden ser<strong> Modificados</strong> 
+									</div>
+									</div>
+												
 			            <div class="col-sm-10 mb-2" id="cedula">
 			            	<input type="" id="name" name="name" class="form-control">
 			            </div>

@@ -58,7 +58,7 @@
                                 <div class="col-lg-6 col-md-12 mt-4">
                                         <div class=" form-group" >
                                             <strong><label class="bmd-label-floating" for="kilometraje">Kilometraje</label></strong>
-                                            <input  required class="form-control {{ $errors->has('kilometraje') ? ' is-invalid' : '' }}" type="" name="kilometraje" value="{{ old('kilometraje') }}" >
+                                            <input id="kilometraje" required class="form-control {{ $errors->has('kilometraje') ? ' is-invalid' : '' }}" type="" name="kilometraje" value="{{ old('kilometraje') }}" >
                                                  
                                                  @if ($errors->has('kilometraje'))
                                                     <span class="invalid-feedback" role="alert">
@@ -68,6 +68,22 @@
                                         </div>	
                                         
                                     </div>
+                                    <div class="col-md-12 col-lg-6 mt-4">
+                                    <div class="form-group">
+                                        <select required="" class="js-example-basic-single form-control mt-1 focus" name="esOperaciones" required="">
+                                            <option selected="" disabled="">Es Cono Norte o Sur</option>
+                                            
+                                            <optgroup label="">
+                                            <option>Cono Norte</option>
+                                            <option>Cono Sur</option>
+
+                                            
+
+                                        </select>
+                                        
+                                        
+                                    </div>
+                                </div>
 
 
                                     <div class="col-md-12 col-lg-6 mt-4">
@@ -176,6 +192,7 @@
         
         <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/staffform.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('plugins/jquery-validation/jquery.formatter.min.js') }}"></script>
         
         <script type="text/javascript" src="{{ asset('plugins/momentjs/moment.js') }}"></script>
         <script type="text/javascript" src="{{ asset('plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js') }}"></script>

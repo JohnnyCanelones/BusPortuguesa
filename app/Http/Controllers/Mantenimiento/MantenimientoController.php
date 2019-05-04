@@ -91,9 +91,22 @@ class MantenimientoController extends Controller
     public function nuevoServicio(Request $request){
         $bus = Buses::find($request->get('bus_id'));
         // dd($bus);
-
+        
         $mecanicos = $request->get('mecanicos');
 
+         $mantenimientos = Mantenimiento::where('bus_id', $bus->id_bus)
+                                        ->whereDate('fecha', '=', $request->get('fecha'))
+                                        ->where('tipo_servicio', '=', $request->get('tipo_servicio'))
+                                        ->get();
+        
+        if (count($mantenimientos ) > 0) {
+            $mensaje = 'ya extiste un '. $request->get('tipo_servicio').' para ese dia';
+            Session::flash('status', $mensaje);
+
+            return redirect('mantenimiento/nuevo/servicio');
+        }
+
+        
         // dd($mecanicos);
         $mantenimiento = new Mantenimiento();
         $mantenimiento->fecha = $request->get('fecha');

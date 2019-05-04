@@ -40,6 +40,7 @@ class BusesController extends Controller
             'id_bus' => $request->get('id_bus'),
             'modelo' => $request->get('modelo'), 
             'kilometraje'=> $request->get('kilometraje'),
+            'esOperaciones' => $request->get('esOperaciones'),
             'conductor_id' =>  $conductor,
             'estado' => 'Inactivo',
             'motivo_inactividad' => $request->get('motivo_inactividad'),
@@ -61,6 +62,8 @@ class BusesController extends Controller
             'id_bus' => $request->get('id_bus'),
             'modelo' => $request->get('modelo'),
             'kilometraje'=> $request->get('kilometraje'),
+            'esOperaciones' => $request->get('esOperaciones'),
+
             'conductor_id' =>  $conductor,
             'estado' => 'Activo',
            ]);
@@ -103,6 +106,7 @@ class BusesController extends Controller
             $bus->id_bus = $request->get('id_bus');
             $bus->modelo = $request->get('modelo'); 
             // $bus->kilometraje = $request->get('kilometraje');
+            $bus->esOperaciones = $request->get('esOperaciones');
             $bus->conductor_id =  $conductor;
             $bus->estado = 'Inactivo';
             $bus->motivo_inactividad =  $request->get('motivo_inactividad');

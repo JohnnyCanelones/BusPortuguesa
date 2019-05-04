@@ -40,10 +40,7 @@ class LoginController extends Controller
       
         if(Auth::check()){
             // dd('gola');
-            
-            $user =  Auth::user();
-            $user->login = 1;
-            $user->save();
+          
             Auth::logoutOtherDevices($request->input('password'));
             // return $user;
 
@@ -91,19 +88,7 @@ class LoginController extends Controller
         // return property_exists($this, 'redirectTo') ? $this->redirectTo : '/home';
     }
 
-    protected function logout()
-    {
-        $user = Auth::user();
-        $user->login = 0;
-        $user->save();
-        // Auth::logout();
-        // Auth::flush();
-        Auth::logout();
-        // Auth::logoutOtherDevices($user->password);
-        return redirect('/login');
-
-        // emitimos evento de deslogado
-    }
+   
 
     /**
      * Create a new controller instance.
