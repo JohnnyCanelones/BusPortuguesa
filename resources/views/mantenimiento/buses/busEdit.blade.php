@@ -73,7 +73,7 @@
                                      <div class="col-md-12 col-lg-6 mt-4">
                                     <div class="form-group">
                                         <select required="" class="js-example-basic-single form-control mt-1 focus" name="esOperaciones" required="">
-                                            <option selected="" disabled="">{{$bus->esOperaciones}}</option>
+                                            <option selected="" >{{$bus->esOperaciones}}</option>
                                             
                                             <optgroup label="">
                                             <option>Cono Norte</option>
