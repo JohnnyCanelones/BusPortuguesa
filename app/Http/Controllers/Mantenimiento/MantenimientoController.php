@@ -100,7 +100,7 @@ class MantenimientoController extends Controller
                                         ->get();
         
         if (count($mantenimientos ) > 0) {
-            $mensaje = 'ya extiste un '. $request->get('tipo_servicio').' para ese dia';
+            $mensaje = 'Ya existe una solicitud de '. strtolower($request->get('tipo_servicio')).' para ese día';
             Session::flash('status', $mensaje);
 
             return redirect('mantenimiento/nuevo/servicio');
