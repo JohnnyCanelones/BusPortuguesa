@@ -415,7 +415,7 @@ class BusesController extends Controller
              Session::flash('status','No hay unidades');
               return redirect('/mantenimiento/pdf/buses/opcion?q='.$request->q);  
             }
-            $arr = ['option'=> $request->option, 'Buses' => $Buses,];
+            $arr = ['option'=> $request->option, 'Buses' => $Buses, 'TotalNorteSur'=> $request->q];
             $pdf = PDF::loadView('mantenimiento.buses.pdf.reporte.pdfBuses', compact('arr'));
 		    $pdf->setPaper('letter', 'landscape');
             return $pdf->stream('PDF Unidad 6752 BusPortuguesa.pdf');	

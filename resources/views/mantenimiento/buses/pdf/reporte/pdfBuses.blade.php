@@ -20,10 +20,10 @@
              @forelse($arr['Buses'] as $bus)
             <tr>
                 <th scope="row">
-                <a data-toggle="tooltip" data-placement="top" title="Modificar Unidad" href="/mantenimiento/bus/{{$bus->id_bus}}"  style="color: #008a34">{{ $bus->id_bus}}</a>
+                <a data-toggle="tooltip" data-placement="top" title="Modificar Unidad"   style="color: #008a34">{{ $bus->id_bus}}</a>
                 </th>
                 <td>{{ $bus->modelo}} </td>
-                <td><a data-toggle="tooltip" data-placement="top" title="Modificar kilometraje" href="/mantenimiento/kilometraje/{{ $bus->id_bus }}" style="color: #008a34"> {{ $bus->kilometraje }}</a></td>
+                <td><a data-toggle="tooltip" data-placement="top" title="Modificar kilometraje" style="color: #008a34"> {{ $bus->kilometraje }}</a></td>
                 <td> {{ $bus->esOperaciones }}</td>
                 <td> @if( $bus->estado == 'Inactivo') Inoperativa @else Operativa @endif</td>
                 <td class="text-center"> <span class="text-center @if ($bus->motivo_inactividad == 'a Desincorporar')badge badge-warning

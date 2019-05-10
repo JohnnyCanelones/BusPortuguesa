@@ -41,12 +41,7 @@
                                 <div class="admin col-lg-6 mt-5 col-sm-6 ">
                                     <input id="inventario"   class="form-control custom-control custom-checkbox" type="checkbox" name="inventario" value="1" >
                                 </div>
-                                <div  class="admin col-lg-6 mt-5 col-sm-6 ">
-                                    <label for="operaciones" class="form-label">Jefe de Bienes</label>
-                                </div>
-                                <div class="admin col-lg-6 mt-5 col-sm-6 ">
-                                    <input id="operaciones"  class="form-control custom-control custom-checkbox" type="checkbox" name="operaciones" value="1" >
-                                </div>
+                                
                             </div>
                             <div class="card-footer mt-5">
                                 <button class="btn btn-primary mt-3 mb-0 mx-auto d-block" type="submit"> Guardar</button>

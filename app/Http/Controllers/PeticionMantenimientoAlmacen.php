@@ -77,6 +77,35 @@ class PeticionMantenimientoAlmacen extends Controller
             foreach ($peticionesAnteriones as $peticion){
                 $contadorProductosTotales = $contadorProductosTotales + $peticion->cantidad;
             }
+
+            if ($producto->limite == 0) {
+                // dd($producto);
+                $peticion = Peticion::create([
+                    'almacen_id' => $producto->id,
+                    'bus_id' => $request->get('bus_id'),
+                    'cantidad' => $request->get('cantidad'),
+                    // 'observacion' => $request->get('observacion'),
+                    'estado' => 'Pendiente',
+                    'peticion_especial' => 0,
+
+                ]);
+                
+                $monitoreo = PetitionMonitoring::create([
+                    'user_id' => Auth::user()->username,
+                    'peticion_id' => $peticion->id,
+                    'accion' => 'Peticion enviada', 
+                    'fecha_accion' => date("Y-m-d H:i:s"),
+                    ]);
+                    
+                    
+                Session::flash('status','Petición Enviada');
+        
+                        
+                    
+                return redirect('/mantenimiento');
+        
+                
+            }
            
             // dd($contadorProductosTotales);
             if($contadorProductosTotales > $producto->limite  ){
@@ -144,6 +173,35 @@ class PeticionMantenimientoAlmacen extends Controller
             }
            
             // dd($contadorProductosTotales);
+            if ($producto->limite == 0) {
+                // dd($producto);
+                $peticion = Peticion::create([
+                    'almacen_id' => $producto->id,
+                    'bus_id' => $request->get('bus_id'),
+                    'cantidad' => $request->get('cantidad'),
+                    // 'observacion' => $request->get('observacion'),
+                    'estado' => 'Pendiente',
+                    'peticion_especial' => 0,
+
+                ]);
+                
+                $monitoreo = PetitionMonitoring::create([
+                    'user_id' => Auth::user()->username,
+                    'peticion_id' => $peticion->id,
+                    'accion' => 'Peticion enviada', 
+                    'fecha_accion' => date("Y-m-d H:i:s"),
+                    ]);
+                    
+                    
+                Session::flash('status','Petición Enviada');
+        
+                        
+                    
+                return redirect('/mantenimiento');
+        
+                
+            }
+            
             if($contadorProductosTotales > $producto->limite  ){
                 // dd('Error, solo puedes pedir '.$producto->limite.' unidades de '.$producto->nombre_producto.' hasta junio de este año, ya llevas '.$contadorProductosTotales);
                 Session::flash('peticionEspecial', 'Solo puede solicitar '.$producto->limite.' unidades de '.$producto->nombre_producto.

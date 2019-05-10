@@ -89,7 +89,7 @@ class StaffController extends Controller
             $monitoreoRol = StaffMonitoring::create([
             'user_id' => Auth::user()->username,
             'staff_id' => $request->input('id'),
-            'acc on' => 'Rol Creado', 
+            'accion' => 'Rol Creado', 
             'fecha_accion' => date("Y-m-d H:i:s"),
             ]);
     	}

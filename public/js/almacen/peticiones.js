@@ -8,7 +8,7 @@ $(document).ready(function() {
   } );
   $('#peticiones-aprobada-rechazadas').DataTable( {
       dom: 'Bfrtip',
-      "order": [6, 'desc'],
+      "order": [5, 'desc'],
 
   } );
   $('#peticionesEspeciales').DataTable( {
