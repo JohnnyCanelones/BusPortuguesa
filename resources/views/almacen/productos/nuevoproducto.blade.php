@@ -76,7 +76,7 @@
                                     <div class="col-lg-6 col-md-12 mt-4">
                                         <div class="form-group">
                                             <strong><label class="bmd-label-floating" for="cantidad">Cantidad</label></strong>
-                                            <input required class="form-control {{ $errors->has('cantidad') ? ' is-invalid' : '' }}" type="number" name="cantidad" value="{{ old('cantidad') }}">
+                                            <input required id="cantidad" class="form-control {{ $errors->has('cantidad') ? ' is-invalid' : '' }}" type="text" name="cantidad" value="{{ old('cantidad') }}">
                                             @if ($errors->has('cantidad'))
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('cantidad') }}</strong>
@@ -88,7 +88,7 @@
                                     <div class="col-lg-6 col-md-12 mt-4">
                                         <div class="form-group">
                                             <strong><label class="bmd-label-floating" for="limite">Limite, <span style="font: size 5px;" >es para un lapso de 6 meses si no tiene limite colocar 0</span> </label></strong>
-                                            <input required class="form-control {{ $errors->has('limite') ? ' is-invalid' : '' }}" type="number" name="limite" value="{{ old('limite') }}">
+                                            <input id="limite" required class="form-control {{ $errors->has('limite') ? ' is-invalid' : '' }}" type="text" name="limite" value="{{ old('limite') }}">
                                             @if ($errors->has('limite'))
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('limite') }}</strong>
@@ -131,6 +131,9 @@
         </div>
         
         <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('plugins/jquery-validation/jquery.formatter.min.js') }}"></script>
+
+        <script type="text/javascript" src="{{ asset('js/almacen/productos.js') }}"></script>
         {{-- <script type="text/javascript" src="{{ asset('js/staffform.js') }}"></script> --}}
         {{-- 
         <script type="text/javascript" src="{{ asset('plugins/momentjs/moment.js') }}"></script>

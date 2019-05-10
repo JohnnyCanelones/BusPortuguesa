@@ -67,7 +67,7 @@
                                     <div class="col-lg-6 col-md-12 mt-4">
                                         <div class="form-group">
                                             <strong><label class="bmd-label-floating" for="cantidad">Cantidad</label></strong>
-                                            <input  readonly="" class="form-control {{ $errors->has('cantidad') ? ' is-invalid' : '' }}" type="text" name="cantidad" value="{{ $producto->cantidad }}">
+                                            <input  id="cantidad" readonly="" class="form-control {{ $errors->has('cantidad') ? ' is-invalid' : '' }}" type="text" name="cantidad" value="{{ $producto->cantidad }}">
                                             @if ($errors->has('cantidad'))
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('cantidad') }}</strong>
@@ -79,7 +79,7 @@
                                     <div class="col-lg-6 col-md-12 mt-4">
                                         <div class="form-group">
                                             <strong><label class="bmd-label-floating" for="limite">Limite, <span style="font: size 5px;" >es para un lapso de 6 meses si no tiene limite colocar 0</span> </label></strong>
-                                            <input required class="form-control {{ $errors->has('limite') ? ' is-invalid' : '' }}" type="number" name="limite" value="{{ $producto->limite }}">
+                                            <input id="limite" required class="form-control {{ $errors->has('limite') ? ' is-invalid' : '' }}" type="text" name="limite" value="{{ $producto->limite }}">
                                             @if ($errors->has('limite'))
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('limite') }}</strong>
@@ -123,6 +123,10 @@
         
         <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
         {{-- <script type="text/javascript" src="{{ asset('js/staffform.js') }}"></script> --}}
+        <script type="text/javascript" src="{{ asset('plugins/jquery-validation/jquery.formatter.min.js') }}"></script>
+
+        <script type="text/javascript" src="{{ asset('js/almacen/productos.js') }}"></script>
+        
         {{-- 
         <script type="text/javascript" src="{{ asset('plugins/momentjs/moment.js') }}"></script>
         <script type="text/javascript" src="{{ asset('plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js') }}"></script> --}}

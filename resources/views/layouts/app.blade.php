@@ -162,7 +162,7 @@
     <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
 
     {{-- <script  type="text/javascript" src="{{ asset('/js/manetenimiento/notificaciones.js') }}"></script> --}}
-  @guest @else @if(auth()->user()->role->Mantenimiento)@endguest
+   @if(auth()->user()->role->Mantenimiento)
     <script type="text/javascript" src="{{ asset('js/mantenimiento/notificaciones.js') }}"></script>
     @endif
    

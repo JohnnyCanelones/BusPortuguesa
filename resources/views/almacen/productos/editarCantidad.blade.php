@@ -117,6 +117,7 @@
         
         <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
         {{-- <script type="text/javascript" src="{{ asset('js/staffform.js') }}"></script> --}}
+        
         {{-- 
         <script type="text/javascript" src="{{ asset('plugins/momentjs/moment.js') }}"></script>
         <script type="text/javascript" src="{{ asset('plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js') }}"></script> --}}
