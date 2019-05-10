@@ -4,12 +4,12 @@
     
     <div class="row justify-content-center">
         <div class="col-sm-12 col-lg-7">
-            @if (session('success'))
+            @if (session('status'))
                 <script type="text/javascript">
                     $(document).ready(function() {
                         swal(
                         'Listo!',
-                        '{{ session('success') }}' ,
+                        '{{ session('status') }}' ,
                         'success'
                         )
                     })

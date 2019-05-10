@@ -162,12 +162,9 @@ class AlmacenController extends Controller
             'stock_added' => $request->get('cantidad'),
             'fecha_accion' => date("Y-m-d H:i:s"),
         ]);
-        $success = true;
 
-        if ($success) {
-            Session::flash('status','Modificado Correctamente');
+        Session::flash('status','Modificado Correctamente');
 
-        }
 
         return redirect('almacen/productos');
 
@@ -200,12 +197,9 @@ class AlmacenController extends Controller
             'fecha_accion' => date("Y-m-d H:i:s"),
         ]);
         
-        $success = true;
 
-        if ($success) {
-            Session::flash('status','Modificado Correctamente');
+        Session::flash('status','Modificado Correctamente');
 
-        }
 
         return redirect('almacen/productos');
 
