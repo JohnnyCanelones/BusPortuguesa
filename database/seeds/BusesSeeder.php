@@ -50,6 +50,47 @@ class BusesSeeder extends Seeder
             // 'observacion' => 'para ospino acto gobernador',
             
         ]);
-        
+
+        for ($i=0; $i < 5; $i++) { 
+           DB::table('buses')->insert([
+            'id_bus'=> rand(1000, 9999),            
+            'modelo' => 6752,
+            'kilometraje' => rand(10000, 59999),
+			'esOperaciones' => 'Cono Norte',
+            'conductor_id'=> 1234,
+            'estado' => 'Activo',
+            // 'motivo_inactividad' => 'Servicio',
+            // 'fecha_inactivo' => '27/10/2018 2:08:20 p. m.',
+            // 'observacion' => 'para ospino acto gobernador',
+            
+            ]); 
+            
+            DB::table('buses')->insert([
+             'id_bus'=> rand(1000, 9999),            
+             'modelo' => 6118,
+             'kilometraje' => rand(10000, 59999),
+             'esOperaciones' => 'Cono Sur',
+             'conductor_id'=> 1234,
+             'estado' => 'Activo',
+             // 'motivo_inactividad' => 'Servicio',
+             // 'fecha_inactivo' => '27/10/2018 2:08:20 p. m.',
+             // 'observacion' => 'para ospino acto gobernador',
+             
+             ]);
+            
+             DB::table('buses')->insert([
+             'id_bus'=> rand(1000, 9999),            
+             'modelo' => 6896,
+             'kilometraje' => rand(10000, 59999),
+             'esOperaciones' => 'Cono Sur',
+             'conductor_id'=> 1234,
+             'estado' => 'Inactivo',
+             'motivo_inactividad' => 'Servicio',
+             'fecha_inactivo' => '2019-03-27 00:00:00',
+             'observacion' => 'test',
+             
+             ]);
+         
+        }
     }
 }
