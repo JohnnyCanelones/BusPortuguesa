@@ -241,12 +241,18 @@
 </script>
 <script type="text/javascript">
 	// $('#date').bootstrapMaterialDatePicker({ weekStart : 0, time: false });
-	
+	min = new Date();
+	min.setYear(min.getFullYear()-50);
+	max = new Date();
+	max.setYear(max.getFullYear()-17);
+
 	$('#date').bootstrapMaterialDatePicker({
 		weekStart : 0,
 		format : 'YYYY/M/D ', 
 		lang: 'es',
 		time: false,
+		minDate: min,
+  	maxDate: max
 	
 	
 	});
