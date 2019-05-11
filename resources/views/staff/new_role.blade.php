@@ -14,13 +14,18 @@
                             <div class="row text-center">
                                 
                                 {{-- cargos --}}
+                                @if ($hasAdmin)
+                                @else
+                                    
+                                    <div  class="admin col-lg-6 mt-5 col-sm-6 ">
+                                        <label for="admin" class="form-label">Presidencia</label>
+                                    </div>
+                                    <div class="admin col-lg-6 mt-5 col-sm-6 text-center">
+                                        <input  id="admin"   class="form-control custom-control custom-checkbox" type="checkbox" name="admin" value="1" >
+                                    </div>
+                                    
+                                @endif
                                 
-                                <div  class="admin col-lg-6 mt-5 col-sm-6 ">
-                                    <label for="admin" class="form-label">Presidencia</label>
-                                </div>
-                                <div class="admin col-lg-6 mt-5 col-sm-6 text-center">
-                                    <input  id="admin"   class="form-control custom-control custom-checkbox" type="checkbox" name="admin" value="1" >
-                                </div>
                                 
                                 <div  class="admin col-lg-6 mt-5 col-sm-6 ">
                                     <label for="mantenimiento" class="form-label">Jefe de Mantenimiento</label>

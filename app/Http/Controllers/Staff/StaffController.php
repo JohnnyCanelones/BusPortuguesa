@@ -40,9 +40,10 @@ class StaffController extends Controller
     }
     public function showStaffForm()
     {
-        $almacen = Almacen::all();
+        $admin = Role::where('Admin', 1)->first();
+        // dd($admin->user->staff);
         return view('staff.register', [
-            // 'almacen' => $almacen,
+            'hasAdmin' => $admin
         ]);
     }
 
@@ -223,10 +224,12 @@ class StaffController extends Controller
     {
         $permiso = User::where('username', $id)->first();
         $permiso->load('role');
-
-
+        $admin = Role::where('Admin', 1)->first();
+                
+                
         return view('staff.role_edit', [
             'permiso' => $permiso,
+            'hasAdmin' => $admin
         ]);
     }
 
@@ -266,9 +269,12 @@ class StaffController extends Controller
    public function showNewRoleForm($id)
    {
     $staff = Staff::where('id', $id)->first();
-
+    $admin = Role::where('Admin', 1)->first();
+    
+    
     return view('staff.new_role', [
         'staff' => $staff,
+        'hasAdmin' => $admin
     ]);
 
    }
