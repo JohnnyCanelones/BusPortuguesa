@@ -16,7 +16,7 @@
 
         <div class="collapse" id="menu1" data-parent="#sidebar">
             <a href="{{ url('/mantenimiento/buses/registro') }}" class="list-group-item " >Agregar Autobus</a>
-            <a href="{{ url('/mantenimiento/nuevo/servicio') }}" class="list-group-item " >Registro de servicio a la unidad</a>
+            <a href="{{ url('/mantenimiento/nuevo/servicio') }}" class="list-group-item " >Registro de mantenimiento a la unidad</a>
               
         
         </div>
@@ -28,7 +28,7 @@
 
         <div class="collapse" id="menu3" data-parent="#sidebar">
             <a href="{{ url('mantenimiento/show/buses') }}" class="list-group-item" >Buses</a></span>
-            <a href="{{ url('mantenimiento/cronograma') }}" class="list-group-item" >Cronograma de Servicios</a></span>
+            <a href="{{ url('mantenimiento/cronograma') }}" class="list-group-item" >Cronograma de Mantenimientos</a></span>
             <a href="{{ url('mantenimiento/productos') }}" class="list-group-item" >Poductos Disponibles</a>
             <a href="{{ url('mantenimiento/peticiones') }}" class="list-group-item " >Peticiones </a>
         
