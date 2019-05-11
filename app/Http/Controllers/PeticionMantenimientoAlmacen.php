@@ -5,12 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade as PDF;
 
 use App\Almacen;
 use App\Buses;
+use App\Staff;
+use App\User;
+
 use App\Peticion;
 use App\PetitionMonitoring;
 use App\PeticionesEspeciales;
+
 
 
 
@@ -444,6 +449,20 @@ class PeticionMantenimientoAlmacen extends Controller
             'success' => 'Haz rechazado la Peticion',
             // 'nombre_producto' => $peticion->almacen->nombre_producto,
         ]);
+    }
+
+    public function facturaPeticionAceptada($id) 
+    {
+        $peticion = PetitionMonitoring::find($id);
+        $usuario = User::where('username',$peticion->user_id)->first();
+        // dd($usuario->role);
+        
+       $arr = ['peticion' => $peticion, 'usuario'=> $usuario];
+
+       $pdf = PDF::loadView('almacen.pdf.factura', compact('arr'));
+        $pdf->setPaper('letter', 'portrait');
+        return $pdf->stream('PDF Unidad 6752 BusPortuguesa.pdf');	
+        
     }
     
 

@@ -24,6 +24,9 @@ Route::get('almacen/peticiones', 'PeticionMantenimientoAlmacen@peticionesShowAlm
 Route::get('almacen/aceptar/peticion/{id}', 'PeticionMantenimientoAlmacen@aceptarPeticion');
 Route::get('almacen/rechazar/peticion/{id}', 'PeticionMantenimientoAlmacen@rechazarPeticionForm');
 Route::post('almacen/peticion/rechazada/{id}', 'PeticionMantenimientoAlmacen@rechazarPeticion');
+Route::get('almacen/factura/pdf/{id}', 'PeticionMantenimientoAlmacen@facturaPeticionAceptada');
+
+
 
 Route::get('/almacen/peticiones/pendientes', function() {
 	// peticion ajax para recargar si hay una nueva peticion

@@ -168,9 +168,9 @@
                           <thead>
                                 <tr class="text-white" style="background-color: #003286e8">
                                     <th class="text-white" scope="col">Nombre del Producto</th>
+                                    <th class="text-white" scope="col">Estado</th>
                                     <th class="text-white" scope="col"># de la Unidad</th>
                                     <th class="text-white" scope="col">Cantidad</th>
-                                    <th class="text-white" scope="col">Estado</th>
                                     <th class="text-white sorting_desc" scope="col">Fecha Enviada</th>
                                     <th class="text-white sorting_desc" scope="col">Fecha Respuesta</th>
                                     <th class="text-white" scope="col">Observacion</th>
@@ -187,9 +187,12 @@
                                        {{ $peticion->almacen->nombre_producto }}
 
                                     </td>
+                                    <td>@if($peticion->estado == "Aprobada")<a data-toggle="tooltip" title="Aprobar Peticion" href="factura/pdf/{{ $peticion->id }}">@endif <span class="@if($peticion->estado == "Pendiente")badge badge-warning2 
+                                        @elseif($peticion->estado == "Rechazada") badge badge-danger @else badge badge-success @endif">
+                                        {{ $peticion->estado}}</span>
+                                    @if($peticion->estado == "Aprobada")</a>@endif</td>
                                     <td>{{ $peticion->bus_id }} </td>
                                     <td> {{ $peticion->cantidad }} @if($peticion->cantidad == 1) @if(strpos(strtolower( $peticion->almacen->nombre_producto), 'aceite') !== false)litro @endif @else @if(strpos(strtolower( $peticion->almacen->nombre_producto), 'aceite') !== false)litros @endif  @endif</td>
-                                    <td> <span class="@if($peticion->estado == "Pendiente")badge badge-warning2 @elseif($peticion->estado == "Rechazada") badge badge-danger @else badge badge-success @endif">{{ $peticion->estado}}</span></td>
                                     <td>{{  $newDate = date("Y/m/d", strtotime($peticion->created_at)) }}</td>
                                     <td>{{  $newDate = date("Y/m/d", strtotime($peticion->updated_at)) }}</td>
                                     <td> @if($peticion->estado == "Pendiente") ---  @elseif($peticion->estado == "Rechazada"){{ $peticion->observacion }}  @else --- @endif</td>
