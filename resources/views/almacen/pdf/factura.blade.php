@@ -40,9 +40,9 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-12">
-                    <h3>Producto Aprobado para su entrega</h3>
+                    <h3>Producto aprobado para su entrega</h3>
                     <br>
-                    <h4>Fecha en que fue aporbado: {{ date("d/m/Y, g:i a", strtotime($arr['peticion']->peticion->updated_at)) }}</h4>
+                    <h4>Fecha en que fue aprobado: {{ date("d/m/Y, g:i a", strtotime($arr['peticion']->peticion->updated_at)) }}</h4>
                 {{-- <h6>Fecha de entrega {{ date("d/m/Y, g:i a")}}</h6> --}}
                     <br>
                      <table class="table table-hover table-striped">
