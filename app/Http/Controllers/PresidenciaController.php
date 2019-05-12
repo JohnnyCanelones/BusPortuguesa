@@ -10,10 +10,26 @@ use App\PetitionMonitoring;
 
 class PresidenciaController extends Controller
 {
+    
     public function home()
     {
-    	return view('presidencia.home');
+        $monitoreosStaff = StaffMonitoring::whereDate('fecha_accion', '=', date('Y/m/d'))->get();
+        // $monitoreosStaff = StaffMonitoring::all();
+        $monitoreosAlmacen = WarehouseMonitoring::whereDate('fecha_accion', '=', date('Y/m/d'))->get();
+        $monitoreosPeticiones = PetitionMonitoring::whereDate('fecha_accion', '=', date('Y/m/d'))->get();
+        
+        // dd($monitoreosStaff);
+        // $peticionFecha = date("Y-m-d", strtotime($monitoreosStaff[0]->fecha_accion));
+
+        // dd($peticionFecha.' '.date("Y-m-d"));
+    	return view('presidencia.home', [
+            'staff' => $monitoreosStaff,
+            'almacen' => $monitoreosAlmacen,
+            'peticiones' => $monitoreosPeticiones,
+        ]);
     }
+
+    
 
     public function showStaffMonitoring()
     {
