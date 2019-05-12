@@ -126,6 +126,99 @@ class MantenimientoController extends Controller
 
     }
 
+
+    public function editServicioForm($id) {
+        $mantenimiento = Mantenimiento::find($id);
+         $buses = Buses::all()
+                        ->where('estado', 'Activo' and 'Inactivo')
+                        ->where('motivo_inactividad','!=', 'a Desincorporar');
+        
+        $mecanicos = Staff::where('position', 'Mecanico')->get();
+        
+        $diff = $mecanicos->diff($mantenimiento->staffs);
+        // dd($diff->all());
+        
+        $servicios = Servicio::all();
+        return view('mantenimiento.servicios_reparaciones.editServicioForm', [
+            'mantenimiento' => $mantenimiento,
+            'buses' => $buses,
+            'mecanicos' => $diff,
+            'servicios' => $servicios,
+        ]);
+    }
+
+    public function updateServicio(Request $request, $id){
+        $bus = Buses::find($request->get('bus_id'));
+        $mantenimiento = Mantenimiento::find($id);
+        
+        $mecanicos = Staff::find($request->get('mecanicos'));
+
+        $mantenimientos = Mantenimiento::where('bus_id', $bus->id_bus)
+                                        ->whereDate('fecha', '=', $request->get('fecha'))
+                                        ->where('tipo_servicio', '=', $request->get('tipo_servicio'))
+                                        ->get();
+        $hoy = Date('Y-m-d H:i:s');
+        // if ($hoy >  $request->get('fecha') and $mantenimiento->fecha == $request->get('fecha')) {
+        //     dd('hola');
+        // }else {
+        //     // dd('chao');
+        //     # code...
+        // }
+        if ($hoy >  $request->get('fecha') and $mantenimiento->fecha == $request->get('fecha')) {
+            // dd('hola');
+            Session::flash('status','Debe Modificar la fecha');
+    
+            return redirect('mantenimiento/update/servicio/'.$id);
+            
+        }else {
+
+            // dd($mantenimiento->id);
+            if ($mantenimiento->id == $id) {
+                $mantenimiento->fecha = $request->get('fecha');
+                $mantenimiento->bus_id = $bus->id_bus;
+                $mantenimiento->kilometraje = $bus->kilometraje;
+                $mantenimiento->tipo_mantenimiento = $request->get('tipo_mantenimiento');
+                $mantenimiento->tipo_servicio = $request->get('tipo_servicio');
+                $mantenimiento->save();
+                $diff = $mecanicos->diff($mantenimiento->staffs);
+                if (count($diff) > 0) {
+                    // dd($diff);
+                    foreach ($diff as $mecanico) {
+                        $mantenimiento->staffs()->attach($mecanico);
+                        
+                    }
+                    
+                }else {
+                    $diff2 = $mantenimiento->staffs->diff($mecanicos);
+                    foreach ($diff2 as $mecanico ) {
+                        // dd($diff2);
+                        $mantenimiento->staffs()->detach($mecanico->id);
+                        // dd($mantenimiento->staffs);
+                    }
+                    
+                }
+                Session::flash('status','Servicio modificado');
+    
+                return redirect('/mantenimiento/cronograma');
+            
+            }else {
+                if (count($mantenimientos ) > 0) {
+                    $mensaje = 'Ya existe una solicitud de '. strtolower($request->get('tipo_servicio')).' para ese día';
+                    Session::flash('status', $mensaje);
+        
+                    return redirect('mantenimiento/update/servicio'.$id);
+                }
+                
+            }
+            
+        }
+
+
+        
+        
+
+    }
+
     public function showCronograma(){
 
         $mantenimientos = Mantenimiento::whereDate('fecha', '>=', date("Y/m/d"))
@@ -249,6 +342,7 @@ class MantenimientoController extends Controller
 
         return Servicio::all();
     }
+
     
     public function showMantenimientosPdfPost(Request $request, $menu)
     {

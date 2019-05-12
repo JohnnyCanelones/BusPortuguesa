@@ -195,7 +195,19 @@ background: radial-gradient(circle, rgba(0,138,52,1) 41%, rgba(10,61,134,1) 79%)
   
 
   {{-- <script type="text/javascript" src="{{ asset('js/mantenimiento/busesForm.js') }}"></script> --}}
+  <script type="text/javascript"  src="{{ asset('plugins/sweetalert2.all.min.js') }}"></script>
   
+  @if (session('status'))
+  <script type="text/javascript">
+    $(document).ready(function() {
+        swal(
+        'Listo',
+        '{{ session('status') }}' ,
+        'success'
+        )
+    })
+  </script>
+@endif
   <script>
     let vermas = document.getElementsByClassName('vermas');
     for (x=0; x <vermas.length; x++){
@@ -223,13 +235,34 @@ background: radial-gradient(circle, rgba(0,138,52,1) 41%, rgba(10,61,134,1) 79%)
                 
               `
             }
+            let fecha2 = new Date();
+            let fecha = new Date(data.fecha);
+            let dias = 14; // Número de días a agregar
+            fecha.setDate(fecha.getDate() + dias);
+          
 
-            let editarButton = document.getElementById('editar');
+            if (fecha2 > fecha ) {
+               document.getElementById('footer').innerHTML =` 
+                  <button type="button" class="btn btn-secondary text-white mx-auto d-block" data-dismiss="modal">Cerrar</button>
+                  
+                  `
+              
+            } else {
+               document.getElementById('footer').innerHTML =` 
+                  <a href="/mantenimiento/update/servicio/${ data.id }" id="editar"  class="btn btn-secondary text-white mx-auto d-block">Editar</a>
+                  <button type="button" class="btn btn-secondary text-white mx-auto d-block" data-dismiss="modal">Cerrar</button>
+                  
+                  `
+              
+            }
+
+           
+            // let editarButton = document.getElementById('editar');
             
-            editarButton.addEventListener("click", function(event){
-              location.href="/mantenimiento/servicio/"+ data.id;
+            // editarButton.addEventListener("click", function(event){
+            //   location.href="/mantenimiento/servicio/"+ data.id;
 
-            })
+            // })
 
 
 

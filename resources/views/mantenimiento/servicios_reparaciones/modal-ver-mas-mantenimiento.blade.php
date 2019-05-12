@@ -29,9 +29,8 @@
       	</div>
 
       </div>
-      <div class="modal-footer infobox-azul-contenido ">
-        <button id="editar" type="button" class="btn btn-secondary text-white mx-auto d-block">Editar</button>
-        <button type="button" class="btn btn-secondary text-white mx-auto d-block" data-dismiss="modal">Cerrar</button>
+      <div id="footer" class="modal-footer infobox-azul-contenido ">
+       
         {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
       </div>
     </div>
