@@ -3,8 +3,8 @@
     
 @section('nav-items')
    <ul class="p-0">
+       <li class="nav-items" ><a href="/personal" class="text-black "><i class="mr-3 fas fa-home text-secondary"></i><span class="d-md-inline">Inicio</span></a>
 
-    <li class="nav-items" ><a href="/personal" class="text-black "><i class="mr-3 fas fa-home text-secondary"></i><span class="d-md-inline">Inicio</span></a>
     <br>
     <br>
 
