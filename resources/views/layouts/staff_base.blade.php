@@ -4,11 +4,25 @@
 @section('nav-items')
    <ul class="p-0">
 
-    <li class="nav-items" ><a href="/home" class="text-black "><i class="mr-3 fas fa-home text-secondary"></i><span class="d-md-inline">Inicio</span></a>
+    <li class="nav-items" ><a href="/personal" class="text-black "><i class="mr-3 fas fa-home text-secondary"></i><span class="d-md-inline">Inicio</span></a>
     <br>
     <br>
 
+     @if(auth()->user()->role->Admin)                                    
+    <li class="nav-items" ><a href="#menu6" class="text-black cambio" id="button3" data-toggle="collapse" aria-expanded="false"><i class="fas fa-project-diagram text-secondary mr-3"></i> <span class="d-md-inline">Departamentos</span><i id="minimize" class="fas fa-window-minimize float-right trans"></i><i id="dropdown" class="fas fa-caret-down float-right"></i> </a>
+        <br>
+        <br>
+
+        <div class="collapse" id="menu6" data-parent="#sidebar">
+            <a href="{{ url('/presidente')}}" class="list-group-item" >Presidente </a>
+            <a href="{{ url('/almacen')}}" class="list-group-item" >Almacen </a>
+            <a href="{{ url('/mantenimiento')}}" class="list-group-item" >Mantenimiento </a>
+            <a href="{{ url('/personal')}}" class="list-group-item" >Personal </a>
+            
         
+        </div>
+    </li>
+    @endif   
     </li>
       <li class="nav-items" ><a href="#menu1" class="text-black cambio" id="button1" data-toggle="collapse" aria-expanded="false"><i class="text-secondary fas fa-user-plus mr-3"></i> <span class="d-md-inline ">Registros</span><i id="minimize" class="fas fa-window-minimize float-right trans"></i><i id="dropdown" class="fas fa-caret-down float-right"></i> </a>
         <br>

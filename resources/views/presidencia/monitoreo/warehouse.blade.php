@@ -45,7 +45,7 @@
                                     {{ $newDate = date("Y/m/d - H:i ", strtotime($monitoreo->fecha_accion))  }} 
                                 </th>
                                 <td>{{ $monitoreo->accion}},      
-                                <strong > <a href="#" onclick="" class="peticion verde"  data-value='{{ $monitoreo->peticion->id }}'>{{ $monitoreo->peticion->almacen->nombre_producto}}</a></td></strong>
+                                <strong > <a href="#" onclick="buscarPeticion()" class="peticion verde"  data-value='{{ $monitoreo->peticion->id }}'>{{ $monitoreo->peticion->almacen->nombre_producto}}</a></td></strong>
                                 <td> --- </td>        
                                 <td> <strong ><a href="#" onclick="buscarUsuario()" class="usuario verde"  data-value='{{ $monitoreo->user_id }}'>{{ $monitoreo->user_id}}</a></td></strong>
                             </tr>
@@ -165,6 +165,70 @@ for (x=0; x <peticiones.length; x++){
             });
         
     })
+}
+
+function buscarPeticion() {
+       let peticiones = document.getElementsByClassName('peticion');
+
+for (x=0; x <peticiones.length; x++){
+
+    let cantidad_de_monitoreos = document.getElementById('monitoreos').value
+    let peticion= peticiones[x];
+    
+    peticion.addEventListener("click", function(event){
+        setTimeout(function(){
+            $('#exampleModalLong').modal('show');
+        }, 300);
+            $.get( "/presidente/monitoreo/peticion/"+peticion.dataset.value, function( data ) {
+               
+               function estado() {
+                   if (data['peticion'].estado == 'Aprobada') {
+                       return 'badge badge-success'
+                    } if(data['peticion'].estado == 'Pendiente') {
+                        return 'badge badge-warning2'
+                       
+                   }else {
+                        return 'badge badge-danger'
+
+                   }
+               }
+                document.getElementById('exampleModalLongTitle').innerHTML =  `Peticion  <span class="${estado()}">${data['peticion'].estado}</span>`;
+
+                // document.getElementById('mt-1').innerHTML =  'Estado';
+                // document.getElementById('m-1').innerHTML =  data['peticion'].estado
+                
+                document.getElementById('mt-1').innerHTML =  'Nombre del producto';
+                document.getElementById('m-1').innerHTML =  data['producto'].nombre_producto;
+                
+                document.getElementById('mt-2').innerHTML =  'Cantidad pedida';
+                document.getElementById('m-2').innerHTML =  data['peticion'].cantidad;
+                
+                
+                if (data['peticion'].estado == 'Rechazada') {
+                    document.getElementById('mt-5').innerHTML =  'Observacion';
+                document.getElementById('m-5').innerHTML =  data['peticion'].observacion;
+                }else{
+                    document.getElementById('mt-5').innerHTML =  '';
+                    document.getElementById('m-5').innerHTML =  '';
+                }
+
+                document.getElementById('mt-3').innerHTML =  'Fecha enviada';
+                document.getElementById('m-3').innerHTML =  data['peticion'].created_at;
+                
+                if (data['peticion'].estado != 'Pendiente') {
+                    console.log('asasdsad')
+
+                   document.getElementById('mt-4').innerHTML =  'Fecha respuesta';
+                    document.getElementById('m-4').innerHTML =  data['peticion'].updated_at; 
+                }else {
+                    document.getElementById('mt-4').innerHTML =  '';
+                    document.getElementById('m-4').innerHTML =  ''; 
+                    
+                }
+            });
+        
+    })
+}
 }
 
 </script>
