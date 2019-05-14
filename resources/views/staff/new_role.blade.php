@@ -15,6 +15,12 @@
                                 
                                 {{-- cargos --}}
                                 @if ($hasAdmin)
+                                <div  class="admin col-lg-6 mt-5 col-sm-6 ">
+                                        {{-- <label for="admin" class="form-label">Presidencia</label> --}}
+                                    </div>
+                                    <div class="admin col-lg-6 mt-5 col-sm-6 text-center">
+                                        <input  hidden id="admin"   class="form-control custom-control custom-checkbox" type="checkbox" name="admin" value="1" >
+                                    </div>
                                 @else
                                     
                                     <div  class="admin col-lg-6 mt-5 col-sm-6 ">

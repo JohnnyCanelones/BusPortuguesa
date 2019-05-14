@@ -67,4 +67,6 @@ class PresidenciaController extends Controller
             'contador_de_monitoreos' => $total
         ]);
     }
+
+    
 }
