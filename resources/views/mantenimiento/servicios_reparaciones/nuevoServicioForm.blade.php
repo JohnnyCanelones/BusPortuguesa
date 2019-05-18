@@ -67,7 +67,7 @@
                                           
                                         </div>
                                       </div>
-                                      <div class="col-md-12 col-lg-5 mt-3">
+                                      <div class="col-sm-11 col-lg-5 mt-3">
                                           <div class="form-group">
                                               <select required="" class="tipo_servicio form-control mt-1 focus" name="tipo_servicio" id="tipo_servicio" required="">
                                                 <option value=""></option>
