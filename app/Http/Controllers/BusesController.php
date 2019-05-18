@@ -7,11 +7,17 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use App\Buses;
 use App\Staff;
+use App\ModeloBus;
 use Barryvdh\DomPDF\Facade as PDF;
 
 
 class BusesController extends Controller
 {
+    public function createModeloBus(Request $request) {
+        $modelo = ModeloBus::create([
+            'name' => $request->get('name'),
+        ]);
+    }
     public function showBusForm()
     {
         
