@@ -56,7 +56,18 @@
                                     </div>
                                   </a>
                                 </div>
-                             
+                                @foreach ($modelos as $modelo)
+                                    <div class="col-sm-4 mt-5 mb-5">
+                                    <a target="_blank" href="/mantenimiento/pdf/buses/show/todos?option={{ $modelo->name }}&q={{$opcion}}">
+                                    <div class="card header" >
+                                      <h4 class="text-white no-bg m-3"><i class="fa fa-bus"></i> {{ $modelo->name }}</h4>
+                                      
+                                    </div>
+                                  </a>
+                                </div>
+
+                                @endforeach
+{{--                                 
                                 <div class="col-sm-4 mt-5 mb-5">
                                   <a target="_blank" href="/mantenimiento/pdf/buses/show/todos?option=5&q={{$opcion}}">
                                     <div class="card header" >
@@ -83,7 +94,7 @@
                                     </div>
                                   </a>
                                  </div>
-                             
+                              --}}
                              
                               
                               

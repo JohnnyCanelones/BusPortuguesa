@@ -51,10 +51,13 @@
                                             <option value="">Elige un Tipo de Unidad</option>
                                             
                                             <optgroup label="">
-                                            <option @if($producto->compatibilidad == 6118)  selected="" @endif >6118</option>
-                                            <option @if($producto->compatibilidad == 6896)  selected="" @endif >6896</option>
-                                            <option @if($producto->compatibilidad == 6752)  selected="" @endif >6752</option>
-                                            <option @if($producto->compatibilidad == 'Todas las Unidades') selected="" @endif >Todas las Unidades</option>
+                                            <option  selected=""  >{{ $producto->compatibilidad }}</option>
+                                
+                                            @foreach ($modelos as $modelo)
+                                            
+                                            <option>{{ $modelo->name }}</option>
+                                            @endforeach
+                                            <option>Todas las Unidades</option>
 
                                             
 

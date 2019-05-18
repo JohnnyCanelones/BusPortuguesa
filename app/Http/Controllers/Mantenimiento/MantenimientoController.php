@@ -136,7 +136,7 @@ class MantenimientoController extends Controller
         $mecanicos = Staff::where('position', 'Mecanico')->get();
         
         $diff = $mecanicos->diff($mantenimiento->staffs);
-        // dd($diff->all());
+        // dd($diff);
         
         $servicios = Servicio::all();
         return view('mantenimiento.servicios_reparaciones.editServicioForm', [
@@ -154,6 +154,7 @@ class MantenimientoController extends Controller
         $mecanicos = Staff::find($request->get('mecanicos'));
 
         $mantenimientos = Mantenimiento::where('bus_id', $bus->id_bus)
+                                        ->where('id', '!=', $mantenimiento->id)
                                         ->whereDate('fecha', '=', $request->get('fecha'))
                                         ->where('tipo_servicio', '=', $request->get('tipo_servicio'))
                                         ->get();
@@ -164,10 +165,12 @@ class MantenimientoController extends Controller
         //     // dd('chao');
         //     # code...
         // }
-        if ($hoy >  $request->get('fecha') and $mantenimiento->fecha == $request->get('fecha')) {
+
+        // dd(count($mantenimientos));
+        if (count($mantenimientos) > 0) {
             // dd('hola');
-            Session::flash('status','Debe Modificar la fecha');
-    
+            $mensaje = 'Ya existe una solicitud de '. strtolower($request->get('tipo_servicio')).' para ese día';
+            Session::flash('status', $mensaje);
             return redirect('mantenimiento/update/servicio/'.$id);
             
         }else {
@@ -182,16 +185,21 @@ class MantenimientoController extends Controller
                 $mantenimiento->save();
                 $diff = $mecanicos->diff($mantenimiento->staffs);
                 if (count($diff) > 0) {
-                    // dd($diff);
                     foreach ($diff as $mecanico) {
+                        // dd($diff);
                         $mantenimiento->staffs()->attach($mecanico);
                         
+                    }
+                    $diff2 = $mantenimiento->staffs->diff($mecanicos);
+                    foreach ($diff2 as $mecanico ) {
+                        $mantenimiento->staffs()->detach($mecanico->id);
+                        // dd($mantenimiento->staffs);
                     }
                     
                 }else {
                     $diff2 = $mantenimiento->staffs->diff($mecanicos);
+
                     foreach ($diff2 as $mecanico ) {
-                        // dd($diff2);
                         $mantenimiento->staffs()->detach($mecanico->id);
                         // dd($mantenimiento->staffs);
                     }

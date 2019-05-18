@@ -67,7 +67,7 @@
                                           
                                         </div>
                                       </div>
-                                      <div class="col-sm-10 col-lg-5 mt-3">
+                                      <div class="col-sm-11 col-lg-5 mt-3">
                                           <div class="form-group">
                                               <select required="" class="tipo_servicio form-control mt-1 focus" name="tipo_servicio" id="tipo_servicio" required="">
                                               <option selected value="{{ $mantenimiento->tipo_servicio }}">{{ $mantenimiento->tipo_servicio }}</option>
@@ -85,7 +85,7 @@
                                               
                                           </div>
                                       </div>
-                                      <div class="col-sm-2 col-lg-1 mt-5">
+                                      <div class="col-sm-1 col-lg-1 mt-5">
                                         <h4><a href="#" class="azul hover" data-toggle="modal" data-target="#exampleModalLong"><i class="fas fa-plus"></i></a></h4>
                                       </div>
                                    

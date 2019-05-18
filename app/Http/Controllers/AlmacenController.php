@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Almacen;
 use App\Peticion;
+use App\ModeloBus;
 use App\WarehouseMonitoring;
 
 
@@ -75,7 +76,10 @@ class AlmacenController extends Controller
 
     public function showProductoForm()
     {
-    	return view('almacen.productos.nuevoproducto');	
+    	return view('almacen.productos.nuevoproducto', [
+            'modelos' =>  ModeloBus::all(),
+
+        ]);	
     }
 
     public function createProducto(CreateProductRequest $request)
@@ -132,6 +136,8 @@ class AlmacenController extends Controller
 
         return view('almacen.productos.editarProducto', [
             'producto' => $producto,
+            'modelos' =>  ModeloBus::all(),
+
         ]);
     }
     public function editInventario($id)

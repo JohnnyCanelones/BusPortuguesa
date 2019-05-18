@@ -54,11 +54,13 @@
                                         <select class="js-example-basic-single form-control mt-1 focus  {{ $errors->has('cantidad') ? ' is-invalid' : '' }}" name="compatibilidad" required="">
                                             {{-- <option selected="" disabled="">Elige un Tipo de Unidad</option> --}}
                                             <option value="">Elige un Tipo de Unidad</option>
-                                            <optgroup label="">
-                                            <option>6118</option>
-                                            <option>6896</option>
-                                            <option>6752</option>
+                                            @foreach ($modelos as $modelo)
+                                            
+                                            <option>{{ $modelo->name }}</option>
+                                            @endforeach
                                             <option>Todas las Unidades</option>
+
+                                            
 
                                             
 

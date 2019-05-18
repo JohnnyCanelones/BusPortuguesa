@@ -7,13 +7,28 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use App\Buses;
 use App\Staff;
+use App\ModeloBus;
 use Barryvdh\DomPDF\Facade as PDF;
 
 
 class BusesController extends Controller
 {
+    public function createModeloBus(Request $request) {
+        $modelos =  ModeloBus::all();
+        foreach ($modelos as $modelo ) {
+            if ($modelo->name == $request->get('name')){
+                return 'error';
+            } 
+        }
+        $modelo = ModeloBus::create([
+            'name' => $request->get('name'),
+        ]);
+
+        return $modelos;
+    }
     public function showBusForm()
     {
+        $modelos =  ModeloBus::all();
         
         $conductores = Staff::where('position', 'Conductor')->get();
         // dd($conductores);
@@ -21,7 +36,9 @@ class BusesController extends Controller
 
     	
         return view('mantenimiento.buses.register', [
-        	'conductores' => $conductores,
+            'conductores' => $conductores,
+            'modelos' =>  ModeloBus::all(),
+            
         ]);
     }
 
@@ -89,6 +106,8 @@ class BusesController extends Controller
         return view('mantenimiento.buses.busEdit', [
             'conductores' => $conductores,
             'bus' => $bus,
+            'modelos' =>  ModeloBus::all(),
+
         ]);
     }
     public function editBus($id, Request $request)
@@ -105,7 +124,7 @@ class BusesController extends Controller
 
         // SI ESTA INACTIVO
         if ($estado) {
-            $bus->id_bus = $request->get('id_bus');
+            // $bus->id_bus = $request->get('id_bus');
             $bus->modelo = $request->get('modelo'); 
             // $bus->kilometraje = $request->get('kilometraje');
             $bus->esOperaciones = $request->get('esOperaciones');
@@ -126,7 +145,7 @@ class BusesController extends Controller
             
 
         }else {
-            $bus->id_bus = $request->get('id_bus');
+            // $bus->id_bus = $request->get('id_bus');
             $bus->modelo = $request->get('modelo'); 
             // $bus->kilometraje = $request->get('kilometraje');
             $bus->conductor_id =  $conductor;
@@ -205,16 +224,22 @@ class BusesController extends Controller
         if ($opcion == 1) {
             return view('mantenimiento.buses.pdf.totalBuses', [
                 'opcion' => $opcion,
+                'modelos' =>  ModeloBus::all(),
+
             ]);
         }if ($opcion == 2) {
         
             return view('mantenimiento.buses.pdf.conoNorte', [
                 'opcion' => $opcion,
+                'modelos' =>  ModeloBus::all(),
+
             ]);
         }if ($opcion == 3) {
         
             return view('mantenimiento.buses.pdf.conoSur', [
                 'opcion' => $opcion,
+                'modelos' =>  ModeloBus::all(),
+
             ]);
         }
 
@@ -340,19 +365,19 @@ class BusesController extends Controller
         
         } 
         // buses 6118
-         elseif ($request->option == 5) {
+         elseif ($request->option > 10) {
              if ($request->q == 1) {
-                $Buses = Buses::where('modelo', '6118')->get();
+                $Buses = Buses::where('modelo', $request->option)->get();
                 
             }
             elseif ($request->q == 2) {
                 $Buses = Buses::where('esOperaciones', 'Cono Norte')
-                                ->where('modelo', '6118')->get();
+                                ->where('modelo', $request->option)->get();
                 
             }
             elseif ($request->q == 3) {
                 $Buses = Buses::where('esOperaciones', 'Cono Sur')
-                              ->where('modelo', '6118')->get();
+                              ->where('modelo', $request->option)->get();
                 
                 
             }
@@ -364,63 +389,90 @@ class BusesController extends Controller
             $arr = ['option'=> $request->option, 'Buses' => $Buses, 'TotalNorteSur'=> $request->q];
             $pdf = PDF::loadView('mantenimiento.buses.pdf.reporte.pdfBuses', compact('arr'));
 		    $pdf->setPaper('letter', 'landscape');
-            return $pdf->stream('PDF Unidad 6118 BusPortuguesa.pdf');	
+            return $pdf->stream('PDF Unidad '.$request->option .' BusPortuguesa.pdf');	
         
         }
-        elseif ($request->option == 6) {
-            if ($request->q == 1) {
-                $Buses = Buses::where('modelo', '6896')->get();
+        //  elseif ($request->option == 5) {
+        //      if ($request->q == 1) {
+        //         $Buses = Buses::where('modelo', '6118')->get();
                 
-            }
-            elseif ($request->q == 2) {
-                $Buses = Buses::where('esOperaciones', 'Cono Norte')
-                                ->where('modelo', '6896')->get();
+        //     }
+        //     elseif ($request->q == 2) {
+        //         $Buses = Buses::where('esOperaciones', 'Cono Norte')
+        //                         ->where('modelo', '6118')->get();
                 
-            }
-            elseif ($request->q == 3) {
-                $Buses = Buses::where('esOperaciones', 'Cono Sur')
-                              ->where('modelo', '6896')->get();
+        //     }
+        //     elseif ($request->q == 3) {
+        //         $Buses = Buses::where('esOperaciones', 'Cono Sur')
+        //                       ->where('modelo', '6118')->get();
                 
                 
-            }
-            // $Buses->load('staffs');
-            if (count($Buses) == 0) {
-             Session::flash('status','No hay unidades');
-              return redirect('/mantenimiento/pdf/buses/opcion?q='.$request->q);  
-            }
-            $arr = ['option'=> $request->option, 'Buses' => $Buses, 'TotalNorteSur'=> $request->q];
-            $pdf = PDF::loadView('mantenimiento.buses.pdf.reporte.pdfBuses', compact('arr'));
-		    $pdf->setPaper('letter', 'landscape');
-            return $pdf->stream('PDF Unidad 6896 BusPortuguesa.pdf');	
+        //     }
+        //     // $Buses->load('staffs');
+        //     if (count($Buses) == 0) {
+        //      Session::flash('status','No hay unidades');
+        //       return redirect('/mantenimiento/pdf/buses/opcion?q='.$request->q);  
+        //     }
+        //     $arr = ['option'=> $request->option, 'Buses' => $Buses, 'TotalNorteSur'=> $request->q];
+        //     $pdf = PDF::loadView('mantenimiento.buses.pdf.reporte.pdfBuses', compact('arr'));
+		//     $pdf->setPaper('letter', 'landscape');
+        //     return $pdf->stream('PDF Unidad 6118 BusPortuguesa.pdf');	
         
-        }
-        elseif ($request->option == 7) {
-            if ($request->q == 1) {
-                $Buses = Buses::where('modelo', '6752')->get();
+        // }
+        // elseif ($request->option == 6) {
+        //     if ($request->q == 1) {
+        //         $Buses = Buses::where('modelo', '6896')->get();
                 
-            }
-            elseif ($request->q == 2) {
-                $Buses = Buses::where('esOperaciones', 'Cono Norte')
-                                ->where('modelo', '6752')->get();
+        //     }
+        //     elseif ($request->q == 2) {
+        //         $Buses = Buses::where('esOperaciones', 'Cono Norte')
+        //                         ->where('modelo', '6896')->get();
                 
-            }
-            elseif ($request->q == 3) {
-                $Buses = Buses::where('esOperaciones', 'Cono Sur')
-                              ->where('modelo', '6752')->get();
+        //     }
+        //     elseif ($request->q == 3) {
+        //         $Buses = Buses::where('esOperaciones', 'Cono Sur')
+        //                       ->where('modelo', '6896')->get();
                 
                 
-            }
-            // $Buses->load('staffs');
-            if (count($Buses) == 0) {
-             Session::flash('status','No hay unidades');
-              return redirect('/mantenimiento/pdf/buses/opcion?q='.$request->q);  
-            }
-            $arr = ['option'=> $request->option, 'Buses' => $Buses, 'TotalNorteSur'=> $request->q];
-            $pdf = PDF::loadView('mantenimiento.buses.pdf.reporte.pdfBuses', compact('arr'));
-		    $pdf->setPaper('letter', 'landscape');
-            return $pdf->stream('PDF Unidad 6752 BusPortuguesa.pdf');	
+        //     }
+        //     // $Buses->load('staffs');
+        //     if (count($Buses) == 0) {
+        //      Session::flash('status','No hay unidades');
+        //       return redirect('/mantenimiento/pdf/buses/opcion?q='.$request->q);  
+        //     }
+        //     $arr = ['option'=> $request->option, 'Buses' => $Buses, 'TotalNorteSur'=> $request->q];
+        //     $pdf = PDF::loadView('mantenimiento.buses.pdf.reporte.pdfBuses', compact('arr'));
+		//     $pdf->setPaper('letter', 'landscape');
+        //     return $pdf->stream('PDF Unidad 6896 BusPortuguesa.pdf');	
         
-        }   
+        // }
+        // elseif ($request->option == 7) {
+        //     if ($request->q == 1) {
+        //         $Buses = Buses::where('modelo', '6752')->get();
+                
+        //     }
+        //     elseif ($request->q == 2) {
+        //         $Buses = Buses::where('esOperaciones', 'Cono Norte')
+        //                         ->where('modelo', '6752')->get();
+                
+        //     }
+        //     elseif ($request->q == 3) {
+        //         $Buses = Buses::where('esOperaciones', 'Cono Sur')
+        //                       ->where('modelo', '6752')->get();
+                
+                
+        //     }
+        //     // $Buses->load('staffs');
+        //     if (count($Buses) == 0) {
+        //      Session::flash('status','No hay unidades');
+        //       return redirect('/mantenimiento/pdf/buses/opcion?q='.$request->q);  
+        //     }
+        //     $arr = ['option'=> $request->option, 'Buses' => $Buses, 'TotalNorteSur'=> $request->q];
+        //     $pdf = PDF::loadView('mantenimiento.buses.pdf.reporte.pdfBuses', compact('arr'));
+		//     $pdf->setPaper('letter', 'landscape');
+        //     return $pdf->stream('PDF Unidad 6752 BusPortuguesa.pdf');	
+        
+        // }   
     }
 }
 

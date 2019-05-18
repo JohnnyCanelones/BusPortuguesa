@@ -38,15 +38,15 @@
                                     </div>
                                     
         
-                                    <div class="col-md-12 col-lg-6 mt-4">
+                                <div class="col-sm-11 col-lg-5 mt-4">
                                     <div class="form-group">
-                                        <select required="" class="js-example-basic-single form-control mt-1 focus" name="modelo" required="">
+                                        <select required="" class="js-example-basic-single form-control mt-1 focus" id="modelo" name="modelo" required="">
                                             <option selected="" disabled="">Elige un Tipo de Unidad</option>
+                                            @foreach ($modelos as $modelo)
                                             
-                                            <optgroup label="">
-                                            <option>6118</option>
-                                            <option>6896</option>
-                                            <option>6752</option>
+                                            <option>{{ $modelo->name }}</option>
+                                            @endforeach
+                                            <option>Todas las Unidades</option>
 
                                             
 
@@ -54,6 +54,10 @@
                                         
                                         
                                     </div>
+                                </div>
+                                <div class="col-sm-1 mt-5">
+                                    
+                                    <h4><a href="#" class="azul hover" data-toggle="modal" data-target="#exampleModalLong"><i class="fas fa-plus"></i></a></h4>
                                 </div>
                                 <div class="col-lg-6 col-md-12 mt-4">
                                         <div class=" form-group" >
@@ -189,7 +193,7 @@
                 </div>
             </div>
         </div>
-        
+        @include('mantenimiento.buses.modalNuevoModelo')        
         <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/staffform.js') }}"></script>
         <script type="text/javascript" src="{{ asset('plugins/jquery-validation/jquery.formatter.min.js') }}"></script>
