@@ -51,7 +51,17 @@
 
                                 </th>
                                 <td>{{ $producto->compatibilidad }} </td>
-                                <td> <a href="/almacen/inventario/{{ $producto->id }}"  style="color: #008a34" data-toggle="tooltip" title="Modificar Inventario">@if($producto->cantidad == 0) <span class="badge badge-warning2">Sin Inventario</span> @else {{ $producto->cantidad }} @if($producto->cantidad == 1) @if(strpos(strtolower( $producto->nombre_producto), 'aceite') !== false)litro @endif @else @if(strpos(strtolower( $producto->nombre_producto), 'aceite') !== false)litros @endif  @endif @endif </a></td>
+                                <td> <a href="/almacen/inventario/{{ $producto->id }}"  style="color: #008a34" data-toggle="tooltip" title="Sumar al Inventario">
+                                    @if($producto->cantidad == 0) 
+                                    <span class="badge badge-warning2">Sin Inventario</span> 
+                                    @else {{ $producto->cantidad }} 
+                                    @if($producto->cantidad == 1) 
+                                    @if(strpos(strtolower( $producto->nombre_producto), 'aceite') !== false)litro @endif
+                                     @else 
+                                     @if(strpos(strtolower( $producto->nombre_producto), 'aceite') !== false)litros @endif  @endif  </a>
+                                    <a href="/almacen/restar/{{ $producto->id }}" title="Restar del inventario" class="ml-1 text-black"><i class="fas fa-minus"></i></a>
+                                    @endif
+                                    </td>
                                 <td> @if ($producto->limite > 0)
                                     {{ $producto->limite }}
                                 @else

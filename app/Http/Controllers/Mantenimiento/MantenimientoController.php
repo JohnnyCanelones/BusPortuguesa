@@ -200,7 +200,7 @@ class MantenimientoController extends Controller
                     $diff2 = $mantenimiento->staffs->diff($mecanicos);
 
                     foreach ($diff2 as $mecanico ) {
-                        $mantenimiento->staffs()->detach($mecanico->id);
+                         $mantenimiento->staffs()->detach($mecanico->id);
                         // dd($mantenimiento->staffs);
                     }
                     

@@ -175,6 +175,52 @@ class AlmacenController extends Controller
         return redirect('almacen/productos');
 
     }
+
+    public function restarInventario($id)
+    {
+        $producto = Almacen::where('id', $id)->first();
+
+        // dd($producto);
+
+        return view('almacen.productos.restarCantidad', [
+            'producto' => $producto,
+            'q' => 0
+        ]);
+    }
+    
+    public function updateRestarInventario(Request $request, $id)
+    {
+        $cantidad = $request->get('cantidad');
+        
+        $producto = Almacen::find($id);
+
+        if ($cantidad > $producto->cantidad) {
+            Session::flash('status','La cantidad que quieres restar es mayor a el inventario del producto');
+            return view('almacen.productos.restarCantidad', [
+            'producto' => $producto,
+            'q' => 1,
+            'motivo' => $request->get('motivo'),
+            
+        ]);
+        } 
+        $producto->cantidad = $producto->cantidad - $cantidad;
+
+        // dd($producto);
+        
+        $producto->save();
+        $monitoreo = WarehouseMonitoring::create([
+            'user_id' => Auth::user()->username,
+            'almacen_id' => $producto->id,
+            'accion' => 'Cantidad del producto Restada: '.$cantidad.', Motivo: ' .$request->get('motivo'), 
+            'fecha_accion' => date("Y-m-d H:i:s"),
+        ]);
+
+        Session::flash('status','Modificado Correctamente');
+
+
+        return redirect('almacen/productos');
+
+    }
     public function updateProducto(Request $request, $id)
     {
         $nombre_producto = $request->get('nombre_producto');
