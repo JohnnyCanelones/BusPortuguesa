@@ -28,7 +28,7 @@
                                     <div class="col-lg-6 col-md-12 mt-4">
                                         <div class=" form-group" >
                                             <strong><label class="bmd-label-floating" for="id_bus"># de la Unidad</label></strong>
-                                            <input  class="form-control {{ $errors->has('id_bus') ? ' is-invalid' : '' }}" type="" name="id_bus" value="{{ $bus->id_bus }}" >
+                                            <input  disabled class="form-control {{ $errors->has('id_bus') ? ' is-invalid' : '' }}" type="" name="id_bus" value="{{ $bus->id_bus }}" >
                                                  
                                                  @if ($errors->has('id_bus'))
                                                     <span class="invalid-feedback" role="alert">
@@ -40,15 +40,18 @@
                                     </div>
                                     
         
-                                    <div class="col-md-12 col-lg-6 mt-4">
+                                   
+
+                                 <div class="col-sm-11 col-lg-5 mt-4">
                                     <div class="form-group">
-                                        <select required="" class="js-example-basic-single form-control mt-1 focus" name="modelo" required="">
+                                        <select required="" class="js-example-basic-single form-control mt-1 focus" id="modelo" name="modelo" required="">
                                             <option selected="" >{{$bus->modelo}}</option>
                                             
-                                            <optgroup label="">
-                                            <option>6118</option>
-                                            <option>6896</option>
-                                            <option>6752</option>
+                                            @foreach ($modelos as $modelo)
+                                            
+                                            <option>{{ $modelo->name }}</option>
+                                            @endforeach
+                                            <option>Todas las Unidades</option>
 
                                             
 
@@ -57,6 +60,11 @@
                                         
                                     </div>
                                 </div>
+                                <div class="col-sm-1 mt-5">
+                                    
+                                    <h4><a href="#" class="azul hover" data-toggle="modal" data-target="#exampleModalLong"><i class="fas fa-plus"></i></a></h4>
+                                </div>
+
                                 <div class="col-lg-6 col-md-12 mt-4">
                                         <div class=" form-group" >
                                             <strong><label class="bmd-label-floating" for="kilometraje">Kilometraje</label></strong>
@@ -204,6 +212,7 @@
                 </div>
             </div>
         </div>
+                                @include('mantenimiento.buses.modalNuevoModelo')        
         
         <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/staffform.js') }}"></script>

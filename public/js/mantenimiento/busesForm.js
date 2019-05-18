@@ -44,3 +44,7 @@ $.fn.formatter.addInptType('X', /[A-Za-z]/);
 $('#kilometraje').formatter({
 	"pattern": '{{9999999999999999999999999999999}}'
 });
+
+$('#name').formatter({
+	"pattern": '{{99999}}'
+});

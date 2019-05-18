@@ -4,6 +4,7 @@ Route::group(['middleware' => ['auth', 'mantenimiento:,']], function() {
   
   Route::get('/mantenimiento', 'MantenimientoController@home');
   
+  Route::post('/mantenimiento/buses/nuevo/modelo', 'BusesController@createModeloBus');
   Route::get('/mantenimiento/buses/registro', 'BusesController@showBusForm');
   Route::post('/mantenimiento/buses/registrar', 'BusesController@createBus');
   // 

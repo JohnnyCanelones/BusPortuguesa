@@ -14,12 +14,21 @@ use Barryvdh\DomPDF\Facade as PDF;
 class BusesController extends Controller
 {
     public function createModeloBus(Request $request) {
+        $modelos =  ModeloBus::all();
+        foreach ($modelos as $modelo ) {
+            if ($modelo->name == $request->get('name')){
+                return 'error';
+            } 
+        }
         $modelo = ModeloBus::create([
             'name' => $request->get('name'),
         ]);
+
+        return $modelos;
     }
     public function showBusForm()
     {
+        $modelos =  ModeloBus::all();
         
         $conductores = Staff::where('position', 'Conductor')->get();
         // dd($conductores);
@@ -27,7 +36,9 @@ class BusesController extends Controller
 
     	
         return view('mantenimiento.buses.register', [
-        	'conductores' => $conductores,
+            'conductores' => $conductores,
+            'modelos' =>  ModeloBus::all(),
+            
         ]);
     }
 
@@ -95,6 +106,8 @@ class BusesController extends Controller
         return view('mantenimiento.buses.busEdit', [
             'conductores' => $conductores,
             'bus' => $bus,
+            'modelos' =>  ModeloBus::all(),
+
         ]);
     }
     public function editBus($id, Request $request)
@@ -111,7 +124,7 @@ class BusesController extends Controller
 
         // SI ESTA INACTIVO
         if ($estado) {
-            $bus->id_bus = $request->get('id_bus');
+            // $bus->id_bus = $request->get('id_bus');
             $bus->modelo = $request->get('modelo'); 
             // $bus->kilometraje = $request->get('kilometraje');
             $bus->esOperaciones = $request->get('esOperaciones');
@@ -132,7 +145,7 @@ class BusesController extends Controller
             
 
         }else {
-            $bus->id_bus = $request->get('id_bus');
+            // $bus->id_bus = $request->get('id_bus');
             $bus->modelo = $request->get('modelo'); 
             // $bus->kilometraje = $request->get('kilometraje');
             $bus->conductor_id =  $conductor;
