@@ -8,6 +8,8 @@ use App\PetitionMonitoring;
 
 use App\Peticion;
 
+Route::group(['middleware' => ['auth', 'admin:,']], function() {
+
 
 Route::get('/presidente', 'PresidenciaController@home');
 
@@ -53,3 +55,4 @@ Route::get('/presidente/monitoreos/almacen', function() {
     return $total;
 });
 
+});

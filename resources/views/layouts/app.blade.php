@@ -43,7 +43,7 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                    @guest
                    @else
-                        @if(auth()->user()->role->Mantenimiento)
+                        @if(auth()->user()->role->Mantenimiento or auth()->user()->role->Admin )
                         
                         <span id= "notificacion2" class=" badge badge-secondary notificacicion-icono2"></span>
                         @endif                    
@@ -69,7 +69,7 @@
                             </li>
                             
                         @else
-                            @if(auth()->user()->role->Mantenimiento)
+                            @if(auth()->user()->role->Mantenimiento or auth()->user()->role->Admin)
 
                                 <li class="nav-item dropdown text-center">
                                     <a id="navbarDropdown1" class="nav-link  text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -164,7 +164,7 @@
     {{-- <script  type="text/javascript" src="{{ asset('/js/manetenimiento/notificaciones.js') }}"></script> --}}
    @guest
     @else
-        @if(auth()->user()->role->Mantenimiento)
+        @if(auth()->user()->role->Mantenimiento or auth()->user()->role->Admin)
         <script type="text/javascript" src="{{ asset('js/mantenimiento/notificaciones.js') }}"></script>
         @endif
    @endguest
