@@ -17,4 +17,9 @@ class Mantenimiento extends Model
 
     }
 
+    public function buses()
+    {
+        return $this->belongsTo(Buses::class, 'bus_id');
+    }
+
 }

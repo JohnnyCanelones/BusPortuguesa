@@ -13,6 +13,11 @@ Route::group(['middleware' => ['auth', 'mantenimiento:,']], function() {
   Route::get('mantenimiento/bus/{id}', 'BusesController@editBusForm');
   Route::post('mantenimiento/bus/{id}', 'BusesController@editBus');
   
+  Route::get('mantenimiento/servicio/bus/{id}', 'BusesController@mantenimientoBus');
+  Route::get('mantenimiento/servicio/bus', 'BusesController@servicioBus');
+  Route::get('mantenimiento/bus/{id}/pdf', 'BusesController@servicioBusPdf');
+  // Route::post('mantenimiento/servicio/bus/{id}', 'BusesController@editBus');
+  
   Route::get('mantenimiento/kilometraje/{id}', 'BusesController@editKilometrajeForm');
   Route::post('mantenimiento/kilometraje/{id}', 'BusesController@editKilometraje');
   

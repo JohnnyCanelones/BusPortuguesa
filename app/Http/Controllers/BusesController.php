@@ -7,7 +7,10 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use App\Buses;
 use App\Staff;
+use App\Servicio;
+
 use App\ModeloBus;
+use App\Mantenimiento;
 use Barryvdh\DomPDF\Facade as PDF;
 
 
@@ -212,6 +215,49 @@ class BusesController extends Controller
         return view('mantenimiento.buses.show', [
             'buses' => $buses,
         ]);
+    }
+
+    public function mantenimientoBus($id) {
+        $mantenimientos = Mantenimiento::where('bus_id', $id)->get();
+        
+        $grouped = $mantenimientos->groupBy('tipo_servicio');
+        // dd($grouped);
+
+
+        return view('mantenimiento.buses.mantenimientosBus', [
+            'pagina' => 'mantenimientos',
+            'tipo_servicios' => $grouped,
+            'mantenimientos' => $mantenimientos,
+        ]);
+    }
+
+    public function servicioBus(Request $request) {
+        $mantenimientos = Mantenimiento::where('bus_id', $request->get('bus'))
+                                        ->where('tipo_servicio', $request->get('tipo_servicio'))->get();
+        // dd($mantenimientos);
+         return view('mantenimiento.buses.mantenimientosBus', [
+            'pagina' => 'servicio',
+            'mantenimientos' => $mantenimientos,
+        ]);
+
+        
+    }
+
+    public function servicioBusPdf(Request $request, $id) {
+        $mantenimientos = Mantenimiento::where('bus_id', $id)
+                                        ->whereDate('fecha', '>=', $request->get('desde'))
+                                        ->whereDate('fecha', '<=', $request->get('hasta'))
+                                        ->where('tipo_servicio', '=', $request->get('tipo_servicio'))
+                                        ->get();
+                                        
+                                        // dd($mantenimientos[0]);
+        $arr = ['desde'=> $request->get('desde'), 'hasta' => $request->get('hasta'), 
+                'mantenimientos' => $mantenimientos, 'tipo_servicio' => $request->get('tipo_servicio')];
+        // dd($arr['mantenimientos'][0]->buses->id_bus);
+        $pdf = PDF::loadView('mantenimiento.buses.pdf.reporte.busServicioFecha', compact('arr'));
+        // $pdf->setPaper('letter', 'portrait');
+        $pdf->setPaper([0, 0, 685.98, 496.85], 'portrait');
+        return $pdf->stream('PDF Unidades inoperativas BusPortuguesa.pdf');	
     }
     public function busesPdf()
     {
