@@ -44,6 +44,16 @@ class User extends Authenticatable
     {
         return $this->belongsTo(PetitionMonitoring::class, 'user_id');
     }
+
+    public function buses_monitoring()
+    {
+        return $this->belongsTo(BusesMonitoring::class, 'user_id');
+    }
+
+    public function maintenance_monitoring()
+    {
+        return $this->belongsTo(MaintenanceMonitoring::class, 'user_id');
+    }
     
 
 

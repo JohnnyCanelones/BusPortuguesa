@@ -2,9 +2,12 @@
 use App\User;
 use App\Staff;
 use App\Almacen;
+use App\Buses;
 use App\StaffMonitoring;
 use App\WarehouseMonitoring;
 use App\PetitionMonitoring;
+use App\MaintenanceMonitoring;
+use App\BusesMonitoring;
 
 use App\Peticion;
 
@@ -16,6 +19,7 @@ Route::get('/presidente', 'PresidenciaController@home');
 Route::get('/presidente/monitoreo/personal', 'PresidenciaController@showStaffMonitoring');
 
 Route::get('/presidente/monitoreo/almacen', 'PresidenciaController@showWarehouseMonitoring');
+Route::get('/presidente/monitoreo/mantenimiento', 'PresidenciaController@showMaintenanceMonitoring');
 
 Route::get('presidente/monitoreo/usuario/{id}', function($id) {
     
@@ -54,5 +58,28 @@ Route::get('/presidente/monitoreos/almacen', function() {
    
     return $total;
 });
+Route::get('/presidente/monitoreos/mantenimiento', function() {
+    
+    $monitoreos = count(MaintenanceMonitoring::all());
+    $monitoreos2 = count(BusesMonitoring::all());
+    $total = $monitoreos + $monitoreos2;
+   
+    return $total;
+});
+
+
+Route::get('presidente/monitoreo/mantenimiento/{id}', function($id) {
+    
+    $peticion = Peticion::find($id);
+    $monitoreo = ['peticion' => $peticion, 'producto' => $peticion->almacen];
+    // dd($monitoreo->almacen);
+    return $monitoreo;
+});
+
+
+Route::get('/presidente/buses/{id}', function ($id){
+        return Buses::find($id);
+});
+
 
 });

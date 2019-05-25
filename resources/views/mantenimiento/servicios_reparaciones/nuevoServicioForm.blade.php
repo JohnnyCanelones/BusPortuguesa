@@ -171,7 +171,7 @@
           }); 
           $('.mecanicos').select2({
             placeholder: 'Mecanicos',
-            maximumSelectionLength: 5,
+            maximumSelectionLength: 3,
           //  allowClear: true
           }); 
             min = new Date();

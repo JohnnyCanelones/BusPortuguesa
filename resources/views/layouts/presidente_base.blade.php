@@ -45,6 +45,7 @@
         <div class="collapse" id="menu4" data-parent="#sidebar">
             <a href="{{ url('/presidente/monitoreo/personal') }}" class="list-group-item" >Recursos humanos </a>
             <a href="{{ url('/presidente/monitoreo/almacen') }}" class="list-group-item" >Almacen </a>
+            <a href="{{ url('/presidente/monitoreo/mantenimiento') }}" class="list-group-item" >Mantenimiento </a>
             {{-- <a href="#menu3sub3" class="list-group-item" data-toggle="collapse" aria-expanded="false">Subitem 3 </a> --}}
             
         

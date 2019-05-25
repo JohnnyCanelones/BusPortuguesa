@@ -11,12 +11,12 @@ class MaintenanceMonitoring extends Model
 	public $timestamps = false;
 
 
+	public function user(){
+		return $this->hasOne(User::class, 'id');
+	} 
     public function mantenimientos(){
          return $this->belongsTo(Mantenimiento::class, 'mantenimiento_id');
 
  	}
 
- 	public function user(){
- 		return $this->hasOne(User::class, 'id');
- 	} 
 }
