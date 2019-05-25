@@ -48,3 +48,9 @@ $('#kilometraje').formatter({
 $('#name').formatter({
 	"pattern": '{{99999}}'
 });
+
+$('#vin').formatter({
+	"pattern": 'LZY1DGD68F100{{9999}}'
+});
+
+

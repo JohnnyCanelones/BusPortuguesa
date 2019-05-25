@@ -72,6 +72,19 @@
                                         </div>	
                                         
                                     </div>
+                                    <div class="col-lg-6 col-md-12 mt-4">
+                                            <div class=" form-group" >
+                                                <strong><label class="bmd-label-floating" for="vin">Vin</label></strong>
+                                                <input id="vin" required class="form-control {{ $errors->has('vin') ? ' is-invalid' : '' }}" type=""  name="vin" value="{{ old('vin') }}" >
+                                                        
+                                                        @if ($errors->has('vin'))
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $errors->first('vin') }}</strong>
+                                                        </span>
+                                                    @endif		
+                                            </div>	
+                                            
+                                    </div>
                                     <div class="col-md-12 col-lg-6 mt-4">
                                     <div class="form-group">
                                         <select required="" class="js-example-basic-single form-control mt-1 focus" name="esOperaciones" required="">
@@ -88,6 +101,7 @@
                                         
                                     </div>
                                 </div>
+                                   
 
 
                                     <div class="col-md-12 col-lg-6 mt-4">

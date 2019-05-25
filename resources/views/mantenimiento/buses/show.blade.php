@@ -15,6 +15,7 @@
                                 <th class="text-white" scope="col"># de la Unidad</th>
                                 <th class="text-white" scope="col">Modelo</th>
                                 <th class="text-white" scope="col">Kilometraje</th>
+                                <th class="text-white" scope="col">Vin</th>
                                 <th class="text-white" scope="col">Ubicación</th>
                                 <th class="text-white" scope="col">Mantenimientos</th>
                                 <th class="text-white" scope="col">Estado</th>
@@ -32,7 +33,10 @@
                                 <a data-toggle="tooltip" data-placement="top" title="Modificar Unidad" href="/mantenimiento/bus/{{$bus->id_bus}}"  style="color: #008a34">{{ $bus->id_bus}}</a>
                                 </th>
                                 <td>{{ $bus->modelo}} </td>
-                                <td><a data-toggle="tooltip" data-placement="top" title="Modificar kilometraje" href="/mantenimiento/kilometraje/{{ $bus->id_bus }}" style="color: #008a34"> {{ $bus->kilometraje }}</a></td>
+                                <td><a data-toggle="tooltip" data-placement="top" title="Modificar kilometraje" href="/mantenimiento/kilometraje/{{ $bus->id_bus }}" style="color: #008a34"> 
+                                    {{ number_format($bus->kilometraje) }} Km
+                                </a></td>
+                                <td> {{ $bus->vin }}</td>
                                 <td> {{ $bus->esOperaciones }}</td>
                                 <td class="text-center "> <a href="/mantenimiento/servicio/bus/{{$bus->id_bus}}" title="Ver mantenimientos" class="verde"><i class="fas fa-wrench"></i></a></td>
                                 <td> @if( $bus->estado == 'Inactivo') Inoperativa @else Operativa @endif</td>

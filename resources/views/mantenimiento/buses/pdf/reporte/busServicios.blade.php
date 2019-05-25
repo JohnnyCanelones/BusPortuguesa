@@ -37,61 +37,74 @@
                 <div class="col-sm-12">
 
                     <h3>
-                        Reporte de la unidad
-                        <strong>{{ $arr['mantenimientos'][0]->bus_id }}</strong>
-                        por {{ $arr['tipo_servicio']}}
+                        Reporte de Mantenimientos de la unidad {{$arr['mantenimientos']['Cambio de aceite'][0]->buses->id_bus}}
+                        {{-- <strong>{{ $arr['mantenimientos'][0]->bus_id }}</strong>
+                        por {{ $arr['tipo_servicio']}} --}}
                     </h3>
                     <br>
                     <h4>
-                       Desde: {{ $arr['desde'] }},   
-                       Hasta: {{ $arr['hasta'] }}   
-                            
-
+                        {{-- Desde: {{ $arr['desde'] }},   
+                        Hasta: {{ $arr['hasta'] }}    --}}
+                        
+                        
                     </h4>
                     <br>
                     <h5>Fecha {{ date("d-m-Y") }}</h5>
                     <br>
-                    <table class="table table-hover table-striped">
+                    <table class="table">
                         <thead>
-                            
                             <tr>
                             <th  scope="col">Número de la Unidad</th>
                             <th  scope="col">Kilometraje actual</th>
                             <th  scope="col">Vin</th>
                             <th  scope="col">Modelo</th>
                             <th  scope="col">Ubicación</th>
-                            </tr>                            
+                        </tr>                            
                         </thead>
                         <tbody>
                             <tr>
-                                <th scope="row">
-                                <a data-toggle="tooltip" data-placement="top" title="Modificar Unidad"   style="color: #008a34">{{ $arr['mantenimientos'][0]->buses->id_bus}}</a>
-                                </th>
-                                <td>{{ number_format($arr['mantenimientos'][0]->buses->kilometraje)}} Km </td>
-                                <td>{{ $arr['mantenimientos'][0]->buses->vin}} </td>
-                                <td>{{ $arr['mantenimientos'][0]->buses->modelo}} </td>
-                                <td> {{ $arr['mantenimientos'][0]->buses->esOperaciones }}</td>
+                                    <td>
+                                        {{$arr['mantenimientos']['Cambio de aceite'][0]->buses->id_bus}}
+                                    </td>
+                                    <td>
+                                        {{ number_format($arr['mantenimientos']['Cambio de aceite'][0]->buses->kilometraje)}} Km
+                                    </td>
+                                    <td>
+                                        {{$arr['mantenimientos']['Cambio de aceite'][0]->buses->vin}}
+                                    </td>
+                                    <td>
+                                        {{$arr['mantenimientos']['Cambio de aceite'][0]->buses->modelo}}
+                                    </td>
+                                    <td>
+                                        {{$arr['mantenimientos']['Cambio de aceite'][0]->buses->esOperaciones}}
+                                    </td>
                                 
                             </tr>
-                            
-                        
                         </tbody>
                     </table>
-                    <table class="table table-hover table-striped">
+                    <br>
+                    <br>
+                     <table class="table table-hover table-striped">
                         <thead>
                             
                             <tr>
                             <th  scope="col">Fecha</th>
+                            <th  scope="col">Mantenimiento</th>
                             <th  scope="col">Kilometraje</th>
                             </tr>                            
                         </thead>
                         <tbody>
-                            @forelse($arr['mantenimientos'] as $mantenimiento)
-                            <tr>
-                                <td>{{ date("Y/m/d", strtotime($mantenimiento->fecha))}} </td>
-                                <td>{{ $mantenimiento->kilometraje}} Km</td>
-                                
-                            </tr>
+                            @forelse($arr['mantenimientos'] as $mantenimiento => $value)
+                            @foreach ($value as $value)
+                                <tr>
+                                    <td>{{date("Y/m/d", strtotime( $value->fecha))}} </td><br>
+                                    <td>{{ $value->tipo_servicio}} </td><br>
+                                    <td>{{ number_format($value->kilometraje)}} Km</td><br>
+                                    <br>
+                                    
+                                    
+                                </tr>
+                                @endforeach
                             @empty
                                 <h2 class="mt-5"><span class="mt-5">  no hay unidades </span></h4>
                             @endforelse
@@ -99,6 +112,7 @@
                         
                         </tbody>
                     </table>
+                   
                 </div>
             </div>
         </div>

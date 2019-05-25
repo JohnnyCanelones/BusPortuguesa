@@ -20,6 +20,7 @@ class CrearTablaDeBuses extends Migration
             // por ahora rutas sin relacion
             $table->string('modelo');
             $table->integer('kilometraje');
+            $table->string('vin');
             $table->string('esOperaciones');
 
             

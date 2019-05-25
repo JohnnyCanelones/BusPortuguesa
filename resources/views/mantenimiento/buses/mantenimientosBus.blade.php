@@ -14,6 +14,14 @@
                             Unidad # {{$mantenimientos[0]->bus_id}}</h3>
                     @endif 
                 </div>
+                <div class="row" >
+                    <div class="col-md-4 col-sm-4"></div>
+                    <div class="col-sm-4  mb-2 text-center" >
+                    <a href="/mantenimiento/servicios/bus/{{ $mantenimientos[0]->bus_id }}" class="btn btn-raised mx-auto  bg-verde  btn-primary  text-white p-2 rounded " style="font-size: 21px" target="_blank" data-toggle="tooltip" title="Generar PDF"> <span><i class="fas fa-file-pdf"></i></span></a>
+                        {{-- (*) la cantidad para aceites y liquidos seran expresados en litros --}}
+                    <div class="col-sm-4"></div>
+                    
+                </div>
                 <div class="card-body">
                     <table id="example" class="p-3 table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                       <thead>
@@ -47,7 +55,7 @@
                     <h3 id="hola" class="azul text-center m-3 ">{{ $mantenimientos[0]->tipo_servicio }} en la Unidad # {{$mantenimientos[0]->bus_id}}</h3>
                 </div>
                 <div class="card-body">
-                    <table id="example" class="p-3 table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+                    <table id="servicio" class="p-3 table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                       <thead>
                             <tr class="text-white" style="background-color: #003286e8">
                                 <th class="text-white" scope="col">Fecha</th>
@@ -61,7 +69,7 @@
                         <tbody>
                             @forelse($mantenimientos as $mantenimiento)
                             <tr >
-                            <th class="text-center">{{ $mantenimiento->fecha }}</th>
+                            <th class="text-center">{{ date("Y/m/d", strtotime($mantenimiento->fecha)) }}</th>
                             <td class="text-center">{{ $mantenimiento->kilometraje }} Km</td>
                                 
                                        
@@ -108,6 +116,13 @@
     $(function () {
   $('[data-toggle="tooltip"]').tooltip()
 })
+
+ $('#servicio').DataTable( {
+    dom: 'Bfrtip',
+    "order": [0, 'desc'],
+
+} );
+
 </script>
 
 

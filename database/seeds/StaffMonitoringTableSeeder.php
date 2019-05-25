@@ -13,7 +13,7 @@ class StaffMonitoringTableSeeder extends Seeder
     {
          DB::table('staff_monitoring')->insert([
             'id'=> 1,
-            'user_id'=> 1234,
+            'user_id'=> 26503270,
             'staff_id' => 26503270,
             'accion' => 'Empleado Creado',
             'fecha_accion' => '2018-12-1 00:00:00'

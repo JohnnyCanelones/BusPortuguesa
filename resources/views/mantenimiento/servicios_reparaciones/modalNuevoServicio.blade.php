@@ -15,7 +15,7 @@
         	<div class="col-sm-12">
         			
 
-	        	<form id="servicio" action="/mantenimiento/servicio" method="post">
+	        	<form id="servicio" action="/mantenimiento/servicio" onkeypress="return anular(event)" method="post">
 					{{ csrf_field() }}
 	        		<div class="row">
 									<div class="col-sm-12">
@@ -50,6 +50,10 @@
 </div>
 
 <script type="text/javascript">
+		function anular(e) {
+          tecla = (document.all) ? e.keyCode : e.which;
+          return (tecla != 13);
+     }
 		let submit = document.getElementById('submit')
   		submit.addEventListener('click', function(ev){
   			x = document.getElementById("name").value;

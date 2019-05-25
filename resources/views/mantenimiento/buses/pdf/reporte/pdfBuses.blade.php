@@ -8,6 +8,7 @@
             <th  scope="col"># de la Unidad</th>
             <th  scope="col">Modelo</th>
             <th  scope="col">Kilometraje</th>
+            <th  scope="col">Vin</th>
             <th  scope="col">Ubicación</th>
             <th  scope="col">Estado</th>
             <th  scope="col">Motivo de la inactividad</th>
@@ -23,7 +24,8 @@
                 <a data-toggle="tooltip" data-placement="top" title="Modificar Unidad"   style="color: #008a34">{{ $bus->id_bus}}</a>
                 </th>
                 <td>{{ $bus->modelo}} </td>
-                <td><a data-toggle="tooltip" data-placement="top" title="Modificar kilometraje" style="color: #008a34"> {{ $bus->kilometraje }}</a></td>
+                <td><a data-toggle="tooltip" data-placement="top" title="Modificar kilometraje" style="color: #008a34"> {{ number_format($bus->kilometraje) }} Km</a></td>
+                <td> {{ $bus->vin }}</td>
                 <td> {{ $bus->esOperaciones }}</td>
                 <td> @if( $bus->estado == 'Inactivo') Inoperativa @else Operativa @endif</td>
                 <td class="text-center"> <span class="text-center @if ($bus->motivo_inactividad == 'a Desincorporar')badge badge-warning

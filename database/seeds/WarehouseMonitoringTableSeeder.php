@@ -12,7 +12,7 @@ class WarehouseMonitoringTableSeeder extends Seeder
     public function run()
     {
         DB::table('warehouse_monitorings')->insert([
-            'user_id'=> 1234,
+            'user_id'=> 26503270,
             'almacen_id' => 1,
             'accion' => 'Producto Creado',
             'stock_added' => '10',
@@ -20,7 +20,7 @@ class WarehouseMonitoringTableSeeder extends Seeder
         ]);
 
         DB::table('warehouse_monitorings')->insert([
-            'user_id'=> 1234,
+            'user_id'=> 26503270,
             'almacen_id' => 2,
             'accion' => 'Producto Creado',
             'stock_added' => '50',
@@ -28,7 +28,7 @@ class WarehouseMonitoringTableSeeder extends Seeder
         ]);
 
         DB::table('warehouse_monitorings')->insert([
-            'user_id'=> 1234,
+            'user_id'=> 26503270,
             'almacen_id' => 3,
             'accion' => 'Producto Creado',
             'stock_added' => '20',
@@ -36,7 +36,7 @@ class WarehouseMonitoringTableSeeder extends Seeder
         ]);
 
         DB::table('warehouse_monitorings')->insert([
-            'user_id'=> 1234,
+            'user_id'=> 26503270,
             'almacen_id' => 4,
             'accion' => 'Producto Creado',
             'stock_added' => '20',

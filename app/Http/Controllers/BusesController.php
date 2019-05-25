@@ -62,6 +62,7 @@ class BusesController extends Controller
             'id_bus' => $request->get('id_bus'),
             'modelo' => $request->get('modelo'), 
             'kilometraje'=> $request->get('kilometraje'),
+            'vin'=> $request->get('vin'),
             'esOperaciones' => $request->get('esOperaciones'),
             'conductor_id' =>  $conductor,
             'estado' => 'Inactivo',
@@ -84,6 +85,8 @@ class BusesController extends Controller
             'id_bus' => $request->get('id_bus'),
             'modelo' => $request->get('modelo'),
             'kilometraje'=> $request->get('kilometraje'),
+            'vin'=> $request->get('vin'),
+
             'esOperaciones' => $request->get('esOperaciones'),
 
             'conductor_id' =>  $conductor,
@@ -132,6 +135,8 @@ class BusesController extends Controller
             // $bus->kilometraje = $request->get('kilometraje');
             $bus->esOperaciones = $request->get('esOperaciones');
             $bus->conductor_id =  $conductor;
+            $bus->vin = $request->get('vin');
+
             $bus->estado = 'Inactivo';
             $bus->motivo_inactividad =  $request->get('motivo_inactividad');
             $bus->fecha_inactivo =  $request->get('fecha_inactivo');
@@ -152,6 +157,8 @@ class BusesController extends Controller
             $bus->modelo = $request->get('modelo'); 
             // $bus->kilometraje = $request->get('kilometraje');
             $bus->conductor_id =  $conductor;
+            $bus->vin = $request->get('vin');
+
             $bus->estado = 'Activo';
             $bus->motivo_inactividad =  null;
             $bus->fecha_inactivo =  null;
@@ -231,6 +238,32 @@ class BusesController extends Controller
         ]);
     }
 
+    public function serviciosBus($id) {
+        $mantenimientos = Mantenimiento::where('bus_id', $id)->get();
+        $mantenimientos->load('buses');
+        
+        $grouped = $mantenimientos->groupBy('tipo_servicio');
+        foreach ($grouped as $key => $value) {
+            // dd($value[0]->buses);
+            # code...
+        }
+        
+        $arr = ['mantenimientos' => $grouped];
+        // dd($arr['mantenimientos'][0]->buses->id_bus);
+        $pdf = PDF::loadView('mantenimiento.buses.pdf.reporte.busServicios', compact('arr'));
+        // $pdf->setPaper('a4', 'portrait');
+        $pdf->setPaper([0, 0, 685.98, 496.85], 'portrait');
+        return $pdf->stream('PDF BusPortuguesa.pdf');
+
+        return view('mantenimiento.buses.mantenimientosBus', [
+            'pagina' => 'mantenimientos',
+            'tipo_servicios' => $grouped,
+            // 'mantenimientos' => $mantenimientos,
+        ]);
+    }
+
+
+
     public function servicioBus(Request $request) {
         $mantenimientos = Mantenimiento::where('bus_id', $request->get('bus'))
                                         ->where('tipo_servicio', $request->get('tipo_servicio'))->get();
@@ -255,9 +288,9 @@ class BusesController extends Controller
                 'mantenimientos' => $mantenimientos, 'tipo_servicio' => $request->get('tipo_servicio')];
         // dd($arr['mantenimientos'][0]->buses->id_bus);
         $pdf = PDF::loadView('mantenimiento.buses.pdf.reporte.busServicioFecha', compact('arr'));
-        // $pdf->setPaper('letter', 'portrait');
+        // $pdf->setPaper('a4', 'portrait');
         $pdf->setPaper([0, 0, 685.98, 496.85], 'portrait');
-        return $pdf->stream('PDF Unidades inoperativas BusPortuguesa.pdf');	
+        return $pdf->stream('PDF BusPortuguesa.pdf');	
     }
     public function busesPdf()
     {
@@ -318,7 +351,7 @@ class BusesController extends Controller
             
             $arr = ['option'=> 1, 'Buses' => $Buses, 'TotalNorteSur'=> $request->q];
             $pdf = PDF::loadView('mantenimiento.buses.pdf.reporte.pdfBuses', compact('arr'));
-		    $pdf->setPaper('letter', 'landscape');
+		    $pdf->setPaper('a4', 'landscape');
             return $pdf->stream('PDF Unidades BusPortuguesa.pdf');	
         
         } 
@@ -348,7 +381,7 @@ class BusesController extends Controller
             
             $arr = ['option'=> $request->option, 'Buses' => $Buses, 'TotalNorteSur'=> $request->q];
             $pdf = PDF::loadView('mantenimiento.buses.pdf.reporte.pdfBuses', compact('arr'));
-		    $pdf->setPaper('letter', 'landscape');
+		    $pdf->setPaper('a4', 'landscape');
             return $pdf->stream('PDF Unidades Operativas BusPortuguesa.pdf');	
         
         } 
@@ -378,7 +411,7 @@ class BusesController extends Controller
             
             $arr = ['option'=> $request->option, 'Buses' => $Buses, 'TotalNorteSur'=> $request->q];
             $pdf = PDF::loadView('mantenimiento.buses.pdf.reporte.pdfBuses', compact('arr'));
-		    $pdf->setPaper('letter', 'landscape');
+		    $pdf->setPaper('a4', 'landscape');
             return $pdf->stream('PDF Unidades inoperativas BusPortuguesa.pdf');	
         
         } 
@@ -406,7 +439,7 @@ class BusesController extends Controller
             }
             $arr = ['option'=> $request->option, 'Buses' => $Buses, 'TotalNorteSur'=> $request->q];
             $pdf = PDF::loadView('mantenimiento.buses.pdf.reporte.pdfBuses', compact('arr'));
-		    $pdf->setPaper('letter', 'landscape');
+		    $pdf->setPaper('a4', 'landscape');
             return $pdf->stream('PDF Unidades a desincorporar BusPortuguesa.pdf');	
         
         } 
@@ -434,7 +467,7 @@ class BusesController extends Controller
             }
             $arr = ['option'=> $request->option, 'Buses' => $Buses, 'TotalNorteSur'=> $request->q];
             $pdf = PDF::loadView('mantenimiento.buses.pdf.reporte.pdfBuses', compact('arr'));
-		    $pdf->setPaper('letter', 'landscape');
+		    $pdf->setPaper('a4', 'landscape');
             return $pdf->stream('PDF Unidad '.$request->option .' BusPortuguesa.pdf');	
         
         }
@@ -461,7 +494,7 @@ class BusesController extends Controller
         //     }
         //     $arr = ['option'=> $request->option, 'Buses' => $Buses, 'TotalNorteSur'=> $request->q];
         //     $pdf = PDF::loadView('mantenimiento.buses.pdf.reporte.pdfBuses', compact('arr'));
-		//     $pdf->setPaper('letter', 'landscape');
+		//     $pdf->setPaper('a4', 'landscape');
         //     return $pdf->stream('PDF Unidad 6118 BusPortuguesa.pdf');	
         
         // }
@@ -488,7 +521,7 @@ class BusesController extends Controller
         //     }
         //     $arr = ['option'=> $request->option, 'Buses' => $Buses, 'TotalNorteSur'=> $request->q];
         //     $pdf = PDF::loadView('mantenimiento.buses.pdf.reporte.pdfBuses', compact('arr'));
-		//     $pdf->setPaper('letter', 'landscape');
+		//     $pdf->setPaper('a4', 'landscape');
         //     return $pdf->stream('PDF Unidad 6896 BusPortuguesa.pdf');	
         
         // }
@@ -515,7 +548,7 @@ class BusesController extends Controller
         //     }
         //     $arr = ['option'=> $request->option, 'Buses' => $Buses, 'TotalNorteSur'=> $request->q];
         //     $pdf = PDF::loadView('mantenimiento.buses.pdf.reporte.pdfBuses', compact('arr'));
-		//     $pdf->setPaper('letter', 'landscape');
+		//     $pdf->setPaper('a4', 'landscape');
         //     return $pdf->stream('PDF Unidad 6752 BusPortuguesa.pdf');	
         
         // }   
