@@ -66,7 +66,11 @@
 			    success: function (data) {
 						// console.log(data)
 						if (data == "error") {
-							alert('El modelo que quieres agregar ya existe')
+							swal(
+							'Advertencia!',
+							'El modelo que quieres agregar ya existe' ,
+							'warning'
+							)
 							return
 						}
             let select = document.getElementById('modelo')

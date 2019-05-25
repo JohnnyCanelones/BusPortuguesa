@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 // use Session;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 use App\Buses;
 use App\Staff;
 use App\Servicio;
 
+use App\BusesMonitoring;
 use App\ModeloBus;
 use App\Mantenimiento;
 use Barryvdh\DomPDF\Facade as PDF;
@@ -19,7 +22,7 @@ class BusesController extends Controller
     public function createModeloBus(Request $request) {
         $modelos =  ModeloBus::all();
         foreach ($modelos as $modelo ) {
-            if ($modelo->name == $request->get('name')){
+            if (strtolower($modelo->name) == strtolower($request->get('name'))){
                 return 'error';
             } 
         }
@@ -70,6 +73,12 @@ class BusesController extends Controller
             'fecha_inactivo' => $request->get('fecha_inactivo'),
             'observacion' => $request->get('observacion'),  
            ]);
+           $monitoreo = BusesMonitoring::create([
+            'user_id' => Auth::user()->username,
+            'bus_id' => $request->get('id_bus'),
+            'accion' => 'Bus Creado', 
+            'fecha_accion' => date("Y-m-d H:i:s"),
+            ]);
             
             $success = true;
             if ($success) {
@@ -92,7 +101,12 @@ class BusesController extends Controller
             'conductor_id' =>  $conductor,
             'estado' => 'Activo',
            ]);
-
+            $monitoreo = BusesMonitoring::create([
+            'user_id' => Auth::user()->username,
+            'bus_id' => $request->get('id_bus'),
+            'accion' => 'Bus Creado', 
+            'fecha_accion' => date("Y-m-d H:i:s"),
+            ]);
             $success = true;
             if ($success) {
                 Session::flash('status','Nueva Unidad agregada');
@@ -143,6 +157,12 @@ class BusesController extends Controller
             $bus->observacion =  $request->get('observacion');  
         
             $bus->save();
+            $monitoreo = BusesMonitoring::create([
+            'user_id' => Auth::user()->username,
+            'bus_id' => $bus->id_bus,
+            'accion' => 'Bus editado', 
+            'fecha_accion' => date("Y-m-d H:i:s"),
+            ]);
             $success = true;
             if ($success) {
                 Session::flash('status','Unidad editada');
@@ -165,6 +185,12 @@ class BusesController extends Controller
             $bus->observacion =  null;  
         
             $bus->save();
+            $monitoreo = BusesMonitoring::create([
+            'user_id' => Auth::user()->username,
+            'bus_id' => $bus->id_bus,
+            'accion' => 'Bus editado', 
+            'fecha_accion' => date("Y-m-d H:i:s"),
+            ]);
             $success = true;
             if ($success) {
                 Session::flash('status','Unidad modificacda');
@@ -201,6 +227,12 @@ class BusesController extends Controller
                 'kilometraje' => $nuevoKilometraje,
             ]);
         } else {
+            $monitoreo = BusesMonitoring::create([
+            'user_id' => Auth::user()->username,
+            'bus_id' => $bus->id_bus,
+            'accion' => 'Kilometraje editado antes: '. number_format($bus->kilometraje).' Km, ahora: '.number_format($nuevoKilometraje). ' Km', 
+            'fecha_accion' => date("Y-m-d H:i:s"),
+            ]);
             $bus->kilometraje = $nuevoKilometraje;
             $bus->save();
             Session::flash('status','Modificado el kilometraje');

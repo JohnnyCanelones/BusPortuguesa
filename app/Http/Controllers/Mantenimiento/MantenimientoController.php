@@ -12,7 +12,8 @@ use App\PetitionMonitoring;
 use App\Mantenimiento;
 use App\Staff;
 use App\Servicio;
-
+use Illuminate\Support\Facades\Auth;
+use App\MaintenanceMonitoring;
 
 
 
@@ -121,7 +122,14 @@ class MantenimientoController extends Controller
             # code...
         }
         Session::flash('status','Servicio Creado');
-
+        
+        $monitoreo = MaintenanceMonitoring::create([
+            'user_id' => Auth::user()->username,
+            'mantenimiento_id' => $mantenimiento->id,
+            'accion' => 'Mantenimiento creado', 
+            'fecha_accion' => date("Y-m-d H:i:s"),
+        ]);
+        
         return redirect('/mantenimiento');
 
     }
@@ -206,7 +214,12 @@ class MantenimientoController extends Controller
                     
                 }
                 Session::flash('status','Servicio modificado');
-    
+                $monitoreo = MaintenanceMonitoring::create([
+                    'user_id' => Auth::user()->username,
+                    'mantenimiento_id' => $mantenimiento->id,
+                    'accion' => 'Mantenimiento editado', 
+                    'fecha_accion' => date("Y-m-d H:i:s"),
+                ]);
                 return redirect('/mantenimiento/cronograma');
             
             }else {
