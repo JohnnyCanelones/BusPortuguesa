@@ -70,7 +70,7 @@
                             @forelse($mantenimientos as $mantenimiento)
                             <tr >
                             <th class="text-center">{{ date("Y/m/d", strtotime($mantenimiento->fecha)) }}</th>
-                            <td class="text-center">{{ $mantenimiento->kilometraje }} Km</td>
+                            <td class="text-center">{{ number_format($mantenimiento->kilometraje) }} Km</td>
                                 
                                        
                             </tr>
