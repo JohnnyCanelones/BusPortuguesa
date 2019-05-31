@@ -1,18 +1,17 @@
 <body> 
 @include('layouts.mantenimiento_base')
 <div class="container">
-    
     <div class="row justify-content-center">
         <div class="col-sm-12 col-lg-7">
+            @if (count($mantenimientos) > 0)
             <div id="" class='card card2 mb-5'>
                 @if ($pagina == 'mantenimientos')
                 <div class="card-header">
                     <a class="text-left" href="/mantenimiento/show/buses" style="color: #008a34"><i class="fas fa-angle-left"></i> Atras</a>
 
-                    <h3 id="hola" class="azul text-center m-3 "> @if (count($mantenimientos) > 0)
+                    <h3 id="hola" class="azul text-center m-3 "> 
                         
                             Unidad # {{$mantenimientos[0]->bus_id}}</h3>
-                    @endif 
                 </div>
                 <div class="row" >
                     <div class="col-md-4 col-sm-4"></div>
@@ -94,6 +93,19 @@
                 </div>
                 @endif
             </div>
+            @else 
+                <div id="" class='card card2 mb-5'>
+                    <div class="card-header">
+                         <a class="text-left" href="/mantenimiento/show/buses" style="color: #008a34"><i class="fas fa-angle-left"></i> Atras</a>
+
+                    </div>
+                    <div class="card-body text-cemter">
+                        No hay mantenimientos
+                    </div>
+                </div>
+
+
+            @endif
         </div>
 
     </div>
@@ -128,3 +140,4 @@
 
 
 </body>
+ 
