@@ -15,12 +15,12 @@
                                 <th class="text-white" scope="col"># de la Unidad</th>
                                 <th class="text-white" scope="col">Modelo</th>
                                 <th class="text-white" scope="col">Kilometraje</th>
-                                <th class="text-white" scope="col">Vin</th>
                                 <th class="text-white" scope="col">Ubicación</th>
                                 <th class="text-white" scope="col">Mantenimientos</th>
                                 <th class="text-white" scope="col">Estado</th>
-                                <th class="text-white" scope="col">Motivo de la inactividad</th>
-                                <th class="text-white" scope="col">Inactivo desde</th>
+                                <th class="text-white" scope="col">Motivo</th>
+                                <th class="text-white" scope="col">Desde</th>
+                                <th class="text-white" scope="col">Vin</th>
                                 <th class="text-white" scope="col">Conductor</th>
                                 <th class="text-white" scope="col">Observación</th>
                             </tr>
@@ -36,13 +36,24 @@
                                 <td><a data-toggle="tooltip" data-placement="top" title="Modificar kilometraje" href="/mantenimiento/kilometraje/{{ $bus->id_bus }}" style="color: #008a34"> 
                                     {{ number_format($bus->kilometraje) }} Km
                                 </a></td>
-                                <td> {{ $bus->vin }}</td>
                                 <td> {{ $bus->esOperaciones }}</td>
                                 <td class="text-center "> <a href="/mantenimiento/servicio/bus/{{$bus->id_bus}}" title="Ver mantenimientos" class="verde"><i class="fas fa-wrench"></i></a></td>
-                                <td> @if( $bus->estado == 'Inactivo') Inoperativa @else Operativa @endif</td>
+                                <td> @if( $bus->estado == 'Inactivo') Inoperativa @else Operativa @endif
+                                    @if ($bus->estado == 'Activo' and $bus->fecha_inactivo )
+                                        En servicio
+                                    
+                                    @endif
+                                </td>
                                 <td class="text-center"> <span class="text-center @if ($bus->motivo_inactividad == 'a Desincorporar')badge badge-warning
                                         @endif"> @if( $bus->estado == 'Inactivo') {{ $bus->motivo_inactividad }} </span>@else ---- @endif</td>        
-                                <td> @if( $bus->estado == 'Inactivo') {{ $newDate = date("d/m/Y", strtotime($bus->fecha_inactivo))  }} @else ---- @endif</td>        
+                                <td> @if( $bus->estado == 'Inactivo') {{ $newDate = date("d/m/Y", strtotime($bus->fecha_inactivo))  }}  @endif
+                                    @if ($bus->estado == 'Activo' and $bus->fecha_inactivo )
+                                       {{ $newDate = date("d/m/Y", strtotime($bus->fecha_inactivo))  }}
+                                    @else ----
+                                    @endif
+                                </td>  
+                                <td> {{ $bus->vin }}</td>
+
                                 <td>@if ($bus->conductor_id == 0)
                                     No tiene conductor asignado
                                 @else
@@ -50,7 +61,12 @@
                                     
                                 @endif
                                 </td>
-                                <td> @if( $bus->estado == 'Inactivo') {{ $bus->observacion }} @else ---- @endif</td>        
+                                <td> @if( $bus->estado == 'Inactivo') {{ $bus->observacion }} @endif
+                                    @if ($bus->estado == 'Activo' and $bus->fecha_inactivo )
+                                       {{ $bus->observacion }}
+                                    @else ----
+                                    @endif
+                                </td>        
                             </tr>
                             @empty
                             

@@ -160,6 +160,24 @@
                                                 
                                         </div>
                                     </div>
+                                    <div class="col-lg-6 col-md-12 mt-5 " >
+                                        <div class="row">
+                                            <div class="col-md-6 pl-5 mt-3">
+                                                <label>Esta prestando servicio?</label>
+                                            </div>
+                                            <div class="col-md-6 mt-3">
+                                            <div class="switch">
+                                                <label>No</label>
+                                                <label id="active_servicio" >
+                                                    <input  type="checkbox" id="active_servicio_check" name="estado2" ><span class="lever switch-col-green" ></span> 
+                                                    Si
+                                                </label>
+                                            </div>
+                                                
+                                            </div>
+                                                
+                                        </div>
+                                    </div>
                                     
                                     <div class="col-md-12 d-none col-lg-6 mt-5" id="motivo_inactividad">
                                         <div class="" >
@@ -208,7 +226,27 @@
                                             @endif 
                                         </div>
                                     </div>
+                                    {{--  --}}
+                                    
+                                     <div class="col-lg-6 col-md-12 d-none mt-5" id="fecha_inactivo2">
+                                        <div class="form-group">
+                                            <strong><label for="fecha_inactivo2"  class="bmd-label-floating">Inactivo Desde</label></strong>
+                                            <input  class="form-control "  name="fecha_inactivo2" id="date2">
+                                             
+                                        </div>
+                                    </div>
 
+                                    <div class="col-lg-6 col-md-12 d-none mt-4" id="observacion2">
+                                        <div class="form-group">
+                                            <strong><label for="observacion2" class="bmd-label-floating">Observación</label></strong>
+                                            <textarea name="observacion2" class="form-control focus {{ $errors->has('observacion2') ? ' is-invalid' : '' }}" value="{{ old('observacion2') }}"></textarea>
+                                            @if ($errors->has('observacion2'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('observacion2') }}</strong>
+                                                </span>
+                                            @endif 
+                                        </div>
+                                    </div>
                                 
                                 
                                         
