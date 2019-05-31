@@ -51,6 +51,7 @@ class BusesController extends Controller
     public function createBus(Request $request)
     {
         $estado = $request->get('estado');
+        $servicio = $request->get('estado2');
         // dd($request->get('conductor'));      
         if ($request->get('conductor') == 0) {
             $conductor= null;
@@ -90,17 +91,37 @@ class BusesController extends Controller
             
 
         }else {
-            $bus = Buses::create([
-            'id_bus' => $request->get('id_bus'),
-            'modelo' => $request->get('modelo'),
-            'kilometraje'=> $request->get('kilometraje'),
-            'vin'=> $request->get('vin'),
+            if ($servicio) {
+                $bus = Buses::create([
+                    'id_bus' => $request->get('id_bus'),
+                    'modelo' => $request->get('modelo'),
+                    'kilometraje'=> $request->get('kilometraje'),
+                    'vin'=> $request->get('vin'),
+                    
+                    'esOperaciones' => $request->get('esOperaciones'),
+                    
+                    'conductor_id' =>  $conductor,
+                    'estado' => 'Activo',
+                    'fecha_inactivo' => $request->get('fecha_inactivo2'),
+                    'observacion' => $request->get('observacion2'),  
+                    ]);
+            
 
-            'esOperaciones' => $request->get('esOperaciones'),
+           }else {
+               $bus = Buses::create([
+                'id_bus' => $request->get('id_bus'),
+                'modelo' => $request->get('modelo'),
+                'kilometraje'=> $request->get('kilometraje'),
+                'vin'=> $request->get('vin'),
 
-            'conductor_id' =>  $conductor,
-            'estado' => 'Activo',
-           ]);
+                'esOperaciones' => $request->get('esOperaciones'),
+
+                'conductor_id' =>  $conductor,
+                'estado' => 'Activo',
+                
+            ]);
+               
+           }
             $monitoreo = BusesMonitoring::create([
             'user_id' => Auth::user()->username,
             'bus_id' => $request->get('id_bus'),
