@@ -29,39 +29,47 @@ let activeServicioChecked = document.getElementById("active_servicio_check").che
 let activeServicio = document.getElementById("active_servicio")
 
 if (activeBusChecked == true) {
-	console.log('esta activo');
 	motivoinactividad.classList.toggle("d-none")
 	fechaInactivo.classList.toggle("d-none")
 	observacion.classList.toggle("d-none")
+	
+	document.getElementById("active_servicio_check").disabled = true;
+	activeServicio.disabled = true
 }
+
+if (activeServicioChecked == true) {
+	document.getElementById('fecha_inactivo2').classList.toggle("d-none")
+	document.getElementById('observacion2').classList.toggle("d-none")
+	
+	
+}
+
 document.getElementById("active_bus").addEventListener("click", function () {
+		let activeServicioChecked = document.getElementById("active_servicio_check").checked;
+		let activeServicio = document.getElementById("active_servicio")
+		let motivoinactividad = document.getElementById('motivo_inactividad');
+		let fechaInactivo = document.getElementById('fecha_inactivo');
+		let observacion = document.getElementById('observacion');
+		let activeBusChecked = document.getElementById("active_bus_check").checked;
+		if (activeBusChecked == false) {
+			console.log('esta inactivo');
+			motivoinactividad.classList.toggle("d-none")
+			fechaInactivo.classList.toggle("d-none")
+			observacion.classList.toggle("d-none")
+			document.getElementById("active_servicio_check").disabled = false
 
 
-	let activeServicioChecked = document.getElementById("active_servicio_check").checked;
-	let activeServicio = document.getElementById("active_servicio")
-	let motivoinactividad = document.getElementById('motivo_inactividad');
-	let fechaInactivo = document.getElementById('fecha_inactivo');
-	let observacion = document.getElementById('observacion');
-	let activeBusChecked = document.getElementById("active_bus_check").checked;
-	if (activeBusChecked == false) {
-		console.log('esta inactivo');
-		motivoinactividad.classList.toggle("d-none")
-		fechaInactivo.classList.toggle("d-none")
-		observacion.classList.toggle("d-none")
-		document.getElementById("active_servicio_check").disabled = false
+		} else {
 
+			if (activeServicioChecked == true) {
+				// console.log('hola');
 
-	} else {
-
-		if (activeServicioChecked == true) {
-			// console.log('hola');
-
-			activeServicio.click()
+				activeServicio.click()
+			}
+			activeServicioChecked = false
+			activeServicio.disabled = true
+			document.getElementById("active_servicio_check").disabled = true
 		}
-		activeServicioChecked = false
-		activeServicio.disabled = true
-		document.getElementById("active_servicio_check").disabled = true
-	}
 })
 
 document.getElementById("active_servicio").addEventListener("click", function () {
@@ -73,12 +81,17 @@ document.getElementById("active_servicio").addEventListener("click", function ()
 	if (activeServicioChecked == true) {
 		console.log('servicio');
 		// motivoinactividad.classList.toggle("d-none")
+					document.getElementById('textObservacion').value = '';
+					document.getElementById('date2').value = '';
+		observacion.value = '';
 		fechaInactivo.classList.toggle("d-none")
 		observacion.classList.toggle("d-none")
 	}
 })
 
-$.fn.formatter.addInptType('T', /[2,4]/);
+
+
+
 $.fn.formatter.addInptType('L', /[A-Za-z ]/);
 $.fn.formatter.addInptType('X', /[A-Za-z]/);
 $('#kilometraje').formatter({

@@ -143,7 +143,7 @@ class BusesController extends Controller
     {
         $bus = Buses::find($id);
         $conductores = Staff::where('position', 'Conductor')->get();
-    
+        
         return view('mantenimiento.buses.busEdit', [
             'conductores' => $conductores,
             'bus' => $bus,
@@ -155,6 +155,8 @@ class BusesController extends Controller
     {
         $bus = Buses::find($id);
         $estado = $request->get('estado');
+        $servicio = $request->get('estado2');
+
         // dd($request->get('conductor'));      
         if ($request->get('conductor') == 0) {
             $conductor= null;
@@ -190,10 +192,11 @@ class BusesController extends Controller
 
             }
             
-            return redirect('/mantenimiento');
+            return redirect('/mantenimiento/show/buses');
             
 
         }else {
+            
             // $bus->id_bus = $request->get('id_bus');
             $bus->modelo = $request->get('modelo'); 
             // $bus->kilometraje = $request->get('kilometraje');
@@ -204,7 +207,11 @@ class BusesController extends Controller
             $bus->motivo_inactividad =  null;
             $bus->fecha_inactivo =  null;
             $bus->observacion =  null;  
-        
+            if ($servicio) {
+                $bus->fecha_inactivo =  $request->get('fecha_inactivo2');
+                $bus->observacion =  $request->get('observacion2');
+                // dd($bus);
+            }
             $bus->save();
             $monitoreo = BusesMonitoring::create([
             'user_id' => Auth::user()->username,
@@ -217,7 +224,7 @@ class BusesController extends Controller
                 Session::flash('status','Unidad modificacda');
 
             }
-            return redirect('/mantenimiento');
+            return redirect('/mantenimiento/show/buses');
 
 
         }

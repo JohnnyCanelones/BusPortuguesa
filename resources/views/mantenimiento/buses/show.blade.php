@@ -85,6 +85,20 @@
 <script type="text/javascript"  src="{{ asset('plugins/jquery-datatables/js/dataTables.bootstrap4.min.js') }}"></script>
 <script type="text/javascript"  src="{{ asset('plugins/jquery-datatables/js/dataTables.responsive.min.js') }}"></script>
 <script type="text/javascript"  src="{{ asset('plugins/jquery-datatables/js/responsive.bootstrap4.min.js') }}"></script>
+<script type="text/javascript"  src="{{ asset('plugins/sweetalert2.all.min.js') }}"></script>
+ @if (session('status'))
+    <script type="text/javascript">
+        $(document).ready(function() {
+            swal(
+            'Listo!',
+            '{{ session('status') }}' ,
+            'success'
+            )
+        })
+    </script>
+@endif
+
+
 
 
 <script type="text/javascript">

@@ -169,7 +169,10 @@
                                             <div class="switch">
                                                 <label>No</label>
                                                 <label id="active_servicio" >
-                                                    <input  type="checkbox" id="active_servicio_check" name="estado2" ><span class="lever switch-col-green" ></span> 
+                                                    <input  type="checkbox" id="active_servicio_check" name="estado2" @if ($bus->estado == 'Activo' and $bus->fecha_inactivo)
+                                                        checked
+                                                    @endif>
+                                                    <span class="lever switch-col-green" ></span> 
                                                     Si
                                                 </label>
                                             </div>
@@ -180,7 +183,7 @@
                                     </div>
                                     
                                     <div class="col-md-12 d-none col-lg-6 mt-5" id="motivo_inactividad">
-                                        <div class="" >
+                                        <div class="mt-4" >
                                             <select required="" class="js-example-basic-single2 form-control mt-1 focus" name="motivo_inactividad" required="" >
                                               @if ($bus->estado == "Inactivo")
                                               <option selected="" >{{$bus->motivo_inactividad}}</option>
@@ -215,7 +218,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-6 col-md-12 d-none mt-4" id="observacion">
+                                    <div class="col-lg-12 col-md-12 d-none mt-4" id="observacion">
                                         <div class="form-group">
                                             <strong><label for="observacion" class="bmd-label-floating">Observación</label></strong>
                                             <textarea name="observacion" class="form-control focus {{ $errors->has('observacion') ? ' is-invalid' : '' }}" value="{{ old('observacion') }}">{{$bus->observacion}}</textarea>
@@ -231,7 +234,7 @@
                                      <div class="col-lg-6 col-md-12 d-none mt-5" id="fecha_inactivo2">
                                         <div class="form-group">
                                             <strong><label for="fecha_inactivo2"  class="bmd-label-floating">Inactivo Desde</label></strong>
-                                            <input  class="form-control "  name="fecha_inactivo2" id="date2">
+                                            <input  class="form-control "  name="fecha_inactivo2" id="date2" value="{{$bus->fecha_inactivo}}">
                                              
                                         </div>
                                     </div>
@@ -239,7 +242,7 @@
                                     <div class="col-lg-6 col-md-12 d-none mt-4" id="observacion2">
                                         <div class="form-group">
                                             <strong><label for="observacion2" class="bmd-label-floating">Observación</label></strong>
-                                            <textarea name="observacion2" class="form-control focus {{ $errors->has('observacion2') ? ' is-invalid' : '' }}" value="{{ old('observacion2') }}"></textarea>
+                                            <textarea name="observacion2" class="form-control focus {{ $errors->has('observacion2') ? ' is-invalid' : '' }}" id="textObservacion" value="{{ old('observacion2') }}">{{$bus->observacion}}</textarea>
                                             @if ($errors->has('observacion2'))
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('observacion2') }}</strong>

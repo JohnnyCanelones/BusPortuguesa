@@ -25,13 +25,43 @@
         body {
             font-size: 14px;
         }
+        #footer { position: fixed; left: 0px; bottom: -40px; right: 0px; height: 20px;}
+        #footer .page:after { content: counter(page); text-align: end;}
     </style>
     <header id="banner" >
         
         <img  width="100%" src="{{ public_path() }}/img/banner.png">
     </header>
+    <div id="footer">
+        
+        <p class="page text-right d-inline ">Pagina </p> ||
+        <p class="  text-left d-inline ">
+            Reporte de
+            @if ($arr['TotalNorteSur'] == 1)
+                    Todas las Unidades
+                
+                @elseif($arr['TotalNorteSur'] == 2 )
+                    Unidades Cono Norte
+                
+                @elseif($arr['TotalNorteSur'] == 3 )
+                    Unidades Cono Sur
+            @endif
+            @if($arr['option'] == 2 )
+                Unidades Operativas
+            
+            @elseif($arr['option'] == 3 )
+                Unidades Inoperativas
+            @elseif($arr['option'] == 4 )
+                Unidades a Desincorporar
+            @else {{$arr['option']}}
+            @endif
+        </p>
+
+
+    </div>
     <br>
     <br>
+    
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-12">
@@ -75,5 +105,7 @@
                 </div>
             </div>
         </div>
+    
     </body>
+    
 </html>
