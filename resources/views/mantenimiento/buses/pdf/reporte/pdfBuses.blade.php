@@ -1,10 +1,11 @@
 @extends('mantenimiento.buses.pdf.reporte.layout')
 
 @section('content')
-    <table class="table table-hover table-striped">
+    <table class="table table-hover table-striped" >
         <thead>
             
             <tr>
+            <th  scope="col"># </th>
             <th  scope="col"># de la Unidad</th>
             <th  scope="col">Modelo</th>
             <th  scope="col">Kilometraje</th>
@@ -18,8 +19,10 @@
             </tr>                            
         </thead>
         <tbody>
+            {{ $contador = 1 }}
              @forelse($arr['Buses'] as $bus)
              <tr>
+             <td><strong>{{ $contador++ }}</strong></td>
                 <th scope="row">
                 <a data-toggle="tooltip" data-placement="top" title="Modificar Unidad"   style="color: #008a34">{{ $bus->id_bus}}</a>
                 </th>

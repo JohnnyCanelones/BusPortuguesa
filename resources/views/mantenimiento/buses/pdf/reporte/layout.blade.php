@@ -13,25 +13,32 @@
     <body>
     <style>
         <?php include(public_path().'/plugins/bootstrap/bootstrap.min.css');?>
-        #banner{
+        /* #banner{
+            position: fixed; 
             margin: 0;
             padding: 0;
             position: relative;
             left: -45px;
             width: 113%;
             top: -45px;
-        }
+        } */
+        
 
         body {
-            font-size: 14px;
+            font-size: 13px;
+        }
+        #banner { position: fixed; left: -45px; top: -45px; right: 0px; width: 102%; margin-bottom: 50px }
+        #content {
+            margin-top: 100px;
         }
         #footer { position: fixed; left: 0px; bottom: -40px; right: 0px; height: 20px;}
         #footer .page:after { content: counter(page); text-align: end;}
     </style>
-    <header id="banner" >
+    <div id="banner" >
         
         <img  width="100%" src="{{ public_path() }}/img/banner.png">
-    </header>
+        <br>
+    </div>
     <div id="footer">
         
         <p class="page text-right d-inline ">Pagina </p> ||
@@ -53,7 +60,7 @@
                 Unidades Inoperativas
             @elseif($arr['option'] == 4 )
                 Unidades a Desincorporar
-            @else {{$arr['option']}}
+            @elseif ( $arr['option'] > 4){{$arr['option']}}
             @endif
         </p>
 
@@ -62,7 +69,7 @@
     <br>
     <br>
     
-        <div class="container-fluid">
+        <div class="container-fluid" id="content">
             <div class="row">
                 <div class="col-sm-12">
 
