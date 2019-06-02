@@ -33,7 +33,7 @@
                                 <a data-toggle="tooltip" data-placement="top" title="Modificar Unidad" href="/mantenimiento/bus/{{$bus->id_bus}}"  style="color: #008a34">{{ $bus->id_bus}}</a>
                                 </th>
                                 <td>{{ $bus->modelo}} </td>
-                                <td><a data-toggle="tooltip" data-placement="top" title="Modificar kilometraje" href="/mantenimiento/kilometraje/{{ $bus->id_bus }}" style="color: #008a34"> 
+                                <td><a data-toggle="tooltip" data-placement="top"  @if ($bus->motivo_inactividad == 'a Desincorporar') @else title="Modificar kilometraje" href="/mantenimiento/kilometraje/{{ $bus->id_bus }}" style="color: #008a34" @endif> 
                                     {{ number_format($bus->kilometraje) }} Km
                                 </a></td>
                                 <td> {{ $bus->vin }}</td>
