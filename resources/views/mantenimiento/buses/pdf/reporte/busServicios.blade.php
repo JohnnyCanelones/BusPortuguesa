@@ -22,20 +22,41 @@
             top: -45px;
         }
 
-        body {
+                body {
             font-size: 14px;
         }
+        /* #banner {  left: -45px; top: -45px; right: 0px; width: 102%;  } */
+        #footer { position: fixed; left: 0px; bottom: -40px; right: 0px; height: 20px;}
+        #footer .page:after { content: counter(page); text-align: end;}
     </style>
-    <header id="banner" >
+    <div id="banner" >
         
         <img  width="100%" src="{{ public_path() }}/img/banner.png">
-    </header>
+        <br>
+    </div>
+    <div id="footer">
+        
+        <p class="page text-right d-inline ">Pagina </p> ||
+        <p class="  text-left d-inline ">
+               
+            {{-- <strong>{{ ['Cambio de aceite'][$i]->buses->id_bus }}</strong> --}}
+                
+            Reporte de Mantenimientos de la unidad
+            @foreach ($arr['mantenimientos'] as $bus)
+                {{$bus[0]->buses->id_bus}}
+                @break
+            @endforeach
+                
+        </p>
+
+
+    </div>
     <br>
     <br>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-12">
-
+                       
                     <h3>
                         Reporte de Mantenimientos de la unidad {{$arr['mantenimientos']['Cambio de aceite'][0]->buses->id_bus}}
                         {{-- <strong>{{ $arr['mantenimientos'][0]->bus_id }}</strong>
@@ -63,22 +84,25 @@
                         </thead>
                         <tbody>
                             <tr>
+                            @foreach ($arr['mantenimientos'] as $bus)
+                        
                                     <td>
-                                        {{$arr['mantenimientos']['Cambio de aceite'][0]->buses->id_bus}}
+                                        {{$bus[0]->buses->id_bus}}
                                     </td>
                                     <td>
-                                        {{ number_format($arr['mantenimientos']['Cambio de aceite'][0]->buses->kilometraje)}} Km
+                                        {{ number_format($bus[0]->buses->kilometraje)}} Km
                                     </td>
                                     <td>
-                                        {{$arr['mantenimientos']['Cambio de aceite'][0]->buses->vin}}
+                                        {{$bus[0]->buses->vin}}
                                     </td>
                                     <td>
-                                        {{$arr['mantenimientos']['Cambio de aceite'][0]->buses->modelo}}
+                                        {{$bus[0]->buses->modelo}}
                                     </td>
                                     <td>
-                                        {{$arr['mantenimientos']['Cambio de aceite'][0]->buses->esOperaciones}}
+                                        {{$bus[0]->buses->esOperaciones}}
                                     </td>
-                                
+                                @break
+                            @endforeach
                             </tr>
                         </tbody>
                     </table>
@@ -97,7 +121,7 @@
                             @forelse($arr['mantenimientos'] as $mantenimiento => $value)
                             @foreach ($value as $value)
                                 <tr>
-                                    <td>{{date("Y/m/d", strtotime( $value->fecha))}} </td><br>
+                                    <td>{{date("d/m/Y", strtotime( $value->fecha))}} </td><br>
                                     <td>{{ $value->tipo_servicio}} </td><br>
                                     <td>{{ number_format($value->kilometraje)}} Km</td><br>
                                     <br>

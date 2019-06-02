@@ -22,14 +22,32 @@
             top: -45px;
         }
 
-        body {
+              body {
             font-size: 14px;
         }
+       
+        #footer { position: fixed; left: 0px; bottom: -40px; right: 0px; height: 20px;}
+        #footer .page:after { content: counter(page); text-align: end;}
     </style>
-    <header id="banner" >
+    <div id="banner" >
         
         <img  width="100%" src="{{ public_path() }}/img/banner.png">
-    </header>
+        <br>
+    </div>
+    <div id="footer">
+        
+        <p class="page text-right d-inline ">Pagina </p> ||
+        <p class="  text-left d-inline ">
+             Reporte de la unidad
+                <strong>{{ $arr['mantenimientos'][0]->bus_id }}</strong>
+                por {{ $arr['tipo_servicio']}} || 
+                       Desde: {{ $arr['desde'] }},   
+                       Hasta: {{ $arr['hasta'] }}   
+                         
+        </p>
+
+
+    </div>
     <br>
     <br>
         <div class="container-fluid">
@@ -88,7 +106,7 @@
                         <tbody>
                             @forelse($arr['mantenimientos'] as $mantenimiento)
                             <tr>
-                                <td>{{ date("Y/m/d", strtotime($mantenimiento->fecha))}} </td>
+                                <td>{{ date("d/m/Y", strtotime($mantenimiento->fecha))}} </td>
                                 <td>{{ $mantenimiento->kilometraje}} Km</td>
                                 
                             </tr>
