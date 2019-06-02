@@ -218,7 +218,7 @@
                                     <div class="col-lg-6 col-md-12 d-none mt-4" id="observacion2">
                                         <div class="form-group">
                                             <strong><label for="observacion2" class="bmd-label-floating">Observación</label></strong>
-                                            <textarea name="observacion2" class="form-control focus {{ $errors->has('observacion2') ? ' is-invalid' : '' }}" value="{{ old('observacion2') }}"></textarea>
+                                            <textarea name="observacion2" class="form-control focus {{ $errors->has('observacion2') ? ' is-invalid' : '' }}" id="textObservacion" value="{{ old('observacion2') }}"></textarea>
                                             @if ($errors->has('observacion2'))
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('observacion2') }}</strong>

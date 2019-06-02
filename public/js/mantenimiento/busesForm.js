@@ -79,10 +79,10 @@ document.getElementById("active_servicio").addEventListener("click", function ()
 	let observacion = document.getElementById('observacion2');
 	let activeServicioChecked = document.getElementById("active_servicio_check").checked;
 	if (activeServicioChecked == true) {
-		console.log('servicio');
+		// console.log('servicio');
 		// motivoinactividad.classList.toggle("d-none")
-					document.getElementById('textObservacion').value = '';
-					document.getElementById('date2').value = '';
+		document.getElementById('textObservacion').value = '';
+		document.getElementById('date2').value = '';
 		observacion.value = '';
 		fechaInactivo.classList.toggle("d-none")
 		observacion.classList.toggle("d-none")
