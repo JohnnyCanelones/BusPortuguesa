@@ -143,6 +143,11 @@ input[type=text]{
   background-color: #008a34 !important;
 }
 
+.padding-0 {
+  padding: 0 !important;
+}
+
+
 .overlay {
   position: fixed;
   cursor: pointer;

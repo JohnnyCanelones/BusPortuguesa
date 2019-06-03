@@ -6,7 +6,7 @@
 
         <div class="container " style="padding-top: 8vh; ">
             <div class="row justify-content-center">
-                <div class="col-sm-8 col-md-5">
+                <div class="col-sm-8 col-md-6 col-md-5 ">
                     <div class="card">
                         <div class="card-header text-center">{{ __('Inicio de sesión') }}</div>
 
@@ -82,10 +82,14 @@
                                 </div>
                             </form>
                         </div>
+                        <div class="card-footer p-0" >
+                            <img  src="/img/uptp.png" class="w-100" alt="banner UPTP">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+            
     </div>
 
 </div>
