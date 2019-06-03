@@ -91,6 +91,8 @@
                 </div>
                 
             </div>
+            @include('layouts.license') 
+
         </div>
     </div>
 </div>

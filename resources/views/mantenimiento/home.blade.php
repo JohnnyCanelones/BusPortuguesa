@@ -136,15 +136,8 @@
                         </div>
                     </div>
             </div>
-            <div id="" class="card card2 mt-5 mb-5">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-                    
-                    You are logged in!
-                </div>
-                
-            </div>
+            @include('layouts.license') 
+            
             </div>
                 
             
