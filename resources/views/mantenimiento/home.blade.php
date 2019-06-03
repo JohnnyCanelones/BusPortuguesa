@@ -6,61 +6,62 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-sm-12 col-lg-7 padding ">
+            <a href="/mantenimiento/show/buses" style="text-decoration:none">
             <div class="row mb-5 card2 mt-3 " style="background-color:">
                 
                  <div class=" col-sm-12 col-md-4 mb-3" >
-                    <div class="row">
-                        <div class="col-sm-4 p-0  ">
-                            <div class="card p-2 infobox-verde-icono" >
-                                <h3 style="background-color: transparent;" class="text-center text-white"><i class="fas fa-bus"></i></h3>
+                    
+                        <div class="row">
+                            <div class="col-sm-4 p-0  ">
+                                <div class="card p-2 infobox-verde-icono" >
+                                    <h3 style="background-color: transparent;" class="text-center text-white"><i class="fas fa-bus"></i></h3>
+                                    
+                                </div>
                                 
                             </div>
-                            
+                            <div class="col-sm-7 p-0 "  >
+                            <div class="card p-3 infobox-verde-contenido" >
+                                <h5 class="text-white text-center">Buses <br>Operativos <span class="timer badge badge-secondary" data-from="0" data-to="{{ $busesActivos }}"></span></h5>
+                            </div>
+                            </div>
                         </div>
-                        <div class="col-sm-7 p-0 "  >
-                           <div class="card p-3 infobox-verde-contenido" >
-                               <h5 class="text-white text-center">Buses <br>Operativos <span class="timer badge badge-secondary" data-from="0" data-to="{{ $busesActivos }}"></span></h5>
-                           </div>
-                        </div>
-                    </div>
-
                 </div>
                  <div class=" col-sm-12 col-md-4 mb-3" >
-                    <div class="row">
-                        <div class="col-sm-4 p-0  ">
-                            <div class="card p-2 infobox-amarillo-icono" >
-                                <h3 style="background-color: transparent;" class="text-center text-white"><i class="fas fa-bus"></i></h3>
+
+                        <div class="row">
+                            <div class="col-sm-4 p-0  ">
+                                <div class="card p-2 infobox-amarillo-icono" >
+                                    <h3 style="background-color: transparent;" class="text-center text-white"><i class="fas fa-bus"></i></h3>
+                                    
+                                </div>
                                 
                             </div>
-                            
+                            <div class="col-sm-7 p-0 "  >
+                            <div class="card p-3 infobox-amarillo-contenido" >
+                                <h5 class="text-white text-center">Buses <br>Inoperativos <span class="timer badge badge-secondary" data-from="0" data-to="{{ $busesInactivos }}"></span></h5>
+                                
+                            </div>
+                            </div>
                         </div>
-                        <div class="col-sm-7 p-0 "  >
-                           <div class="card p-3 infobox-amarillo-contenido" >
-                               <h5 class="text-white text-center">Buses <br>Inoperativos <span class="timer badge badge-secondary" data-from="0" data-to="{{ $busesInactivos }}"></span></h5>
-                               
-                           </div>
-                        </div>
-                    </div>
-
                 </div>
                 <div class=" col-sm-12 col-md-4 mb-3 " >
-                    <div class="row">
-                        <div class="col-sm-4 p-0  ">
-                            <div class="card p-2 infobox-azul-icono" >
-                                <h3 style="background-color: transparent;" class="text-center text-white"><i class="fas fa-bus"></i></h3>
+                    
+                        <div class="row">
+                            <div class="col-sm-4 p-0  ">
+                                <div class="card p-2 infobox-azul-icono" >
+                                    <h3 style="background-color: transparent;" class="text-center text-white"><i class="fas fa-bus"></i></h3>
+                                </div>
+                                
                             </div>
-                            
+                            <div class="col-sm-7 p-0">
+                            <div class="card p-3  infobox-azul-contenido" >
+                                <h5 class="text-white text-center">Buses a<br>desincorporar <span class="timer badge badge-secondary" data-from="0" data-to="{{ $busesADesincorporar }}"></span></h5>
+                            </div>
+                            </div>
                         </div>
-                        <div class="col-sm-7 p-0">
-                           <div class="card p-3  infobox-azul-contenido" >
-                               <h5 class="text-white text-center">Buses a<br>desincorporar <span class="timer badge badge-secondary" data-from="0" data-to="{{ $busesADesincorporar }}"></span></h5>
-                           </div>
                         </div>
-                    </div>
-                </div>
-                
-                
             </div>
+                    </a>
            
 {{-- {{$mantenimientos}} --}}
             <div id="" class="card card2 mt-5 mb-5">

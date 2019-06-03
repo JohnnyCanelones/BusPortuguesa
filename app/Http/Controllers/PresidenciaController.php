@@ -19,6 +19,7 @@ class PresidenciaController extends Controller
         // $monitoreosStaff = StaffMonitoring::all();
         $monitoreosAlmacen = WarehouseMonitoring::whereDate('fecha_accion', '=', date('Y/m/d'))->get();
         $monitoreosPeticiones = PetitionMonitoring::whereDate('fecha_accion', '=', date('Y/m/d'))->get();
+        $monitoreosMantenimiento = MaintenanceMonitoring::whereDate('fecha_accion', '=', date('Y/m/d'))->get();
         
         // dd($monitoreosStaff);
         // $peticionFecha = date("Y-m-d", strtotime($monitoreosStaff[0]->fecha_accion));
@@ -28,6 +29,7 @@ class PresidenciaController extends Controller
             'staff' => $monitoreosStaff,
             'almacen' => $monitoreosAlmacen,
             'peticiones' => $monitoreosPeticiones,
+            'mantenimiento' => $monitoreosMantenimiento,
         ]);
     }
 

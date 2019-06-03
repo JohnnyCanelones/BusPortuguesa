@@ -8,57 +8,63 @@
         <div class="col-sm-12 col-lg-7  padding ">
             <div class="row mb-5 card2 mt-3 " style="background-color:">
                 <div class=" col-sm-12 col-md-4 mb-3 " >
-                    <div class="row">
-                        <div class="col-sm-4 p-0  ">
-                            <div class="card p-2 infobox-azul-icono" >
-                                <h3 style="background-color: transparent;" class="text-center text-white"><i class="fas fa-toolbox"></i></h3>
+                    <a href="/presidente/monitoreo/almacen" style="text-decoration:none">
+                    
+                        <div class="row">
+                            <div class="col-sm-4 p-0  ">
+                                <div class="card p-2 infobox-azul-icono" >
+                                    <h3 style="background-color: transparent;" class="text-center text-white"><i class="fas fa-toolbox"></i></h3>
+                                </div>
+                                
                             </div>
-                            
+                            <div class="col-sm-7 p-0 "  >
+                            <div class="card p-3  infobox-azul-contenido" >
+                                <h5 class="text-white text-center">Movimientos de hoy en <br>Almacen <span class="timer badge badge-secondary" data-from="0" data-to="{{ count($almacen) + count($peticiones) }}"></span></h5>
+                            </div>
+                            </div>
                         </div>
-                        <div class="col-sm-7 p-0 "  >
-                           <div class="card p-3  infobox-azul-contenido" >
-                               <h5 class="text-white text-center">Movimientos de hoy en <br>Almacen <span class="timer badge badge-secondary" data-from="0" data-to="{{ count($almacen) + count($peticiones) }}"></span></h5>
-                           </div>
-                        </div>
-                    </div>
 
-
+                    </a>
 
                 </div>
                  <div class=" col-sm-12 col-md-4 mb-3" >
-                    <div class="row">
-                        <div class="col-sm-4 p-0  ">
-                            <div class="card p-2 infobox-verde-icono" >
-                                <h3 style="background-color: transparent;" class="text-center text-white"><i class="fas fa-bus"></i></h3>
+                    <a href="/presidente/monitoreo/mantenimiento" style="text-decoration:none">
+                    
+                        <div class="row">
+                            <div class="col-sm-4 p-0  ">
+                                <div class="card p-2 infobox-verde-icono" >
+                                    <h3 style="background-color: transparent;" class="text-center text-white"><i class="fas fa-bus"></i></h3>
+                                    
+                                </div>
                                 
                             </div>
-                            
+                            <div class="col-sm-7 p-0 "  >
+                            <div class="card p-3 infobox-verde-contenido" >
+                            <h5 class="text-white text-center">Movimientos de hoy en<br>Mantenimiento <span class="timer badge badge-secondary" data-from="0" data-to="{{ count($mantenimiento) }}"></span></h5>
+                            </div>
+                            </div>
                         </div>
-                        <div class="col-sm-7 p-0 "  >
-                           <div class="card p-3 infobox-verde-contenido" >
-                               <h5 class="text-white text-center">Movimientos de hoy en<br>Mantenimiento <span class="timer badge badge-secondary" data-from="0" data-to=""></span></h5>
-                           </div>
-                        </div>
-                    </div>
-
+                    </a>
                 </div>
                  <div class=" col-sm-12 col-md-4 mb-3" >
-                    <div class="row">
-                        <div class="col-sm-4 p-0  ">
-                            <div class="card p-2 infobox-amarillo-icono" >
-                                <h3 style="background-color: transparent;" class="text-center text-white"><i class="fas fa-bus"></i></h3>
+                    <a href="/presidente/monitoreo/personal" style="text-decoration:none">
+                    
+                        <div class="row">
+                            <div class="col-sm-4 p-0  ">
+                                <div class="card p-2 infobox-amarillo-icono" >
+                                    <h3 style="background-color: transparent;" class="text-center text-white"><i class="fas fa-bus"></i></h3>
+                                    
+                                </div>
                                 
                             </div>
-                            
+                            <div class="col-sm-7 p-0 "  >
+                            <div class="card p-3 infobox-amarillo-contenido" >
+                            <h5 class="text-white text-center">Movimientos de hoy en <br>Recursos Humanos <span class="timer badge badge-secondary" data-from="0" data-to="{{ count($staff) }}"></span></h5>
+                                
+                            </div>
+                            </div>
                         </div>
-                        <div class="col-sm-7 p-0 "  >
-                           <div class="card p-3 infobox-amarillo-contenido" >
-                           <h5 class="text-white text-center">Movimientos de hoy en <br>Recursos Humanos <span class="timer badge badge-secondary" data-from="0" data-to="{{ count($staff) }}"></span></h5>
-                               
-                           </div>
-                        </div>
-                    </div>
-
+                    </a>
                 </div>
                 
                 
