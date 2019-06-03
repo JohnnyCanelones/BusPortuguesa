@@ -64,7 +64,7 @@
           </li> -->
           <li><a href="#contact">Contactanos</a></li>
           @guest
-            <li><a href="{{ route('login') }}">Iniciar Sesion</a></li>
+            <li><a href="{{ url('/presidente') }}">Iniciar Sesion</a></li>
           @else
             @if(auth()->user()->role->Admin)<li><a href="{{ url('/presidente') }}">
               @if(auth()->user()->staff->genre == "Masculino")Presidente @else Presidenta @endif</a></li> 
@@ -439,7 +439,8 @@
 
     <div class="container">
       <div class="copyright">
-        &copy; Copyright <strong>Alumnos 731 Uptp</strong>.Todos los Derechos Reservados
+        &copy; Copyright <strong>Alumnos 831 Uptp</strong>.Todos los Derechos Reservados <br><br>
+        <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank"><img alt="Licencia de Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />Este obra está bajo una <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">licencia de Creative Commons Reconocimiento-NoComercial-SinObraDerivada 4.0 Internacional</a>.
       </div>
     </div>
   </footer><!-- #footer -->

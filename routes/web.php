@@ -3,6 +3,11 @@
 Route::get('/', function () {
     return view('homepage');
 });
+Route::get('home', function () {
+    return redirect('/');
+        // {{ return redirect('/') }}
+
+});
 
 
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');

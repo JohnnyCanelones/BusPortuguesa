@@ -366,20 +366,25 @@ class BusesController extends Controller
                 'modelos' =>  ModeloBus::all(),
 
             ]);
-        }if ($opcion == 2) {
+        }elseif ($opcion == 2) {
         
             return view('mantenimiento.buses.pdf.conoNorte', [
                 'opcion' => $opcion,
                 'modelos' =>  ModeloBus::all(),
 
             ]);
-        }if ($opcion == 3) {
+        }elseif ($opcion == 3) {
         
             return view('mantenimiento.buses.pdf.conoSur', [
                 'opcion' => $opcion,
                 'modelos' =>  ModeloBus::all(),
 
             ]);
+        }else{
+            Session::flash('status','No hay datos registrados');
+
+            return redirect('/mantenimiento/pdf/buses');  
+
         }
 
     }
@@ -401,6 +406,10 @@ class BusesController extends Controller
             elseif ($request->q == 3) {
                 $Buses = Buses::where('esOperaciones', 'Cono Sur')->get();
                 
+            }else {
+                 Session::flash('status','No hay datos registrados');
+
+                return redirect('/mantenimiento/pdf/buses');  
             }
 
             // $Buses->load('staffs');
@@ -432,6 +441,10 @@ class BusesController extends Controller
                               ->where('estado', 'Activo')->get();
                 
                 
+            }else {
+                 Session::flash('status','No hay datos registrados');
+
+                return redirect('/mantenimiento/pdf/buses');  
             }
             // $Buses->load('staffs');
             if (count($Buses) == 0) {
@@ -462,6 +475,10 @@ class BusesController extends Controller
                               ->where('estado', 'Inactivo')->get();
                 
                 
+            }else {
+                 Session::flash('status','No hay datos registrados');
+
+                return redirect('/mantenimiento/pdf/buses');  
             }
             // $Buses->load('staffs');
             if (count($Buses) == 0) {
@@ -491,6 +508,10 @@ class BusesController extends Controller
                               ->where('motivo_inactividad', 'a Desincorporar')->get();
                 
                 
+            }else {
+                 Session::flash('status','No hay datos registrados');
+
+                return redirect('/mantenimiento/pdf/buses');  
             }
             // $Buses->load('staffs');
             if (count($Buses) == 0) {
@@ -519,6 +540,10 @@ class BusesController extends Controller
                               ->where('modelo', $request->option)->get();
                 
                 
+            }else {
+                 Session::flash('status','No hay datos registrados');
+
+                return redirect('/mantenimiento/pdf/buses');  
             }
             // $Buses->load('staffs');
             if (count($Buses) == 0) {
@@ -530,6 +555,10 @@ class BusesController extends Controller
 		    $pdf->setPaper('a4', 'landscape');
             return $pdf->stream('PDF Unidad '.$request->option .' BusPortuguesa.pdf');	
         
+        }else {
+            Session::flash('status','No hay unidades');
+            return redirect('/mantenimiento/pdf/buses/opcion?q='.$request->q);  
+            
         }
         //  elseif ($request->option == 5) {
         //      if ($request->q == 1) {
