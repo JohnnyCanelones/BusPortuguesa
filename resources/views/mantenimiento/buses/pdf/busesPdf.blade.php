@@ -61,6 +61,17 @@
                 </div>
             </div>
         </div>
+        @if (session('status'))
+              <script type="text/javascript">
+                  $(document).ready(function() {
+                      swal(
+                      'Advertencia',
+                      '{{ session('status') }}' ,
+                      'warning'
+                      )
+                  })
+              </script>
+          @endif
         
         <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/staffform.js') }}"></script>
