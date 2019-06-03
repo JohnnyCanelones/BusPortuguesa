@@ -3,17 +3,21 @@ $(document).ready(function () {
 	$('.js-example-basic-single').select2();
 	$('.js-example-basic-single2').select2();
 
-	$('#date').bootstrapMaterialDatePicker({
-		weekStart: 0,
-		format: 'YYYY/M/D ',
-		lang: 'es',
-		time: false,
-	});
+
 	$('#date2').bootstrapMaterialDatePicker({
 		weekStart: 0,
 		format: 'YYYY/M/D ',
 		lang: 'es',
 		time: false,
+	})
+
+   	min = new Date();
+    $('#date').bootstrapMaterialDatePicker({
+			weekStart : 0,
+	    format : 'YYYY/M/D ', 
+	    lang: 'es',
+	    time: false,
+			maxDate: min
 	});
 
 
@@ -113,7 +117,7 @@ $('#vin').formatter({
 });
 
 
-
+ 
 
 // $(document).ready(function() {
 $("#conductor").change(function () {

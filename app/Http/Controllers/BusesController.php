@@ -233,6 +233,9 @@ class BusesController extends Controller
     public function editKilometrajeForm($id)
     {
         $bus = Buses::find($id);
+        if ($bus->motivo_inactividad == 'a Desincorporar'){
+            return redirect('/mantenimiento/show/buses');
+        }
         return view('mantenimiento.buses.kilometrajeEdit', [
             'bus' => $bus,
             'kilometraje' => $bus->kilometraje
