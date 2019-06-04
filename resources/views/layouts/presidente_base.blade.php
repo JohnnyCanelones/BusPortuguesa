@@ -32,7 +32,7 @@
             <a href="{{ url('/presidente')}}" class="list-group-item" >Presidente </a>
             <a href="{{ url('/almacen')}}" class="list-group-item" >Almacen </a>
             <a href="{{ url('/mantenimiento')}}" class="list-group-item" >Mantenimiento </a>
-            <a href="{{ url('/personal')}}" class="list-group-item" >Personal </a>
+            <a href="{{ url('/personal')}}" class="list-group-item" >Recursos Humanos </a>
             
         
         </div>

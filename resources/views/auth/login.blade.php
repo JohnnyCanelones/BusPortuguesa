@@ -29,7 +29,7 @@
                                     <label for="username" class="text-center" style="position: unset;">{{ __('Usuario') }}</label>
 
                                     <div class="col-md-12" >
-                                        <input id="username" type="username" class="input-sm form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" required autofocus>
+                                        <input id="username" type="number" autocomplete="off" class="input-sm form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" required autofocus>
 
                                         @if ($errors->has('username'))
                                             <script type="text/javascript">

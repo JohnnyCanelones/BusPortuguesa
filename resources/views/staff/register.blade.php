@@ -105,7 +105,7 @@
 							<div class="col-lg-6 col-md-12 mt-5 ">
 								<div class="form-group">
 									<strong><label for="email" class="bmd-label-floating">Email</label></strong>
-									<input class="form-control  {{ $errors->has('email') ? ' is-invalid' : '' }}" type="email" name="email" value="{{ old('email') }}">
+									<input autocomplete="off" class="form-control  {{ $errors->has('email') ? ' is-invalid' : '' }}" type="email" name="email" value="{{ old('email') }}">
 									{{-- <input type="email" class="form-control" id="exampleInputEmail1"> --}}
 									@if ($errors->has('email'))
 										<span class="invalid-feedback" role="alert">
