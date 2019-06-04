@@ -5,18 +5,18 @@
   src: local("?"), url("../fonts/Roboto/Roboto-Italic.ttf") format("truetype");
 }
 
-
-body {
-    font-family: Roboto !important;
-  background-color: #e1e1e1 !important;
-}
-/* fallback */
 @font-face {
   font-family: 'Material Icons';
   font-style: normal;
   font-weight: 400;
   src: url('../fonts/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2') format('woff2');
 }
+
+body {
+    font-family: Roboto !important;
+  background-color: #e1e1e1 !important;
+}
+/* fallback */
 
 .material-icons {
   font-family: 'Material Icons';
