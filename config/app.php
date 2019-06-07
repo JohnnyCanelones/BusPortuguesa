@@ -162,6 +162,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Barryvdh\DomPDF\ServiceProvider::class,
+        Backup\BackupServiceProvider::class,
 
     ],
 
