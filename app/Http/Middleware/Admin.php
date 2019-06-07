@@ -18,16 +18,16 @@ class Admin
         if (! $request->user()->hasRole($user1, $user2)) {
             if (! $request->user()->hasRole('1', '')) {
                 if ($request->user()->hasRole('', '1')) {
-                    return redirect('/mantenimiento');
+                    return '/mantenimiento';
                 }
                 elseif ($request->user()->hasRole2('1', '')) {
-                    return redirect('/personal');
+                    return '/personal';
                 }
                 elseif ($request->user()->hasRole2('', '1')) {
-                    return redirect('/almacen');
+                    return '/almacen';
                 }
                 elseif ($request->user()->hasRole3('1')) {
-                    return redirect('/operaciones');
+                    return '/operaciones';
                 }
             }else {
                 
