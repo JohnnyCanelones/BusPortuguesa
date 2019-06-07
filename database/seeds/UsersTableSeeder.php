@@ -46,7 +46,7 @@ class UsersTableSeeder extends Seeder
         DB::table('roles')->insert([
             'user_id' => 1,
             // 'Inventario' => 1,
-            'Admin' => 1,
+            'Admin' => true,
         ]);
 
         //  DB::table('staff')->insert([
