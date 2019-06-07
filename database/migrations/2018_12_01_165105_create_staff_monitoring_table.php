@@ -17,10 +17,10 @@ class CreateStaffMonitoringTable extends Migration
             $table->increments('id');
             
             $table->integer('staff_id')->unsigned();
-            $table->foreign('staff_id')->references('id')->on('staff')->onDelete('cascade');
+            $table->foreign('staff_id')->references('id')->on('staff');
 
             $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('username')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users');
 
             $table->string('accion');
 
