@@ -35,6 +35,29 @@ class LoginController extends Controller
     {
         return 'username';
     }
+    
+   
+    
+    public function redirectPath()
+    {
+        if (auth()->user()->hasRole('', '1')) {
+                    return '/mantenimiento';
+        }
+        elseif (auth()->user()->hasRole('1', '')) {
+                    return '/presidente';
+        }
+        elseif (auth()->user()->hasRole2('1', '')) {
+            return '/personal';
+        }
+        elseif (auth()->user()->hasRole2('', '1')) {
+            return '/almacen';
+        }else {
+            
+            return '/';
+        }
+        
+        // return property_exists($this, 'redirectTo') ? $this->redirectTo : '/home';
+    }
     protected function sendLoginResponse(Request $request)
     {
       
@@ -64,29 +87,6 @@ class LoginController extends Controller
 
         }
     } 
-    
-   
-    
-    public function redirectPath()
-    {
-        if (auth()->user()->hasRole('', '1')) {
-                    return '/mantenimiento';
-        }
-        elseif (auth()->user()->hasRole('1', '')) {
-                    return '/presidente';
-        }
-        elseif (auth()->user()->hasRole2('1', '')) {
-            return '/personal';
-        }
-        elseif (auth()->user()->hasRole2('', '1')) {
-            return '/almacen';
-        }
-        elseif (auth()->user()->hasRole3('1')) {
-            return '/operaciones';
-        }
-        return '/';
-        // return property_exists($this, 'redirectTo') ? $this->redirectTo : '/home';
-    }
 
    
 
