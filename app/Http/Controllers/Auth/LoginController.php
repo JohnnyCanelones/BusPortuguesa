@@ -35,35 +35,7 @@ class LoginController extends Controller
     {
         return 'username';
     }
-    protected function sendLoginResponse(Request $request)
-    {
-      
-        if(Auth::check()){
-            // dd('gola');
-          
-            Auth::logoutOtherDevices($request->input('password'));
-            // return $user;
-
-            
-            if (auth()->user()->hasRole('', '1')) {
-                        return redirect( '/mantenimiento');
-            }
-            elseif (auth()->user()->hasRole('1', '')) {
-                        return redirect( '/presidente');
-            }
-            elseif (auth()->user()->hasRole2('1', '')) {
-                return redirect( '/personal');
-            }
-            elseif (auth()->user()->hasRole2('', '1')) {
-                return redirect( '/almacen');
-            }
-            elseif (auth()->user()->hasRole3('1')) {
-                return redirect( '/operaciones');
-            }
-            return  redirect('/');
-
-        }
-    } 
+  
     
    
     
