@@ -15,7 +15,7 @@ class AddRalationBetweenUsersAndStaff extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->integer('username')->unsigned();
-            $table->foreign('username')->references('id')->on('staff')->onDelete('cascade')->unique();
+            $table->foreign('username')->references('id')->on('staff')->onDelete('cascade');
             
 
         });

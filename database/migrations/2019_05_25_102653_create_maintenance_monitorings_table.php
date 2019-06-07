@@ -20,7 +20,7 @@ class CreateMaintenanceMonitoringsTable extends Migration
             $table->foreign('mantenimiento_id')->references('id')->on('mantenimiento')->onDelete('cascade');
 
             $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('username')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->string('accion');
 
