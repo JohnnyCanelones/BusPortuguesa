@@ -10,9 +10,9 @@ use App\MaintenanceMonitoring;
 use App\BusesMonitoring;
 
 use App\Peticion;
-Route::get('/presidente', 'PresidenciaController@home');
 
-Route::group(['middleware' => ['auth', 'admin:,']], function() {
+Route::group(['middleware' => ['auth']], function() {
+    Route::get('/presidente', 'PresidenciaController@home');
 
 
 
