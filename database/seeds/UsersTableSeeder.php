@@ -26,9 +26,9 @@ class UsersTableSeeder extends Seeder
         // ]);
         DB::table('staff')->insert([
             'nationality'=> 'V',            
-            'id'=> 26503270,
-            'names' => 'Johnny',            
-            'last_names' => 'Canelones',
+            'id'=> 1234,
+            'names' => 'admin',            
+            'last_names' => 'admin',
             'genre' => 'Masculino',
             'email' => str_random(10).'@gmail.com',
             'date_birth' => '2018-02-23 00:00:00',
@@ -39,9 +39,9 @@ class UsersTableSeeder extends Seeder
         
         DB::table('users')->insert([
             
-            'email' => str_random(10).'@gmail.com',
-            'password' => bcrypt('admin'),
-            'username' => 26503270,
+            'email' => 'johnnyjose13@gmail.com',
+            'password' => bcrypt('joh2969'),
+            'username' => 1234,
         ]);
         DB::table('roles')->insert([
             'user_id' => 1,
@@ -49,18 +49,18 @@ class UsersTableSeeder extends Seeder
             'Admin' => 1,
         ]);
 
-         DB::table('staff')->insert([
-            'nationality'=> 'V',            
-            'id'=> 26503271,
-            'names' => 'Jose',            
-            'last_names' => 'Pantoja',
-            'genre' => 'Masculino',
-            'email' => str_random(10).'@gmail.com',
-            'date_birth' => '2018-02-23 00:00:00',
-            'address' => 'Guanare',
-            'phone_number' => '04121251297',
-            'position' => 'Mecanico',
-        ]);
+        //  DB::table('staff')->insert([
+        //     'nationality'=> 'V',            
+        //     'id'=> 26503271,
+        //     'names' => 'Jose',            
+        //     'last_names' => 'Pantoja',
+        //     'genre' => 'Masculino',
+        //     'email' => str_random(10).'@gmail.com',
+        //     'date_birth' => '2018-02-23 00:00:00',
+        //     'address' => 'Guanare',
+        //     'phone_number' => '04121251297',
+        //     'position' => 'Mecanico',
+        // ]);
 
     }
 }
