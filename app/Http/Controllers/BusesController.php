@@ -345,8 +345,7 @@ class BusesController extends Controller
                                         ->whereDate('fecha', '<=', $request->get('hasta'))
                                         ->where('tipo_servicio', '=', $request->get('tipo_servicio'))
                                         ->get();
-                                        
-                                        // dd($mantenimientos[0]);
+        
         $arr = ['desde'=> $request->get('desde'), 'hasta' => $request->get('hasta'), 
                 'mantenimientos' => $mantenimientos, 'tipo_servicio' => $request->get('tipo_servicio')];
         // dd($arr['mantenimientos'][0]->buses->id_bus);

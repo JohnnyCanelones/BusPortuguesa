@@ -454,8 +454,13 @@ class PeticionMantenimientoAlmacen extends Controller
     public function facturaPeticionAceptada($id) 
     {
         $peticion = PetitionMonitoring::find($id);
+        if (!$peticion) {
+            return redirect('/almacen/peticiones')->with([
+            'error' => 'La peticion que ha buscado no existe',
+            // 'nombre_producto' => $peticion->almacen->nombre_producto,
+        ]);
+        }
         $usuario = User::where('username',$peticion->user_id)->first();
-        // dd($usuario->role);
         
        $arr = ['peticion' => $peticion, 'usuario'=> $usuario];
 

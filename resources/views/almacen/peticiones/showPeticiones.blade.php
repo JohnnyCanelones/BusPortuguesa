@@ -187,7 +187,7 @@
                                        {{ $peticion->almacen->nombre_producto }}
 
                                     </td>
-                                    <td>@if($peticion->estado == "Aprobada")<a data-toggle="tooltip" title="Aprobar Peticion" href="factura/pdf/{{ $peticion->id }}">@endif <span class="@if($peticion->estado == "Pendiente")badge badge-warning2 
+                                    <td>@if($peticion->estado == "Aprobada")<a data-toggle="tooltip" target="_blank" title="Aprobar Peticion" href="/almacen/factura/pdf/{{ $peticion->id }}">@endif <span class="@if($peticion->estado == "Pendiente")badge badge-warning2 
                                         @elseif($peticion->estado == "Rechazada") badge badge-danger @else badge badge-success @endif">
                                         {{ $peticion->estado}}</span>
                                     @if($peticion->estado == "Aprobada")</a>@endif</td>
