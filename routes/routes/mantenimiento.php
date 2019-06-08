@@ -1,6 +1,6 @@
 <?php 
 
-Route::group(['middleware' => ['auth', 'mantenimiento:,']], function() {
+Route::group(['middleware' => ['auth', 'mantenimiento:true,']], function() {
   
   Route::get('/mantenimiento', 'MantenimientoController@home');
   
