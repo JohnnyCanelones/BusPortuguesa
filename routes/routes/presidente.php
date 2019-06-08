@@ -11,12 +11,7 @@ use App\BusesMonitoring;
 
 use App\Peticion;
 
-<<<<<<< HEAD
 Route::group(['middleware' => ['auth', 'admin:true,']], function() {
-=======
-Route::group(['middleware' => ['auth', 'admin:,']], function() {
-    Route::get('/presidente', 'PresidenciaController@home');
->>>>>>> 700b924cbe9b9fae6e8af9485ef76579d999dd7f
 
 
 
