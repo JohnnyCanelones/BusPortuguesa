@@ -51,18 +51,33 @@ class StaffController extends Controller
     {
         $success = false;
         $check = $request->get('cargo');
-        $staff = Staff::create([
-            'nationality' => $request->get('nacionality'),
-            'id' => $request->get('id'), 
-            'names' => $request->get('names'),
-            'last_names' => $request->get('last_names'),
-            'date_birth'=> $request->get('date_birth'),
-            'genre' => $request->get('genre'),
-            'email' =>$request->get('email'),
-            'address' => $request->get('address'), 
-            'phone_number' => $request->get('phone_number'), 
-            'position' => $request->get('position'),
-        ]);
+        // $staff = Staff::create([
+        //     'nationality' => $request->get('nacionality'),
+        //     'id' => $request->get('id'), 
+        //     'names' => $request->get('names'),
+        //     'last_names' => $request->get('last_names'),
+        //     'date_birth'=> $request->get('date_birth'),
+        //     'genre' => $request->get('genre'),
+        //     'email' =>$request->get('email'),
+        //     'address' => $request->get('address'), 
+        //     'phone_number' => $request->get('phone_number'), 
+        //     'position' => $request->get('position'),
+        // ]);
+
+        $staff = new Staff();
+
+        $staff->nationality = $request->get('nacionality');
+        $staff->id = $request->get('id'); 
+        $staff->names = $request->get('names');
+        $staff->last_names = $request->get('last_names');
+        $staff->date_birth = $request->get('date_birth');
+        $staff->genre = $request->get('genre');
+        $staff->email =$request->get('email');
+        $staff->address = $request->get('address'); 
+        $staff->phone_number = $request->get('phone_number'); 
+        $staff->position = $request->get('position');
+        $staff->save();
+            
         dd($staff);
         $monitoreo = StaffMonitoring::create([
             'user_id' => Auth::user()->id,
