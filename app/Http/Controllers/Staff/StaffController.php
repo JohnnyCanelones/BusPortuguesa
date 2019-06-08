@@ -49,7 +49,6 @@ class StaffController extends Controller
 
     public function staffCreate(CreateStaffRequest $request) 
     {
-        $success = false;
         $check = $request->get('cargo');
         // $staff = Staff::create([
         //     'nationality' => $request->get('nacionality'),
@@ -110,12 +109,9 @@ class StaffController extends Controller
             'fecha_accion' => date("Y-m-d H:i:s"),
             ]);
     	}
-        $success = true;
 
-        if ($success) {
             Session::flash('status','Empleado Creado');
 
-        }
     	
     	return redirect('personal');
     }
