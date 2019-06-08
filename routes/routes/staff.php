@@ -6,7 +6,7 @@ Route::group(['middleware' => ['auth', 'personal']], function() {
     Route::get('/personal', 'StaffController@staffHome');
     
     Route::get('personal/registro', 'StaffController@showStaffForm');
-    Route::post('personal/registrar', 'StaffController@staffCreate');
+    Route::post('personal/registrar/staff', 'StaffController@staffCreate');
 
     Route::get('personal/show', 'StaffController@showStaff');
 

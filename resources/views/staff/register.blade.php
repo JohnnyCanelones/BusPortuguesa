@@ -16,7 +16,7 @@
 				<div class="card-header">
 					<h3 id="hola" class="azul text-center m-3 ">Registro de Personal</h3>
 				</div>
-				<form action="/personal/registrar/" method="post">
+				<form action="/personal/registrar/staff" method="post">
 				<div class="card-body">
 						{{ csrf_field() }}
 						<div class="row">
