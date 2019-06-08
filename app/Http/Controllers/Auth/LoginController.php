@@ -45,19 +45,19 @@ class LoginController extends Controller
             // return $user;
 
             
-            if (auth()->user()->hasRole('', '1')) {
+            if (auth()->user()->hasRole('', true)) {
                         return redirect( '/mantenimiento');
             }
-            elseif (auth()->user()->hasRole('1', '')) {
+            elseif (auth()->user()->hasRole(true, '')) {
                         return redirect( '/presidente');
             }
-            elseif (auth()->user()->hasRole2('1', '')) {
+            elseif (auth()->user()->hasRole2(true, '')) {
                 return redirect( '/personal');
             }
-            elseif (auth()->user()->hasRole2('', '1')) {
+            elseif (auth()->user()->hasRole2('', true)) {
                 return redirect( '/almacen');
             }
-            elseif (auth()->user()->hasRole3('1')) {
+            elseif (auth()->user()->hasRole3(true)) {
                 return redirect( '/operaciones');
             }
             return  redirect('/');
@@ -69,19 +69,19 @@ class LoginController extends Controller
     
     public function redirectPath()
     {
-        if (auth()->user()->hasRole('', '1')) {
+        if (auth()->user()->hasRole('', true)) {
                     return '/mantenimiento';
         }
-        elseif (auth()->user()->hasRole('1', '')) {
+        elseif (auth()->user()->hasRole(true, '')) {
                     return '/presidente';
         }
-        elseif (auth()->user()->hasRole2('1', '')) {
+        elseif (auth()->user()->hasRole2(true, '')) {
             return '/personal';
         }
-        elseif (auth()->user()->hasRole2('', '1')) {
+        elseif (auth()->user()->hasRole2('', true)) {
             return '/almacen';
         }
-        elseif (auth()->user()->hasRole3('1')) {
+        elseif (auth()->user()->hasRole3(true)) {
             return '/operaciones';
         }
         return '/';
