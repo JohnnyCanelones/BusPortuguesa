@@ -41,7 +41,7 @@
                       notificaciones.innerHTML += `
                           <div class="col-sm-11 mx-auto d-block p-0 ml-2 mr-2   ">
                            
-                          <div class="card-header ml-2 text-right @if(auth()->user()->role->Admin) d-none @else hola @endif" style="height:5px;">
+                          <div class="card-header ml-2 text-right " style="height:5px;">
                             <a style="color:#003286;" data-toggle="tooltip" data-placement="bottom" title="Borrar notificación" href="#" class="deleteNotificacion" onclick="" data-value="${dataw[i].id}">
                               <h5><i class="fas fa-times"></i></h5>    
                           </a></div> 
