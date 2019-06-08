@@ -53,16 +53,17 @@ class StaffController extends Controller
         $check = $request->get('cargo');
         $staff = Staff::create([
             'nationality' => $request->get('nacionality'),
-            'id' => $request->input('id'), 
-            'names' => $request->input('names'),
-            'last_names' => $request->input('last_names'),
+            'id' => $request->get('id'), 
+            'names' => $request->get('names'),
+            'last_names' => $request->get('last_names'),
             'date_birth'=> $request->get('date_birth'),
             'genre' => $request->get('genre'),
-            'email' =>$request->input('email'),
+            'email' =>$request->get('email'),
             'address' => $request->get('address'), 
-            'phone_number' => $request->input('phone_number'), 
-            'position' => $request->input('position'),
+            'phone_number' => $request->get('phone_number'), 
+            'position' => $request->get('position'),
         ]);
+        dd($staff);
         $monitoreo = StaffMonitoring::create([
             'user_id' => Auth::user()->id,
             'staff_id' => $request->input('id'),
