@@ -10,7 +10,8 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
-        "paulvl/backup": "3.*"
+        "paulvl/backup": "3.*",
+        "ext-gd": "*"
     },
     "require-dev": {
         "filp/whoops": "^2.0",
@@ -51,8 +52,7 @@
             "@php artisan package:discover"
         ],
         "compile": [
-            "php artisan migrate:fresh --force",
-            "php artisan db:seed --force",
+            "php artisan migrate --force",
             "php artisan storage:link"
         ]
     },
