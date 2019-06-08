@@ -6,7 +6,7 @@
 // Route::get('/almacen', function() {
 //     return view('almacen.home');
 // })->middleware(['auth', 'almacen:,']);
-Route::group(['middleware' => ['auth', 'almacen:true,']], function() {
+Route::group(['middleware' => ['auth', 'almacen']], function() {
 
 Route::get('/almacen','AlmacenController@home');
 // ->middleware(['auth', 'almacen:,']);

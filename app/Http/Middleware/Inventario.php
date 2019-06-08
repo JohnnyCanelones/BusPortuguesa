@@ -13,24 +13,15 @@ class Inventario
      * @param  \Closure  $next
      * @return mixed
      */
-   public function handle($request, Closure $next, $user1, $user2)
+   public function handle($request, Closure $next)
     {
-        if (! $request->user()->hasRole($user1, $user2)) {
-            if (! $request->user()->hasRole2('', '1')) {
-                // if ($request->user()->hasRole('1', '')) {
-                //     return redirect('/presidente');
-                // }
-                if ($request->user()->hasRole2('1', '')) {
-                    return redirect('/personal');
-                }
-                elseif ($request->user()->hasRole('', '1')) {
-                    return redirect('/mantenimiento');
-                }
-                elseif ($request->user()->hasRole3('1')) {
-                    return redirect('/operaciones');
-                }
-            }else {
-                
+        if (!auth()->user()->role->Inventario) {
+            
+            if (auth()->user()->role->Personal) {
+                return redirect('/personal');
+            }elseif (auth()->user()->role->Mantenimiento) {
+                # code...
+                return redirect('/mantenimiento');
             }
         }
         return $next($request);
