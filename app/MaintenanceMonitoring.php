@@ -12,7 +12,8 @@ class MaintenanceMonitoring extends Model
 
 
 	public function user(){
-		return $this->hasOne(User::class, 'id');
+ 		return $this->belongsTo(User::class, 'user_id');
+		
 	} 
     public function mantenimientos(){
          return $this->belongsTo(Mantenimiento::class, 'mantenimiento_id');

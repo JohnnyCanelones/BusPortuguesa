@@ -32,7 +32,7 @@
                                 </th>
                                 <td>{{ $monitoreo->accion}},         
                                 <strong > <a href="#" onclick="buscarMantenimiento()" class="mantenimiento verde"  data-value='{{ $monitoreo->mantenimientos->id }}'>{{ $monitoreo->mantenimientos->id}}</a></strong></td>
-                                <td> <strong ><a href="#" onclick="buscarUsuario()" class="usuario verde"  data-value='{{ $monitoreo->user_id }}'>{{ $monitoreo->user_id}}</a></td></strong>
+                                <td> <strong ><a href="#" onclick="buscarUsuario()" class="usuario verde"  data-value='{{ $monitoreo->user->username }}'>{{ $monitoreo->user->username}}</a></td></strong>
                             </tr>
                             
                             @endforeach
@@ -44,7 +44,7 @@
                                 </th>
                                 <td>{{ $monitoreo->accion}},      
                                 <strong > <a href="#" onclick="buscarBus()" class="bus verde"  data-value='{{ $monitoreo->buses->id_bus }}'>{{ $monitoreo->buses->id_bus}}</a></td></strong>
-                                <td> <strong ><a href="#" onclick="buscarUsuario()" class="usuario verde"  data-value='{{ $monitoreo->user_id }}'>{{ $monitoreo->user_id}}</a></td></strong>
+                                <td> <strong ><a href="#" onclick="buscarUsuario()" class="usuario verde"  data-value='{{ $monitoreo->user->username }}'>{{ $monitoreo->user->username}}</a></td></strong>
                             </tr>
                             
                             @endforeach

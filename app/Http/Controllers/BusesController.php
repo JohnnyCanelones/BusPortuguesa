@@ -75,7 +75,7 @@ class BusesController extends Controller
             'observacion' => $request->get('observacion'),  
            ]);
            $monitoreo = BusesMonitoring::create([
-            'user_id' => Auth::user()->username,
+            'user_id' => Auth::user()->id,
             'bus_id' => $request->get('id_bus'),
             'accion' => 'Bus Creado', 
             'fecha_accion' => date("Y-m-d H:i:s"),
@@ -123,7 +123,7 @@ class BusesController extends Controller
                
            }
             $monitoreo = BusesMonitoring::create([
-            'user_id' => Auth::user()->username,
+            'user_id' => Auth::user()->id,
             'bus_id' => $request->get('id_bus'),
             'accion' => 'Bus Creado', 
             'fecha_accion' => date("Y-m-d H:i:s"),
@@ -181,7 +181,7 @@ class BusesController extends Controller
         
             $bus->save();
             $monitoreo = BusesMonitoring::create([
-            'user_id' => Auth::user()->username,
+            'user_id' => Auth::user()->id,
             'bus_id' => $bus->id_bus,
             'accion' => 'Bus editado', 
             'fecha_accion' => date("Y-m-d H:i:s"),
@@ -214,7 +214,7 @@ class BusesController extends Controller
             }
             $bus->save();
             $monitoreo = BusesMonitoring::create([
-            'user_id' => Auth::user()->username,
+            'user_id' => Auth::user()->id,
             'bus_id' => $bus->id_bus,
             'accion' => 'Bus editado', 
             'fecha_accion' => date("Y-m-d H:i:s"),
@@ -259,7 +259,7 @@ class BusesController extends Controller
             ]);
         } else {
             $monitoreo = BusesMonitoring::create([
-            'user_id' => Auth::user()->username,
+            'user_id' => Auth::user()->id,
             'bus_id' => $bus->id_bus,
             'accion' => 'Kilometraje editado antes: '. number_format($bus->kilometraje).' Km, ahora: '.number_format($nuevoKilometraje). ' Km', 
             'fecha_accion' => date("Y-m-d H:i:s"),
