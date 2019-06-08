@@ -77,7 +77,6 @@ class StaffController extends Controller
         $staff->position = $request->get('position');
         $staff->save();
             
-        dd($staff);
         $monitoreo = StaffMonitoring::create([
             'user_id' => Auth::user()->id,
             'staff_id' => $request->input('id'),
