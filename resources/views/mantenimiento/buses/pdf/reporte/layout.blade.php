@@ -13,21 +13,21 @@
     <body>
     <style>
         <?php include(public_path().'/plugins/bootstrap/bootstrap.min.css');?>
-        /* #banner{
-            position: fixed; 
+        #banner{
+            /* position: fixed;  */
             margin: 0;
             padding: 0;
             position: relative;
             left: -45px;
             width: 113%;
             top: -45px;
-        } */
+        }
         
 
         body {
             font-size: 13px;
         }
-        #banner { position: fixed; left: -45px; top: -45px; right: 0px; width: 102%; margin-bottom: 50px }
+        /* #banner { left: -45px; top: -45px; right: 0px; width: 102%; margin-bottom: 50px } */
         #content {
             margin-top: 100px;
         }
