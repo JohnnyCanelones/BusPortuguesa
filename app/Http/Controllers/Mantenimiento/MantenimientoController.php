@@ -124,7 +124,7 @@ class MantenimientoController extends Controller
         Session::flash('status','Servicio Creado');
         
         $monitoreo = MaintenanceMonitoring::create([
-            'user_id' => Auth::user()->username,
+            'user_id' => Auth::user()->id,
             'mantenimiento_id' => $mantenimiento->id,
             'accion' => 'Mantenimiento creado', 
             'fecha_accion' => date("Y-m-d H:i:s"),
@@ -215,7 +215,7 @@ class MantenimientoController extends Controller
                 }
                 Session::flash('status','Servicio modificado');
                 $monitoreo = MaintenanceMonitoring::create([
-                    'user_id' => Auth::user()->username,
+                    'user_id' => Auth::user()->id,
                     'mantenimiento_id' => $mantenimiento->id,
                     'accion' => 'Mantenimiento editado', 
                     'fecha_accion' => date("Y-m-d H:i:s"),

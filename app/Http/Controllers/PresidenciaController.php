@@ -38,13 +38,13 @@ class PresidenciaController extends Controller
     public function showStaffMonitoring()
     {
         $monitoreos = StaffMonitoring::latest('fecha_accion')->get();
-        // $monitoreos->load('user);
+        // $monitoreos->load('user');
         // if ($monitoreo->created) {
         //     dd(true);
         // }else {
             // dd($monitoreos[0]->['user']);
         // }
-
+        // dd($monitoreos[0]);
         return view('presidencia.monitoreo.staff', [
             'monitoreos' => $monitoreos,
         	'monitoreos2' => $monitoreos,

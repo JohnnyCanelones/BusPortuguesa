@@ -64,7 +64,7 @@ class StaffController extends Controller
             'position' => $request->input('position'),
         ]);
         $monitoreo = StaffMonitoring::create([
-            'user_id' => Auth::user()->username,
+            'user_id' => Auth::user()->id,
             'staff_id' => $request->input('id'),
             'accion' => 'Empleado Creado', 
             'fecha_accion' => date("Y-m-d H:i:s"),
@@ -88,7 +88,7 @@ class StaffController extends Controller
     			'Operaciones' => $request->input('operaciones'),
     		]);
             $monitoreoRol = StaffMonitoring::create([
-            'user_id' => Auth::user()->username,
+            'user_id' => Auth::user()->id,
             'staff_id' => $request->input('id'),
             'accion' => 'Rol Creado', 
             'fecha_accion' => date("Y-m-d H:i:s"),
@@ -157,7 +157,7 @@ class StaffController extends Controller
         $staff->save();
 
         $monitoreo = StaffMonitoring::create([
-            'user_id' => Auth::user()->username,
+            'user_id' => Auth::user()->id,
             'staff_id' => $request->input('id'),
             'accion' => 'Empleado editado', 
             'fecha_accion' => date("Y-m-d H:i:s"),
@@ -201,7 +201,7 @@ class StaffController extends Controller
         $staff->save();
 
         $monitoreo = StaffMonitoring::create([
-            'user_id' => Auth::user()->username,
+            'user_id' => Auth::user()->id,
             'staff_id' => $request->input('id'),
             'accion' => 'Empleado editado', 
             'fecha_accion' => date("Y-m-d H:i:s"),
@@ -251,7 +251,7 @@ class StaffController extends Controller
     
     $role->save();
     $monitoreoRol = StaffMonitoring::create([
-        'user_id' => Auth::user()->username,
+        'user_id' => Auth::user()->id,
         'staff_id' => $role->user->staff->id,
         'accion' => 'Rol Editado', 
         'fecha_accion' => date("Y-m-d H:i:s"),
@@ -300,7 +300,7 @@ class StaffController extends Controller
             'Operaciones' => $request->input('operaciones'),
         ]);
          $monitoreoRol = StaffMonitoring::create([
-            'user_id' => Auth::user()->username,
+            'user_id' => Auth::user()->id,
             'staff_id' => $staff->id,
             'accion' => 'Rol Creado', 
             'fecha_accion' => date("Y-m-d H:i:s"),

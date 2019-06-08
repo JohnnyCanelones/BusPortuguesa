@@ -31,7 +31,7 @@
                                 	{{ $newDate = date("Y/m/d - H:i ", strtotime($monitoreo->fecha_accion))  }} 
                                 </th>
                                 <td>{{ $monitoreo->accion}}</td>        
-                                <td> <strong ><a href="#" onclick="buscarUsuario()" class="usuario verde"  data-value='{{ $monitoreo->user_id }}'>{{ $monitoreo->user_id}}</a></td></strong>
+                                <td> <strong ><a href="#" onclick="buscarUsuario()" class="usuario verde"  data-value='{{ $monitoreo->user->username }}'>{{ $monitoreo->user->username}}</a></td></strong>
                                 <td><strong > <a href="#" onclick="buscarEmpleado()" class="empleado verde"  data-value='{{ $monitoreo->staff->id }}'>{{ $monitoreo->staff->id}}</a></td></strong>
                             </tr>
                             
