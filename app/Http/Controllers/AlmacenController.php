@@ -93,7 +93,7 @@ class AlmacenController extends Controller
     	]);
 
         $monitoreo = WarehouseMonitoring::create([
-            'user_id' => Auth::user()->username,
+            'user_id' => Auth::user()->id,
             'almacen_id' => $producto->id,
             'accion' => 'Producto creado', 
             'stock_added' => $request->get('cantidad'),
@@ -162,7 +162,7 @@ class AlmacenController extends Controller
         
         $producto->save();
         $monitoreo = WarehouseMonitoring::create([
-            'user_id' => Auth::user()->username,
+            'user_id' => Auth::user()->id,
             'almacen_id' => $producto->id,
             'accion' => 'Cantidad del producto agregado', 
             'stock_added' => $request->get('cantidad'),
@@ -209,7 +209,7 @@ class AlmacenController extends Controller
         
         $producto->save();
         $monitoreo = WarehouseMonitoring::create([
-            'user_id' => Auth::user()->username,
+            'user_id' => Auth::user()->id,
             'almacen_id' => $producto->id,
             'accion' => 'Cantidad del producto Restada: '.$cantidad.', Motivo: ' .$request->get('motivo'), 
             'fecha_accion' => date("Y-m-d H:i:s"),
@@ -242,7 +242,7 @@ class AlmacenController extends Controller
         
         $producto->save();
         $monitoreo = WarehouseMonitoring::create([
-            'user_id' => Auth::user()->username,
+            'user_id' => Auth::user()->id,
             'almacen_id' => $producto->id,
             'accion' => 'Producto editado', 
             'stock_added' => $request->get('cantidad'),

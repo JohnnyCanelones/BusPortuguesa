@@ -96,7 +96,7 @@ class PeticionMantenimientoAlmacen extends Controller
                 ]);
                 
                 $monitoreo = PetitionMonitoring::create([
-                    'user_id' => Auth::user()->username,
+                    'user_id' => Auth::user()->id,
                     'peticion_id' => $peticion->id,
                     'accion' => 'Peticion enviada', 
                     'fecha_accion' => date("Y-m-d H:i:s"),
@@ -139,7 +139,7 @@ class PeticionMantenimientoAlmacen extends Controller
                 ]);
         
                 $monitoreo = PetitionMonitoring::create([
-                    'user_id' => Auth::user()->username,
+                    'user_id' => Auth::user()->id,
                     'peticion_id' => $peticion->id,
                     'accion' => 'Peticion enviada', 
                     'fecha_accion' => date("Y-m-d H:i:s"),
@@ -191,7 +191,7 @@ class PeticionMantenimientoAlmacen extends Controller
                 ]);
                 
                 $monitoreo = PetitionMonitoring::create([
-                    'user_id' => Auth::user()->username,
+                    'user_id' => Auth::user()->id,
                     'peticion_id' => $peticion->id,
                     'accion' => 'Peticion enviada', 
                     'fecha_accion' => date("Y-m-d H:i:s"),
@@ -232,7 +232,7 @@ class PeticionMantenimientoAlmacen extends Controller
                 ]);
         
                 $monitoreo = PetitionMonitoring::create([
-                    'user_id' => Auth::user()->username,
+                    'user_id' => Auth::user()->id,
                     'peticion_id' => $peticion->id,
                     'accion' => 'Peticion enviada', 
                     'fecha_accion' => date("Y-m-d H:i:s"),
@@ -278,7 +278,7 @@ class PeticionMantenimientoAlmacen extends Controller
         ]);
 
         $monitoreo = PetitionMonitoring::create([
-            'user_id' => Auth::user()->username,
+            'user_id' => Auth::user()->id,
             'peticion_id' => $peticion->id,
             'accion' => 'Peticion Especial enviada', 
             'fecha_accion' => date("Y-m-d H:i:s"),
@@ -395,7 +395,7 @@ class PeticionMantenimientoAlmacen extends Controller
         
         
         $monitoreo = PetitionMonitoring::create([
-            'user_id' => Auth::user()->username,
+            'user_id' => Auth::user()->id,
             'peticion_id' => $peticion->id,
             'accion' => 'Peticion aceptada', 
             'fecha_accion' => date("Y-m-d H:i:s"),
@@ -437,7 +437,7 @@ class PeticionMantenimientoAlmacen extends Controller
         $peticion->save();
 
         $monitoreo = PetitionMonitoring::create([
-            'user_id' => Auth::user()->username,
+            'user_id' => Auth::user()->id,
             'peticion_id' => $peticion->id,
             'accion' => 'Peticion rechazada', 
             'fecha_accion' => date("Y-m-d H:i:s"),
