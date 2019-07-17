@@ -9,7 +9,7 @@
         <body>
         @include('layouts.inventario_base')
 
-            
+             
         
         <div class="container">
             <div class="row justify-content-center">
@@ -36,7 +36,7 @@
                                     <div class="col-lg-6 col-md-12 mt-4">
                                         <div class=" form-group" >
                                             <strong><label class="bmd-label-floating" for="nombre_producto">Nombre del Producto</label></strong>
-                                            <input required class="form-control {{ $errors->has('nombre_producto') ? ' is-invalid' : '' }}" type="" name="nombre_producto" value="{{ old('nombre_producto') }}">
+                                            <input required class="form-control {{ $errors->has('nombre_producto') ? ' is-invalid' : '' }}" type="" name="nombre_producto" id="nombre_producto" value="{{ old('nombre_producto') }}">
                                                  
                                                  @if ($errors->has('nombre_producto'))
                                                     <span class="invalid-feedback" role="alert">
@@ -122,7 +122,7 @@
                                     
                                 </div>
                         <div class="card-footer mt-5">
-                            <button class="btn btn-primary btn-raised mx-auto d-block header" type="submit"> Guardar</button>
+                            <button class="btn btn-primary btn-raised mx-auto d-block header" id="registrar" type="submit"> Guardar</button>
                         </div>
                         </form>
                         </div>
@@ -143,6 +143,7 @@
         {{-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script> --}}
         <script type="text/javascript"  src="{{ asset('plugins/select2/select2.min.js') }}"></script>
 
+<script type="text/javascript"  src="{{ asset('plugins/sweetalert2.all.min.js') }}"></script>
 
       {{--   <script type="text/javascript">
 
@@ -163,6 +164,8 @@
                 $('.js-example-basic-single').select2(); 
                 
             });
+
+         
         </script>
         </body>
         
