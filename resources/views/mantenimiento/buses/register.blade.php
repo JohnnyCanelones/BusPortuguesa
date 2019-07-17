@@ -46,7 +46,7 @@
                                             
                                             <option>{{ $modelo->name }}</option>
                                             @endforeach
-                                            <option>Todas las Unidades</option>
+                                            {{-- <option>Todas las Unidades</option> --}}
 
                                             
 
