@@ -82,7 +82,6 @@
                 select.add(option);
               
               }
-						select.innerHTML += "<option>Todas las Unidades</option>";
 						
             
   			    x = document.getElementById("name").value = ''

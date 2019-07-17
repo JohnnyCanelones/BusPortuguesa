@@ -14,7 +14,7 @@ class Admin
      * @return mixed
      */
     public function handle($request, Closure $next)
-    {   
+    {    
         if (!auth()->user()->role->Admin) {
             if (auth()->user()->role->Inventario) {
                 return redirect('/almacen');
