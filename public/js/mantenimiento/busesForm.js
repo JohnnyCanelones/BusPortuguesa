@@ -120,8 +120,8 @@ $('#vin').formatter({
  
 
 // $(document).ready(function() {
-$("#conductor").change(function () {
-	// alert( "Handler for .change() called." );
+$("#conductor").focusout(function () {
+	// alert( "Handler for .focusout() called." );
 	$.get("/api/mantenimiento/buses", function (data) {
 		// console.log(data)
 		let $conductor = document.getElementById('conductor').value
@@ -152,8 +152,8 @@ $("#conductor").change(function () {
 
 });
 
-$("#id_bus").change(function () {
-	// alert( "Handler for .change() called." );
+$("#id_bus").focusout(function () {
+	// alert( "Handler for .focusout() called." );
 	$.get("/api/mantenimiento/buses", function (data) {
 		// console.log(data)
 		let $id_bus = document.getElementById('id_bus')
@@ -173,15 +173,15 @@ $("#id_bus").change(function () {
 			} else {
 				$button.disabled = false;
 
-			}
+			} 
 
 		}
 	})
 
 });
 
-$("#vin").change(function () {
-	// alert( "Handler for .change() called." );
+$("#vin").focusout(function () {
+	// alert( "Handler for .focusout() called." );
 	$.get("/api/mantenimiento/buses", function (data) {
 		// console.log(data)
 		let $vin = document.getElementById('vin')

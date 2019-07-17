@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use App\Peticion;
 use App\Buses;
+use App\Almacen;
    
 
 /*
@@ -73,4 +74,8 @@ Route::post('/mantenimiento/notificacion/delete/{id}', function($id, Request $re
 
 Route::get('/mantenimiento/buses', function (){
         return Buses::all();
+});
+
+Route::get('/almacen/productos', function (){
+        return Almacen::all();
 });
