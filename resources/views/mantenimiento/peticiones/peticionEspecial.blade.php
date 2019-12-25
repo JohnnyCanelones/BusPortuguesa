@@ -1,6 +1,6 @@
 <head>
         <link rel="stylesheet" href="{{asset("plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css")}}">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        {{-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> --}}
         <link rel="stylesheet" href="{{asset("plugins/select2/select2.min.css")}}">
 
 </head>
@@ -138,11 +138,7 @@
         </div>
         
         <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
-        {{-- <script type="text/javascript" src="{{ asset('js/staffform.js') }}"></script> --}}
         
-        {{-- <script type="text/javascript" src="{{ asset('plugins/momentjs/moment.js') }}"></script> --}}
-        {{-- <script type="text/javascript" src="{{ asset('plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js') }}"></script> --}}
-        {{-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script> --}}
         <script type="text/javascript"  src="{{ asset('plugins/select2/select2.min.js') }}"></script>
 
         <script type="text/javascript"  src="{{ asset('plugins/sweetalert2.all.min.js') }}"></script>
@@ -151,13 +147,7 @@
             $('.js-example-basic-single').select2(); 
             $('.js-example-basic-single2').select2(); 
             
-            // $('#date').bootstrapMaterialDatePicker({
-            //     weekStart : 0,
-            //     format : 'YYYY/M/D ', 
-            //     lang: 'es',
-            //     time: false,
-            // });
-
+    
 
         </script>        
         
